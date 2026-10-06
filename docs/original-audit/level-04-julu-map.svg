@@ -1,0 +1,689 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="686" height="718" viewBox="0 0 686 718">
+<rect width="100%" height="100%" fill="#0c1821"/>
+<style>text{font-family:"Microsoft YaHei",sans-serif}.code{font-size:10px;fill:#fff;text-anchor:middle;dominant-baseline:middle}.axis{font-size:11px;fill:#aab8bd;text-anchor:middle}.title{font-size:20px;font-weight:700;fill:#f0d487}</style>
+<text class="title" x="343.0" y="28" text-anchor="middle">原版第一关：汜水关之战战术地图（18×18）</text>
+<text class="axis" x="71.0" y="49">0</text>
+<text class="axis" x="105.0" y="49">1</text>
+<text class="axis" x="139.0" y="49">2</text>
+<text class="axis" x="173.0" y="49">3</text>
+<text class="axis" x="207.0" y="49">4</text>
+<text class="axis" x="241.0" y="49">5</text>
+<text class="axis" x="275.0" y="49">6</text>
+<text class="axis" x="309.0" y="49">7</text>
+<text class="axis" x="343.0" y="49">8</text>
+<text class="axis" x="377.0" y="49">9</text>
+<text class="axis" x="411.0" y="49">10</text>
+<text class="axis" x="445.0" y="49">11</text>
+<text class="axis" x="479.0" y="49">12</text>
+<text class="axis" x="513.0" y="49">13</text>
+<text class="axis" x="547.0" y="49">14</text>
+<text class="axis" x="581.0" y="49">15</text>
+<text class="axis" x="615.0" y="49">16</text>
+<text class="axis" x="649.0" y="49">17</text>
+<text class="axis" x="35" y="79.0">0</text>
+<rect x="54" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(0,0) 荒地 0x0B</title><text class="code" x="71.0" y="76.0">0B</text>
+<rect x="88" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(1,0) 荒地 0x0B</title><text class="code" x="105.0" y="76.0">0B</text>
+<rect x="122" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(2,0) 荒地 0x0B</title><text class="code" x="139.0" y="76.0">0B</text>
+<rect x="156" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(3,0) 荒地 0x0B</title><text class="code" x="173.0" y="76.0">0B</text>
+<rect x="190" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(4,0) 荒地 0x0B</title><text class="code" x="207.0" y="76.0">0B</text>
+<rect x="224" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(5,0) 荒地 0x0B</title><text class="code" x="241.0" y="76.0">0B</text>
+<rect x="258" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(6,0) 荒地 0x0B</title><text class="code" x="275.0" y="76.0">0B</text>
+<rect x="292" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(7,0) 荒地 0x0B</title><text class="code" x="309.0" y="76.0">0B</text>
+<rect x="326" y="58" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(8,0) 悬崖 0x09</title><text class="code" x="343.0" y="76.0">09</text>
+<rect x="360" y="58" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(9,0) 悬崖 0x09</title><text class="code" x="377.0" y="76.0">09</text>
+<rect x="394" y="58" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(10,0) 悬崖 0x09</title><text class="code" x="411.0" y="76.0">09</text>
+<rect x="428" y="58" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(11,0) 悬崖 0x09</title><text class="code" x="445.0" y="76.0">09</text>
+<rect x="462" y="58" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(12,0) 悬崖 0x09</title><text class="code" x="479.0" y="76.0">09</text>
+<rect x="496" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(13,0) 荒地 0x0B</title><text class="code" x="513.0" y="76.0">0B</text>
+<rect x="530" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(14,0) 荒地 0x0B</title><text class="code" x="547.0" y="76.0">0B</text>
+<rect x="564" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(15,0) 荒地 0x0B</title><text class="code" x="581.0" y="76.0">0B</text>
+<rect x="598" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(16,0) 荒地 0x0B</title><text class="code" x="615.0" y="76.0">0B</text>
+<rect x="632" y="58" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(17,0) 荒地 0x0B</title><text class="code" x="649.0" y="76.0">0B</text>
+<text class="axis" x="35" y="113.0">1</text>
+<rect x="54" y="92" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(0,1) 平原 0x00</title><text class="code" x="71.0" y="110.0">00</text>
+<rect x="88" y="92" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(1,1) 平原 0x00</title><text class="code" x="105.0" y="110.0">00</text>
+<rect x="122" y="92" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(2,1) 荒地 0x0B</title><text class="code" x="139.0" y="110.0">0B</text>
+<rect x="156" y="92" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(3,1) 荒地 0x0B</title><text class="code" x="173.0" y="110.0">0B</text>
+<rect x="190" y="92" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(4,1) 荒地 0x0B</title><text class="code" x="207.0" y="110.0">0B</text>
+<rect x="224" y="92" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(5,1) 荒地 0x0B</title><text class="code" x="241.0" y="110.0">0B</text>
+<rect x="258" y="92" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(6,1) 荒地 0x0B</title><text class="code" x="275.0" y="110.0">0B</text>
+<rect x="292" y="92" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(7,1) 荒地 0x0B</title><text class="code" x="309.0" y="110.0">0B</text>
+<rect x="326" y="92" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(8,1) 荒地 0x0B</title><text class="code" x="343.0" y="110.0">0B</text>
+<rect x="360" y="92" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(9,1) 荒地 0x0B</title><text class="code" x="377.0" y="110.0">0B</text>
+<rect x="394" y="92" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(10,1) 悬崖 0x09</title><text class="code" x="411.0" y="110.0">09</text>
+<rect x="428" y="92" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(11,1) 悬崖 0x09</title><text class="code" x="445.0" y="110.0">09</text>
+<rect x="462" y="92" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(12,1) 悬崖 0x09</title><text class="code" x="479.0" y="110.0">09</text>
+<rect x="496" y="92" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(13,1) 悬崖 0x09</title><text class="code" x="513.0" y="110.0">09</text>
+<rect x="530" y="92" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(14,1) 悬崖 0x09</title><text class="code" x="547.0" y="110.0">09</text>
+<rect x="564" y="92" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(15,1) 荒地 0x0B</title><text class="code" x="581.0" y="110.0">0B</text>
+<rect x="598" y="92" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(16,1) 荒地 0x0B</title><text class="code" x="615.0" y="110.0">0B</text>
+<rect x="632" y="92" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(17,1) 荒地 0x0B</title><text class="code" x="649.0" y="110.0">0B</text>
+<text class="axis" x="35" y="147.0">2</text>
+<rect x="54" y="126" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(0,2) 平原 0x00</title><text class="code" x="71.0" y="144.0">00</text>
+<rect x="88" y="126" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(1,2) 平原 0x00</title><text class="code" x="105.0" y="144.0">00</text>
+<rect x="122" y="126" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(2,2) 荒地 0x0B</title><text class="code" x="139.0" y="144.0">0B</text>
+<rect x="156" y="126" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(3,2) 荒地 0x0B</title><text class="code" x="173.0" y="144.0">0B</text>
+<rect x="190" y="126" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(4,2) 荒地 0x0B</title><text class="code" x="207.0" y="144.0">0B</text>
+<rect x="224" y="126" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(5,2) 荒地 0x0B</title><text class="code" x="241.0" y="144.0">0B</text>
+<rect x="258" y="126" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(6,2) 荒地 0x0B</title><text class="code" x="275.0" y="144.0">0B</text>
+<rect x="292" y="126" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(7,2) 荒地 0x0B</title><text class="code" x="309.0" y="144.0">0B</text>
+<rect x="326" y="126" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(8,2) 荒地 0x0B</title><text class="code" x="343.0" y="144.0">0B</text>
+<rect x="360" y="126" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(9,2) 荒地 0x0B</title><text class="code" x="377.0" y="144.0">0B</text>
+<rect x="394" y="126" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(10,2) 荒地 0x0B</title><text class="code" x="411.0" y="144.0">0B</text>
+<rect x="428" y="126" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(11,2) 荒地 0x0B</title><text class="code" x="445.0" y="144.0">0B</text>
+<rect x="462" y="126" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(12,2) 悬崖 0x09</title><text class="code" x="479.0" y="144.0">09</text>
+<rect x="496" y="126" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(13,2) 悬崖 0x09</title><text class="code" x="513.0" y="144.0">09</text>
+<rect x="530" y="126" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(14,2) 悬崖 0x09</title><text class="code" x="547.0" y="144.0">09</text>
+<rect x="564" y="126" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(15,2) 悬崖 0x09</title><text class="code" x="581.0" y="144.0">09</text>
+<rect x="598" y="126" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(16,2) 荒地 0x0B</title><text class="code" x="615.0" y="144.0">0B</text>
+<rect x="632" y="126" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(17,2) 荒地 0x0B</title><text class="code" x="649.0" y="144.0">0B</text>
+<text class="axis" x="35" y="181.0">3</text>
+<rect x="54" y="160" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(0,3) 荒地 0x0B</title><text class="code" x="71.0" y="178.0">0B</text>
+<rect x="88" y="160" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(1,3) 平原 0x00</title><text class="code" x="105.0" y="178.0">00</text>
+<rect x="122" y="160" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(2,3) 平原 0x00</title><text class="code" x="139.0" y="178.0">00</text>
+<rect x="156" y="160" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(3,3) 荒地 0x0B</title><text class="code" x="173.0" y="178.0">0B</text>
+<rect x="190" y="160" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(4,3) 荒地 0x0B</title><text class="code" x="207.0" y="178.0">0B</text>
+<rect x="224" y="160" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(5,3) 荒地 0x0B</title><text class="code" x="241.0" y="178.0">0B</text>
+<rect x="258" y="160" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(6,3) 荒地 0x0B</title><text class="code" x="275.0" y="178.0">0B</text>
+<rect x="292" y="160" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(7,3) 荒地 0x0B</title><text class="code" x="309.0" y="178.0">0B</text>
+<rect x="326" y="160" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(8,3) 荒地 0x0B</title><text class="code" x="343.0" y="178.0">0B</text>
+<rect x="360" y="160" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(9,3) 荒地 0x0B</title><text class="code" x="377.0" y="178.0">0B</text>
+<rect x="394" y="160" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(10,3) 荒地 0x0B</title><text class="code" x="411.0" y="178.0">0B</text>
+<rect x="428" y="160" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(11,3) 荒地 0x0B</title><text class="code" x="445.0" y="178.0">0B</text>
+<rect x="462" y="160" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(12,3) 荒地 0x0B</title><text class="code" x="479.0" y="178.0">0B</text>
+<rect x="496" y="160" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(13,3) 荒地 0x0B</title><text class="code" x="513.0" y="178.0">0B</text>
+<rect x="530" y="160" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(14,3) 悬崖 0x09</title><text class="code" x="547.0" y="178.0">09</text>
+<rect x="564" y="160" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(15,3) 悬崖 0x09</title><text class="code" x="581.0" y="178.0">09</text>
+<rect x="598" y="160" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(16,3) 悬崖 0x09</title><text class="code" x="615.0" y="178.0">09</text>
+<rect x="632" y="160" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(17,3) 悬崖 0x09</title><text class="code" x="649.0" y="178.0">09</text>
+<text class="axis" x="35" y="215.0">4</text>
+<rect x="54" y="194" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(0,4) 悬崖 0x09</title><text class="code" x="71.0" y="212.0">09</text>
+<rect x="88" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(1,4) 荒地 0x0B</title><text class="code" x="105.0" y="212.0">0B</text>
+<rect x="122" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(2,4) 荒地 0x0B</title><text class="code" x="139.0" y="212.0">0B</text>
+<rect x="156" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(3,4) 荒地 0x0B</title><text class="code" x="173.0" y="212.0">0B</text>
+<rect x="190" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(4,4) 荒地 0x0B</title><text class="code" x="207.0" y="212.0">0B</text>
+<rect x="224" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(5,4) 荒地 0x0B</title><text class="code" x="241.0" y="212.0">0B</text>
+<rect x="258" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(6,4) 荒地 0x0B</title><text class="code" x="275.0" y="212.0">0B</text>
+<rect x="292" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(7,4) 荒地 0x0B</title><text class="code" x="309.0" y="212.0">0B</text>
+<rect x="326" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(8,4) 荒地 0x0B</title><text class="code" x="343.0" y="212.0">0B</text>
+<rect x="360" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(9,4) 荒地 0x0B</title><text class="code" x="377.0" y="212.0">0B</text>
+<rect x="394" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(10,4) 荒地 0x0B</title><text class="code" x="411.0" y="212.0">0B</text>
+<rect x="428" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(11,4) 荒地 0x0B</title><text class="code" x="445.0" y="212.0">0B</text>
+<rect x="462" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(12,4) 荒地 0x0B</title><text class="code" x="479.0" y="212.0">0B</text>
+<rect x="496" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(13,4) 荒地 0x0B</title><text class="code" x="513.0" y="212.0">0B</text>
+<rect x="530" y="194" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(14,4) 荒地 0x0B</title><text class="code" x="547.0" y="212.0">0B</text>
+<rect x="564" y="194" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(15,4) 悬崖 0x09</title><text class="code" x="581.0" y="212.0">09</text>
+<rect x="598" y="194" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(16,4) 悬崖 0x09</title><text class="code" x="615.0" y="212.0">09</text>
+<rect x="632" y="194" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(17,4) 悬崖 0x09</title><text class="code" x="649.0" y="212.0">09</text>
+<text class="axis" x="35" y="249.0">5</text>
+<rect x="54" y="228" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(0,5) 悬崖 0x09</title><text class="code" x="71.0" y="246.0">09</text>
+<rect x="88" y="228" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(1,5) 悬崖 0x09</title><text class="code" x="105.0" y="246.0">09</text>
+<rect x="122" y="228" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(2,5) 悬崖 0x09</title><text class="code" x="139.0" y="246.0">09</text>
+<rect x="156" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(3,5) 荒地 0x0B</title><text class="code" x="173.0" y="246.0">0B</text>
+<rect x="190" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(4,5) 荒地 0x0B</title><text class="code" x="207.0" y="246.0">0B</text>
+<rect x="224" y="228" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(5,5) 悬崖 0x09</title><text class="code" x="241.0" y="246.0">09</text>
+<rect x="258" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(6,5) 荒地 0x0B</title><text class="code" x="275.0" y="246.0">0B</text>
+<rect x="292" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(7,5) 荒地 0x0B</title><text class="code" x="309.0" y="246.0">0B</text>
+<rect x="326" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(8,5) 荒地 0x0B</title><text class="code" x="343.0" y="246.0">0B</text>
+<rect x="360" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(9,5) 荒地 0x0B</title><text class="code" x="377.0" y="246.0">0B</text>
+<rect x="394" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(10,5) 荒地 0x0B</title><text class="code" x="411.0" y="246.0">0B</text>
+<rect x="428" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(11,5) 荒地 0x0B</title><text class="code" x="445.0" y="246.0">0B</text>
+<rect x="462" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(12,5) 荒地 0x0B</title><text class="code" x="479.0" y="246.0">0B</text>
+<rect x="496" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(13,5) 荒地 0x0B</title><text class="code" x="513.0" y="246.0">0B</text>
+<rect x="530" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(14,5) 荒地 0x0B</title><text class="code" x="547.0" y="246.0">0B</text>
+<rect x="564" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(15,5) 荒地 0x0B</title><text class="code" x="581.0" y="246.0">0B</text>
+<rect x="598" y="228" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(16,5) 荒地 0x0B</title><text class="code" x="615.0" y="246.0">0B</text>
+<rect x="632" y="228" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(17,5) 悬崖 0x09</title><text class="code" x="649.0" y="246.0">09</text>
+<text class="axis" x="35" y="283.0">6</text>
+<rect x="54" y="262" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(0,6) 悬崖 0x09</title><text class="code" x="71.0" y="280.0">09</text>
+<rect x="88" y="262" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(1,6) 悬崖 0x09</title><text class="code" x="105.0" y="280.0">09</text>
+<rect x="122" y="262" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(2,6) 悬崖 0x09</title><text class="code" x="139.0" y="280.0">09</text>
+<rect x="156" y="262" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(3,6) 悬崖 0x09</title><text class="code" x="173.0" y="280.0">09</text>
+<rect x="190" y="262" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(4,6) 悬崖 0x09</title><text class="code" x="207.0" y="280.0">09</text>
+<rect x="224" y="262" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(5,6) 悬崖 0x09</title><text class="code" x="241.0" y="280.0">09</text>
+<rect x="258" y="262" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(6,6) 悬崖 0x09</title><text class="code" x="275.0" y="280.0">09</text>
+<rect x="292" y="262" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(7,6) 悬崖 0x09</title><text class="code" x="309.0" y="280.0">09</text>
+<rect x="326" y="262" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(8,6) 荒地 0x0B</title><text class="code" x="343.0" y="280.0">0B</text>
+<rect x="360" y="262" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(9,6) 荒地 0x0B</title><text class="code" x="377.0" y="280.0">0B</text>
+<rect x="394" y="262" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(10,6) 荒地 0x0B</title><text class="code" x="411.0" y="280.0">0B</text>
+<rect x="428" y="262" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(11,6) 荒地 0x0B</title><text class="code" x="445.0" y="280.0">0B</text>
+<rect x="462" y="262" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(12,6) 荒地 0x0B</title><text class="code" x="479.0" y="280.0">0B</text>
+<rect x="496" y="262" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(13,6) 荒地 0x0B</title><text class="code" x="513.0" y="280.0">0B</text>
+<rect x="530" y="262" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(14,6) 荒地 0x0B</title><text class="code" x="547.0" y="280.0">0B</text>
+<rect x="564" y="262" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(15,6) 荒地 0x0B</title><text class="code" x="581.0" y="280.0">0B</text>
+<rect x="598" y="262" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(16,6) 荒地 0x0B</title><text class="code" x="615.0" y="280.0">0B</text>
+<rect x="632" y="262" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(17,6) 荒地 0x0B</title><text class="code" x="649.0" y="280.0">0B</text>
+<text class="axis" x="35" y="317.0">7</text>
+<rect x="54" y="296" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(0,7) 荒地 0x0B</title><text class="code" x="71.0" y="314.0">0B</text>
+<rect x="88" y="296" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(1,7) 悬崖 0x09</title><text class="code" x="105.0" y="314.0">09</text>
+<rect x="122" y="296" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(2,7) 悬崖 0x09</title><text class="code" x="139.0" y="314.0">09</text>
+<rect x="156" y="296" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(3,7) 悬崖 0x09</title><text class="code" x="173.0" y="314.0">09</text>
+<rect x="190" y="296" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(4,7) 悬崖 0x09</title><text class="code" x="207.0" y="314.0">09</text>
+<rect x="224" y="296" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(5,7) 悬崖 0x09</title><text class="code" x="241.0" y="314.0">09</text>
+<rect x="258" y="296" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(6,7) 悬崖 0x09</title><text class="code" x="275.0" y="314.0">09</text>
+<rect x="292" y="296" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(7,7) 悬崖 0x09</title><text class="code" x="309.0" y="314.0">09</text>
+<rect x="326" y="296" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(8,7) 悬崖 0x09</title><text class="code" x="343.0" y="314.0">09</text>
+<rect x="360" y="296" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(9,7) 悬崖 0x09</title><text class="code" x="377.0" y="314.0">09</text>
+<rect x="394" y="296" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(10,7) 荒地 0x0B</title><text class="code" x="411.0" y="314.0">0B</text>
+<rect x="428" y="296" width="33" height="33" fill="#d4b154" stroke="#101b20"/>
+<title>(11,7) 村庄 0x08</title><text class="code" x="445.0" y="314.0">08</text>
+<rect x="462" y="296" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(12,7) 荒地 0x0B</title><text class="code" x="479.0" y="314.0">0B</text>
+<rect x="496" y="296" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(13,7) 荒地 0x0B</title><text class="code" x="513.0" y="314.0">0B</text>
+<rect x="530" y="296" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(14,7) 荒地 0x0B</title><text class="code" x="547.0" y="314.0">0B</text>
+<rect x="564" y="296" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(15,7) 荒地 0x0B</title><text class="code" x="581.0" y="314.0">0B</text>
+<rect x="598" y="296" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(16,7) 荒地 0x0B</title><text class="code" x="615.0" y="314.0">0B</text>
+<rect x="632" y="296" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(17,7) 荒地 0x0B</title><text class="code" x="649.0" y="314.0">0B</text>
+<text class="axis" x="35" y="351.0">8</text>
+<rect x="54" y="330" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(0,8) 荒地 0x0B</title><text class="code" x="71.0" y="348.0">0B</text>
+<rect x="88" y="330" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(1,8) 荒地 0x0B</title><text class="code" x="105.0" y="348.0">0B</text>
+<rect x="122" y="330" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(2,8) 荒地 0x0B</title><text class="code" x="139.0" y="348.0">0B</text>
+<rect x="156" y="330" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(3,8) 荒地 0x0B</title><text class="code" x="173.0" y="348.0">0B</text>
+<rect x="190" y="330" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(4,8) 荒地 0x0B</title><text class="code" x="207.0" y="348.0">0B</text>
+<rect x="224" y="330" width="33" height="33" fill="#d28f39" stroke="#101b20"/>
+<title>(5,8) 粮仓 0x0F</title><text class="code" x="241.0" y="348.0">0F</text>
+<rect x="258" y="330" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(6,8) 荒地 0x0B</title><text class="code" x="275.0" y="348.0">0B</text>
+<rect x="292" y="330" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(7,8) 悬崖 0x09</title><text class="code" x="309.0" y="348.0">09</text>
+<rect x="326" y="330" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(8,8) 悬崖 0x09</title><text class="code" x="343.0" y="348.0">09</text>
+<rect x="360" y="330" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(9,8) 悬崖 0x09</title><text class="code" x="377.0" y="348.0">09</text>
+<rect x="394" y="330" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(10,8) 悬崖 0x09</title><text class="code" x="411.0" y="348.0">09</text>
+<rect x="428" y="330" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(11,8) 悬崖 0x09</title><text class="code" x="445.0" y="348.0">09</text>
+<rect x="462" y="330" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(12,8) 荒地 0x0B</title><text class="code" x="479.0" y="348.0">0B</text>
+<rect x="496" y="330" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(13,8) 荒地 0x0B</title><text class="code" x="513.0" y="348.0">0B</text>
+<rect x="530" y="330" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(14,8) 荒地 0x0B</title><text class="code" x="547.0" y="348.0">0B</text>
+<rect x="564" y="330" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(15,8) 荒地 0x0B</title><text class="code" x="581.0" y="348.0">0B</text>
+<rect x="598" y="330" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(16,8) 荒地 0x0B</title><text class="code" x="615.0" y="348.0">0B</text>
+<rect x="632" y="330" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(17,8) 荒地 0x0B</title><text class="code" x="649.0" y="348.0">0B</text>
+<text class="axis" x="35" y="385.0">9</text>
+<rect x="54" y="364" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(0,9) 平原 0x00</title><text class="code" x="71.0" y="382.0">00</text>
+<rect x="88" y="364" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(1,9) 平原 0x00</title><text class="code" x="105.0" y="382.0">00</text>
+<rect x="122" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(2,9) 荒地 0x0B</title><text class="code" x="139.0" y="382.0">0B</text>
+<rect x="156" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(3,9) 荒地 0x0B</title><text class="code" x="173.0" y="382.0">0B</text>
+<rect x="190" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(4,9) 荒地 0x0B</title><text class="code" x="207.0" y="382.0">0B</text>
+<rect x="224" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(5,9) 荒地 0x0B</title><text class="code" x="241.0" y="382.0">0B</text>
+<rect x="258" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(6,9) 荒地 0x0B</title><text class="code" x="275.0" y="382.0">0B</text>
+<rect x="292" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(7,9) 荒地 0x0B</title><text class="code" x="309.0" y="382.0">0B</text>
+<rect x="326" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(8,9) 荒地 0x0B</title><text class="code" x="343.0" y="382.0">0B</text>
+<rect x="360" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(9,9) 荒地 0x0B</title><text class="code" x="377.0" y="382.0">0B</text>
+<rect x="394" y="364" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(10,9) 悬崖 0x09</title><text class="code" x="411.0" y="382.0">09</text>
+<rect x="428" y="364" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(11,9) 悬崖 0x09</title><text class="code" x="445.0" y="382.0">09</text>
+<rect x="462" y="364" width="33" height="33" fill="#4a4c42" stroke="#101b20"/>
+<title>(12,9) 悬崖 0x09</title><text class="code" x="479.0" y="382.0">09</text>
+<rect x="496" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(13,9) 荒地 0x0B</title><text class="code" x="513.0" y="382.0">0B</text>
+<rect x="530" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(14,9) 荒地 0x0B</title><text class="code" x="547.0" y="382.0">0B</text>
+<rect x="564" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(15,9) 荒地 0x0B</title><text class="code" x="581.0" y="382.0">0B</text>
+<rect x="598" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(16,9) 荒地 0x0B</title><text class="code" x="615.0" y="382.0">0B</text>
+<rect x="632" y="364" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(17,9) 荒地 0x0B</title><text class="code" x="649.0" y="382.0">0B</text>
+<text class="axis" x="35" y="419.0">10</text>
+<rect x="54" y="398" width="33" height="33" fill="#b27e42" stroke="#101b20"/>
+<title>(0,10) 鹿砦 0x0D</title><text class="code" x="71.0" y="416.0">0D</text>
+<rect x="88" y="398" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(1,10) 平原 0x00</title><text class="code" x="105.0" y="416.0">00</text>
+<rect x="122" y="398" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(2,10) 平原 0x00</title><text class="code" x="139.0" y="416.0">00</text>
+<rect x="156" y="398" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(3,10) 平原 0x00</title><text class="code" x="173.0" y="416.0">00</text>
+<rect x="190" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(4,10) 荒地 0x0B</title><text class="code" x="207.0" y="416.0">0B</text>
+<rect x="224" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(5,10) 荒地 0x0B</title><text class="code" x="241.0" y="416.0">0B</text>
+<rect x="258" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(6,10) 荒地 0x0B</title><text class="code" x="275.0" y="416.0">0B</text>
+<rect x="292" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(7,10) 荒地 0x0B</title><text class="code" x="309.0" y="416.0">0B</text>
+<rect x="326" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(8,10) 荒地 0x0B</title><text class="code" x="343.0" y="416.0">0B</text>
+<rect x="360" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(9,10) 荒地 0x0B</title><text class="code" x="377.0" y="416.0">0B</text>
+<rect x="394" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(10,10) 荒地 0x0B</title><text class="code" x="411.0" y="416.0">0B</text>
+<rect x="428" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(11,10) 荒地 0x0B</title><text class="code" x="445.0" y="416.0">0B</text>
+<rect x="462" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(12,10) 荒地 0x0B</title><text class="code" x="479.0" y="416.0">0B</text>
+<rect x="496" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(13,10) 荒地 0x0B</title><text class="code" x="513.0" y="416.0">0B</text>
+<rect x="530" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(14,10) 荒地 0x0B</title><text class="code" x="547.0" y="416.0">0B</text>
+<rect x="564" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(15,10) 荒地 0x0B</title><text class="code" x="581.0" y="416.0">0B</text>
+<rect x="598" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(16,10) 荒地 0x0B</title><text class="code" x="615.0" y="416.0">0B</text>
+<rect x="632" y="398" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(17,10) 荒地 0x0B</title><text class="code" x="649.0" y="416.0">0B</text>
+<text class="axis" x="35" y="453.0">11</text>
+<rect x="54" y="432" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(0,11) 草原 0x07</title><text class="code" x="71.0" y="450.0">07</text>
+<rect x="88" y="432" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(1,11) 平原 0x00</title><text class="code" x="105.0" y="450.0">00</text>
+<rect x="122" y="432" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(2,11) 平原 0x00</title><text class="code" x="139.0" y="450.0">00</text>
+<rect x="156" y="432" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(3,11) 平原 0x00</title><text class="code" x="173.0" y="450.0">00</text>
+<rect x="190" y="432" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(4,11) 平原 0x00</title><text class="code" x="207.0" y="450.0">00</text>
+<rect x="224" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(5,11) 荒地 0x0B</title><text class="code" x="241.0" y="450.0">0B</text>
+<rect x="258" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(6,11) 荒地 0x0B</title><text class="code" x="275.0" y="450.0">0B</text>
+<rect x="292" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(7,11) 荒地 0x0B</title><text class="code" x="309.0" y="450.0">0B</text>
+<rect x="326" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(8,11) 荒地 0x0B</title><text class="code" x="343.0" y="450.0">0B</text>
+<rect x="360" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(9,11) 荒地 0x0B</title><text class="code" x="377.0" y="450.0">0B</text>
+<rect x="394" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(10,11) 荒地 0x0B</title><text class="code" x="411.0" y="450.0">0B</text>
+<rect x="428" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(11,11) 荒地 0x0B</title><text class="code" x="445.0" y="450.0">0B</text>
+<rect x="462" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(12,11) 荒地 0x0B</title><text class="code" x="479.0" y="450.0">0B</text>
+<rect x="496" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(13,11) 荒地 0x0B</title><text class="code" x="513.0" y="450.0">0B</text>
+<rect x="530" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(14,11) 荒地 0x0B</title><text class="code" x="547.0" y="450.0">0B</text>
+<rect x="564" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(15,11) 荒地 0x0B</title><text class="code" x="581.0" y="450.0">0B</text>
+<rect x="598" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(16,11) 荒地 0x0B</title><text class="code" x="615.0" y="450.0">0B</text>
+<rect x="632" y="432" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(17,11) 荒地 0x0B</title><text class="code" x="649.0" y="450.0">0B</text>
+<text class="axis" x="35" y="487.0">12</text>
+<rect x="54" y="466" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(0,12) 森林 0x01</title><text class="code" x="71.0" y="484.0">01</text>
+<rect x="88" y="466" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(1,12) 草原 0x07</title><text class="code" x="105.0" y="484.0">07</text>
+<rect x="122" y="466" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(2,12) 平原 0x00</title><text class="code" x="139.0" y="484.0">00</text>
+<rect x="156" y="466" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(3,12) 平原 0x00</title><text class="code" x="173.0" y="484.0">00</text>
+<rect x="190" y="466" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(4,12) 平原 0x00</title><text class="code" x="207.0" y="484.0">00</text>
+<rect x="224" y="466" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(5,12) 平原 0x00</title><text class="code" x="241.0" y="484.0">00</text>
+<rect x="258" y="466" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(6,12) 平原 0x00</title><text class="code" x="275.0" y="484.0">00</text>
+<rect x="292" y="466" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(7,12) 荒地 0x0B</title><text class="code" x="309.0" y="484.0">0B</text>
+<rect x="326" y="466" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(8,12) 荒地 0x0B</title><text class="code" x="343.0" y="484.0">0B</text>
+<rect x="360" y="466" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(9,12) 荒地 0x0B</title><text class="code" x="377.0" y="484.0">0B</text>
+<rect x="394" y="466" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(10,12) 荒地 0x0B</title><text class="code" x="411.0" y="484.0">0B</text>
+<rect x="428" y="466" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(11,12) 荒地 0x0B</title><text class="code" x="445.0" y="484.0">0B</text>
+<rect x="462" y="466" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(12,12) 荒地 0x0B</title><text class="code" x="479.0" y="484.0">0B</text>
+<rect x="496" y="466" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(13,12) 荒地 0x0B</title><text class="code" x="513.0" y="484.0">0B</text>
+<rect x="530" y="466" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(14,12) 荒地 0x0B</title><text class="code" x="547.0" y="484.0">0B</text>
+<rect x="564" y="466" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(15,12) 平原 0x00</title><text class="code" x="581.0" y="484.0">00</text>
+<rect x="598" y="466" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(16,12) 平原 0x00</title><text class="code" x="615.0" y="484.0">00</text>
+<rect x="632" y="466" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(17,12) 草原 0x07</title><text class="code" x="649.0" y="484.0">07</text>
+<text class="axis" x="35" y="521.0">13</text>
+<rect x="54" y="500" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(0,13) 森林 0x01</title><text class="code" x="71.0" y="518.0">01</text>
+<rect x="88" y="500" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(1,13) 森林 0x01</title><text class="code" x="105.0" y="518.0">01</text>
+<rect x="122" y="500" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(2,13) 草原 0x07</title><text class="code" x="139.0" y="518.0">07</text>
+<rect x="156" y="500" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(3,13) 平原 0x00</title><text class="code" x="173.0" y="518.0">00</text>
+<rect x="190" y="500" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(4,13) 平原 0x00</title><text class="code" x="207.0" y="518.0">00</text>
+<rect x="224" y="500" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(5,13) 平原 0x00</title><text class="code" x="241.0" y="518.0">00</text>
+<rect x="258" y="500" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(6,13) 平原 0x00</title><text class="code" x="275.0" y="518.0">00</text>
+<rect x="292" y="500" width="33" height="33" fill="#d4b154" stroke="#101b20"/>
+<title>(7,13) 村庄 0x08</title><text class="code" x="309.0" y="518.0">08</text>
+<rect x="326" y="500" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(8,13) 荒地 0x0B</title><text class="code" x="343.0" y="518.0">0B</text>
+<rect x="360" y="500" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(9,13) 荒地 0x0B</title><text class="code" x="377.0" y="518.0">0B</text>
+<rect x="394" y="500" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(10,13) 荒地 0x0B</title><text class="code" x="411.0" y="518.0">0B</text>
+<rect x="428" y="500" width="33" height="33" fill="#a28758" stroke="#101b20"/>
+<title>(11,13) 荒地 0x0B</title><text class="code" x="445.0" y="518.0">0B</text>
+<rect x="462" y="500" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(12,13) 平原 0x00</title><text class="code" x="479.0" y="518.0">00</text>
+<rect x="496" y="500" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(13,13) 平原 0x00</title><text class="code" x="513.0" y="518.0">00</text>
+<rect x="530" y="500" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(14,13) 平原 0x00</title><text class="code" x="547.0" y="518.0">00</text>
+<rect x="564" y="500" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(15,13) 草原 0x07</title><text class="code" x="581.0" y="518.0">07</text>
+<rect x="598" y="500" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(16,13) 草原 0x07</title><text class="code" x="615.0" y="518.0">07</text>
+<rect x="632" y="500" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(17,13) 草原 0x07</title><text class="code" x="649.0" y="518.0">07</text>
+<text class="axis" x="35" y="555.0">14</text>
+<rect x="54" y="534" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(0,14) 森林 0x01</title><text class="code" x="71.0" y="552.0">01</text>
+<rect x="88" y="534" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(1,14) 森林 0x01</title><text class="code" x="105.0" y="552.0">01</text>
+<rect x="122" y="534" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(2,14) 草原 0x07</title><text class="code" x="139.0" y="552.0">07</text>
+<rect x="156" y="534" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(3,14) 平原 0x00</title><text class="code" x="173.0" y="552.0">00</text>
+<rect x="190" y="534" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(4,14) 平原 0x00</title><text class="code" x="207.0" y="552.0">00</text>
+<rect x="224" y="534" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(5,14) 平原 0x00</title><text class="code" x="241.0" y="552.0">00</text>
+<rect x="258" y="534" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(6,14) 平原 0x00</title><text class="code" x="275.0" y="552.0">00</text>
+<rect x="292" y="534" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(7,14) 平原 0x00</title><text class="code" x="309.0" y="552.0">00</text>
+<rect x="326" y="534" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(8,14) 平原 0x00</title><text class="code" x="343.0" y="552.0">00</text>
+<rect x="360" y="534" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(9,14) 平原 0x00</title><text class="code" x="377.0" y="552.0">00</text>
+<rect x="394" y="534" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(10,14) 平原 0x00</title><text class="code" x="411.0" y="552.0">00</text>
+<rect x="428" y="534" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(11,14) 平原 0x00</title><text class="code" x="445.0" y="552.0">00</text>
+<rect x="462" y="534" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(12,14) 草原 0x07</title><text class="code" x="479.0" y="552.0">07</text>
+<rect x="496" y="534" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(13,14) 草原 0x07</title><text class="code" x="513.0" y="552.0">07</text>
+<rect x="530" y="534" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(14,14) 草原 0x07</title><text class="code" x="547.0" y="552.0">07</text>
+<rect x="564" y="534" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(15,14) 草原 0x07</title><text class="code" x="581.0" y="552.0">07</text>
+<rect x="598" y="534" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(16,14) 森林 0x01</title><text class="code" x="615.0" y="552.0">01</text>
+<rect x="632" y="534" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(17,14) 森林 0x01</title><text class="code" x="649.0" y="552.0">01</text>
+<text class="axis" x="35" y="589.0">15</text>
+<rect x="54" y="568" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(0,15) 森林 0x01</title><text class="code" x="71.0" y="586.0">01</text>
+<rect x="88" y="568" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(1,15) 森林 0x01</title><text class="code" x="105.0" y="586.0">01</text>
+<rect x="122" y="568" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(2,15) 草原 0x07</title><text class="code" x="139.0" y="586.0">07</text>
+<rect x="156" y="568" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(3,15) 平原 0x00</title><text class="code" x="173.0" y="586.0">00</text>
+<rect x="190" y="568" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(4,15) 平原 0x00</title><text class="code" x="207.0" y="586.0">00</text>
+<rect x="224" y="568" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(5,15) 平原 0x00</title><text class="code" x="241.0" y="586.0">00</text>
+<rect x="258" y="568" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(6,15) 平原 0x00</title><text class="code" x="275.0" y="586.0">00</text>
+<rect x="292" y="568" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(7,15) 平原 0x00</title><text class="code" x="309.0" y="586.0">00</text>
+<rect x="326" y="568" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(8,15) 平原 0x00</title><text class="code" x="343.0" y="586.0">00</text>
+<rect x="360" y="568" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(9,15) 平原 0x00</title><text class="code" x="377.0" y="586.0">00</text>
+<rect x="394" y="568" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(10,15) 平原 0x00</title><text class="code" x="411.0" y="586.0">00</text>
+<rect x="428" y="568" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(11,15) 草原 0x07</title><text class="code" x="445.0" y="586.0">07</text>
+<rect x="462" y="568" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(12,15) 草原 0x07</title><text class="code" x="479.0" y="586.0">07</text>
+<rect x="496" y="568" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(13,15) 草原 0x07</title><text class="code" x="513.0" y="586.0">07</text>
+<rect x="530" y="568" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(14,15) 草原 0x07</title><text class="code" x="547.0" y="586.0">07</text>
+<rect x="564" y="568" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(15,15) 森林 0x01</title><text class="code" x="581.0" y="586.0">01</text>
+<rect x="598" y="568" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(16,15) 森林 0x01</title><text class="code" x="615.0" y="586.0">01</text>
+<rect x="632" y="568" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(17,15) 森林 0x01</title><text class="code" x="649.0" y="586.0">01</text>
+<text class="axis" x="35" y="623.0">16</text>
+<rect x="54" y="602" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(0,16) 森林 0x01</title><text class="code" x="71.0" y="620.0">01</text>
+<rect x="88" y="602" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(1,16) 草原 0x07</title><text class="code" x="105.0" y="620.0">07</text>
+<rect x="122" y="602" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(2,16) 草原 0x07</title><text class="code" x="139.0" y="620.0">07</text>
+<rect x="156" y="602" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(3,16) 平原 0x00</title><text class="code" x="173.0" y="620.0">00</text>
+<rect x="190" y="602" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(4,16) 平原 0x00</title><text class="code" x="207.0" y="620.0">00</text>
+<rect x="224" y="602" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(5,16) 平原 0x00</title><text class="code" x="241.0" y="620.0">00</text>
+<rect x="258" y="602" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(6,16) 平原 0x00</title><text class="code" x="275.0" y="620.0">00</text>
+<rect x="292" y="602" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(7,16) 平原 0x00</title><text class="code" x="309.0" y="620.0">00</text>
+<rect x="326" y="602" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(8,16) 草原 0x07</title><text class="code" x="343.0" y="620.0">07</text>
+<rect x="360" y="602" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(9,16) 草原 0x07</title><text class="code" x="377.0" y="620.0">07</text>
+<rect x="394" y="602" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(10,16) 草原 0x07</title><text class="code" x="411.0" y="620.0">07</text>
+<rect x="428" y="602" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(11,16) 草原 0x07</title><text class="code" x="445.0" y="620.0">07</text>
+<rect x="462" y="602" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(12,16) 草原 0x07</title><text class="code" x="479.0" y="620.0">07</text>
+<rect x="496" y="602" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(13,16) 草原 0x07</title><text class="code" x="513.0" y="620.0">07</text>
+<rect x="530" y="602" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(14,16) 草原 0x07</title><text class="code" x="547.0" y="620.0">07</text>
+<rect x="564" y="602" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(15,16) 森林 0x01</title><text class="code" x="581.0" y="620.0">01</text>
+<rect x="598" y="602" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(16,16) 森林 0x01</title><text class="code" x="615.0" y="620.0">01</text>
+<rect x="632" y="602" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(17,16) 森林 0x01</title><text class="code" x="649.0" y="620.0">01</text>
+<text class="axis" x="35" y="657.0">17</text>
+<rect x="54" y="636" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(0,17) 森林 0x01</title><text class="code" x="71.0" y="654.0">01</text>
+<rect x="88" y="636" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(1,17) 草原 0x07</title><text class="code" x="105.0" y="654.0">07</text>
+<rect x="122" y="636" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(2,17) 平原 0x00</title><text class="code" x="139.0" y="654.0">00</text>
+<rect x="156" y="636" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(3,17) 平原 0x00</title><text class="code" x="173.0" y="654.0">00</text>
+<rect x="190" y="636" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(4,17) 平原 0x00</title><text class="code" x="207.0" y="654.0">00</text>
+<rect x="224" y="636" width="33" height="33" fill="#8eaa57" stroke="#101b20"/>
+<title>(5,17) 平原 0x00</title><text class="code" x="241.0" y="654.0">00</text>
+<rect x="258" y="636" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(6,17) 草原 0x07</title><text class="code" x="275.0" y="654.0">07</text>
+<rect x="292" y="636" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(7,17) 草原 0x07</title><text class="code" x="309.0" y="654.0">07</text>
+<rect x="326" y="636" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(8,17) 草原 0x07</title><text class="code" x="343.0" y="654.0">07</text>
+<rect x="360" y="636" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(9,17) 草原 0x07</title><text class="code" x="377.0" y="654.0">07</text>
+<rect x="394" y="636" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(10,17) 草原 0x07</title><text class="code" x="411.0" y="654.0">07</text>
+<rect x="428" y="636" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(11,17) 草原 0x07</title><text class="code" x="445.0" y="654.0">07</text>
+<rect x="462" y="636" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(12,17) 草原 0x07</title><text class="code" x="479.0" y="654.0">07</text>
+<rect x="496" y="636" width="33" height="33" fill="#6f9b4f" stroke="#101b20"/>
+<title>(13,17) 草原 0x07</title><text class="code" x="513.0" y="654.0">07</text>
+<rect x="530" y="636" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(14,17) 森林 0x01</title><text class="code" x="547.0" y="654.0">01</text>
+<rect x="564" y="636" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(15,17) 森林 0x01</title><text class="code" x="581.0" y="654.0">01</text>
+<rect x="598" y="636" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(16,17) 森林 0x01</title><text class="code" x="615.0" y="654.0">01</text>
+<rect x="632" y="636" width="33" height="33" fill="#315c36" stroke="#101b20"/>
+<title>(17,17) 森林 0x01</title><text class="code" x="649.0" y="654.0">01</text>
+</svg>

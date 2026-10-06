@@ -1,0 +1,193 @@
+{
+  "source": "D:\\baiduyundownload\\三国英杰传\\三国英杰传\\SGYJ\\PMAP.R3",
+  "source_size": 8184,
+  "source_sha256": "36394fe0311b3f287986f54f078a68ef217fa36492f8b579d1a22968a39497e6",
+  "format": "LS11",
+  "section_count": 23,
+  "sections": [
+    {
+      "index": 0,
+      "compressed_size": 305,
+      "unpacked_size": 1297,
+      "offset": 552,
+      "output": "section-000.bin",
+      "sha256": "686e5d20a7d52097295fc621a86fe4e7d6025600c7a576aa1307a7f44113779e"
+    },
+    {
+      "index": 1,
+      "compressed_size": 330,
+      "unpacked_size": 1300,
+      "offset": 857,
+      "output": "section-001.bin",
+      "sha256": "85ec100f916caf49fed6c26d2e280cac6acc4fb3fc769241e265156c2e480a4b"
+    },
+    {
+      "index": 2,
+      "compressed_size": 307,
+      "unpacked_size": 1303,
+      "offset": 1187,
+      "output": "section-002.bin",
+      "sha256": "c3611e1e84e21cf9c34bb8402f45e8fa43c885aeaef3ce0891ededb331c4763c"
+    },
+    {
+      "index": 3,
+      "compressed_size": 346,
+      "unpacked_size": 1309,
+      "offset": 1494,
+      "output": "section-003.bin",
+      "sha256": "63d9bd6509480bb23a52a65148bf145d28bd1279eefc5e86c0c379681f363e86"
+    },
+    {
+      "index": 4,
+      "compressed_size": 318,
+      "unpacked_size": 1336,
+      "offset": 1840,
+      "output": "section-004.bin",
+      "sha256": "fb15fd644810504417f398587ae04b0856a047db55a1f05a26b21c577e187847"
+    },
+    {
+      "index": 5,
+      "compressed_size": 422,
+      "unpacked_size": 1333,
+      "offset": 2158,
+      "output": "section-005.bin",
+      "sha256": "4a6ff148537ad75280d66370c497ed748a0839e33aa43e8c5a493e941383dee1"
+    },
+    {
+      "index": 6,
+      "compressed_size": 340,
+      "unpacked_size": 1354,
+      "offset": 2580,
+      "output": "section-006.bin",
+      "sha256": "57327aaefbd8c526d4941110ac0955648d1ce1dc6159354775f155c6cfb614cf"
+    },
+    {
+      "index": 7,
+      "compressed_size": 398,
+      "unpacked_size": 1384,
+      "offset": 2920,
+      "output": "section-007.bin",
+      "sha256": "7e421d1ba92a3d66dd658fcab70edc79f58a29009053ea6b877d335c37b67d09"
+    },
+    {
+      "index": 8,
+      "compressed_size": 375,
+      "unpacked_size": 1324,
+      "offset": 3318,
+      "output": "section-008.bin",
+      "sha256": "9a10e56f4bce91509cb8a01c9409de38d0e6b3eff00c856b81075d154b0f85ef"
+    },
+    {
+      "index": 9,
+      "compressed_size": 319,
+      "unpacked_size": 1315,
+      "offset": 3693,
+      "output": "section-009.bin",
+      "sha256": "c9cfd58580a629c84512de3b5cfef4f755ef64025101963d9115ff1f4ed64c38"
+    },
+    {
+      "index": 10,
+      "compressed_size": 273,
+      "unpacked_size": 1327,
+      "offset": 4012,
+      "output": "section-010.bin",
+      "sha256": "d891494d32a27dc834bd547a27440d70ea73ebc82181b612c8d53c2f02cc6073"
+    },
+    {
+      "index": 11,
+      "compressed_size": 263,
+      "unpacked_size": 1315,
+      "offset": 4285,
+      "output": "section-011.bin",
+      "sha256": "6bfc2a63c6df8e294260a6f8a935c4e3f9edb8f483a4e0cc7612bdc862ef4f98"
+    },
+    {
+      "index": 12,
+      "compressed_size": 384,
+      "unpacked_size": 1375,
+      "offset": 4548,
+      "output": "section-012.bin",
+      "sha256": "74c0f6822a4356dd311d378206d0983ccf0800721b842a6e64dc218b9b0de961"
+    },
+    {
+      "index": 13,
+      "compressed_size": 370,
+      "unpacked_size": 1312,
+      "offset": 4932,
+      "output": "section-013.bin",
+      "sha256": "c0ba481b785baa7a83a3e53214032dc74379130a7a9dc65ade5aadfff0de69e0"
+    },
+    {
+      "index": 14,
+      "compressed_size": 269,
+      "unpacked_size": 1327,
+      "offset": 5302,
+      "output": "section-014.bin",
+      "sha256": "4f71dfc2bafd0918aaa92e57b607a99efb71eaee4594de76affe0e1204b908b0"
+    },
+    {
+      "index": 15,
+      "compressed_size": 207,
+      "unpacked_size": 1285,
+      "offset": 5571,
+      "output": "section-015.bin",
+      "sha256": "b8ce4770045efe4574424466e2225fba91be4b970b971243f13c6b774ad390bc"
+    },
+    {
+      "index": 16,
+      "compressed_size": 272,
+      "unpacked_size": 1303,
+      "offset": 5778,
+      "output": "section-016.bin",
+      "sha256": "efdbc05806754eb5e8cbdfb59a672f9eb16e56d6b40d1fb3411c0928889afdcb"
+    },
+    {
+      "index": 17,
+      "compressed_size": 335,
+      "unpacked_size": 1303,
+      "offset": 6050,
+      "output": "section-017.bin",
+      "sha256": "ad82996268c94822595201a75dd79d4b4be44355245eca64c63d3450b08888a9"
+    },
+    {
+      "index": 18,
+      "compressed_size": 298,
+      "unpacked_size": 1342,
+      "offset": 6385,
+      "output": "section-018.bin",
+      "sha256": "8ffcfc33c4194eef8210175791c70be43d333f4a67e5515da41b7791317d131a"
+    },
+    {
+      "index": 19,
+      "compressed_size": 316,
+      "unpacked_size": 1291,
+      "offset": 6683,
+      "output": "section-019.bin",
+      "sha256": "945db8b15970fad30f389becbdf8a1538d07681750a3929c2a057f44c476d15e"
+    },
+    {
+      "index": 20,
+      "compressed_size": 406,
+      "unpacked_size": 1339,
+      "offset": 6999,
+      "output": "section-020.bin",
+      "sha256": "d20ab5c579a144d4b75fbfd51a26ab9f53726be4cf0fec80e195a14589fce86b"
+    },
+    {
+      "index": 21,
+      "compressed_size": 417,
+      "unpacked_size": 1348,
+      "offset": 7405,
+      "output": "section-021.bin",
+      "sha256": "773f10c7d99048caacf6b776160ec96579882c06dc50b85f10fe8a90d23038c0"
+    },
+    {
+      "index": 22,
+      "compressed_size": 362,
+      "unpacked_size": 1306,
+      "offset": 7822,
+      "output": "section-022.bin",
+      "sha256": "9190604f3a2df3e5b9839b9090d6ccb545913461164049a4a6c7be8b880add5e"
+    }
+  ]
+}

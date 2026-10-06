@@ -1,0 +1,481 @@
+{
+  "source": "D:\\baiduyundownload\\三国英杰传\\三国英杰传\\SGYJ\\HEXZMAP.R3",
+  "source_size": 73580,
+  "source_sha256": "6e1ab5d0d5fe53f658860c08fb36942aaea845bbf973e24a1ba15483fbc7452e",
+  "format": "LS11",
+  "section_count": 59,
+  "sections": [
+    {
+      "index": 0,
+      "compressed_size": 1133,
+      "unpacked_size": 2242,
+      "offset": 984,
+      "output": "section-000.bin",
+      "sha256": "2a375275587b32bf50d7e8126b3dfbde9e68b9580a5357b6722ace97df77050d"
+    },
+    {
+      "index": 1,
+      "compressed_size": 781,
+      "unpacked_size": 1922,
+      "offset": 2117,
+      "output": "section-001.bin",
+      "sha256": "6790fcbe5f800d860cd0aa5b2777be19935863d14a25268a39b70faa20a1de63"
+    },
+    {
+      "index": 2,
+      "compressed_size": 613,
+      "unpacked_size": 1102,
+      "offset": 2898,
+      "output": "section-002.bin",
+      "sha256": "ca610be3b059138708a0fa6e867abe148ddbb37dda3a3b0e0b744c4009edb6a9"
+    },
+    {
+      "index": 3,
+      "compressed_size": 658,
+      "unpacked_size": 1212,
+      "offset": 3511,
+      "output": "section-003.bin",
+      "sha256": "c3469d4b13658c35c1e4b95b49e8edab17bea56c2d8d1ccae785438f51ce1174"
+    },
+    {
+      "index": 4,
+      "compressed_size": 679,
+      "unpacked_size": 1622,
+      "offset": 4169,
+      "output": "section-004.bin",
+      "sha256": "3de9371ab4408c9d4bfadefa88e2b9749161e1399ad9a29ffb0a122e2bb6ab7d"
+    },
+    {
+      "index": 5,
+      "compressed_size": 1014,
+      "unpacked_size": 2242,
+      "offset": 4848,
+      "output": "section-005.bin",
+      "sha256": "b60fdc5ad6a826a97f05d9d5eff998e595e0b2b9dad5c3ffc4970a533cc1dbb3"
+    },
+    {
+      "index": 6,
+      "compressed_size": 1694,
+      "unpacked_size": 3842,
+      "offset": 5862,
+      "output": "section-006.bin",
+      "sha256": "b4b92b33f70f556c41ba52faf50f7566e4507eae05e3b9e5d25c4de3ee90f8e2"
+    },
+    {
+      "index": 7,
+      "compressed_size": 1230,
+      "unpacked_size": 2402,
+      "offset": 7556,
+      "output": "section-007.bin",
+      "sha256": "e5d3fcdac8ea4e44d69e74550de5dea66a07c05bdb4d57846d95cba43570baff"
+    },
+    {
+      "index": 8,
+      "compressed_size": 1270,
+      "unpacked_size": 2702,
+      "offset": 8786,
+      "output": "section-008.bin",
+      "sha256": "6631300aaa5a51b86ec63714cd72a9777cd29ef9e445eb34e938b9498b16fda9"
+    },
+    {
+      "index": 9,
+      "compressed_size": 1028,
+      "unpacked_size": 1922,
+      "offset": 10056,
+      "output": "section-009.bin",
+      "sha256": "d29c8c84df1e45f66d610fb46fccf8700abc667cb208f48c9b827d7f133d3f2a"
+    },
+    {
+      "index": 10,
+      "compressed_size": 1341,
+      "unpacked_size": 2562,
+      "offset": 11084,
+      "output": "section-010.bin",
+      "sha256": "9222a4ad59cb86124e0b471621c05bf9444c0d7fd7b41616d3ce0be231816afe"
+    },
+    {
+      "index": 11,
+      "compressed_size": 1326,
+      "unpacked_size": 2802,
+      "offset": 12425,
+      "output": "section-011.bin",
+      "sha256": "10f1d029691dcb07794116dfa9690f54862f5451996cfd5d763e444c78ac7c17"
+    },
+    {
+      "index": 12,
+      "compressed_size": 789,
+      "unpacked_size": 1602,
+      "offset": 13751,
+      "output": "section-012.bin",
+      "sha256": "cef1b7f656af8c5dab356b589a8e6e1cbd501934d985ec17c018812b1ca5531c"
+    },
+    {
+      "index": 13,
+      "compressed_size": 1194,
+      "unpacked_size": 2882,
+      "offset": 14540,
+      "output": "section-013.bin",
+      "sha256": "0e542458e7b9878960fdf22bca26280628806093c6a3209b9a7f4112f0b1b810"
+    },
+    {
+      "index": 14,
+      "compressed_size": 1354,
+      "unpacked_size": 3842,
+      "offset": 15734,
+      "output": "section-014.bin",
+      "sha256": "e91b02a5bebb5b1f26a1ceb276c0365c441b4f25a278b6682c111ee27412917c"
+    },
+    {
+      "index": 15,
+      "compressed_size": 821,
+      "unpacked_size": 1922,
+      "offset": 17088,
+      "output": "section-015.bin",
+      "sha256": "401d9122d935a4fcfea2d84dcafe7cb0e015cae862f934f30b0254314f4f827f"
+    },
+    {
+      "index": 16,
+      "compressed_size": 1398,
+      "unpacked_size": 3002,
+      "offset": 17909,
+      "output": "section-016.bin",
+      "sha256": "12891923404d6fc00e71846adff01aa15d5822883349ec3683a596639070bf6e"
+    },
+    {
+      "index": 17,
+      "compressed_size": 1191,
+      "unpacked_size": 2402,
+      "offset": 19307,
+      "output": "section-017.bin",
+      "sha256": "dbc13c92666fe3affa9f66c46de19658ff27b7de03741424ee95b185f8c86aad"
+    },
+    {
+      "index": 18,
+      "compressed_size": 1179,
+      "unpacked_size": 2562,
+      "offset": 20498,
+      "output": "section-018.bin",
+      "sha256": "482f4dcd4462aa94f5159da9a1f4e269814fbba6a327efcd66cc36ee9e745196"
+    },
+    {
+      "index": 19,
+      "compressed_size": 1544,
+      "unpacked_size": 3602,
+      "offset": 21677,
+      "output": "section-019.bin",
+      "sha256": "82dfde2ec4a2dda1515005fdd7dafb3fd9e2cae1d64e253d41a0a4799f73e369"
+    },
+    {
+      "index": 20,
+      "compressed_size": 1457,
+      "unpacked_size": 3202,
+      "offset": 23221,
+      "output": "section-020.bin",
+      "sha256": "496097798cf519235c5bc7115535107e9dbb8056424ddf56181126f5fee238dc"
+    },
+    {
+      "index": 21,
+      "compressed_size": 953,
+      "unpacked_size": 1982,
+      "offset": 24678,
+      "output": "section-021.bin",
+      "sha256": "e3610d99a9b854fada308f707ff1e167a27525a9e6f93d7538d25340f87ea436"
+    },
+    {
+      "index": 22,
+      "compressed_size": 1354,
+      "unpacked_size": 3202,
+      "offset": 25631,
+      "output": "section-022.bin",
+      "sha256": "12c253e6dcc51efb9eeb3933fdc6e6ec5f2fa83dd1f0260b6f1f6d0158dc4ec8"
+    },
+    {
+      "index": 23,
+      "compressed_size": 1132,
+      "unpacked_size": 2562,
+      "offset": 26985,
+      "output": "section-023.bin",
+      "sha256": "1841a066269d1a0ea2d02d7b2c2c0152a2ac03dfec4242c78bfe7625a274b3ec"
+    },
+    {
+      "index": 24,
+      "compressed_size": 991,
+      "unpacked_size": 2882,
+      "offset": 28117,
+      "output": "section-024.bin",
+      "sha256": "b31095b09f9963ce816c3e87874d5bc7b79d7f10b2fdaf23f63365ef3fd33780"
+    },
+    {
+      "index": 25,
+      "compressed_size": 1537,
+      "unpacked_size": 4322,
+      "offset": 29108,
+      "output": "section-025.bin",
+      "sha256": "0184b5e7e2b5683551edc62d0bd76c6850e2adbdad470f78b4de3f98486843fd"
+    },
+    {
+      "index": 26,
+      "compressed_size": 1720,
+      "unpacked_size": 4322,
+      "offset": 30645,
+      "output": "section-026.bin",
+      "sha256": "c4eb2402b2eae812a53d01259771fbfbb66a5216e36dc5cdafe332b4556c4264"
+    },
+    {
+      "index": 27,
+      "compressed_size": 1316,
+      "unpacked_size": 3602,
+      "offset": 32365,
+      "output": "section-027.bin",
+      "sha256": "bcb945f3e9fd8c06aff05f1b75406480ab098f5980c759e7df2249c06b5f86f7"
+    },
+    {
+      "index": 28,
+      "compressed_size": 1767,
+      "unpacked_size": 4802,
+      "offset": 33681,
+      "output": "section-028.bin",
+      "sha256": "b4141bc04e0216db7e56ea81f46a2e7684998c33744d138485b205579ee0b9d2"
+    },
+    {
+      "index": 29,
+      "compressed_size": 1169,
+      "unpacked_size": 2882,
+      "offset": 35448,
+      "output": "section-029.bin",
+      "sha256": "d59c33bf795fa8de6d605072e84d9e111f6bca1adb9f96318174ad3ee0d329dd"
+    },
+    {
+      "index": 30,
+      "compressed_size": 1528,
+      "unpacked_size": 3002,
+      "offset": 36617,
+      "output": "section-030.bin",
+      "sha256": "69bf7b0402eb64edb01dd4d43b65978ef9ba0a0f1087caf540a3d489635df9e7"
+    },
+    {
+      "index": 31,
+      "compressed_size": 618,
+      "unpacked_size": 1602,
+      "offset": 38145,
+      "output": "section-031.bin",
+      "sha256": "e9f7927f9d680c364b153e096155f1e753e42d807e540a5c1254c446f4069d39"
+    },
+    {
+      "index": 32,
+      "compressed_size": 1417,
+      "unpacked_size": 3602,
+      "offset": 38763,
+      "output": "section-032.bin",
+      "sha256": "290a77b15f3e50859623f44e3d7f5c0f05d8b2f26b3b9b0496627515a0aba61a"
+    },
+    {
+      "index": 33,
+      "compressed_size": 1538,
+      "unpacked_size": 3842,
+      "offset": 40180,
+      "output": "section-033.bin",
+      "sha256": "fcbb82696d961e70cc9e3c351cec734465c49bdb831bbe209058c88f8b9e14e7"
+    },
+    {
+      "index": 34,
+      "compressed_size": 1275,
+      "unpacked_size": 2802,
+      "offset": 41718,
+      "output": "section-034.bin",
+      "sha256": "ef7d36670c42f43f41c381bc09ad4394f1bb4de90c6fa3e9e7178874d6792198"
+    },
+    {
+      "index": 35,
+      "compressed_size": 1154,
+      "unpacked_size": 2802,
+      "offset": 42993,
+      "output": "section-035.bin",
+      "sha256": "bb6b84ca33614746d4eee0c909e8272ba34047c71c493a1b9b1d548cd47f8b5e"
+    },
+    {
+      "index": 36,
+      "compressed_size": 1272,
+      "unpacked_size": 2802,
+      "offset": 44147,
+      "output": "section-036.bin",
+      "sha256": "323cf7439207412713a9451e682aa6ba49ca4e5b7d85d0bab3bb6e82ac5fbe02"
+    },
+    {
+      "index": 37,
+      "compressed_size": 840,
+      "unpacked_size": 2002,
+      "offset": 45419,
+      "output": "section-037.bin",
+      "sha256": "8f867dbc0be3da8c13e9472f05d8fc5d5393cb83534259b109c7d2d8d9ee1854"
+    },
+    {
+      "index": 38,
+      "compressed_size": 1172,
+      "unpacked_size": 4002,
+      "offset": 46259,
+      "output": "section-038.bin",
+      "sha256": "d5988f0808a9c2cfb5f14dbfa947c0a66fc46a64dff9ca05bf7b1611bbffc0d4"
+    },
+    {
+      "index": 39,
+      "compressed_size": 1477,
+      "unpacked_size": 3422,
+      "offset": 47431,
+      "output": "section-039.bin",
+      "sha256": "54ff17074be7acceef7f8bdfc9c1814e4ba209e3d29958d9dc6ab25d70aa30bb"
+    },
+    {
+      "index": 40,
+      "compressed_size": 1452,
+      "unpacked_size": 3402,
+      "offset": 48908,
+      "output": "section-040.bin",
+      "sha256": "155198459cf72e508edb8114046f19541ab19c761f3cd2d81cbb7192416f0d0d"
+    },
+    {
+      "index": 41,
+      "compressed_size": 1782,
+      "unpacked_size": 3842,
+      "offset": 50360,
+      "output": "section-041.bin",
+      "sha256": "5d28f3b11074130255e312c339b9e8e54bf598743a3cddebc947614bab58c1e1"
+    },
+    {
+      "index": 42,
+      "compressed_size": 1363,
+      "unpacked_size": 2882,
+      "offset": 52142,
+      "output": "section-042.bin",
+      "sha256": "ace55e0f87cae767dbdacc614cdc34deb3c50dfee2cf711f777b3f61a58c8079"
+    },
+    {
+      "index": 43,
+      "compressed_size": 1560,
+      "unpacked_size": 3202,
+      "offset": 53505,
+      "output": "section-043.bin",
+      "sha256": "d8889fe4641e7fab37f2be59237ef96fe68537f9acee05bf9fd26130c27d20b5"
+    },
+    {
+      "index": 44,
+      "compressed_size": 1582,
+      "unpacked_size": 4322,
+      "offset": 55065,
+      "output": "section-044.bin",
+      "sha256": "686dc048356c5e0416d6046295d0197fc34ced2eb187bf71df7e9015831a0c09"
+    },
+    {
+      "index": 45,
+      "compressed_size": 1242,
+      "unpacked_size": 3202,
+      "offset": 56647,
+      "output": "section-045.bin",
+      "sha256": "a53d0892daa52c63447759313a8709ae291f99ffd1ff198a5b1cfc21b059653d"
+    },
+    {
+      "index": 46,
+      "compressed_size": 1230,
+      "unpacked_size": 2402,
+      "offset": 57889,
+      "output": "section-046.bin",
+      "sha256": "06b810a3fe0ede061c02b8fe02b110e00b85584e928b80fabb34d4518e2576be"
+    },
+    {
+      "index": 47,
+      "compressed_size": 1265,
+      "unpacked_size": 2802,
+      "offset": 59119,
+      "output": "section-047.bin",
+      "sha256": "30eb82e62e62291beac18b26aef4658f07a4e6c56f9e5ab82eb82824f86d53f5"
+    },
+    {
+      "index": 48,
+      "compressed_size": 1588,
+      "unpacked_size": 3362,
+      "offset": 60384,
+      "output": "section-048.bin",
+      "sha256": "a8d85145b46f3ece4180001e7583590fa7a91d706f7a066d40fde23cc0bcf45d"
+    },
+    {
+      "index": 49,
+      "compressed_size": 906,
+      "unpacked_size": 2882,
+      "offset": 61972,
+      "output": "section-049.bin",
+      "sha256": "441a7306410a7a7826ee1b68bafa78b897abf2b14529a5720667fd31432b8095"
+    },
+    {
+      "index": 50,
+      "compressed_size": 1596,
+      "unpacked_size": 3362,
+      "offset": 62878,
+      "output": "section-050.bin",
+      "sha256": "ecfc551dcd3f928dd254862d6ecf4aa73591cab02f3bec27c354729ae53ec6cc"
+    },
+    {
+      "index": 51,
+      "compressed_size": 894,
+      "unpacked_size": 2802,
+      "offset": 64474,
+      "output": "section-051.bin",
+      "sha256": "30935fb3c076f97a10d642b7f2c79764d565d2992ccc93fd86e48ae7c7a89c22"
+    },
+    {
+      "index": 52,
+      "compressed_size": 1221,
+      "unpacked_size": 2562,
+      "offset": 65368,
+      "output": "section-052.bin",
+      "sha256": "2324f76179d87efa055d6141ed1cc829e5a0fcc2eb470d350b63307173076eb0"
+    },
+    {
+      "index": 53,
+      "compressed_size": 1020,
+      "unpacked_size": 2562,
+      "offset": 66589,
+      "output": "section-053.bin",
+      "sha256": "b79a8ac7635f7b038c955283fde9670a9e337d64c59ec03852be2544f8a16fef"
+    },
+    {
+      "index": 54,
+      "compressed_size": 1383,
+      "unpacked_size": 3202,
+      "offset": 67609,
+      "output": "section-054.bin",
+      "sha256": "2363a0ef0747106a9eed65c782de7c77593eebc064127f2e0e2acb168e2b360e"
+    },
+    {
+      "index": 55,
+      "compressed_size": 1810,
+      "unpacked_size": 4322,
+      "offset": 68992,
+      "output": "section-055.bin",
+      "sha256": "5f44b6ea431a3574d13548288bb85c9f73d42f52d14200a22e2e340a870a52af"
+    },
+    {
+      "index": 56,
+      "compressed_size": 1122,
+      "unpacked_size": 3362,
+      "offset": 70802,
+      "output": "section-056.bin",
+      "sha256": "46aa036b9133bc5a42a8c48a0418fdaab64da161b306fd2ba18426cef1d15a08"
+    },
+    {
+      "index": 57,
+      "compressed_size": 1268,
+      "unpacked_size": 4802,
+      "offset": 71924,
+      "output": "section-057.bin",
+      "sha256": "9e4d51fd048906a90bb315f033b871ae2481bdd6b4214afe51163f50f6176765"
+    },
+    {
+      "index": 58,
+      "compressed_size": 388,
+      "unpacked_size": 388,
+      "offset": 73192,
+      "output": "section-058.bin",
+      "sha256": "cef075d79e0ad55516601b737a09af3975677dde808b9bb9701af3be12423bab"
+    }
+  ]
+}

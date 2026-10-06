@@ -1,0 +1,49 @@
+{
+  "source": "D:\\baiduyundownload\\三国英杰传\\三国英杰传\\SGYJ\\SNR1D.R3",
+  "source_size": 15585,
+  "source_sha256": "7b99fde5d33496075e98458e66e9c6d485d09c8b9934d507f688bdd9c7cfbef6",
+  "format": "LS11",
+  "section_count": 5,
+  "sections": [
+    {
+      "index": 0,
+      "compressed_size": 3361,
+      "unpacked_size": 7381,
+      "offset": 336,
+      "output": "section-000.bin",
+      "sha256": "c7f4933d389769c7402c0f9af02db0b3fc162446087800597b6729bc059ff7f5"
+    },
+    {
+      "index": 1,
+      "compressed_size": 2748,
+      "unpacked_size": 5269,
+      "offset": 3697,
+      "output": "section-001.bin",
+      "sha256": "6e757c33bd68d52212864bb25fe8dca25ea266f159871f6af19be02c81f24fef"
+    },
+    {
+      "index": 2,
+      "compressed_size": 3280,
+      "unpacked_size": 6733,
+      "offset": 6445,
+      "output": "section-002.bin",
+      "sha256": "c18a92a0d77fdb696cf3ef5aa1e43cd1c057b80b1e42cddc77d1d369d613622e"
+    },
+    {
+      "index": 3,
+      "compressed_size": 2743,
+      "unpacked_size": 5104,
+      "offset": 9725,
+      "output": "section-003.bin",
+      "sha256": "38ebd7ac2fcae0cf80b94fcc7b14658b8415ceca55438dc72044a9a57b648243"
+    },
+    {
+      "index": 4,
+      "compressed_size": 3117,
+      "unpacked_size": 5360,
+      "offset": 12468,
+      "output": "section-004.bin",
+      "sha256": "f1b5fc1127ee206503539b992c7ebb845478ce41cab73425e5678df190df7860"
+    }
+  ]
+}

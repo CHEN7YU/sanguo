@@ -1,0 +1,1424 @@
+{
+  "schema": 1,
+  "battle": {
+    "chapter": "序章",
+    "name": "虎牢关之战",
+    "map_id": 1,
+    "turn_limit": 30,
+    "objective": "击退吕布军",
+    "defeat": "刘备撤退或超过30回合"
+  },
+  "sources": {
+    "game_dir": "D:\\baiduyundownload\\三国英杰传\\三国英杰传\\SGYJ",
+    "BAKDATA.R3_sha256": "776e242a65c12f61de146d3ded7c9de6221af84c2ef5210daf9d785f4b98dc1d",
+    "MAIN.EXE_sha256": "45e0b40b34943b3dbf05266d5a5fbdbeb2d8498c85e5a4a98082a040420c1aa5",
+    "SNR0D.R3_sha256": "72d25a2a5292044e16df7136d6785defcadca2db441136616fccdbf40eb303c3",
+    "SNR0M.R3_sha256": "d58a316a6289f46046141286c8ae2e9aae58e56f2e4724ebead540955e96926c",
+    "HEXZMAP.R3_sha256": "6e1ab5d0d5fe53f658860c08fb36942aaea845bbf973e24a1ba15483fbc7452e"
+  },
+  "map": {
+    "width": 16,
+    "height": 24,
+    "display_width": 32,
+    "display_height": 48,
+    "source_length": 1922,
+    "display_offset": 2,
+    "display_length": 1536,
+    "tactical_offset": 1538,
+    "tactical_length": 384,
+    "terrain_legend": {
+      "00": "平原",
+      "01": "森林",
+      "02": "山地",
+      "03": "河流",
+      "04": "桥梁",
+      "05": "城墙",
+      "06": "城池",
+      "07": "草原",
+      "08": "村庄",
+      "09": "悬崖",
+      "0A": "城门",
+      "0B": "荒地",
+      "0C": "栅栏",
+      "0D": "鹿砦",
+      "0E": "兵营",
+      "0F": "粮仓",
+      "10": "宝物库",
+      "11": "房舍",
+      "12": "火焰",
+      "13": "浊流"
+    },
+    "terrain_counts": {
+      "00": {
+        "name": "平原",
+        "count": 116
+      },
+      "01": {
+        "name": "森林",
+        "count": 90
+      },
+      "03": {
+        "name": "河流",
+        "count": 8
+      },
+      "04": {
+        "name": "桥梁",
+        "count": 1
+      },
+      "05": {
+        "name": "城墙",
+        "count": 22
+      },
+      "07": {
+        "name": "草原",
+        "count": 67
+      },
+      "08": {
+        "name": "村庄",
+        "count": 2
+      },
+      "09": {
+        "name": "悬崖",
+        "count": 69
+      },
+      "0B": {
+        "name": "荒地",
+        "count": 7
+      },
+      "0F": {
+        "name": "粮仓",
+        "count": 1
+      },
+      "10": {
+        "name": "宝物库",
+        "count": 1
+      }
+    },
+    "terrain_codes": [
+      [
+        9,
+        9,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      [
+        9,
+        9,
+        5,
+        5,
+        5,
+        0,
+        0,
+        0,
+        5,
+        5,
+        5,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      [
+        9,
+        9,
+        5,
+        5,
+        5,
+        5,
+        0,
+        5,
+        5,
+        5,
+        5,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      [
+        9,
+        9,
+        5,
+        5,
+        5,
+        5,
+        0,
+        5,
+        5,
+        5,
+        5,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      [
+        9,
+        9,
+        3,
+        3,
+        3,
+        3,
+        4,
+        3,
+        3,
+        3,
+        3,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      [
+        9,
+        9,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      [
+        9,
+        9,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      [
+        9,
+        9,
+        0,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        9,
+        9,
+        9,
+        9
+      ],
+      [
+        9,
+        9,
+        0,
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        9,
+        9,
+        9,
+        9
+      ],
+      [
+        9,
+        0,
+        7,
+        7,
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        11,
+        11,
+        9,
+        9
+      ],
+      [
+        9,
+        0,
+        7,
+        7,
+        7,
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        11,
+        16,
+        9,
+        9
+      ],
+      [
+        0,
+        7,
+        1,
+        1,
+        7,
+        7,
+        7,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        11,
+        15,
+        9
+      ],
+      [
+        7,
+        7,
+        1,
+        1,
+        1,
+        7,
+        7,
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        11,
+        9
+      ],
+      [
+        7,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7,
+        7,
+        7,
+        7,
+        7,
+        0,
+        0,
+        0,
+        11,
+        11
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7,
+        7,
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7,
+        7,
+        7,
+        7,
+        7,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7,
+        7,
+        7,
+        7,
+        7,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7,
+        7,
+        7,
+        7,
+        0,
+        8,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7,
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        7,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7,
+        7,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        7,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7,
+        7,
+        7,
+        7,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ]
+    ],
+    "special_tiles": [
+      {
+        "x": 6,
+        "y": 4,
+        "terrain_id": 4,
+        "terrain": "桥梁"
+      },
+      {
+        "x": 13,
+        "y": 10,
+        "terrain_id": 16,
+        "terrain": "宝物库"
+      },
+      {
+        "x": 8,
+        "y": 11,
+        "terrain_id": 8,
+        "terrain": "村庄"
+      },
+      {
+        "x": 14,
+        "y": 11,
+        "terrain_id": 15,
+        "terrain": "粮仓"
+      },
+      {
+        "x": 12,
+        "y": 17,
+        "terrain_id": 8,
+        "terrain": "村庄"
+      }
+    ]
+  },
+  "commanders": {
+    "player": "刘备",
+    "enemy": "吕布"
+  },
+  "units": [
+    {
+      "slot": 0,
+      "avatar_id": 0,
+      "x": 15,
+      "y": 21,
+      "appearance_mode": 0,
+      "appearance_event": 0,
+      "direction": 3,
+      "ambush": 0,
+      "side": "player",
+      "name_original": "劉備",
+      "name": "刘备",
+      "troop_id": 0,
+      "troop_original": "短兵",
+      "baseline_level_before_carryover": 1,
+      "carryover_from_previous_battle": true,
+      "wuli": 75,
+      "zhili": 64,
+      "tongyu": 91,
+      "items_before_carryover": [],
+      "max_hp": 500,
+      "morale": 100,
+      "attack": 265,
+      "defense": 287,
+      "move": 4,
+      "max_strategy": 17
+    },
+    {
+      "slot": 1,
+      "avatar_id": 1,
+      "x": 13,
+      "y": 21,
+      "appearance_mode": 0,
+      "appearance_event": 0,
+      "direction": 3,
+      "ambush": 0,
+      "side": "player",
+      "name_original": "關羽",
+      "name": "关羽",
+      "troop_id": 6,
+      "troop_original": "輕騎兵",
+      "baseline_level_before_carryover": 1,
+      "carryover_from_previous_battle": true,
+      "wuli": 98,
+      "zhili": 80,
+      "tongyu": 100,
+      "items_before_carryover": [
+        {
+          "id": 12,
+          "name": "青龍偃月刀"
+        }
+      ],
+      "max_hp": 500,
+      "morale": 100,
+      "attack": 387,
+      "defense": 286,
+      "move": 6,
+      "max_strategy": 22
+    },
+    {
+      "slot": 2,
+      "avatar_id": 2,
+      "x": 12,
+      "y": 20,
+      "appearance_mode": 0,
+      "appearance_event": 0,
+      "direction": 3,
+      "ambush": 0,
+      "side": "player",
+      "name_original": "張飛",
+      "name": "张飞",
+      "troop_id": 6,
+      "troop_original": "輕騎兵",
+      "baseline_level_before_carryover": 1,
+      "carryover_from_previous_battle": true,
+      "wuli": 99,
+      "zhili": 42,
+      "tongyu": 83,
+      "items_before_carryover": [
+        {
+          "id": 15,
+          "name": "蛇矛"
+        }
+      ],
+      "max_hp": 500,
+      "morale": 100,
+      "attack": 382,
+      "defense": 253,
+      "move": 6,
+      "max_strategy": 11
+    },
+    {
+      "slot": 3,
+      "avatar_id": 12,
+      "x": 14,
+      "y": 18,
+      "appearance_mode": 1,
+      "appearance_event": 0,
+      "direction": 3,
+      "ambush": 0,
+      "side": "guest",
+      "name_original": "公孫瓚",
+      "name": "公孙瓒",
+      "troop_id": 6,
+      "troop_original": "輕騎兵",
+      "baseline_level_before_carryover": 4,
+      "carryover_from_previous_battle": true,
+      "wuli": 71,
+      "zhili": 55,
+      "tongyu": 67,
+      "items_before_carryover": [],
+      "max_hp": 680,
+      "morale": 100,
+      "attack": 387,
+      "defense": 299,
+      "move": 6,
+      "max_strategy": 19
+    },
+    {
+      "slot": 4,
+      "avatar_id": 15,
+      "x": 13,
+      "y": 18,
+      "appearance_mode": 1,
+      "appearance_event": 1,
+      "direction": 3,
+      "ambush": 0,
+      "side": "guest",
+      "name_original": "陶謙",
+      "name": "陶谦",
+      "troop_id": 0,
+      "troop_original": "短兵",
+      "baseline_level_before_carryover": 4,
+      "carryover_from_previous_battle": true,
+      "wuli": 53,
+      "zhili": 61,
+      "tongyu": 42,
+      "items_before_carryover": [],
+      "max_hp": 650,
+      "morale": 100,
+      "attack": 315,
+      "defense": 308,
+      "move": 4,
+      "max_strategy": 21
+    },
+    {
+      "slot": 0,
+      "avatar_id": 4,
+      "x": 6,
+      "y": 5,
+      "appearance_mode": 0,
+      "appearance_event": 0,
+      "direction": 1,
+      "ambush": 0,
+      "ai_type": 2,
+      "ai_name": "原地待命",
+      "ai_target": 0,
+      "troop_id": 6,
+      "level": 6,
+      "side": "enemy",
+      "name_original": "呂布",
+      "name": "吕布",
+      "troop_original": "輕騎兵",
+      "wuli": 100,
+      "zhili": 21,
+      "tongyu": 80,
+      "items": [],
+      "max_hp": 800,
+      "morale": 100,
+      "attack": 512,
+      "defense": 361,
+      "move": 6,
+      "max_strategy": 8
+    },
+    {
+      "slot": 1,
+      "avatar_id": 79,
+      "x": 3,
+      "y": 7,
+      "appearance_mode": 0,
+      "appearance_event": 0,
+      "direction": 1,
+      "ambush": 0,
+      "ai_type": 0,
+      "ai_name": "原地警戒（可攻击）",
+      "ai_target": 0,
+      "troop_id": 0,
+      "level": 3,
+      "side": "enemy",
+      "name_original": "張遼",
+      "name": "张辽",
+      "troop_original": "短兵",
+      "wuli": 90,
+      "zhili": 80,
+      "tongyu": 87,
+      "items": [],
+      "max_hp": 600,
+      "morale": 100,
+      "attack": 338,
+      "defense": 331,
+      "move": 4,
+      "max_strategy": 26
+    },
+    {
+      "slot": 2,
+      "avatar_id": 80,
+      "x": 6,
+      "y": 8,
+      "appearance_mode": 0,
+      "appearance_event": 0,
+      "direction": 1,
+      "ambush": 0,
+      "ai_type": 0,
+      "ai_name": "原地警戒（可攻击）",
+      "ai_target": 0,
+      "troop_id": 6,
+      "level": 3,
+      "side": "enemy",
+      "name_original": "侯成",
+      "name": "侯成",
+      "troop_original": "輕騎兵",
+      "wuli": 67,
+      "zhili": 42,
+      "tongyu": 65,
+      "items": [],
+      "max_hp": 620,
+      "morale": 100,
+      "attack": 356,
+      "defense": 276,
+      "move": 6,
+      "max_strategy": 13
+    },
+    {
+      "slot": 3,
+      "avatar_id": 74,
+      "x": 10,
+      "y": 8,
+      "appearance_mode": 0,
+      "appearance_event": 0,
+      "direction": 1,
+      "ambush": 0,
+      "ai_type": 0,
+      "ai_name": "原地警戒（可攻击）",
+      "ai_target": 0,
+      "troop_id": 3,
+      "level": 3,
+      "side": "enemy",
+      "name_original": "宋憲",
+      "name": "宋宪",
+      "troop_original": "弓兵",
+      "wuli": 59,
+      "zhili": 45,
+      "tongyu": 50,
+      "items": [],
+      "max_hp": 580,
+      "morale": 100,
+      "attack": 271,
+      "defense": 291,
+      "move": 4,
+      "max_strategy": 14
+    },
+    {
+      "slot": 4,
+      "avatar_id": 73,
+      "x": 10,
+      "y": 11,
+      "appearance_mode": 0,
+      "appearance_event": 0,
+      "direction": 1,
+      "ambush": 0,
+      "ai_type": 1,
+      "ai_name": "主动出击",
+      "ai_target": 0,
+      "troop_id": 0,
+      "level": 2,
+      "side": "enemy",
+      "name_original": "魏續",
+      "name": "魏续",
+      "troop_original": "短兵",
+      "wuli": 72,
+      "zhili": 46,
+      "tongyu": 68,
+      "items": [],
+      "max_hp": 550,
+      "morale": 100,
+      "attack": 285,
+      "defense": 282,
+      "move": 4,
+      "max_strategy": 13
+    },
+    {
+      "slot": 5,
+      "avatar_id": 274,
+      "x": 8,
+      "y": 8,
+      "appearance_mode": 0,
+      "appearance_event": 0,
+      "direction": 1,
+      "ambush": 0,
+      "ai_type": 0,
+      "ai_name": "原地警戒（可攻击）",
+      "ai_target": 0,
+      "troop_id": 3,
+      "level": 1,
+      "side": "enemy",
+      "name_original": "弓兵隊",
+      "name": "弓兵队",
+      "troop_original": "弓兵",
+      "wuli": 40,
+      "zhili": 50,
+      "tongyu": 30,
+      "items": [],
+      "max_hp": 500,
+      "morale": 100,
+      "attack": 220,
+      "defense": 237,
+      "move": 4,
+      "max_strategy": 13
+    },
+    {
+      "slot": 6,
+      "avatar_id": 275,
+      "x": 5,
+      "y": 11,
+      "appearance_mode": 0,
+      "appearance_event": 0,
+      "direction": 1,
+      "ambush": 0,
+      "ai_type": 1,
+      "ai_name": "主动出击",
+      "ai_target": 0,
+      "troop_id": 3,
+      "level": 1,
+      "side": "enemy",
+      "name_original": "弓兵隊",
+      "name": "弓兵队",
+      "troop_original": "弓兵",
+      "wuli": 40,
+      "zhili": 50,
+      "tongyu": 30,
+      "items": [],
+      "max_hp": 500,
+      "morale": 100,
+      "attack": 220,
+      "defense": 237,
+      "move": 4,
+      "max_strategy": 13
+    }
+  ],
+  "events": {
+    "battle_music_id_original": 16,
+    "remaster_battle_track": "assets/audio/hulao-lubu-theme.mp3",
+    "prebattle_march_dialogue": [
+      {
+        "offset": 4219,
+        "speaker_id": 1,
+        "text": "敵人好像逃到了前面的虎牢關．大哥，該怎麼辦？"
+      },
+      {
+        "offset": 4281,
+        "speaker_id": 2,
+        "text": "說什麼呀？現在當然是乘勝追擊了，我去！"
+      },
+      {
+        "offset": 4370,
+        "speaker_id": 1,
+        "text": "唉！追上去了，還是那麼魯莽．"
+      },
+      {
+        "offset": 4403,
+        "speaker_id": 12,
+        "text": "話不要這麼說，我軍士氣也鼓舞起來了嘛．"
+      },
+      {
+        "offset": 4446,
+        "speaker_id": 15,
+        "text": "現在應該乘勢攻下虎牢關．"
+      },
+      {
+        "offset": 4475,
+        "speaker_id": 0,
+        "text": "沒辦法，好！跟上張飛！進軍虎牢關！"
+      }
+    ],
+    "objective_text": "一、呂布敗退．",
+    "opening_dialogue": [
+      {
+        "offset": 4531,
+        "speaker_id": 4,
+        "text": "什麼？聯軍攻來了，還殺了華雄？好厲害，不過，他們的好運也就到此為止了．"
+      },
+      {
+        "offset": 4604,
+        "speaker_id": 80,
+        "text": "呂布將軍，現在讓他們知道一下我軍的厲害．"
+      },
+      {
+        "offset": 4647,
+        "speaker_id": 4,
+        "text": "好，全軍出擊！聯軍，好好看看我的厲害．"
+      },
+      {
+        "offset": 4688,
+        "speaker_id": 2,
+        "text": "主將何在？不能只讓關羽逞雄風，我也要出風頭．"
+      },
+      {
+        "offset": 4735,
+        "speaker_id": 1,
+        "text": "這裡好像是呂布把守．"
+      },
+      {
+        "offset": 4758,
+        "speaker_id": 0,
+        "text": "是呂布，恐怕沒有比他更可怕的敵人了．"
+      },
+      {
+        "offset": 4797,
+        "speaker_id": 1,
+        "text": "呂布座下赤兔馬，據說日行千里．"
+      },
+      {
+        "offset": 4830,
+        "speaker_id": 2,
+        "text": "呂布算什麼？讓他看看我的厲害．"
+      }
+    ],
+    "duel": {
+      "pair": [
+        "张飞",
+        "吕布"
+      ],
+      "result": "吕布撤退，张飞直接升1级，战斗结束",
+      "dialogue": [
+        {
+          "offset": 4865,
+          "speaker_id": 2,
+          "text": "對面可是呂布，來與我一決勝負！"
+        },
+        {
+          "offset": 5064,
+          "speaker_id": 4,
+          "text": "還真有兩下子．"
+        },
+        {
+          "offset": 5120,
+          "speaker_id": 4,
+          "text": "休得猖狂！"
+        },
+        {
+          "offset": 5222,
+          "speaker_id": 2,
+          "text": "別跑！呂布！站住！"
+        },
+        {
+          "offset": 5278,
+          "speaker_id": null,
+          "text": "張飛的等級上升了．"
+        },
+        {
+          "offset": 5297,
+          "speaker_id": 4,
+          "text": "全軍撤退．"
+        }
+      ]
+    },
+    "turn_18": {
+      "dialogue": [
+        {
+          "offset": 5312,
+          "speaker_id": 4,
+          "text": "哼！七拼八湊的部隊還挺厲害，不過我可不會敗給這些鼠輩，要讓他們知道我的厲害．"
+        }
+      ],
+      "change_ai": {
+        "unit": "吕布",
+        "from": 2,
+        "to": 1,
+        "meaning": "主动出击"
+      }
+    },
+    "normal_victory": [
+      {
+        "offset": 5393,
+        "speaker_id": 4,
+        "text": "可惡！沒辦法，全軍撤退．"
+      },
+      {
+        "offset": 5420,
+        "speaker_id": 0,
+        "text": "太好了！我們打敗了呂布．"
+      }
+    ],
+    "treasure": {
+      "tile": {
+        "x": 10,
+        "y": 13
+      },
+      "reward": "焦热书×1",
+      "one_time": true
+    },
+    "supply": {
+      "tile": {
+        "x": 11,
+        "y": 14
+      },
+      "reward": "豆×1",
+      "one_time": true
+    },
+    "occupation_text": "呂布軍敗退，劉備軍占領了虎牢關．",
+    "battle_reward": "金100"
+  },
+  "original_rules": {
+    "movement_class_by_troop": [
+      {
+        "troop_id": 0,
+        "troop": "短兵",
+        "class": 0
+      },
+      {
+        "troop_id": 1,
+        "troop": "長兵",
+        "class": 0
+      },
+      {
+        "troop_id": 2,
+        "troop": "戰車",
+        "class": 0
+      },
+      {
+        "troop_id": 3,
+        "troop": "弓兵",
+        "class": 0
+      },
+      {
+        "troop_id": 4,
+        "troop": "連弩兵",
+        "class": 0
+      },
+      {
+        "troop_id": 5,
+        "troop": "發石車",
+        "class": 0
+      },
+      {
+        "troop_id": 6,
+        "troop": "輕騎兵",
+        "class": 1
+      },
+      {
+        "troop_id": 7,
+        "troop": "重騎兵",
+        "class": 1
+      },
+      {
+        "troop_id": 8,
+        "troop": "近衛隊",
+        "class": 1
+      },
+      {
+        "troop_id": 9,
+        "troop": "山賊",
+        "class": 3
+      },
+      {
+        "troop_id": 10,
+        "troop": "惡賊",
+        "class": 3
+      },
+      {
+        "troop_id": 11,
+        "troop": "義賊",
+        "class": 3
+      },
+      {
+        "troop_id": 12,
+        "troop": "軍樂隊",
+        "class": 2
+      },
+      {
+        "troop_id": 13,
+        "troop": "猛獸兵團",
+        "class": 3
+      },
+      {
+        "troop_id": 14,
+        "troop": "武術家隊",
+        "class": 3
+      },
+      {
+        "troop_id": 15,
+        "troop": "妖術師",
+        "class": 0
+      },
+      {
+        "troop_id": 16,
+        "troop": "異民族",
+        "class": 3
+      },
+      {
+        "troop_id": 17,
+        "troop": "民眾",
+        "class": 0
+      },
+      {
+        "troop_id": 18,
+        "troop": "運輸隊",
+        "class": 2
+      }
+    ],
+    "movement_class_meanings": {
+      "0": "步兵/弓兵/妖术师/民众",
+      "1": "骑兵",
+      "2": "军乐队/运输队",
+      "3": "贼兵/武术家/猛兽/异民族"
+    },
+    "terrain": [
+      {
+        "id": 0,
+        "name": "平原",
+        "defense_percent": 0,
+        "movement_cost_by_class": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "id": 1,
+        "name": "森林",
+        "defense_percent": 20,
+        "movement_cost_by_class": [
+          1,
+          null,
+          2,
+          1
+        ]
+      },
+      {
+        "id": 2,
+        "name": "山地",
+        "defense_percent": 30,
+        "movement_cost_by_class": [
+          null,
+          null,
+          null,
+          1
+        ]
+      },
+      {
+        "id": 3,
+        "name": "河流",
+        "defense_percent": null,
+        "movement_cost_by_class": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "id": 4,
+        "name": "桥梁",
+        "defense_percent": 0,
+        "movement_cost_by_class": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "id": 5,
+        "name": "城墙",
+        "defense_percent": null,
+        "movement_cost_by_class": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "id": 6,
+        "name": "城内",
+        "defense_percent": 0,
+        "movement_cost_by_class": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "id": 7,
+        "name": "草原",
+        "defense_percent": 5,
+        "movement_cost_by_class": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "id": 8,
+        "name": "村庄",
+        "defense_percent": 5,
+        "movement_cost_by_class": [
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "id": 9,
+        "name": "悬崖",
+        "defense_percent": null,
+        "movement_cost_by_class": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "id": 10,
+        "name": "城门",
+        "defense_percent": null,
+        "movement_cost_by_class": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "id": 11,
+        "name": "荒地",
+        "defense_percent": 0,
+        "movement_cost_by_class": [
+          1,
+          2,
+          2,
+          1
+        ]
+      },
+      {
+        "id": 12,
+        "name": "栅栏",
+        "defense_percent": null,
+        "movement_cost_by_class": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "id": 13,
+        "name": "鹿砦",
+        "defense_percent": 30,
+        "movement_cost_by_class": [
+          2,
+          3,
+          2,
+          2
+        ]
+      },
+      {
+        "id": 14,
+        "name": "兵营",
+        "defense_percent": 10,
+        "movement_cost_by_class": [
+          2,
+          3,
+          2,
+          2
+        ]
+      },
+      {
+        "id": 15,
+        "name": "粮仓",
+        "defense_percent": 0,
+        "movement_cost_by_class": [
+          2,
+          3,
+          2,
+          2
+        ]
+      },
+      {
+        "id": 16,
+        "name": "宝物库",
+        "defense_percent": 0,
+        "movement_cost_by_class": [
+          2,
+          3,
+          2,
+          2
+        ]
+      },
+      {
+        "id": 17,
+        "name": "房舍",
+        "defense_percent": null,
+        "movement_cost_by_class": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "id": 18,
+        "name": "火焰",
+        "defense_percent": null,
+        "movement_cost_by_class": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "id": 19,
+        "name": "浊流",
+        "defense_percent": null,
+        "movement_cost_by_class": [
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "attack_formula": "((4000/(140-武力)+兵种基础攻击×2+士气)×(等级+10)/10)×(100+宝物攻击加成)/100；逐步整数除法",
+    "defense_formula": "((4000/(140-统御)+兵种基础防御×2+士气)×(等级+10)/10)×(100+宝物防御加成)/100；逐步整数除法",
+    "max_hp_formula": "兵种基础兵力+兵种兵力成长×(等级-1)",
+    "max_strategy_formula": "(等级+10)×智力×5/200；整数除法",
+    "physical_damage": "(攻击力-修正后防御力/2)×(100-地形防御%)/100；最低1，最高为目标当前兵力",
+    "counterattack": "仅特定近战兵种可触发；攻击未击破、目标未混乱、非反击；0..149随机数小于防守者武力时反击，伤害减半",
+    "experience": "未击破时按双方等级差计算基础经验；击破另加32/48或64/(等级差+2)；敌军不获经验",
+    "original_physical_crit_block_dodge_combo": "已核对的原版物理规则中不存在独立会心、格挡、闪避或连击判定；重制版保留这些作为现代化扩展",
+    "first_battle_intrinsic_strategies": "刘备、关羽、张飞等级不足以习得短兵Lv6焦热或轻骑兵Lv8牵制；本关原版可通过焦热书使用火攻，通过豆恢复",
+    "second_battle_intrinsic_strategies": "刘备、关羽、张飞的实际等级与经验从汜水关存档继承；按原版兵种与等级学习表逐人判定，轻骑兵未到8级不能使用牵制，骑兵不获得援助。"
+  },
+  "audit_notes": [
+    "虎牢关地图、部署、回合、宝物、兵粮、张飞单挑吕布和第18回合吕布主动出击均直接来自用户原游戏文件。",
+    "刘备、关羽、张飞、公孙瓒、陶谦的等级、经验、兵力、道具与宝物必须从汜水关战后存档继承，不能在第二关重置。",
+    "原版公孙瓒与陶谦由事件开关决定出场；本重制版按用户决定固定随军。",
+    "原版没有刘备10%光环；该效果属于用户指定的重制扩展，只影响友方。"
+  ]
+}

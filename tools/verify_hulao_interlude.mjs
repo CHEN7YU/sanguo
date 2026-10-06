@@ -1,0 +1,37 @@
+import fs from 'node:fs';
+import vm from 'node:vm';
+
+const check=(condition,message)=>{if(!condition)throw new Error(message)};
+const root=new URL('../',import.meta.url);
+const raw=JSON.parse(fs.readFileSync(new URL('docs/original-audit/level-02-prebattle-original.json',root),'utf8'));
+const storySource=fs.readFileSync(new URL('story-data.js',root),'utf8');
+const levelSource=fs.readFileSync(new URL('level-02.js',root),'utf8');
+const levelOneSource=fs.readFileSync(new URL('level-01.js',root),'utf8');
+const game=fs.readFileSync(new URL('game.js',root),'utf8');
+const html=fs.readFileSync(new URL('index.html',root),'utf8');
+const sandbox={window:{}};vm.runInNewContext(storySource,sandbox);
+const levelSandbox={window:{}};vm.runInNewContext(levelSource,levelSandbox);
+const levelOneSandbox={window:{}};vm.runInNewContext(levelOneSource,levelOneSandbox);
+const story=sandbox.window.HULAO_PRE_BATTLE_STORY,level=levelSandbox.window.LEVEL_02;
+const levelOne=levelOneSandbox.window.LEVEL_01;
+
+check(raw.shared_sequence.length===14,'original transition audit must keep all fourteen events');
+check(raw.negative_findings.camp_scene===false&&raw.negative_findings.free_roam===false,'audit must not invent a camp or free roam');
+check(raw.branches.duel.joins_at===raw.branches.normal.joins_at,'victory branches must join before the shared march');
+check(levelOne.events.duel.report.text.includes('关羽好像斩了华雄'),'duel branch Zhang Fei report is missing');
+check(levelOne.events.duel.confirmation.text==='嗯，我军胜利了。','duel branch Liu Bei confirmation is missing');
+check(game.includes('[level.events?.duel?.confirmation,occupation]'),'duel branch must play confirmation before occupation');
+check(story.length===7,'remaster must include reward and all six original lines');
+check(level.marchDialogue.length===6,'battle data must include all six original march lines');
+check(story[2].speaker==='张飞'&&story[2].text.includes('乘胜追击'),'Zhang Fei pursuit line is missing');
+check(story.some(line=>line.route?.['李肃'])&&story.some(line=>line.route?.['张飞']),'Li Su retreat and Zhang Fei pursuit routes are required');
+check(level.marchHandledByStory===true&&game.includes('!level.marchHandledByStory'),'march dialogue would replay at battle start');
+check(game.includes('world:3'),'world map must use original music ID 3');
+check(fs.statSync(new URL('assets/audio/original-music-3.wav',root)).size>100000,'original music ID 3 render is missing');
+check(game.includes('u.hp=u.maxHp')&&game.includes('u.strategy=u.maxStrategy')&&game.includes('u.morale=100'),'new battle replenishment is not enforced');
+check(!game.includes('hp:u.hp,strategy:u.strategy,morale:u.morale??100'),'tactical values must not be persisted between battles');
+check(game.includes('victoryType:victoryType')&&game.includes("campaignVictoryType=duel?'duel':variant"),'normal/duel outcome branch is not recorded');
+check(html.includes('id="storySaveBtn"')&&game.includes("openGameMenu('save','story')"),'story save entry is missing');
+check(game.includes("phaseType==='story'")&&game.includes("phaseType==='prep'")&&game.includes('loadStorySnapshot'),'story and prebattle checkpoints are not loadable');
+check(game.includes('campaignTransfer:readCampaignTransferRaw()'),'story saves must embed campaign carryover state');
+console.log('Tiger Gate prebattle interlude verified: exact branch join, 6-line march, routes, music, replenishment, story/prep saves and battle handoff.');

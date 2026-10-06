@@ -1,0 +1,24 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const context={window:{}};vm.createContext(context);vm.runInContext(fs.readFileSync(path.join(root,'level-03-guangchuan.js'),'utf8'),context);
+const level=context.window.LEVEL_03_GUANGCHUAN;
+assert.equal(level.width,20);assert.equal(level.height,11);assert.equal(level.maxTurns,30);assert.equal(level.objectiveUnitId,'fengji');
+assert.equal(JSON.stringify(level.terrainCodes),JSON.stringify(JSON.parse(fs.readFileSync(path.join(root,'docs/original-audit/level-03-guangchuan-map.json'),'utf8')).terrain_codes));
+assert.equal(level.units.length,13);assert.equal(level.units.filter(u=>u.side==='ally').length,4);assert.equal(level.units.filter(u=>u.side==='enemy').length,9);
+const expected=[[54,0,2,6,0],[256,4,6,4,4],[257,7,7,4,1],[274,1,3,3,0],[292,9,8,1,1],[293,10,8,1,1],[310,1,4,3,0],[311,6,5,2,1],[312,4,4,2,1]];
+for(const [id,x,y,lvl,ai] of expected){const u=level.units.find(q=>q.originalId===id);assert.ok(u,`missing ${id}`);assert.deepEqual([u.x,u.y,u.level,u.aiType],[x,y,lvl,ai],`deployment mismatch ${id}`)}
+for(const u of level.units)assert.ok(!['water','hill','cliff','wall'].includes(level.terrain[u.y][u.x]),`${u.name} starts on impassable terrain`);
+assert.equal(level.terrain[6][7],'village');assert.equal(level.terrain[6][15],'treasure');assert.equal(level.terrain[9][5],'treasure');
+assert.equal(JSON.stringify(level.events.loot['15,6']),JSON.stringify({item:'bean',amount:1}));assert.equal(JSON.stringify(level.events.loot['5,9']),JSON.stringify({gold:100}));
+assert.equal(level.events.duel.attackerId,'guan');assert.equal(level.events.duel.defenderId,'fengji');assert.equal(level.events.battleReward,200);
+assert.equal(level.squareGrid,true);assert.ok(level.environmentFx.forestZones.length>=5);assert.equal(level.environmentFx.waterBands.length,1);
+for(const asset of ['assets/level-03/guangchuan-map-v1.webp','assets/level-03/thousand-suns-dw7th-mix.opus','assets/level-03/portraits/jian-yong-v1.webp','assets/level-03/portraits/feng-ji-v1.webp','assets/level-03/portraits/han-ying-v1.webp','assets/level-03/portraits/guo-shi-v1.webp'])assert.ok(fs.statSync(path.join(root,asset)).size>1000,`missing ${asset}`);
+const html=fs.readFileSync(path.join(root,'index.html'),'utf8'),game=fs.readFileSync(path.join(root,'game.js'),'utf8'),story=fs.readFileSync(path.join(root,'story-data.js'),'utf8');
+assert.ok(html.includes('level-03-guangchuan.js'));assert.ok(html.includes('data-select-level="3"'));assert.ok(game.includes("levelIndex==='3' ? window.LEVEL_03_GUANGCHUAN"));
+assert.ok(story.includes("'guangchuan': window.GUANGCHUAN_PRE_BATTLE_STORY"));assert.ok(story.includes('简雍成为刘备部下'));assert.ok(story.includes('一条经过广川，一条经过信都城'));
+assert.ok(game.includes('function leaveStoryFreeRoam()'));assert.ok(game.includes("level.nextLevelId==='guangchuan'?'3'"));assert.ok(game.includes('level.events?.loot?.[`${u.x},${u.y}`]'));
+console.log('Guangchuan verification passed: original 20x11 terrain, 4 allied and 9 enemy deployment, story, duel, loot, postbattle and compressed assets.');

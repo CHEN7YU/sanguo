@@ -1,0 +1,41 @@
+{
+  "source": "D:\\baiduyundownload\\三国英杰传\\三国英杰传\\SGYJ\\MMAP.R3",
+  "source_size": 22755,
+  "source_sha256": "ceaa2772d391ab8628345b36320aa64fa89617da29bfa5994ecbb66fff8b65d8",
+  "format": "LS11",
+  "section_count": 4,
+  "sections": [
+    {
+      "index": 0,
+      "compressed_size": 5120,
+      "unpacked_size": 9504,
+      "offset": 324,
+      "output": "section-000.bin",
+      "sha256": "efd922772a51df66069e35092b40423f7edd5485e221d6bbb194ae8113b5f5c1"
+    },
+    {
+      "index": 1,
+      "compressed_size": 4363,
+      "unpacked_size": 8316,
+      "offset": 5444,
+      "output": "section-001.bin",
+      "sha256": "0be02319c95b8f0f7ff910f619dbc5dfa4364dac8df061c66aa96d28e32277d9"
+    },
+    {
+      "index": 2,
+      "compressed_size": 5726,
+      "unpacked_size": 10890,
+      "offset": 9807,
+      "output": "section-002.bin",
+      "sha256": "be159bf809eb9f46388112e1b05d53cdf86478552895fb1fd0573e9cdee370e4"
+    },
+    {
+      "index": 3,
+      "compressed_size": 7222,
+      "unpacked_size": 14784,
+      "offset": 15533,
+      "output": "section-003.bin",
+      "sha256": "c16af2420c2cfe32bedcb508f96a8e90cedac3ab3ef71cfe1fdc66161044165f"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+site-test/
+site-publish-checkout-*/
+dist/
+node_modules/
+*.tar.gz
+*.zip
+*.7z
+*.log
+.env
+.env.*
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak

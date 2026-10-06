@@ -1,0 +1,3992 @@
+{
+  "converted_files": 441,
+  "source_bytes": 408891596,
+  "target_bytes": 126298470,
+  "changed_text_files": [
+    "game.js",
+    "index.html",
+    "style.css",
+    "site-test/game.js",
+    "site-test/index.html",
+    "site-test/style.css",
+    "tools/verify_level02.mjs",
+    "docs/original-audit/level-02-prebattle-original.json",
+    "site-test/dist/+game.js",
+    "site-test/dist/+index.html",
+    "site-test/dist/+style.css",
+    "site-test/dist/game.js",
+    "site-test/dist/index.html",
+    "site-test/dist/style.css"
+  ],
+  "images": [
+    {
+      "tree": "assets",
+      "file": "allied-singles-sheet.png",
+      "source_bytes": 1278914,
+      "target_bytes": 379036,
+      "psnr": 41.88,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "allied-squads-sheet.png",
+      "source_bytes": 1185798,
+      "target_bytes": 352186,
+      "psnr": 42.55,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "archer-attack.png",
+      "source_bytes": 1040450,
+      "target_bytes": 309210,
+      "psnr": 45.29,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "archer-walk-v1.png",
+      "source_bytes": 1381335,
+      "target_bytes": 445620,
+      "psnr": 41.91,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "enemy-singles-sheet.png",
+      "source_bytes": 900782,
+      "target_bytes": 258314,
+      "psnr": 44.78,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "enemy-squads-sheet.png",
+      "source_bytes": 1183104,
+      "target_bytes": 327770,
+      "psnr": 42.66,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "gongsun-attack.png",
+      "source_bytes": 1425063,
+      "target_bytes": 396484,
+      "psnr": 43.27,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "gongsun-death-v1.png",
+      "source_bytes": 1127481,
+      "target_bytes": 281810,
+      "psnr": 47.33,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "gongsun-squad.png",
+      "source_bytes": 409451,
+      "target_bytes": 97576,
+      "psnr": 38.14,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "gongsun-walk-v1.png",
+      "source_bytes": 2152068,
+      "target_bytes": 682668,
+      "psnr": 38.77,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "gongsun-zan-remaster-v2.png",
+      "source_bytes": 2774438,
+      "target_bytes": 544198,
+      "psnr": 41.17,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "guan-attack.png",
+      "source_bytes": 1587344,
+      "target_bytes": 452826,
+      "psnr": 39.69,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "guan-death-v1.png",
+      "source_bytes": 1025658,
+      "target_bytes": 266784,
+      "psnr": 43.34,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "guan-squad-v2.png",
+      "source_bytes": 310602,
+      "target_bytes": 84822,
+      "psnr": 36.09,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "guan-squad.png",
+      "source_bytes": 396254,
+      "target_bytes": 91570,
+      "psnr": 36.79,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "guan-walk-v1.png",
+      "source_bytes": 1941419,
+      "target_bytes": 604726,
+      "psnr": 36.23,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "guan-yu-remaster-v2.png",
+      "source_bytes": 3031298,
+      "target_bytes": 676312,
+      "psnr": 40.26,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "guan-yu.png",
+      "source_bytes": 1371828,
+      "target_bytes": 329600,
+      "psnr": 44.85,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "hou-cheng-portrait-v1.png",
+      "source_bytes": 2893592,
+      "target_bytes": 446312,
+      "psnr": 37.62,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "houcheng-attack-v1.png",
+      "source_bytes": 1659073,
+      "target_bytes": 450328,
+      "psnr": 42.68,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "houcheng-death-v1.png",
+      "source_bytes": 1419445,
+      "target_bytes": 366152,
+      "psnr": 43.45,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "houcheng-squad-v1.png",
+      "source_bytes": 1250749,
+      "target_bytes": 300040,
+      "psnr": 42.82,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "houcheng-walk-v1.png",
+      "source_bytes": 1905080,
+      "target_bytes": 613424,
+      "psnr": 37.64,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "hu-zhen-remaster-v2.png",
+      "source_bytes": 2927238,
+      "target_bytes": 608942,
+      "psnr": 40.04,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "hua-attack.png",
+      "source_bytes": 1308473,
+      "target_bytes": 369456,
+      "psnr": 43.05,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "hua-death-v1.png",
+      "source_bytes": 978368,
+      "target_bytes": 247074,
+      "psnr": 46.44,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "hua-squad.png",
+      "source_bytes": 490501,
+      "target_bytes": 91582,
+      "psnr": 38.76,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "hua-walk-v1.png",
+      "source_bytes": 1783680,
+      "target_bytes": 533000,
+      "psnr": 39.25,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "hua-xiong-remaster-v2.png",
+      "source_bytes": 2928926,
+      "target_bytes": 653674,
+      "psnr": 39.48,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "hua-xiong.png",
+      "source_bytes": 1359231,
+      "target_bytes": 313696,
+      "psnr": 45.49,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "hulao-remaster-v1.png",
+      "source_bytes": 3424291,
+      "target_bytes": 703826,
+      "psnr": 35.89,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "infantry-attack.png",
+      "source_bytes": 920685,
+      "target_bytes": 246504,
+      "psnr": 44.5,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "infantry-walk-v1.png",
+      "source_bytes": 1510879,
+      "target_bytes": 470260,
+      "psnr": 40.05,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "inktolife-logo.png",
+      "source_bytes": 1121684,
+      "target_bytes": 926142,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "lady-reference-audit.png",
+      "source_bytes": 13490,
+      "target_bytes": 8254,
+      "psnr": null,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "level02-portrait-reference.png",
+      "source_bytes": 21959,
+      "target_bytes": 9332,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "li-su-remaster-v2.png",
+      "source_bytes": 2824144,
+      "target_bytes": 580702,
+      "psnr": 42.25,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "liu-attack.png",
+      "source_bytes": 1429998,
+      "target_bytes": 407680,
+      "psnr": 39.36,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "liu-bei-remaster-v2.png",
+      "source_bytes": 2601496,
+      "target_bytes": 570236,
+      "psnr": 40.81,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "liu-bei.png",
+      "source_bytes": 2136343,
+      "target_bytes": 309458,
+      "psnr": 44.14,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "liu-squad.png",
+      "source_bytes": 238784,
+      "target_bytes": 60002,
+      "psnr": 36.98,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "liu-walk-v1.png",
+      "source_bytes": 1756520,
+      "target_bytes": 554168,
+      "psnr": 35.71,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "lvbu-attack-v1.png",
+      "source_bytes": 1844679,
+      "target_bytes": 543092,
+      "psnr": 41.02,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "lvbu-death-v1.png",
+      "source_bytes": 1423209,
+      "target_bytes": 429612,
+      "psnr": 41.29,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "lvbu-squad-v1.png",
+      "source_bytes": 1591331,
+      "target_bytes": 411066,
+      "psnr": 40.16,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "lvbu-walk-v1.png",
+      "source_bytes": 2212154,
+      "target_bytes": 765146,
+      "psnr": 35.47,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "maiden-reference-audit.png",
+      "source_bytes": 13490,
+      "target_bytes": 8254,
+      "psnr": null,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "officer-attack.png",
+      "source_bytes": 1789933,
+      "target_bytes": 299152,
+      "psnr": 42.12,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "officer-walk-v1.png",
+      "source_bytes": 1374481,
+      "target_bytes": 473638,
+      "psnr": 39.56,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "original-portraits/guan-yu-original.png",
+      "source_bytes": 9651,
+      "target_bytes": 2194,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "original-portraits/hua-xiong-original.png",
+      "source_bytes": 10066,
+      "target_bytes": 2284,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "original-portraits/liu-bei-original.png",
+      "source_bytes": 8578,
+      "target_bytes": 1824,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "original-portraits/zhang-fei-original.png",
+      "source_bytes": 7919,
+      "target_bytes": 1882,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "sishui-battlefield.png",
+      "source_bytes": 3012506,
+      "target_bytes": 538870,
+      "psnr": 36.6,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "sishui-remaster-v2.png",
+      "source_bytes": 3332178,
+      "target_bytes": 671338,
+      "psnr": 36.4,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "sishui-remaster-v3.png",
+      "source_bytes": 3147457,
+      "target_bytes": 593926,
+      "psnr": 37.54,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "song-xian-portrait-v1.png",
+      "source_bytes": 2647428,
+      "target_bytes": 323786,
+      "psnr": 40.16,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "songxian-attack-v1.png",
+      "source_bytes": 1654202,
+      "target_bytes": 450032,
+      "psnr": 43.41,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "songxian-death-v1.png",
+      "source_bytes": 1221233,
+      "target_bytes": 345782,
+      "psnr": 45.2,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "songxian-squad-v1.png",
+      "source_bytes": 1355501,
+      "target_bytes": 326540,
+      "psnr": 42.64,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "songxian-walk-v1.png",
+      "source_bytes": 1879264,
+      "target_bytes": 597816,
+      "psnr": 39.53,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "songxian-walk-v2.png",
+      "source_bytes": 1921492,
+      "target_bytes": 589792,
+      "psnr": 37.93,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/cao-cao-gesture-sheet-v1.png",
+      "source_bytes": 282256,
+      "target_bytes": 229708,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/dong-cheng-gesture-sheet-v1.png",
+      "source_bytes": 236890,
+      "target_bytes": 198842,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/dong-zhuo-gesture-sheet-v1.png",
+      "source_bytes": 243684,
+      "target_bytes": 207178,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/emperor-gesture-sheet-v1.png",
+      "source_bytes": 222876,
+      "target_bytes": 184810,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/gongsun-zan-gesture-sheet-v1.png",
+      "source_bytes": 230182,
+      "target_bytes": 71776,
+      "psnr": 34.19,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/guan-yu-gesture-sheet-v1.png",
+      "source_bytes": 270889,
+      "target_bytes": 78066,
+      "psnr": 34.02,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/hua-xiong-gesture-sheet-v1.png",
+      "source_bytes": 204024,
+      "target_bytes": 176664,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/kong-rong-gesture-sheet-v1.png",
+      "source_bytes": 271822,
+      "target_bytes": 221876,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/li-ru-gesture-sheet-v1.png",
+      "source_bytes": 163708,
+      "target_bytes": 141160,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/liu-bei-gesture-sheet-v1.png",
+      "source_bytes": 206884,
+      "target_bytes": 175946,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/lv-bu-gesture-sheet-v1.png",
+      "source_bytes": 192472,
+      "target_bytes": 167050,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/officer-gesture-sheet-v1.png",
+      "source_bytes": 238810,
+      "target_bytes": 71322,
+      "psnr": 35.41,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/shopkeeper-gesture-sheet-v1.png",
+      "source_bytes": 276140,
+      "target_bytes": 77198,
+      "psnr": 37.22,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/tao-qian-gesture-sheet-v1.png",
+      "source_bytes": 290894,
+      "target_bytes": 232676,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/yuan-shao-gesture-sheet-v1.png",
+      "source_bytes": 245815,
+      "target_bytes": 208808,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/yuan-shu-gesture-sheet-v1.png",
+      "source_bytes": 252999,
+      "target_bytes": 206956,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/gestures-v1/zhang-fei-gesture-sheet-v1.png",
+      "source_bytes": 299421,
+      "target_bytes": 85482,
+      "psnr": 34.07,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/cao-cao-four-directions.png",
+      "source_bytes": 4130,
+      "target_bytes": 1196,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/dong-cheng-four-directions.png",
+      "source_bytes": 3909,
+      "target_bytes": 1086,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/dong-zhuo-four-directions.png",
+      "source_bytes": 3497,
+      "target_bytes": 15110,
+      "psnr": 34.32,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/emperor-four-directions.png",
+      "source_bytes": 3676,
+      "target_bytes": 1028,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/gongsun-zan-four-directions.png",
+      "source_bytes": 3679,
+      "target_bytes": 1002,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/guan-yu-four-directions.png",
+      "source_bytes": 3695,
+      "target_bytes": 1058,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/guo-si-four-directions.png",
+      "source_bytes": 3753,
+      "target_bytes": 1090,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/hu-zhen-four-directions.png",
+      "source_bytes": 3548,
+      "target_bytes": 930,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/hua-xiong-four-directions.png",
+      "source_bytes": 3640,
+      "target_bytes": 1042,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/kong-rong-four-directions.png",
+      "source_bytes": 4194,
+      "target_bytes": 1244,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/lady-four-directions.png",
+      "source_bytes": 1317,
+      "target_bytes": 388,
+      "psnr": null,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/li-jue-four-directions.png",
+      "source_bytes": 3902,
+      "target_bytes": 1048,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/li-ru-four-directions.png",
+      "source_bytes": 3700,
+      "target_bytes": 1044,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/li-su-four-directions.png",
+      "source_bytes": 3796,
+      "target_bytes": 1074,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/liu-bei-four-directions.png",
+      "source_bytes": 3234,
+      "target_bytes": 890,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/lv-bu-four-directions.png",
+      "source_bytes": 3816,
+      "target_bytes": 1100,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/maiden-four-directions.png",
+      "source_bytes": 1317,
+      "target_bytes": 388,
+      "psnr": null,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/officer-four-directions.png",
+      "source_bytes": 4482,
+      "target_bytes": 1240,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/shopkeeper-four-directions.png",
+      "source_bytes": 1317,
+      "target_bytes": 388,
+      "psnr": null,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/tao-qian-four-directions.png",
+      "source_bytes": 3863,
+      "target_bytes": 1174,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/yuan-shao-four-directions.png",
+      "source_bytes": 3971,
+      "target_bytes": 1206,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/yuan-shu-four-directions.png",
+      "source_bytes": 4033,
+      "target_bytes": 1178,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/zhang-fei-four-directions.png",
+      "source_bytes": 3735,
+      "target_bytes": 1094,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/reference-v2/zhao-cen-four-directions.png",
+      "source_bytes": 3609,
+      "target_bytes": 984,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/cao-cao-walk-sheet-v3.png",
+      "source_bytes": 1227440,
+      "target_bytes": 1036462,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/cao-cao-walk-sheet-v4.png",
+      "source_bytes": 1166402,
+      "target_bytes": 988808,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/cao-cao-walk-v3.png",
+      "source_bytes": 1762420,
+      "target_bytes": 1459968,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/dong-cheng-walk-sheet-v3.png",
+      "source_bytes": 931075,
+      "target_bytes": 801496,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/dong-cheng-walk-sheet-v4.png",
+      "source_bytes": 921893,
+      "target_bytes": 796434,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/dong-cheng-walk-v3.png",
+      "source_bytes": 1279990,
+      "target_bytes": 456032,
+      "psnr": 35.12,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/dong-zhuo-walk-sheet-v3.png",
+      "source_bytes": 942273,
+      "target_bytes": 823530,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/dong-zhuo-walk-sheet-v4.png",
+      "source_bytes": 933501,
+      "target_bytes": 815008,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/dong-zhuo-walk-v3.png",
+      "source_bytes": 1305542,
+      "target_bytes": 431328,
+      "psnr": 35.09,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/emperor-walk-sheet-v3.png",
+      "source_bytes": 850130,
+      "target_bytes": 367600,
+      "psnr": 34.19,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/emperor-walk-sheet-v4.png",
+      "source_bytes": 832727,
+      "target_bytes": 311992,
+      "psnr": 34.01,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/emperor-walk-v3.png",
+      "source_bytes": 1175136,
+      "target_bytes": 436934,
+      "psnr": 36.15,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/gongsun-zan-walk-sheet-v3.png",
+      "source_bytes": 1075668,
+      "target_bytes": 371278,
+      "psnr": 35.8,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/gongsun-zan-walk-sheet-v4.png",
+      "source_bytes": 960075,
+      "target_bytes": 335964,
+      "psnr": 35.98,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/gongsun-zan-walk-v3.png",
+      "source_bytes": 1537501,
+      "target_bytes": 501222,
+      "psnr": 37.84,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/guan-yu-walk-sheet-v3.png",
+      "source_bytes": 1230381,
+      "target_bytes": 376762,
+      "psnr": 36.51,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/guan-yu-walk-sheet-v4.png",
+      "source_bytes": 1119131,
+      "target_bytes": 347736,
+      "psnr": 36.69,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/guan-yu-walk-v3.png",
+      "source_bytes": 1775604,
+      "target_bytes": 507514,
+      "psnr": 38.54,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/guo-si-walk-sheet-v3.png",
+      "source_bytes": 960553,
+      "target_bytes": 840532,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/guo-si-walk-sheet-v4.png",
+      "source_bytes": 933886,
+      "target_bytes": 821396,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/guo-si-walk-v3.png",
+      "source_bytes": 1325255,
+      "target_bytes": 490974,
+      "psnr": 35.22,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/hu-zhen-walk-sheet-v3.png",
+      "source_bytes": 802328,
+      "target_bytes": 707592,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/hu-zhen-walk-sheet-v4.png",
+      "source_bytes": 781635,
+      "target_bytes": 690190,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/hu-zhen-walk-v3.png",
+      "source_bytes": 1094806,
+      "target_bytes": 388288,
+      "psnr": 34.36,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/hua-xiong-walk-sheet-v3.png",
+      "source_bytes": 813324,
+      "target_bytes": 706972,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/hua-xiong-walk-sheet-v4.png",
+      "source_bytes": 806476,
+      "target_bytes": 703542,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/hua-xiong-walk-v3.png",
+      "source_bytes": 1103521,
+      "target_bytes": 387160,
+      "psnr": 35.48,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/kong-rong-walk-sheet-v3.png",
+      "source_bytes": 1131208,
+      "target_bytes": 378054,
+      "psnr": 35.22,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/kong-rong-walk-sheet-v4.png",
+      "source_bytes": 1094089,
+      "target_bytes": 365458,
+      "psnr": 35.37,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/kong-rong-walk-v3.png",
+      "source_bytes": 1624785,
+      "target_bytes": 506680,
+      "psnr": 37.34,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/lady-walk-sheet-v3.png",
+      "source_bytes": 812253,
+      "target_bytes": 270054,
+      "psnr": 43.53,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/lady-walk-sheet-v4.png",
+      "source_bytes": 800630,
+      "target_bytes": 259844,
+      "psnr": 43.51,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/li-jue-walk-sheet-v3.png",
+      "source_bytes": 1083694,
+      "target_bytes": 368198,
+      "psnr": 34.87,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/li-jue-walk-sheet-v4.png",
+      "source_bytes": 1016310,
+      "target_bytes": 349660,
+      "psnr": 34.99,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/li-jue-walk-v3.png",
+      "source_bytes": 1511190,
+      "target_bytes": 491166,
+      "psnr": 36.98,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/li-ru-walk-sheet-v3.png",
+      "source_bytes": 805447,
+      "target_bytes": 306006,
+      "psnr": 34.68,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/li-ru-walk-sheet-v4.png",
+      "source_bytes": 798364,
+      "target_bytes": 293682,
+      "psnr": 34.85,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/li-ru-walk-v3.png",
+      "source_bytes": 1090928,
+      "target_bytes": 393612,
+      "psnr": 36.75,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/li-su-walk-sheet-v3.png",
+      "source_bytes": 834146,
+      "target_bytes": 740794,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/li-su-walk-sheet-v4.png",
+      "source_bytes": 813153,
+      "target_bytes": 314670,
+      "psnr": 34.0,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/li-su-walk-v3.png",
+      "source_bytes": 1138488,
+      "target_bytes": 424092,
+      "psnr": 35.76,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/liu-bei-walk-sheet-v3.png",
+      "source_bytes": 876990,
+      "target_bytes": 331052,
+      "psnr": 34.82,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/liu-bei-walk-sheet-v4.png",
+      "source_bytes": 869264,
+      "target_bytes": 322282,
+      "psnr": 35.01,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/liu-bei-walk-v3.png",
+      "source_bytes": 1251930,
+      "target_bytes": 443046,
+      "psnr": 36.81,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/lv-bu-walk-sheet-v3.png",
+      "source_bytes": 838036,
+      "target_bytes": 745230,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/lv-bu-walk-sheet-v4.png",
+      "source_bytes": 818419,
+      "target_bytes": 729972,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/lv-bu-walk-v3.png",
+      "source_bytes": 1142646,
+      "target_bytes": 424266,
+      "psnr": 34.94,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/maiden-walk-sheet-v3.png",
+      "source_bytes": 805679,
+      "target_bytes": 272806,
+      "psnr": 42.9,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/maiden-walk-sheet-v4.png",
+      "source_bytes": 797494,
+      "target_bytes": 264638,
+      "psnr": 42.83,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/officer-walk-sheet-v3.png",
+      "source_bytes": 1123232,
+      "target_bytes": 362548,
+      "psnr": 38.01,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/officer-walk-sheet-v4.png",
+      "source_bytes": 1039700,
+      "target_bytes": 337386,
+      "psnr": 38.16,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/officer-walk-v3.png",
+      "source_bytes": 1624356,
+      "target_bytes": 486800,
+      "psnr": 39.92,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/shopkeeper-walk-sheet-v3.png",
+      "source_bytes": 1274750,
+      "target_bytes": 399696,
+      "psnr": 39.02,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/shopkeeper-walk-sheet-v4.png",
+      "source_bytes": 1136720,
+      "target_bytes": 360296,
+      "psnr": 39.13,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/shopkeeper-walk-v3.png",
+      "source_bytes": 1853223,
+      "target_bytes": 537626,
+      "psnr": 40.95,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/tao-qian-walk-sheet-v3.png",
+      "source_bytes": 1212128,
+      "target_bytes": 375540,
+      "psnr": 34.48,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/tao-qian-walk-sheet-v4.png",
+      "source_bytes": 1183686,
+      "target_bytes": 368596,
+      "psnr": 34.55,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/tao-qian-walk-v3.png",
+      "source_bytes": 1754782,
+      "target_bytes": 507532,
+      "psnr": 36.48,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/yuan-shao-walk-sheet-v3.png",
+      "source_bytes": 1054244,
+      "target_bytes": 930396,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/yuan-shao-walk-sheet-v4.png",
+      "source_bytes": 1012191,
+      "target_bytes": 895276,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/yuan-shao-walk-v3.png",
+      "source_bytes": 1509808,
+      "target_bytes": 489646,
+      "psnr": 35.1,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/yuan-shu-walk-sheet-v3.png",
+      "source_bytes": 1116052,
+      "target_bytes": 376964,
+      "psnr": 35.22,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/yuan-shu-walk-sheet-v4.png",
+      "source_bytes": 1010642,
+      "target_bytes": 343924,
+      "psnr": 35.27,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/yuan-shu-walk-v3.png",
+      "source_bytes": 1610205,
+      "target_bytes": 510732,
+      "psnr": 37.23,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/zhang-fei-walk-sheet-v3.png",
+      "source_bytes": 1471410,
+      "target_bytes": 464610,
+      "psnr": 35.54,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/zhang-fei-walk-sheet-v4.png",
+      "source_bytes": 1324155,
+      "target_bytes": 423286,
+      "psnr": 35.67,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/zhang-fei-walk-v3.png",
+      "source_bytes": 2116037,
+      "target_bytes": 626624,
+      "psnr": 37.49,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/zhao-cen-walk-sheet-v3.png",
+      "source_bytes": 893076,
+      "target_bytes": 319260,
+      "psnr": 35.43,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/zhao-cen-walk-sheet-v4.png",
+      "source_bytes": 883926,
+      "target_bytes": 313274,
+      "psnr": 35.4,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/remaster-v3/zhao-cen-walk-v3.png",
+      "source_bytes": 1249495,
+      "target_bytes": 424308,
+      "psnr": 37.47,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/world-v1/hua-xiong-march-sheet-v1.png",
+      "source_bytes": 1756264,
+      "target_bytes": 654156,
+      "psnr": 36.84,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors/world-v1/lv-bu-march-sheet-v1.png",
+      "source_bytes": 1918477,
+      "target_bytes": 720174,
+      "psnr": 35.65,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors-original.png",
+      "source_bytes": 94435,
+      "target_bytes": 17606,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-actors.png",
+      "source_bytes": 42400,
+      "target_bytes": 17606,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-chenliu-tent.png",
+      "source_bytes": 2535542,
+      "target_bytes": 434838,
+      "psnr": 38.51,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-luoyang-original.png",
+      "source_bytes": 151496,
+      "target_bytes": 4290,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-luoyang-remaster.png",
+      "source_bytes": 2615657,
+      "target_bytes": 424060,
+      "psnr": 38.76,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-palace-original.png",
+      "source_bytes": 157363,
+      "target_bytes": 3806,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-palace-remaster.png",
+      "source_bytes": 3219613,
+      "target_bytes": 573052,
+      "psnr": 36.9,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/cao-cao-original.png",
+      "source_bytes": 8303,
+      "target_bytes": 1844,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/cao-cao.png",
+      "source_bytes": 2389390,
+      "target_bytes": 272504,
+      "psnr": 38.68,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/dong-cheng-original.png",
+      "source_bytes": 14876,
+      "target_bytes": 1808,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/dong-zhuo.png",
+      "source_bytes": 5968,
+      "target_bytes": 1906,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/emperor-original.png",
+      "source_bytes": 13866,
+      "target_bytes": 1762,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/guo-si-original.png",
+      "source_bytes": 13762,
+      "target_bytes": 1826,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/hu-zhen-original.png",
+      "source_bytes": 13966,
+      "target_bytes": 1878,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/kong-rong-original.png",
+      "source_bytes": 13311,
+      "target_bytes": 1740,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/li-jue-original.png",
+      "source_bytes": 14839,
+      "target_bytes": 1800,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/li-ru-original.png",
+      "source_bytes": 16477,
+      "target_bytes": 2022,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/li-su-original.png",
+      "source_bytes": 13166,
+      "target_bytes": 1628,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/lv-bu-original.png",
+      "source_bytes": 13434,
+      "target_bytes": 1680,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/officer-original.png",
+      "source_bytes": 14171,
+      "target_bytes": 1828,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-level02/hou-cheng-face-153.png",
+      "source_bytes": 4273,
+      "target_bytes": 1640,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-level02/lv-bu-face-148.png",
+      "source_bytes": 4316,
+      "target_bytes": 1640,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-level02/song-xian-face-152.png",
+      "source_bytes": 3502,
+      "target_bytes": 1484,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-level02/wei-xu-face-151.png",
+      "source_bytes": 3976,
+      "target_bytes": 1542,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-level02/zhang-liao-face-036.png",
+      "source_bytes": 4877,
+      "target_bytes": 1868,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/cao-cao-face-027.png",
+      "source_bytes": 3691,
+      "target_bytes": 1566,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/dong-cheng-face-031.png",
+      "source_bytes": 4144,
+      "target_bytes": 1722,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/dong-zhuo-face-136.png",
+      "source_bytes": 3978,
+      "target_bytes": 1502,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/emperor-face-237.png",
+      "source_bytes": 4185,
+      "target_bytes": 1552,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/gongsun-zan-face-107.png",
+      "source_bytes": 4910,
+      "target_bytes": 1818,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/guan-yu-face-001.png",
+      "source_bytes": 4806,
+      "target_bytes": 1826,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/guo-si-face-142.png",
+      "source_bytes": 4511,
+      "target_bytes": 1808,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/hu-zhen-face-140.png",
+      "source_bytes": 3731,
+      "target_bytes": 1414,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/hua-xiong-face-138.png",
+      "source_bytes": 4817,
+      "target_bytes": 1910,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/kong-rong-face-195.png",
+      "source_bytes": 3923,
+      "target_bytes": 1712,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/li-jue-face-141.png",
+      "source_bytes": 4726,
+      "target_bytes": 1716,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/li-ru-face-137.png",
+      "source_bytes": 4777,
+      "target_bytes": 1722,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/li-su-face-139.png",
+      "source_bytes": 4044,
+      "target_bytes": 1494,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/liu-bei-face-000.png",
+      "source_bytes": 4306,
+      "target_bytes": 1530,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/lv-bu-face-148.png",
+      "source_bytes": 4316,
+      "target_bytes": 1640,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/officer-face-222.png",
+      "source_bytes": 3990,
+      "target_bytes": 1432,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/tao-qian-face-189.png",
+      "source_bytes": 4631,
+      "target_bytes": 1854,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/yuan-shao-face-110.png",
+      "source_bytes": 4877,
+      "target_bytes": 1864,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/yuan-shu-face-144.png",
+      "source_bytes": 3638,
+      "target_bytes": 1592,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/zhang-fei-face-002.png",
+      "source_bytes": 3622,
+      "target_bytes": 1576,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v2/zhao-cen-face-056.png",
+      "source_bytes": 3790,
+      "target_bytes": 1582,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v4/allies-original-grid.png",
+      "source_bytes": 35748,
+      "target_bytes": 10576,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v4/enemies-original-grid.png",
+      "source_bytes": 35055,
+      "target_bytes": 10054,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v4/late-original-grid.png",
+      "source_bytes": 34084,
+      "target_bytes": 10340,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v4/main-original-grid.png",
+      "source_bytes": 31250,
+      "target_bytes": 9552,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/reference-v4/officials-original-grid.png",
+      "source_bytes": 31253,
+      "target_bytes": 9814,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/cao-cao-v3.png",
+      "source_bytes": 535119,
+      "target_bytes": 103958,
+      "psnr": 34.59,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/dong-cheng-v3.png",
+      "source_bytes": 555877,
+      "target_bytes": 109452,
+      "psnr": 34.1,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/dong-zhuo-v3.png",
+      "source_bytes": 542786,
+      "target_bytes": 147708,
+      "psnr": 34.94,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/emperor-v3.png",
+      "source_bytes": 524501,
+      "target_bytes": 99914,
+      "psnr": 34.35,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/gongsun-zan-v3.png",
+      "source_bytes": 553146,
+      "target_bytes": 107882,
+      "psnr": 34.51,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/guan-yu-v3.png",
+      "source_bytes": 550080,
+      "target_bytes": 106812,
+      "psnr": 35.15,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/guo-si-v3.png",
+      "source_bytes": 574169,
+      "target_bytes": 155244,
+      "psnr": 34.75,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/hu-zhen-v3.png",
+      "source_bytes": 536745,
+      "target_bytes": 102600,
+      "psnr": 35.91,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/hua-xiong-v3.png",
+      "source_bytes": 585955,
+      "target_bytes": 457438,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/kong-rong-v3.png",
+      "source_bytes": 544832,
+      "target_bytes": 107654,
+      "psnr": 34.33,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/li-jue-v3.png",
+      "source_bytes": 560132,
+      "target_bytes": 109878,
+      "psnr": 34.43,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/li-ru-v3.png",
+      "source_bytes": 541775,
+      "target_bytes": 145894,
+      "psnr": 34.94,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/li-su-v3.png",
+      "source_bytes": 545932,
+      "target_bytes": 103220,
+      "psnr": 36.23,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/liu-bei-v3.png",
+      "source_bytes": 535866,
+      "target_bytes": 103582,
+      "psnr": 34.83,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/lv-bu-v3.png",
+      "source_bytes": 528640,
+      "target_bytes": 98718,
+      "psnr": 35.43,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/officer-v3.png",
+      "source_bytes": 554248,
+      "target_bytes": 112256,
+      "psnr": 34.82,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/shopkeeper-v3.png",
+      "source_bytes": 547952,
+      "target_bytes": 109204,
+      "psnr": 34.21,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/tao-qian-v3.png",
+      "source_bytes": 563460,
+      "target_bytes": 107804,
+      "psnr": 34.8,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/yuan-shao-v3.png",
+      "source_bytes": 547566,
+      "target_bytes": 149852,
+      "psnr": 34.61,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/yuan-shu-v3.png",
+      "source_bytes": 528738,
+      "target_bytes": 100938,
+      "psnr": 34.81,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/zhang-fei-v3.png",
+      "source_bytes": 564637,
+      "target_bytes": 112590,
+      "psnr": 35.07,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v3/zhao-cen-v3.png",
+      "source_bytes": 534133,
+      "target_bytes": 102892,
+      "psnr": 34.19,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/cao-cao-v4.png",
+      "source_bytes": 538724,
+      "target_bytes": 106274,
+      "psnr": 34.47,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/dong-cheng-v4.png",
+      "source_bytes": 544607,
+      "target_bytes": 145152,
+      "psnr": 34.96,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/dong-zhuo-v4.png",
+      "source_bytes": 541715,
+      "target_bytes": 104784,
+      "psnr": 34.06,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/emperor-v4.png",
+      "source_bytes": 528219,
+      "target_bytes": 407740,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/gongsun-zan-v4.png",
+      "source_bytes": 552718,
+      "target_bytes": 149888,
+      "psnr": 34.29,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/guan-yu-v4.png",
+      "source_bytes": 556767,
+      "target_bytes": 150912,
+      "psnr": 34.51,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/guo-si-v4.png",
+      "source_bytes": 564287,
+      "target_bytes": 151472,
+      "psnr": 34.71,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/hu-zhen-v4.png",
+      "source_bytes": 525496,
+      "target_bytes": 96776,
+      "psnr": 34.92,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/hua-xiong-v4.png",
+      "source_bytes": 559995,
+      "target_bytes": 444106,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/kong-rong-v4.png",
+      "source_bytes": 523687,
+      "target_bytes": 138514,
+      "psnr": 34.48,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/li-jue-v4.png",
+      "source_bytes": 566093,
+      "target_bytes": 110690,
+      "psnr": 34.89,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/li-ru-v4.png",
+      "source_bytes": 540599,
+      "target_bytes": 143452,
+      "psnr": 34.15,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/li-su-v4.png",
+      "source_bytes": 529757,
+      "target_bytes": 99680,
+      "psnr": 35.27,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/liu-bei-v4.png",
+      "source_bytes": 537374,
+      "target_bytes": 106118,
+      "psnr": 34.27,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/lv-bu-v4.png",
+      "source_bytes": 533518,
+      "target_bytes": 100310,
+      "psnr": 35.17,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/officer-v4.png",
+      "source_bytes": 554248,
+      "target_bytes": 112256,
+      "psnr": 34.82,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/shopkeeper-v4.png",
+      "source_bytes": 547952,
+      "target_bytes": 109204,
+      "psnr": 34.21,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/tao-qian-v4.png",
+      "source_bytes": 568970,
+      "target_bytes": 111288,
+      "psnr": 34.31,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/yuan-shao-v4.png",
+      "source_bytes": 554871,
+      "target_bytes": 148456,
+      "psnr": 34.05,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/yuan-shu-v4.png",
+      "source_bytes": 530719,
+      "target_bytes": 100608,
+      "psnr": 34.12,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/zhang-fei-v4.png",
+      "source_bytes": 550650,
+      "target_bytes": 150582,
+      "psnr": 34.71,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/remaster-v4/zhao-cen-v4.png",
+      "source_bytes": 546303,
+      "target_bytes": 149396,
+      "psnr": 34.55,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/shopkeeper-original.png",
+      "source_bytes": 10754,
+      "target_bytes": 1522,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/yuan-shao-original.png",
+      "source_bytes": 9578,
+      "target_bytes": 2214,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/yuan-shao.png",
+      "source_bytes": 2663450,
+      "target_bytes": 375140,
+      "psnr": 38.35,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/yuan-shu-original.png",
+      "source_bytes": 8745,
+      "target_bytes": 1880,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/yuan-shu.png",
+      "source_bytes": 3178809,
+      "target_bytes": 753066,
+      "psnr": 40.77,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-portraits/zhao-cen-original.png",
+      "source_bytes": 10608,
+      "target_bytes": 1566,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-scenes/chenliu-tent-v2/center-stool-masked-v3.png",
+      "source_bytes": 48299,
+      "target_bytes": 4308,
+      "psnr": 41.61,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-scenes/chenliu-tent-v2/center-stool.png",
+      "source_bytes": 47284,
+      "target_bytes": 7864,
+      "psnr": 37.34,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-scenes/chenliu-tent-v2/command-chair-masked-v3.png",
+      "source_bytes": 154604,
+      "target_bytes": 16294,
+      "psnr": 36.76,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-scenes/chenliu-tent-v2/command-table-masked-v3.png",
+      "source_bytes": 87550,
+      "target_bytes": 12542,
+      "psnr": 34.65,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-scenes/chenliu-tent-v2/command-table.png",
+      "source_bytes": 85120,
+      "target_bytes": 20524,
+      "psnr": 34.43,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-scenes/chenliu-tent-v2/left-stool-masked-v3.png",
+      "source_bytes": 41445,
+      "target_bytes": 3716,
+      "psnr": 41.83,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-scenes/chenliu-tent-v2/left-stool.png",
+      "source_bytes": 40671,
+      "target_bytes": 7040,
+      "psnr": 36.7,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-scenes/chenliu-tent-v2/right-armory-masked-v3.png",
+      "source_bytes": 110132,
+      "target_bytes": 15716,
+      "psnr": 35.91,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "story-scenes/chenliu-tent-v2/right-armory.png",
+      "source_bytes": 107526,
+      "target_bytes": 19424,
+      "psnr": 34.46,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-world-original.png",
+      "source_bytes": 3093111,
+      "target_bytes": 114270,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "story-world-remaster-v2.png",
+      "source_bytes": 3449208,
+      "target_bytes": 698530,
+      "psnr": 34.69,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "tao-attack.png",
+      "source_bytes": 1356311,
+      "target_bytes": 359148,
+      "psnr": 41.55,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "tao-qian-remaster-v2.png",
+      "source_bytes": 2810737,
+      "target_bytes": 576812,
+      "psnr": 40.57,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "tao-squad.png",
+      "source_bytes": 218583,
+      "target_bytes": 50662,
+      "psnr": 38.42,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "tao-walk-v1.png",
+      "source_bytes": 1814030,
+      "target_bytes": 552010,
+      "psnr": 37.3,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "tile-supply-depot.png",
+      "source_bytes": 1461925,
+      "target_bytes": 298802,
+      "psnr": 42.26,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "tile-treasure-depot.png",
+      "source_bytes": 1423577,
+      "target_bytes": 281404,
+      "psnr": 43.22,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "tile-village.png",
+      "source_bytes": 1441560,
+      "target_bytes": 370838,
+      "psnr": 39.8,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "title-cover.png",
+      "source_bytes": 3100222,
+      "target_bytes": 802242,
+      "psnr": 34.68,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "wei-xu-portrait-v1.png",
+      "source_bytes": 2865720,
+      "target_bytes": 444994,
+      "psnr": 37.05,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "weixu-attack-v1.png",
+      "source_bytes": 1447887,
+      "target_bytes": 385098,
+      "psnr": 42.28,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "weixu-death-v1.png",
+      "source_bytes": 1014025,
+      "target_bytes": 283236,
+      "psnr": 45.22,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "weixu-squad-v1.png",
+      "source_bytes": 1248618,
+      "target_bytes": 299790,
+      "psnr": 42.76,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "weixu-walk-v1.png",
+      "source_bytes": 1738531,
+      "target_bytes": 578204,
+      "psnr": 38.93,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "xiliang-archer-squad.png",
+      "source_bytes": 229574,
+      "target_bytes": 54286,
+      "psnr": 39.93,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "xiliang-archer.png",
+      "source_bytes": 989035,
+      "target_bytes": 229842,
+      "psnr": 46.53,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "xiliang-infantry-squad.png",
+      "source_bytes": 214334,
+      "target_bytes": 43208,
+      "psnr": 38.57,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "xiliang-infantry.png",
+      "source_bytes": 1098387,
+      "target_bytes": 258744,
+      "psnr": 45.86,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "xiliang-officer-squad.png",
+      "source_bytes": 342776,
+      "target_bytes": 69206,
+      "psnr": 38.71,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "zhang-attack.png",
+      "source_bytes": 1314233,
+      "target_bytes": 372842,
+      "psnr": 41.37,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "zhang-death-v1.png",
+      "source_bytes": 1033741,
+      "target_bytes": 277068,
+      "psnr": 44.92,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "zhang-fei-remaster-v2.png",
+      "source_bytes": 2903782,
+      "target_bytes": 612238,
+      "psnr": 41.18,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "zhang-fei.png",
+      "source_bytes": 1136718,
+      "target_bytes": 279420,
+      "psnr": 45.58,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "zhang-liao-portrait-v1.png",
+      "source_bytes": 2847425,
+      "target_bytes": 408536,
+      "psnr": 38.05,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "assets",
+      "file": "zhang-squad.png",
+      "source_bytes": 382867,
+      "target_bytes": 85388,
+      "psnr": 37.6,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "zhang-walk-v1.png",
+      "source_bytes": 1750578,
+      "target_bytes": 570190,
+      "psnr": 36.58,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "zhangliao-attack-v1.png",
+      "source_bytes": 1605059,
+      "target_bytes": 420836,
+      "psnr": 41.11,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "zhangliao-death-v1.png",
+      "source_bytes": 1242416,
+      "target_bytes": 321876,
+      "psnr": 42.33,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "zhangliao-squad-v1.png",
+      "source_bytes": 1801728,
+      "target_bytes": 380992,
+      "psnr": 41.25,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "zhangliao-walk-v1.png",
+      "source_bytes": 2091151,
+      "target_bytes": 636562,
+      "psnr": 36.64,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "assets",
+      "file": "zhao-cen-remaster-v2.png",
+      "source_bytes": 2651888,
+      "target_bytes": 560770,
+      "psnr": 41.69,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "archer-attack.png",
+      "source_bytes": 1040450,
+      "target_bytes": 309210,
+      "psnr": 45.29,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "archer-walk-v1.png",
+      "source_bytes": 1381335,
+      "target_bytes": 445620,
+      "psnr": 41.91,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "gongsun-attack.png",
+      "source_bytes": 1425063,
+      "target_bytes": 396484,
+      "psnr": 43.27,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "gongsun-death-v1.png",
+      "source_bytes": 1127481,
+      "target_bytes": 281810,
+      "psnr": 47.33,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "gongsun-squad.png",
+      "source_bytes": 409451,
+      "target_bytes": 97576,
+      "psnr": 38.14,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "gongsun-walk-v1.png",
+      "source_bytes": 2152068,
+      "target_bytes": 682668,
+      "psnr": 38.77,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "gongsun-zan-remaster-v2.png",
+      "source_bytes": 2774438,
+      "target_bytes": 544198,
+      "psnr": 41.17,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "guan-attack.png",
+      "source_bytes": 1587344,
+      "target_bytes": 452826,
+      "psnr": 39.69,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "guan-death-v1.png",
+      "source_bytes": 1025658,
+      "target_bytes": 266784,
+      "psnr": 43.34,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "guan-squad-v2.png",
+      "source_bytes": 310602,
+      "target_bytes": 84822,
+      "psnr": 36.09,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "guan-walk-v1.png",
+      "source_bytes": 1941419,
+      "target_bytes": 604726,
+      "psnr": 36.23,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "guan-yu-remaster-v2.png",
+      "source_bytes": 3031298,
+      "target_bytes": 676312,
+      "psnr": 40.26,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "hu-zhen-remaster-v2.png",
+      "source_bytes": 2927238,
+      "target_bytes": 608942,
+      "psnr": 40.04,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "hua-attack.png",
+      "source_bytes": 1308473,
+      "target_bytes": 369456,
+      "psnr": 43.05,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "hua-death-v1.png",
+      "source_bytes": 978368,
+      "target_bytes": 247074,
+      "psnr": 46.44,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "hua-squad.png",
+      "source_bytes": 490501,
+      "target_bytes": 91582,
+      "psnr": 38.76,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "hua-walk-v1.png",
+      "source_bytes": 1783680,
+      "target_bytes": 533000,
+      "psnr": 39.25,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "hua-xiong-remaster-v2.png",
+      "source_bytes": 2928926,
+      "target_bytes": 653674,
+      "psnr": 39.48,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "infantry-attack.png",
+      "source_bytes": 920685,
+      "target_bytes": 246504,
+      "psnr": 44.5,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "infantry-walk-v1.png",
+      "source_bytes": 1510879,
+      "target_bytes": 470260,
+      "psnr": 40.05,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "inktolife-logo.png",
+      "source_bytes": 1121684,
+      "target_bytes": 926142,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "li-su-remaster-v2.png",
+      "source_bytes": 2824144,
+      "target_bytes": 580702,
+      "psnr": 42.25,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "liu-attack.png",
+      "source_bytes": 1429998,
+      "target_bytes": 407680,
+      "psnr": 39.36,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "liu-bei-remaster-v2.png",
+      "source_bytes": 2601496,
+      "target_bytes": 570236,
+      "psnr": 40.81,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "liu-squad.png",
+      "source_bytes": 238784,
+      "target_bytes": 60002,
+      "psnr": 36.98,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "liu-walk-v1.png",
+      "source_bytes": 1756520,
+      "target_bytes": 554168,
+      "psnr": 35.71,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "officer-attack.png",
+      "source_bytes": 1789933,
+      "target_bytes": 299152,
+      "psnr": 42.12,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "officer-walk-v1.png",
+      "source_bytes": 1374481,
+      "target_bytes": 473638,
+      "psnr": 39.56,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "sishui-remaster-v3.png",
+      "source_bytes": 3147457,
+      "target_bytes": 593926,
+      "psnr": 37.54,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/cao-cao-gesture-sheet-v1.png",
+      "source_bytes": 282256,
+      "target_bytes": 229708,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/dong-cheng-gesture-sheet-v1.png",
+      "source_bytes": 236890,
+      "target_bytes": 198842,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/dong-zhuo-gesture-sheet-v1.png",
+      "source_bytes": 243684,
+      "target_bytes": 207178,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/emperor-gesture-sheet-v1.png",
+      "source_bytes": 222876,
+      "target_bytes": 184810,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/gongsun-zan-gesture-sheet-v1.png",
+      "source_bytes": 230182,
+      "target_bytes": 71776,
+      "psnr": 34.19,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/guan-yu-gesture-sheet-v1.png",
+      "source_bytes": 270889,
+      "target_bytes": 78066,
+      "psnr": 34.02,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/hua-xiong-gesture-sheet-v1.png",
+      "source_bytes": 204024,
+      "target_bytes": 176664,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/kong-rong-gesture-sheet-v1.png",
+      "source_bytes": 271822,
+      "target_bytes": 221876,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/li-ru-gesture-sheet-v1.png",
+      "source_bytes": 163708,
+      "target_bytes": 141160,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/liu-bei-gesture-sheet-v1.png",
+      "source_bytes": 206884,
+      "target_bytes": 175946,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/lv-bu-gesture-sheet-v1.png",
+      "source_bytes": 192472,
+      "target_bytes": 167050,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/officer-gesture-sheet-v1.png",
+      "source_bytes": 238810,
+      "target_bytes": 71322,
+      "psnr": 35.41,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/shopkeeper-gesture-sheet-v1.png",
+      "source_bytes": 276140,
+      "target_bytes": 77198,
+      "psnr": 37.22,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/tao-qian-gesture-sheet-v1.png",
+      "source_bytes": 290894,
+      "target_bytes": 232676,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/yuan-shao-gesture-sheet-v1.png",
+      "source_bytes": 245815,
+      "target_bytes": 208808,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/yuan-shu-gesture-sheet-v1.png",
+      "source_bytes": 252999,
+      "target_bytes": 206956,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/gestures-v1/zhang-fei-gesture-sheet-v1.png",
+      "source_bytes": 299421,
+      "target_bytes": 85482,
+      "psnr": 34.07,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/cao-cao-walk-sheet-v4.png",
+      "source_bytes": 1166402,
+      "target_bytes": 988808,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/dong-cheng-walk-sheet-v4.png",
+      "source_bytes": 921893,
+      "target_bytes": 796434,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/dong-zhuo-walk-sheet-v4.png",
+      "source_bytes": 933501,
+      "target_bytes": 815008,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/emperor-walk-sheet-v4.png",
+      "source_bytes": 832727,
+      "target_bytes": 311992,
+      "psnr": 34.01,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/gongsun-zan-walk-sheet-v4.png",
+      "source_bytes": 960075,
+      "target_bytes": 335964,
+      "psnr": 35.98,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/guan-yu-walk-sheet-v4.png",
+      "source_bytes": 1119131,
+      "target_bytes": 347736,
+      "psnr": 36.69,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/guo-si-walk-sheet-v4.png",
+      "source_bytes": 933886,
+      "target_bytes": 821396,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/hu-zhen-walk-sheet-v4.png",
+      "source_bytes": 781635,
+      "target_bytes": 690190,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/hua-xiong-walk-sheet-v4.png",
+      "source_bytes": 806476,
+      "target_bytes": 703542,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/kong-rong-walk-sheet-v4.png",
+      "source_bytes": 1094089,
+      "target_bytes": 365458,
+      "psnr": 35.37,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/lady-walk-sheet-v4.png",
+      "source_bytes": 800630,
+      "target_bytes": 259844,
+      "psnr": 43.51,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/li-jue-walk-sheet-v4.png",
+      "source_bytes": 1016310,
+      "target_bytes": 349660,
+      "psnr": 34.99,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/li-ru-walk-sheet-v4.png",
+      "source_bytes": 798364,
+      "target_bytes": 293682,
+      "psnr": 34.85,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/li-su-walk-sheet-v4.png",
+      "source_bytes": 813153,
+      "target_bytes": 314670,
+      "psnr": 34.0,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/liu-bei-walk-sheet-v4.png",
+      "source_bytes": 869264,
+      "target_bytes": 322282,
+      "psnr": 35.01,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/lv-bu-walk-sheet-v4.png",
+      "source_bytes": 818419,
+      "target_bytes": 729972,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/maiden-walk-sheet-v4.png",
+      "source_bytes": 797494,
+      "target_bytes": 264638,
+      "psnr": 42.83,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/officer-walk-sheet-v4.png",
+      "source_bytes": 1039700,
+      "target_bytes": 337386,
+      "psnr": 38.16,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/shopkeeper-walk-sheet-v4.png",
+      "source_bytes": 1136720,
+      "target_bytes": 360296,
+      "psnr": 39.13,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/tao-qian-walk-sheet-v4.png",
+      "source_bytes": 1183686,
+      "target_bytes": 368596,
+      "psnr": 34.55,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/yuan-shao-walk-sheet-v4.png",
+      "source_bytes": 1012191,
+      "target_bytes": 895276,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/yuan-shu-walk-sheet-v4.png",
+      "source_bytes": 1010642,
+      "target_bytes": 343924,
+      "psnr": 35.27,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/zhang-fei-walk-sheet-v4.png",
+      "source_bytes": 1324155,
+      "target_bytes": 423286,
+      "psnr": 35.67,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/remaster-v3/zhao-cen-walk-sheet-v4.png",
+      "source_bytes": 883926,
+      "target_bytes": 313274,
+      "psnr": 35.4,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/world-v1/hua-xiong-march-sheet-v1.png",
+      "source_bytes": 1756264,
+      "target_bytes": 654156,
+      "psnr": 36.84,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors/world-v1/lv-bu-march-sheet-v1.png",
+      "source_bytes": 1918477,
+      "target_bytes": 720174,
+      "psnr": 35.65,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-actors.png",
+      "source_bytes": 42400,
+      "target_bytes": 17606,
+      "psnr": null,
+      "lossless": true,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-chenliu-tent.png",
+      "source_bytes": 2535542,
+      "target_bytes": 434838,
+      "psnr": 38.51,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-luoyang-remaster.png",
+      "source_bytes": 2615657,
+      "target_bytes": 424060,
+      "psnr": 38.76,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-palace-remaster.png",
+      "source_bytes": 3219613,
+      "target_bytes": 573052,
+      "psnr": 36.9,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/cao-cao-v4.png",
+      "source_bytes": 538724,
+      "target_bytes": 106274,
+      "psnr": 34.47,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/dong-cheng-v4.png",
+      "source_bytes": 544607,
+      "target_bytes": 145152,
+      "psnr": 34.96,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/dong-zhuo-v4.png",
+      "source_bytes": 541715,
+      "target_bytes": 104784,
+      "psnr": 34.06,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/emperor-v4.png",
+      "source_bytes": 528219,
+      "target_bytes": 407740,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/gongsun-zan-v4.png",
+      "source_bytes": 552718,
+      "target_bytes": 149888,
+      "psnr": 34.29,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/guan-yu-v4.png",
+      "source_bytes": 556767,
+      "target_bytes": 150912,
+      "psnr": 34.51,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/guo-si-v4.png",
+      "source_bytes": 564287,
+      "target_bytes": 151472,
+      "psnr": 34.71,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/hu-zhen-v4.png",
+      "source_bytes": 525496,
+      "target_bytes": 96776,
+      "psnr": 34.92,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/hua-xiong-v4.png",
+      "source_bytes": 559995,
+      "target_bytes": 444106,
+      "psnr": null,
+      "lossless": true,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/kong-rong-v4.png",
+      "source_bytes": 523687,
+      "target_bytes": 138514,
+      "psnr": 34.48,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/li-jue-v4.png",
+      "source_bytes": 566093,
+      "target_bytes": 110690,
+      "psnr": 34.89,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/li-ru-v4.png",
+      "source_bytes": 540599,
+      "target_bytes": 143452,
+      "psnr": 34.15,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/li-su-v4.png",
+      "source_bytes": 529757,
+      "target_bytes": 99680,
+      "psnr": 35.27,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/liu-bei-v4.png",
+      "source_bytes": 537374,
+      "target_bytes": 106118,
+      "psnr": 34.27,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/lv-bu-v4.png",
+      "source_bytes": 533518,
+      "target_bytes": 100310,
+      "psnr": 35.17,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/officer-v4.png",
+      "source_bytes": 554248,
+      "target_bytes": 112256,
+      "psnr": 34.82,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/shopkeeper-v4.png",
+      "source_bytes": 547952,
+      "target_bytes": 109204,
+      "psnr": 34.21,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/tao-qian-v4.png",
+      "source_bytes": 568970,
+      "target_bytes": 111288,
+      "psnr": 34.31,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/yuan-shao-v4.png",
+      "source_bytes": 554871,
+      "target_bytes": 148456,
+      "psnr": 34.05,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/yuan-shu-v4.png",
+      "source_bytes": 530719,
+      "target_bytes": 100608,
+      "psnr": 34.12,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/zhang-fei-v4.png",
+      "source_bytes": 550650,
+      "target_bytes": 150582,
+      "psnr": 34.71,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-portraits/remaster-v4/zhao-cen-v4.png",
+      "source_bytes": 546303,
+      "target_bytes": 149396,
+      "psnr": 34.55,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-scenes/chenliu-tent-v2/command-chair-masked-v3.png",
+      "source_bytes": 154604,
+      "target_bytes": 16294,
+      "psnr": 36.76,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-scenes/chenliu-tent-v2/command-table-masked-v3.png",
+      "source_bytes": 87550,
+      "target_bytes": 12542,
+      "psnr": 34.65,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-scenes/chenliu-tent-v2/left-stool-masked-v3.png",
+      "source_bytes": 41445,
+      "target_bytes": 3716,
+      "psnr": 41.83,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-scenes/chenliu-tent-v2/right-armory-masked-v3.png",
+      "source_bytes": 110132,
+      "target_bytes": 15716,
+      "psnr": 35.91,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "story-world-remaster-v2.png",
+      "source_bytes": 3449208,
+      "target_bytes": 698530,
+      "psnr": 34.69,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "tao-attack.png",
+      "source_bytes": 1356311,
+      "target_bytes": 359148,
+      "psnr": 41.55,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "tao-qian-remaster-v2.png",
+      "source_bytes": 2810737,
+      "target_bytes": 576812,
+      "psnr": 40.57,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "tao-squad.png",
+      "source_bytes": 218583,
+      "target_bytes": 50662,
+      "psnr": 38.42,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "tao-walk-v1.png",
+      "source_bytes": 1814030,
+      "target_bytes": 552010,
+      "psnr": 37.3,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "tile-supply-depot.png",
+      "source_bytes": 1461925,
+      "target_bytes": 298802,
+      "psnr": 42.26,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "tile-treasure-depot.png",
+      "source_bytes": 1423577,
+      "target_bytes": 281404,
+      "psnr": 43.22,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "tile-village.png",
+      "source_bytes": 1441560,
+      "target_bytes": 370838,
+      "psnr": 39.8,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "title-cover.png",
+      "source_bytes": 3100222,
+      "target_bytes": 802242,
+      "psnr": 34.68,
+      "lossless": false,
+      "transparent": false
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "xiliang-archer-squad.png",
+      "source_bytes": 229574,
+      "target_bytes": 54286,
+      "psnr": 39.93,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "xiliang-infantry-squad.png",
+      "source_bytes": 214334,
+      "target_bytes": 43208,
+      "psnr": 38.57,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "xiliang-officer-squad.png",
+      "source_bytes": 342776,
+      "target_bytes": 69206,
+      "psnr": 38.71,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "zhang-attack.png",
+      "source_bytes": 1314233,
+      "target_bytes": 372842,
+      "psnr": 41.37,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "zhang-death-v1.png",
+      "source_bytes": 1033741,
+      "target_bytes": 277068,
+      "psnr": 44.92,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "zhang-fei-remaster-v2.png",
+      "source_bytes": 2903782,
+      "target_bytes": 612238,
+      "psnr": 41.18,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "zhang-squad.png",
+      "source_bytes": 382867,
+      "target_bytes": 85388,
+      "psnr": 37.6,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "zhang-walk-v1.png",
+      "source_bytes": 1750578,
+      "target_bytes": 570190,
+      "psnr": 36.58,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "zhangliao-attack-v1.png",
+      "source_bytes": 1605059,
+      "target_bytes": 420836,
+      "psnr": 41.11,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "zhangliao-death-v1.png",
+      "source_bytes": 1242416,
+      "target_bytes": 321876,
+      "psnr": 42.33,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "zhangliao-squad-v1.png",
+      "source_bytes": 1801728,
+      "target_bytes": 380992,
+      "psnr": 41.25,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "zhangliao-walk-v1.png",
+      "source_bytes": 2091151,
+      "target_bytes": 636562,
+      "psnr": 36.64,
+      "lossless": false,
+      "transparent": true
+    },
+    {
+      "tree": "site-test\\dist\\assets",
+      "file": "zhao-cen-remaster-v2.png",
+      "source_bytes": 2651888,
+      "target_bytes": 560770,
+      "psnr": 41.69,
+      "lossless": false,
+      "transparent": true
+    }
+  ]
+}

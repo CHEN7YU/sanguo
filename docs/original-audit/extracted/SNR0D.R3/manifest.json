@@ -1,0 +1,17 @@
+{
+  "source": "D:\\baiduyundownload\\三国英杰传\\三国英杰传\\SGYJ\\SNR0D.R3",
+  "source_size": 1797,
+  "source_sha256": "72d25a2a5292044e16df7136d6785defcadca2db441136616fccdbf40eb303c3",
+  "format": "LS11",
+  "section_count": 1,
+  "sections": [
+    {
+      "index": 0,
+      "compressed_size": 1509,
+      "unpacked_size": 3341,
+      "offset": 288,
+      "output": "section-000.bin",
+      "sha256": "5f555c0693d8305733a4d2a66a9258c6af2bf88ea25c1d9d46863c3a70e67a8e"
+    }
+  ]
+}

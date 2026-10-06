@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "scope": "汜水关战斗结束至虎牢关战斗部署",
+  "sources": {
+    "scenario": "SGYJ/SNR0D.R3 chapter 0, paragraphs 5-7",
+    "messages": "SGYJ/SNR0M.R3 chapter 0",
+    "persistent_units": "SGYJ general-save layout at 0x695; 384 records × 18 bytes",
+    "portraits": "SGYJ/BAKDATA.R3 character record byte 14 -> FACEDAT.R3 face index"
+  },
+  "branches": {
+    "duel": {
+      "trigger": "关羽与华雄相邻并触发单挑",
+      "unique_ending": [
+        "关羽直接升1级",
+        "华雄撤退",
+        "张飞：大哥，关羽好像斩了华雄。",
+        "刘备：嗯，我军胜利了。",
+        "刘备军打败华雄军，占领汜水关。"
+      ],
+      "joins_at": "chapter 0 paragraph 6 offset 0x1e"
+    },
+    "normal": {
+      "trigger": "普通战斗击破华雄",
+      "unique_ending": [
+        "刘备：我军胜利了。",
+        "刘备军打败华雄军，占领汜水关。"
+      ],
+      "joins_at": "chapter 0 paragraph 6 offset 0x1e"
+    }
+  },
+  "shared_sequence": [
+    {"order":1,"opcode":"2b 02 64 00","event":"获得金100"},
+    {"order":2,"opcode":"0b 68 10","event":"显示：缴获了黄金100！"},
+    {"order":3,"opcode":"11 00 10 / 09 00 10","event":"切换至大地图"},
+    {"order":4,"opcode":"0a","event":"部署刘备、张飞、李肃、吕布；李肃向虎牢关方向撤退"},
+    {"order":5,"message_offset":"0x107b","speaker":"关羽","text":"敌人好像逃到了前面的虎牢关。大哥，该怎么办？"},
+    {"order":6,"message_offset":"0x10b9","speaker":"张飞","text":"说什么呀？现在当然是乘胜追击了，我去！","movement":"张飞追向虎牢关"},
+    {"order":7,"message_offset":"0x1112","speaker":"关羽","text":"唉！追上去了，还是那么鲁莽。"},
+    {"order":8,"condition":"event 0 = 公孙瓒随军","message_offset":"0x1133","speaker":"公孙瓒","text":"话不要这么说，我军士气也鼓舞起来了嘛。"},
+    {"order":9,"condition":"event 1 = 陶谦随军","message_offset":"0x115e","speaker":"陶谦","text":"现在应该乘势攻下虎牢关。"},
+    {"order":10,"message_offset":"0x117b","speaker":"刘备","text":"没办法。好！跟上张飞，进军虎牢关！"},
+    {"order":11,"opcode":"3d 01","event":"一般存盘"},
+    {"order":12,"opcode":"01 00 00 06 1e 02","event":"刘备沿大地图行军到虎牢关"},
+    {"order":13,"opcode":"2e 04","event":"切换所在城市为虎牢关"},
+    {"order":14,"event":"部署第二关双方单位，进入虎牢关战场"}
+  ],
+  "music": {
+    "world_map_id": 3,
+    "objective_and_opening_id": 11,
+    "battle_id": 16,
+    "remaster_battle_track": "assets/audio/hulao-lubu-theme.mp3"
+  },
+  "carryover": {
+    "preserved": ["等级", "经验", "兵种", "军团", "最多8件携带道具", "金钱", "剧情事件开关"],
+    "replenished_at_new_battle": ["兵力恢复至该等级兵种上限", "策略值恢复至该等级智力上限", "士气恢复至100"],
+    "evidence": "原版一般存盘的人物记录只含军团、兵种、等级、经验和8件道具，不保存战场当前兵力、策略值或士气。"
+  },
+  "portraits": [
+    {"name":"刘备","character_id":0,"face_id":0,"reference":"assets/story-portraits/reference-v2/liu-bei-face-000.webp","remaster":"assets/story-portraits/remaster-v4/liu-bei-v4.webp"},
+    {"name":"关羽","character_id":1,"face_id":1,"reference":"assets/story-portraits/reference-v2/guan-yu-face-001.webp","remaster":"assets/story-portraits/remaster-v4/guan-yu-v4.webp"},
+    {"name":"张飞","character_id":2,"face_id":2,"reference":"assets/story-portraits/reference-v2/zhang-fei-face-002.webp","remaster":"assets/story-portraits/remaster-v4/zhang-fei-v4.webp"},
+    {"name":"公孙瓒","character_id":12,"face_id":107,"reference":"assets/story-portraits/reference-v2/gongsun-zan-face-107.webp","remaster":"assets/story-portraits/remaster-v4/gongsun-zan-v4.webp"},
+    {"name":"陶谦","character_id":15,"face_id":189,"reference":"assets/story-portraits/reference-v2/tao-qian-face-189.webp","remaster":"assets/story-portraits/remaster-v4/tao-qian-v4.webp"},
+    {"name":"李肃","character_id":20,"face_id":139,"reference":"assets/story-portraits/reference-v2/li-su-face-139.webp","remaster":"assets/story-portraits/remaster-v4/li-su-v4.webp"},
+    {"name":"吕布","character_id":4,"face_id":148,"reference":"assets/story-portraits/reference-v2/lv-bu-face-148.webp","remaster":"assets/story-portraits/remaster-v4/lv-bu-v4.webp"}
+  ],
+  "negative_findings": {
+    "camp_scene": false,
+    "palace_scene": false,
+    "free_roam": false,
+    "npc_optional_conversation": false,
+    "separate_postbattle_dialogue_after_join": false
+  },
+  "remaster_policy": {
+    "allies": "用户已指定公孙瓒、陶谦按剧情强制随军，因此两句条件对白固定出现。",
+    "added_story_text": "无",
+    "modernized_only": ["高清大地图", "重绘人物", "连续行走和转向", "淡入淡出", "点击/轻触/任意键推进", "自动播放", "跳过后完成状态交接"]
+  }
+}

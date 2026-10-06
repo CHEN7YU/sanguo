@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
+  <link rel="stylesheet" href="style.css?build=20261006-wait-reminder-v82" />
+</head>
+<body>
+  <section id="titleScreen" class="title-screen intro-playing" aria-label="游戏开始画面">
+    <div id="titleIntro" class="title-intro" aria-label="启动动画">
+      <video id="titleIntroVideo" src="assets/video/title-intro.mp4" poster="assets/title-cover.webp" preload="auto" muted playsinline></video>
+      <div class="title-intro-vignette"></div>
+      <button id="titleIntroSoundBtn" class="title-intro-sound hidden" type="button">♫ 轻触开启声音</button>
+      <button id="titleIntroSkipBtn" type="button">点击或按任意键跳过</button>
+    </div>
+    <img class="title-art" src="assets/title-cover.webp" alt="刘备、关羽、张飞与汜水关">
+    <div class="title-shade"></div>
+    <div class="title-heading">
+      <img src="assets/inktolife-logo.webp" alt="InktoLife 标志">
+      <div><small>经典重燃</small><h1>三国志昭烈传</h1><p>InktoLife &amp; Pandaking联合出品</p></div>
+    </div>
+    <nav class="title-menu" aria-label="主菜单">
+      <button id="newGameBtn" class="primary" type="button">开始游戏</button>
+      <button id="continueGameBtn">继续游戏</button>
+      <button id="titleLoadBtn">读取进度</button>
+      <button id="titleLevelSelectBtn">选择关卡</button>
+      <div class="title-save-tools" aria-label="存档文件">
+        <button id="titleExportSaveBtn" type="button" title="下载全部手动存档、自动存档和关卡继承进度">导出存档</button>
+        <button id="titleImportSaveBtn" type="button" title="从本机或其他设备选择存档文件">导入存档</button>
+      </div>
+      <small class="title-save-note">换设备前请导出，打开网页后即可导入恢复</small>
+      <button id="titleUndoImportBtn" class="title-undo-import hidden" type="button">撤销上次导入</button>
+      <button id="titleSettingsBtn">游戏设置</button>
+    </nav>
+    <input id="saveImportInput" type="file" accept=".json,.zhaolie-save,application/json" hidden>
+    <div id="titleNotice" class="title-notice" aria-live="polite"></div>
+  </section>
+  <section id="openingOverlay" class="opening-overlay hidden" aria-label="开篇动画">
+    <video id="openingVideo" src="assets/video/opening.mp4" poster="assets/title-cover.webp" preload="metadata" playsinline></video>
+    <div class="opening-vignette"></div>
+    <button id="openingSkipBtn" type="button">点击或按任意键跳过</button>
+  </section>
+  <section id="storyOverlay" class="story-overlay hidden" aria-label="序章剧情">
+    <div id="storyBackdrop" class="story-backdrop"></div>
+    <div class="story-atmosphere"><i></i><i></i><i></i></div>
+    <header class="story-chapter"><small id="storyChapter">序章</small><b id="storyLocation">群雄起兵讨伐董卓</b><span id="storyProgress">1 / 1</span></header>
+    <div id="storyCast" class="story-cast story-actors" aria-label="剧情场景人物">
+      <div id="storyForeground" class="story-foreground" aria-hidden="true">
+        <i class="story-prop tent-table"></i>
+        <i class="story-prop tent-chair"></i>
+        <i class="story-prop tent-armory"></i>
+        <i class="story-prop tent-stool-left"></i>
+        <i class="story-prop tent-stool-center"></i>
+      </div>
+    </div>
+    <div id="storyObjective" class="story-objective hidden">自由行动 · 点击人物交谈 · 与关羽交谈出征</div>
+    <div class="story-dialogue">
+      <figure id="storyPortrait"><img id="storyPortraitImage" alt=""><span id="storyPortraitMark">史</span></figure>
+      <div><b id="storySpeaker">史官</b><p id="storyText"></p><small>点击、轻触或按任意键继续</small></div>
+    </div>
+    <nav class="story-controls" aria-label="剧情操作">
+      <button id="storyAutoBtn" type="button">自动播放</button>
+      <button id="storySaveBtn" type="button">保存进度</button>
+      <button id="storySkipBtn" type="button">跳过剧情</button>
+    </nav>
+    <nav id="storyRouteChoices" class="story-route-choices hidden" aria-label="选择进军路线">
+      <button type="button" data-story-route="3"><b>第三战A · 广川路线</b><span>路程较短，迎战逢纪</span></button>
+      <button type="button" data-story-route="4"><b>第三战B · 信都路线</b><span>驰援信都，迎战淳于琼</span></button>
+    </nav>
+  </section>
+  <main id="app">
+    <header class="topbar">
+      <div class="brand"><img class="seal" src="assets/inktolife-logo.webp" alt="InktoLife 标志"><div><b>三国志昭烈传</b><small>经典重燃InktoLife出品</small></div></div>
+      <div class="chapter"><small>序章</small><strong>汜水关之战</strong><span id="levelBalanceBadge" class="balance-badge hidden">选关均衡 Lv.3</span></div>
+      <div class="header-right">
+        <div class="music-control" title="战场音乐会在第一次点击游戏后播放">
+          <button id="musicBtn" type="button" aria-pressed="true"><span>♫</span><b id="musicState">音乐</b></button>
+          <input id="musicVolume" type="range" min="0" max="100" value="34" aria-label="音乐音量">
+        </div>
+        <button id="menuBtn" class="settings-btn">☰ 菜单</button>
+        <button id="settingsBtn" class="settings-btn">⚙ 设置</button>
+        <div class="turn"><span id="sideLabel">我军阶段</span><b>第 <em id="turnNumber">1</em> / <span id="maxTurns">30</span> 回合</b></div>
+      </div>
+    </header>
+    <div id="settingsPanel" class="settings-panel hidden">
+      <header><b>战斗设置</b><button id="settingsCloseBtn">×</button></header>
+      <label>动画速度<select id="animationSpeed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label>
+      <label>重复战斗动画<span><input id="compactAnimations" type="checkbox" checked> 自动加速</span></label>
+      <label>音效音量<input id="sfxVolume" type="range" min="0" max="100" value="70"></label>
+      <label>界面比例<select id="uiScale"><option value="0.9">90%</option><option value="1" selected>100%</option><option value="1.1">110%</option></select></label>
+      <button id="fullscreenBtn" class="fullscreen-btn">切换全屏</button>
+    </div>
+
+    <section class="game-shell">
+      <div class="battlefield-wrap" id="battlefieldWrap">
+        <canvas id="battlefield" aria-label="45度轴测战场"></canvas>
+        <div id="touchControls" class="touch-controls collapsed" aria-label="触控视角控制">
+          <button id="touchToolsToggle" class="touch-tools-toggle" type="button" aria-label="展开视角工具" aria-expanded="false">视角</button>
+          <button id="touchZoomIn" type="button" aria-label="放大战场">＋</button>
+          <button id="touchZoomOut" type="button" aria-label="缩小战场">－</button>
+          <button id="touchCenter" type="button" aria-label="重置战场视角">◎</button>
+          <button id="touchCancel" type="button" aria-label="取消当前指令">×</button>
+          <button id="touchOverview" type="button" aria-label="查看全图" aria-pressed="false">全图</button>
+        </div>
+        <div class="objective"><span>胜利条件</span><b>击败华雄</b><small id="defeatCondition">败北：刘备撤退或超过30回合</small></div>
+        <div id="toast" class="toast"></div>
+        <div id="forecast" class="forecast hidden">
+          <div><b id="forecastAttacker">刘备</b><span>攻击</span><b id="forecastTarget">西凉军</b></div>
+          <strong id="forecastDamage">预计伤害 0</strong><small id="forecastDetail">平地 · 普通</small>
+        </div>
+        <div id="shopOverlay" class="shop-overlay">
+          <div class="shop-card">
+            <header><div><small>陈留幕舍 · 战前军需</small><h2>道具屋</h2></div><div class="shop-gold">军资金 <b id="shopGold">500</b></div></header>
+            <p id="shopFundingHint">本关可用军资金500。宝物和消耗品均占携带栏，可在我军间转交，每人最多8件。</p>
+            <section class="shop-list">
+              <article data-shop-item="bean"><b>豆</b><span>恢复单体200兵力</span><em>金100</em><select aria-label="豆携带者"></select><button>购买</button></article>
+              <article data-shop-item="wine"><b>酒</b><span>恢复单体50士气</span><em>金50</em><select aria-label="酒携带者"></select><button>购买</button></article>
+              <article data-shop-item="fireScroll"><b>焦热书</b><span>必中单体火攻，树林伤害增加25%</span><em>金50</em><select aria-label="焦热书携带者"></select><button>购买</button></article>
+            </section>
+            <div id="shopInventory" class="shop-inventory"></div>
+            <section class="transfer-row"><b>物品转交</b><select id="transferFrom" aria-label="转交人"></select><select id="transferItem" aria-label="转交物品"></select><span>→</span><select id="transferTo" aria-label="接收人"></select><button id="transferBtn">转交</button></section>
+            <footer><button id="shopResetBtn">恢复初始整备</button><button id="shopStartBtn" class="primary">整备完毕 · 出征</button></footer>
+          </div>
+        </div>
+        <div class="controls-tip"><span class="desktop-tip">左键行动 · 右键取消 · 滚轮缩放 · 中键拖动 · A攻击 S策略 W待机 D危险区</span><span class="touch-tip">轻触行动 · 单指拖动画面 · 双指缩放</span></div>
+        <div id="dialogOverlay" class="dialog-overlay hidden">
+          <div class="dialog-portrait" id="dialogPortrait" data-speaker="刘备">
+            <img id="dialogPortraitImage" src="assets/liu-bei-remaster-v2.webp" alt="刘备立绘">
+            <span id="dialogPortraitMark" class="hidden">刘</span>
+          </div>
+          <div class="dialog-copy"><b id="dialogSpeaker">刘备</b><p id="dialogText"></p><div class="dialog-actions"><small>点击或按任意键继续</small></div></div>
+        </div>
+        <div id="duelOverlay" class="duel-overlay hidden"><div class="duel-title"><small id="duelKicker">阵前单挑</small><b id="duelHeading">关羽　VS　华雄</b></div><canvas id="duelCanvas"></canvas><span id="duelCaption">温酒未冷，青龙出鞘</span></div>
+        <div id="outcomeOverlay" class="outcome-overlay hidden">
+          <small id="outcomeEyebrow">战斗结束</small><h2 id="outcomeTitle">胜利</h2><p id="outcomeText"></p><button id="restartBtn">重新挑战</button>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <nav class="army-tabs" aria-label="阵营"><b>刘备军</b><span class="active">我军</span><span>盟军</span><span>敌军</span></nav>
+        <section class="portrait-card">
+          <div id="portrait" class="portrait"><img id="portraitImage" src="assets/liu-bei-remaster-v2.webp" alt="刘备"><span>刘</span></div>
+          <div class="unit-title"><small id="unitRole">平原相</small><strong id="unitName">刘备</strong></div>
+          <div class="hp-row"><span>兵力</span><div><i id="hpBar"></i></div><b id="hpText">100 / 100</b></div>
+          <div class="morale-row"><span>士气</span><div><i id="moraleBar"></i></div><b id="moraleText">100 / 100</b></div>
+          <div class="exp-row"><span>经验</span><div><i id="expBar"></i></div><b id="expText">0 / 100</b></div>
+          <div class="sp-row"><span>策略</span><div><i id="spBar"></i></div><b id="spText">0 / 0</b></div>
+          <div class="equipment-row"><span>宝物</span><b id="equipmentText">无宝物</b><em id="fundsText">金 500</em></div>
+          <div id="passiveSkill" class="passive-skill hidden"><b id="passiveSkillName">被动 · 仁德号令</b><span id="passiveSkillText">相邻友方单位所有属性增加10%</span></div>
+          <div class="stats">
+            <div><span>攻击</span><b id="atkStat">32</b></div>
+            <div><span>防御</span><b id="defStat">28</b></div>
+            <div><span>移动</span><b id="movStat">5</b></div>
+            <div><span>兵种</span><b id="classStat">短兵</b></div>
+            <div><span>会心</span><b id="critStat">12%</b></div>
+            <div><span>格挡</span><b id="blockStat">14%</b></div>
+          </div>
+        </section>
+
+        <section class="action-panel">
+          <h3>指令</h3>
+          <div class="action-grid">
+            <button id="attackBtn"><span>⚔</span>攻击</button>
+            <button id="strategyBtn"><span>策</span>策略</button>
+            <button id="itemBtn"><span>药</span>道具</button>
+            <button id="waitBtn"><span>◷</span>待机</button>
+            <button id="undoBtn"><span>↶</span>取消</button>
+            <button id="dangerBtn" class="wide"><span>危</span>显示敌军危险区</button>
+            <button id="endTurnBtn" class="primary wide"><span>旗</span>结束回合</button>
+          </div>
+          <div id="itemMenu" class="item-menu hidden">
+            <button data-item="bean"><b>豆</b><span>恢复200兵力</span><em id="beanCount">×0</em></button>
+            <button data-item="wheat"><b>麦</b><span>恢复400兵力</span><em id="wheatCount">×0</em></button>
+            <button data-item="wine"><b>酒</b><span>恢复50士气</span><em id="wineCount">×0</em></button>
+            <button data-item="fireScroll"><b>火</b><span>焦热书 · 必中单体火攻</span><em id="fireScrollCount">×0</em></button>
+          </div>
+          <div id="strategyMenu" class="item-menu strategy-menu hidden">
+            <button data-strategy="fire"><b>焦</b><span>焦热 · 射程3 · 命中70%</span><em>SP 4</em></button>
+            <button data-strategy="recover"><b>援</b><span>援助 · 射程2 · 恢复150</span><em>SP 6</em></button>
+          </div>
+        </section>
+
+        <section class="roster-panel">
+          <h3>出阵武将 <small id="unitCount">3 / 3</small></h3>
+          <div id="roster"></div>
+        </section>
+
+        <section class="mini-panel">
+          <canvas id="minimap" width="260" height="118"></canvas>
+        </section>
+        <section class="battle-log-panel"><h3>战况</h3><div id="battleLog"></div></section>
+      </aside>
+    </section>
+
+    <footer class="statusbar">
+      <div><span class="dot blue"></span><b id="statusText">请选择我军单位</b></div>
+      <div id="terrainInfo">平地 · 移动消耗 1</div>
+    </footer>
+  </main>
+  <div id="gameMenuOverlay" class="game-menu-overlay hidden" role="dialog" aria-modal="true" aria-label="游戏菜单">
+    <section class="game-menu-card">
+      <header><div><small>三国志昭烈传</small><h2 id="gameMenuTitle">游戏菜单</h2></div><button id="gameMenuCloseBtn" aria-label="关闭菜单">×</button></header>
+      <div class="game-menu-tabs">
+        <button id="saveTabBtn" class="active">保存进度</button>
+        <button id="loadTabBtn">读取进度</button>
+      </div>
+      <div id="saveSlots" class="save-slots"></div>
+      <p id="saveMenuHint" class="save-menu-hint">战斗中可保存到任意手动档位；自动存档由系统维护。</p>
+      <footer>
+        <button id="menuExportSaveBtn">导出存档</button>
+        <button id="menuImportSaveBtn">导入存档</button>
+        <button id="resumeGameBtn" class="primary">返回游戏</button>
+        <button id="battlePrepBtn">战前整备</button>
+        <button id="returnTitleBtn">返回开始画面</button>
+      </footer>
+    </section>
+  </div>
+  <div id="levelSelectOverlay" class="level-select-overlay hidden" role="dialog" aria-modal="true" aria-label="选择关卡">
+    <section class="level-select-card">
+      <header><div><small>序章 · 讨董联军</small><b>选择关卡</b></div><button id="levelSelectCloseBtn" aria-label="关闭关卡选择">×</button></header>
+      <div class="level-select-list">
+        <button class="level-choice sishui" data-select-level="1" type="button"><span>第一战</span><strong>汜水关之战</strong><em>击败华雄 · 关羽阵前单挑</em><small>选关均衡：前排 Lv.3</small></button>
+        <button class="level-choice hulao" data-select-level="2" type="button"><span>第二战</span><strong>虎牢关之战</strong><em>击退吕布 · 张飞阵前单挑</em><small>选关均衡：前排 Lv.4</small></button>
+        <button class="level-choice guangchuan" data-select-level="3" type="button"><span>第三战A · 广川路线</span><strong>广川之战</strong><em>击退逢纪 · 关羽阵前单挑</em><small>选关均衡：前排 Lv.4</small></button>
+        <button class="level-choice xindu" data-select-level="4" type="button"><span>第三战B · 信都路线</span><strong>信都之战</strong><em>救援信都 · 张飞阵前单挑</em><small>选关均衡：前排 Lv.5</small></button>
+        <button class="level-choice julu" data-select-level="5" type="button"><span>第四战A · 巨鹿路线</span><strong>巨鹿之战</strong><em>突破张郃防线 · 张飞阵前单挑</em><small>选关均衡：前排 Lv.7</small></button>
+        <button class="level-choice qinghe unavailable" type="button" disabled><span>第四战B · 清河路线</span><strong>清河之战</strong><em>平行分支 · 制作中</em><small>完成后开放</small></button>
+        <button class="level-choice jieqiao unavailable" type="button" disabled><span>第五战 · 路线汇合</span><strong>界桥之战</strong><em>巨鹿、清河两线汇合</em><small>完成后开放</small></button>
+      </div>
+      <p>选择后从该关剧情起点开始，并使用适合该关、能够取胜但不会碾压的均衡等级；远程与辅助通常比前排低1级。连续通关和读档仍继承实际等级，不套用选关等级。第三战与第四战分别为A/B平行路线，第五战在界桥汇合。</p>
+    </section>
+  </div>
+  <div id="orientationPrompt" class="orientation-prompt" role="dialog" aria-label="横屏游玩提示">
+    <div class="rotate-device" aria-hidden="true"><span></span></div>
+    <h2>建议横屏游玩</h2>
+    <p id="orientationText">横屏可以同时看到完整战场与攻击、策略、待机等指令。</p>
+    <button id="landscapeBtn" type="button">进入横屏</button>
+    <button id="portraitContinueBtn" class="subtle" type="button">暂用竖屏</button>
+  </div>
+  <audio id="titleMusic" src="assets/audio/title-theme.mp3" preload="auto" loop hidden></audio>
+  <audio id="storyMusic" src="assets/audio/original-music-2.wav" preload="auto" loop hidden></audio>
+  <audio id="battleMusic" src="assets/audio/knights-errant.mp3" preload="auto" loop hidden></audio>
+  <script src="audio-config.js"></script>
+  <script src="battle-sfx.js?build=20261003-military-band-v55"></script>
+  <script src="battle-rules.js?build=20261003-military-band-v55"></script>
+  <script src="level-01.js?build=20260927-campaign-link"></script>
+  <script src="level-02.js?build=20261003-hulao-route-v54"></script>
+  <script src="level-02-animation-bounds.js?build=20260927-songxian-clean-v44"></script>
+  <script src="level-03-guangchuan.js?build=20261003-thousand-suns-v51"></script>
+  <script src="level-03-xindu.js?build=20261003-xindu-bridge-v52"></script>
+  <script src="level-04-julu.js?build=20261004-julu-duel-continuation-v72"></script>
+  <script src="story-data.js?build=20261003-xindu-story-v48"></script>
+  <script src="battle-view.js?build=20261003-hulao-grid-fix-v53"></script>
+  <script src="game.js?build=20261006-wait-reminder-v82"></script>
+</body>
+</html>
