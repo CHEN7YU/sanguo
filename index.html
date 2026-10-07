@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
-  <link rel="stylesheet" href="style.css?build=20261006-wait-reminder-v82" />
+  <link rel="stylesheet" href="style.css?build=20261007-leaderboard-v83" />
 </head>
 <body>
   <section id="titleScreen" class="title-screen intro-playing" aria-label="游戏开始画面">
@@ -28,6 +28,7 @@
       <button id="continueGameBtn">继续游戏</button>
       <button id="titleLoadBtn">读取进度</button>
       <button id="titleLevelSelectBtn">选择关卡</button>
+      <button id="titleLeaderboardBtn">战绩排行榜</button>
       <div class="title-save-tools" aria-label="存档文件">
         <button id="titleExportSaveBtn" type="button" title="下载全部手动存档、自动存档和关卡继承进度">导出存档</button>
         <button id="titleImportSaveBtn" type="button" title="从本机或其他设备选择存档文件">导入存档</button>
@@ -136,7 +137,23 @@
         </div>
         <div id="duelOverlay" class="duel-overlay hidden"><div class="duel-title"><small id="duelKicker">阵前单挑</small><b id="duelHeading">关羽　VS　华雄</b></div><canvas id="duelCanvas"></canvas><span id="duelCaption">温酒未冷，青龙出鞘</span></div>
         <div id="outcomeOverlay" class="outcome-overlay hidden">
-          <small id="outcomeEyebrow">战斗结束</small><h2 id="outcomeTitle">胜利</h2><p id="outcomeText"></p><button id="restartBtn">重新挑战</button>
+          <small id="outcomeEyebrow">战斗结束</small><h2 id="outcomeTitle">胜利</h2><p id="outcomeText"></p>
+          <section id="battleScoreCard" class="battle-score-card hidden" aria-label="本关战绩评分">
+            <div class="score-summary"><span>本关评分</span><strong data-score-total>0</strong><b data-score-grade>S</b></div>
+            <div class="score-breakdown">
+              <span><small>完成时间</small><b data-score-time>00:00 · 0分</b></span>
+              <span><small>回合效率</small><b data-score-turns>第1回合 · 0分</b></span>
+              <span><small>部队保全</small><b data-score-loss>损失0% · 0分</b></span>
+              <span><small>战术奖励</small><b data-score-bonus>0分</b></span>
+            </div>
+            <div class="score-submit">
+              <input id="scoreNickname" type="text" minlength="2" maxlength="16" autocomplete="nickname" placeholder="输入昵称" aria-label="排行榜昵称">
+              <button id="scoreUploadBtn" type="button">上传战绩</button>
+              <button id="scoreLeaderboardBtn" type="button">查看榜单</button>
+            </div>
+            <small id="scoreUploadStatus" class="score-upload-status">输入昵称后上传本关最高成绩</small>
+          </section>
+          <button id="restartBtn">重新挑战</button>
         </div>
       </div>
 
@@ -234,6 +251,22 @@
       <p>选择后从该关剧情起点开始，并使用适合该关、能够取胜但不会碾压的均衡等级；远程与辅助通常比前排低1级。连续通关和读档仍继承实际等级，不套用选关等级。第三战与第四战分别为A/B平行路线，第五战在界桥汇合。</p>
     </section>
   </div>
+  <div id="leaderboardOverlay" class="leaderboard-overlay hidden" role="dialog" aria-modal="true" aria-label="战绩排行榜">
+    <section class="leaderboard-card">
+      <header><div><small>群雄竞逐</small><b id="leaderboardTitle">汜水关之战排行榜</b></div><button id="leaderboardCloseBtn" type="button" aria-label="关闭排行榜">×</button></header>
+      <nav class="leaderboard-levels" aria-label="选择排行榜关卡">
+        <button type="button" class="active" data-leaderboard-level="sishui-pass">汜水关</button>
+        <button type="button" data-leaderboard-level="hulao-pass">虎牢关</button>
+        <button type="button" data-leaderboard-level="guangchuan">广川</button>
+        <button type="button" data-leaderboard-level="xindu">信都</button>
+        <button type="button" data-leaderboard-level="julu">巨鹿</button>
+      </nav>
+      <div class="leaderboard-head"><span>名次</span><span>玩家</span><span>评分</span><span>评级</span><span>时间</span><span>回合</span><span>损失</span></div>
+      <div id="leaderboardRows" class="leaderboard-rows"></div>
+      <p id="leaderboardEmpty" class="leaderboard-empty">这一关还没有战绩，等你来夺头名。</p>
+      <footer><small id="leaderboardMode">正在读取排行榜……</small><button id="leaderboardRefreshBtn" type="button">刷新榜单</button></footer>
+    </section>
+  </div>
   <div id="orientationPrompt" class="orientation-prompt" role="dialog" aria-label="横屏游玩提示">
     <div class="rotate-device" aria-hidden="true"><span></span></div>
     <h2>建议横屏游玩</h2>
@@ -255,6 +288,7 @@
   <script src="level-04-julu.js?build=20261004-julu-duel-continuation-v72"></script>
   <script src="story-data.js?build=20261003-xindu-story-v48"></script>
   <script src="battle-view.js?build=20261003-hulao-grid-fix-v53"></script>
-  <script src="game.js?build=20261006-wait-reminder-v82"></script>
+  <script src="leaderboard.js?build=20261007-leaderboard-v83"></script>
+  <script src="game.js?build=20261007-leaderboard-v83"></script>
 </body>
 </html>
