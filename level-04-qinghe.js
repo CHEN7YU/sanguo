@@ -29,7 +29,7 @@
     id:'qinghe',chapter:'第一章 · 界桥之战',name:'清河之战',width,height,terrain,terrainCodes,
     source:'用户原游戏 HEXZMAP.R3 map 5 / SNR1D.R3 paragraph 11 / MAIN.EXE',
     maxTurns:30,objective:'消灭麴义',defeat:'刘备撤退或超过30回合',objectiveUnitId:'quyi',originalRules:true,
-    squareGrid:true,structuresBakedIntoArt:false,viewProjection:{x:1/56,y:1/32,dx:1/28,dy:1/16,rowShift:Array(16).fill(0)},battlefieldArt:'assets/level-04-qinghe/qinghe-map-aligned-v1.webp',
+    squareGrid:true,structuresBakedIntoArt:false,viewProjection:{x:1/56,y:1/32,dx:1/28,dy:1/16,rowShift:Array(16).fill(0)},battlefieldArt:'assets/level-04-qinghe/qinghe-map-remaster-v2.webp',
     nextBattle:'第五战 · 界桥之战',
     environmentFx:{
       forestZones:[[.00,.00,.30,.48,.4],[.55,.00,.43,.28,2.1],[.06,.72,.32,.27,1.3],[.60,.72,.37,.27,2.9]],

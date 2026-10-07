@@ -17,6 +17,7 @@ const original=JSON.parse(fs.readFileSync(path.join(root,'docs/original-audit/le
 
 assert.equal(level.width,28);assert.equal(level.height,16);assert.equal(level.maxTurns,30);
 assert.equal(level.objectiveUnitId,'quyi');assert.equal(level.squareGrid,true);assert.equal(level.structuresBakedIntoArt,false);
+assert.equal(level.battlefieldArt,'assets/level-04-qinghe/qinghe-map-remaster-v2.webp');
 assert.equal(JSON.stringify(level.terrainCodes),JSON.stringify(original.terrain_codes));
 assert.equal(level.events.battleReward,200);
 
@@ -44,7 +45,7 @@ assert.deepEqual(rules.learnedStrategies({troop:'cavalry',level:9}),[],'Qu Yi mu
 assert.deepEqual(rules.learnedStrategies({troop:'support',level:4}),[],'original military band has no combat tactic');
 
 const assets=[
-  'assets/level-04-qinghe/qinghe-map-aligned-v1.webp',
+  'assets/level-04-qinghe/qinghe-map-remaster-v2.webp',
   'assets/level-04-qinghe/qu-yi-mounted-v1.webp','assets/level-04-qinghe/qu-yi-portrait-v1.webp',
   'assets/level-04-qinghe/yan-gang-mounted-v1.webp','assets/level-04-qinghe/yan-gang-portrait-v1.webp'
 ];
