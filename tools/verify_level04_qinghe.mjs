@@ -41,6 +41,13 @@ assert.equal(level.openingDuel.winnerId,'quyi');assert.equal(level.openingDuel.l
 assert.ok(level.environmentFx.waterBands.every(band=>Array.isArray(band.from)&&Array.isArray(band.to)),'water motion bands must use runtime geometry objects');
 assert.equal(level.events.duel.attackerId,'guan');assert.equal(level.events.duel.defenderId,'quyi');assert.equal(level.events.duel.endsBattle,true);
 const turn7=level.timedEvents.find(event=>event.turn===7);assert.ok(turn7);assert.equal(JSON.stringify(turn7.spawns.map(x=>x.unitId)),JSON.stringify(['bandit1','bandit2']));
+const blocked=new Set(['water','cliff','wall','gate','fence','house','fire','muddyWater']);
+function routeToWestBank(spawn){
+  const target={x:10,y:10},key=(x,y)=>`${x},${y}`,start=key(spawn.x,spawn.y),queue=[[spawn.x,spawn.y]],previous=new Map([[start,null]]);let end=null;
+  while(queue.length){const [x,y]=queue.shift();if(Math.abs(x-target.x)+Math.abs(y-target.y)===1){end=key(x,y);break}for(const [nx,ny] of [[x+1,y],[x-1,y],[x,y+1],[x,y-1]]){const k=key(nx,ny);if(nx<0||ny<0||nx>=level.width||ny>=level.height||blocked.has(level.terrain[ny][nx])||previous.has(k))continue;previous.set(k,key(x,y));queue.push([nx,ny])}}
+  assert.ok(end,`${spawn.unitId} has no legal route around Qinghe`);const path=[];for(let k=end;k;k=previous.get(k)){const [x,y]=k.split(',').map(Number);path.push(level.terrain[y][x])}return path
+}
+for(const spawn of turn7.spawns){const route=routeToWestBank(spawn);assert.ok(route.includes('bridge'),`${spawn.unitId} must cross Qinghe by bridge`);assert.ok(route.every(type=>!blocked.has(type)),`${spawn.unitId} route enters impassable terrain`)}
 assert.deepEqual(rules.learnedStrategies({troop:'cavalry',level:9}),[],'Qu Yi must not receive a fabricated tactic');
 assert.deepEqual(rules.learnedStrategies({troop:'support',level:4}),[],'original military band has no combat tactic');
 
@@ -67,5 +74,9 @@ assert.ok(game.includes("targetId==='qinghe'?'6'"));
 assert.ok(game.includes("['julu','qinghe'].includes(targetId)?'secondRouteChoice':'routeChoice'"));
 assert.ok(game.includes("quyi:'assets/level-04-qinghe/qu-yi-mounted-v1.webp'"));
 assert.ok(game.includes("yangang:'assets/level-04-qinghe/yan-gang-portrait-v1.webp'"));
+assert.ok(game.includes('function aiRouteDistance(actor,startX,startY,target)'),'enemy AI must evaluate real traversable routes');
+assert.ok(game.includes('const route=aiRouteDistance(actor,actor.x,actor.y,t)'),'enemy target choice must account for rivers and bridges');
+assert.ok(game.includes('const route=aiRouteDistance(e,x,y,target)'),'enemy movement must advance along a traversable route');
+assert.ok(!game.includes("bridgePenalty=map[y][x]==='bridge'"),'AI must not avoid the only legal river crossing');
 
 console.log(`Qinghe verification passed: exact 28x16 original terrain, deployment, opening duel, turn-seven bandits, loot, Guan Yu duel, second route choice and ${(runtimeBytes/1024/1024).toFixed(2)} MiB core art.`);
