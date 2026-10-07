@@ -38,12 +38,24 @@ assert.equal(level.terrain[3][1],'plain');
 assert.equal(level.terrain[2][1],'gate');
 const runtimeTerrain=level.terrain.map(row=>[...row]);
 for(const tile of level.paintedTerrainOverrides||[])runtimeTerrain[tile.y][tile.x]=tile.type;
+assert.equal(runtimeTerrain[2][1],'city');
 assert.equal(runtimeTerrain[6][12],'bridge');
 assert.equal(runtimeTerrain[7][12],'bridge');
 assert.equal(runtimeTerrain[8][12],'grass');
 const blocked=new Set(['water','hill','wall','cliff','gate','fence','house','fire','muddyWater']);
 const route=[[21,7],[21,6],[20,6],[19,6],[18,6],[17,6],[16,6],[15,6],[14,6],[13,6],[12,6],[12,7],[12,8],[11,8],[10,8],[9,8],[9,7]];
 for(const [x,y] of route)assert.ok(!blocked.has(runtimeTerrain[y][x]),`central bridge treasure route blocked at ${x},${y}`);
+const cityRoute=[[1,3],[1,2],[1,1],[1,0],[2,0],[3,0],[4,0],[5,0]];
+for(const [x,y] of cityRoute)assert.ok(!blocked.has(runtimeTerrain[y][x]),`north-west city entrance blocked at ${x},${y}`);
+const connected=new Set(['21,7']),queue=[[21,7]];
+while(queue.length){
+  const [x,y]=queue.shift();
+  for(const [nx,ny] of [[x+1,y],[x-1,y],[x,y+1],[x,y-1]]){
+    const key=`${nx},${ny}`;
+    if(runtimeTerrain[ny]?.[nx]&&!blocked.has(runtimeTerrain[ny][nx])&&!connected.has(key)){connected.add(key);queue.push([nx,ny])}
+  }
+}
+for(const [x,y] of cityRoute)assert.ok(connected.has(`${x},${y}`),`north-west city remains disconnected at ${x},${y}`);
 assert.equal(runtimeTerrain[7][9],'treasure');
 assert.equal(level.events.duel.attackerId,'zhang');
 assert.equal(level.events.duel.defenderId,'chunyu');

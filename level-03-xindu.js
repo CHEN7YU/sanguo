@@ -28,6 +28,10 @@
     // east of the original tactical river crossing. Keep the extracted source
     // grid intact, then align runtime collision with the bridge players see.
     paintedTerrainOverrides:[
+      // The painted north-west gate has a continuous road into the city. The
+      // source gate cell was globally treated as impassable, which isolated
+      // every otherwise-walkable city tile behind it.
+      {x:1,y:2,type:'city'},
       {x:12,y:6,type:'bridge'},
       {x:12,y:7,type:'bridge'},
       {x:12,y:8,type:'grass'}
