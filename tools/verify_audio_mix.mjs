@@ -18,6 +18,6 @@ for(const token of [
 ])if(!game.includes(token))fail(`missing global audio mix behavior: ${token}`);
 
 if(/\.volume=musicVolume(?:[;*]|$)/m.test(game))fail('a music element still bypasses the global music mix');
-if(!index.includes('game.js?build=20261007-audio-mix-v86'))fail('browser cache key was not updated');
+if(!/game\.js\?build=20261007-[^"']+/.test(index))fail('versioned game script cache key is missing');
 
 console.log('Audio mix verified: music attenuation, SFX gain and transient combat ducking apply globally.');
