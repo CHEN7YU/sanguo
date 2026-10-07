@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261007-qinghe-bandit-route-v89';
+  const RUNTIME_BUILD='20261007-named-general-style-v90';
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
   const levelIndex=bootParams.get('level');
@@ -29,7 +29,7 @@
     hua:'assets/hua-squad.webp', lvbu:'assets/lvbu-squad-v1.webp', zhangliao:'assets/zhangliao-squad-v1.webp',
     houcheng:'assets/houcheng-squad-v1.webp', songxian:'assets/songxian-squad-v1.webp', weixu:'assets/weixu-squad-v1.webp',
     yanliang:'assets/level-04-julu/units/yan-liang-mounted-v1.webp', zhanghe:'assets/level-04-julu/units/zhang-he-mounted-v1.webp',
-    quyi:'assets/level-04-qinghe/qu-yi-mounted-v1.webp', yangang:'assets/level-04-qinghe/yan-gang-mounted-v1.webp',
+    quyi:'assets/level-04-qinghe/qu-yi-mounted-v2.webp', yangang:'assets/level-04-qinghe/yan-gang-mounted-v1.webp',
     infantry:'assets/xiliang-infantry-squad.webp', archer:'assets/xiliang-archer-squad.webp', officer:'assets/xiliang-officer-squad.webp',
     martial:'assets/troops/martial-artist-v2.webp', bandit:'assets/troops/bandit-v2.webp',
     support:'assets/military-band-remaster-v1.webp'

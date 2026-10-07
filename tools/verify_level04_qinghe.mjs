@@ -53,7 +53,7 @@ assert.deepEqual(rules.learnedStrategies({troop:'support',level:4}),[],'original
 
 const assets=[
   'assets/level-04-qinghe/qinghe-map-remaster-v2.webp',
-  'assets/level-04-qinghe/qu-yi-mounted-v1.webp','assets/level-04-qinghe/qu-yi-portrait-v1.webp',
+  'assets/level-04-qinghe/qu-yi-mounted-v2.webp','assets/level-04-qinghe/qu-yi-portrait-v1.webp',
   'assets/level-04-qinghe/yan-gang-mounted-v1.webp','assets/level-04-qinghe/yan-gang-portrait-v1.webp'
 ];
 let runtimeBytes=0;for(const asset of assets){const size=fs.statSync(path.join(root,asset)).size;assert.ok(size>1000,`missing ${asset}`);runtimeBytes+=size}
@@ -72,7 +72,7 @@ assert.ok(game.includes("const routeStart=['julu','qinghe'].includes(level.id)?5
 assert.ok(game.includes('playDuelCinematic(winner,loser,opening)'));
 assert.ok(game.includes("targetId==='qinghe'?'6'"));
 assert.ok(game.includes("['julu','qinghe'].includes(targetId)?'secondRouteChoice':'routeChoice'"));
-assert.ok(game.includes("quyi:'assets/level-04-qinghe/qu-yi-mounted-v1.webp'"));
+assert.ok(game.includes("quyi:'assets/level-04-qinghe/qu-yi-mounted-v2.webp'"));
 assert.ok(game.includes("yangang:'assets/level-04-qinghe/yan-gang-portrait-v1.webp'"));
 assert.ok(game.includes('function aiRouteDistance(actor,startX,startY,target)'),'enemy AI must evaluate real traversable routes');
 assert.ok(game.includes('const route=aiRouteDistance(actor,actor.x,actor.y,t)'),'enemy target choice must account for rivers and bridges');
