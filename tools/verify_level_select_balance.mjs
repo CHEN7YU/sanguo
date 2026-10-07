@@ -7,7 +7,7 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const context={window:{}};
 vm.createContext(context);
-for(const file of ['level-01.js','level-02.js','level-03-guangchuan.js','level-03-xindu.js','level-04-julu.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context);
+for(const file of ['level-01.js','level-02.js','level-03-guangchuan.js','level-03-xindu.js','level-04-julu.js','level-04-qinghe.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context);
 
 function recommendation(level){
   const enemies=level.units.filter(u=>u.side==='enemy');
@@ -21,7 +21,8 @@ const cases=[
   [context.window.LEVEL_02,4],
   [context.window.LEVEL_03_GUANGCHUAN,4],
   [context.window.LEVEL_03_XINDU,5],
-  [context.window.LEVEL_04_JULU,7]
+  [context.window.LEVEL_04_JULU,7],
+  [context.window.LEVEL_04_QINGHE,6]
 ];
 for(const [level,expected] of cases){
   assert.equal(recommendation(level),expected,`${level.name} recommendation`);
@@ -41,6 +42,6 @@ assert.ok(game.includes("params.set('levelSelect','1')"),'level choices must mar
 assert.ok(game.includes('if(levelSelectActive)return applyLevelSelectBalance(runtimeUnits)'),'standalone selection must bypass campaign transfer');
 assert.ok(game.includes('levelSelectBalanced:levelSelectActive'),'save files must remember the balance mode');
 assert.ok(!game.match(/function nextLevelUrl\(\)[\s\S]{0,260}levelSelect/),'continuous campaign must not enable standalone balance mode');
-for(const level of [3,4,4,5,7])assert.ok(html.includes(`选关均衡：前排 Lv.${level}`));
+for(const level of [3,4,4,5,7,6])assert.ok(html.includes(`选关均衡：前排 Lv.${level}`));
 
-console.log('Level-select balance verification passed: Lv.3/Lv.4/Lv.4/Lv.5/Lv.7 recommendations, lower backline level, no level-down, save persistence, and campaign isolation.');
+console.log('Level-select balance verification passed: Lv.3/Lv.4/Lv.4/Lv.5/Lv.7/Lv.6 recommendations, lower backline level, no level-down, save persistence, and campaign isolation.');

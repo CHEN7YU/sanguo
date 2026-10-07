@@ -32,7 +32,7 @@
       {x:12,y:7,type:'bridge'},
       {x:12,y:8,type:'grass'}
     ],
-    battleTrack:'assets/level-03/thousand-suns-dw7th-mix.opus',nextBattle:'第四战A · 巨鹿之战',nextLevelId:'julu',
+    battleTrack:'assets/level-03/thousand-suns-dw7th-mix.opus',nextBattle:'第四战 · 巨鹿或清河',nextLevelId:'julu',
     // SNR's battlefield-point event prints this as (3,1), in row/column
     // order.  In the runtime's x/y order the gate approach is (1,3).
     alternateVictory:{unitId:'liu',x:1,y:3,exp:50,type:'gate'},

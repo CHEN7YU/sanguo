@@ -21,7 +21,7 @@
     source:'用户原游戏 HEXZMAP.R3 / SNR1D.R3 / SNR1M.R3 / BAKDATA.R3 / MAIN.EXE',
     maxTurns:30,objective:'击退逢纪',defeat:'刘备撤退或超过30回合',objectiveUnitId:'fengji',originalRules:true,
     squareGrid:true,viewProjection:{x:.025,y:.17,dx:.05,dy:.077,rowShift:[0,0,0,0,0,0,-.02,-.06,-.10,-.04,0]},battlefieldArt:'assets/level-03/guangchuan-map-v1.webp',
-    battleTrack:'assets/level-03/thousand-suns-dw7th-mix.opus',nextBattle:'第四战A · 巨鹿之战',nextLevelId:'julu',
+    battleTrack:'assets/level-03/thousand-suns-dw7th-mix.opus',nextBattle:'第四战 · 巨鹿或清河',nextLevelId:'julu',
     environmentFx:{
       forestZones:[[.06,.08,.26,.18,.3],[.30,.04,.28,.16,1.7],[.48,.34,.20,.20,3.1],[.82,.18,.16,.15,4.9],[.05,.54,.18,.30,6.2],[.83,.71,.17,.22,7.6]],
       waterBands:[{from:[.34,.92],to:[.98,.45],bend:.075,width:.085,speed:.04,gaps:[]}]

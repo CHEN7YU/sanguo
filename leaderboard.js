@@ -11,7 +11,8 @@
     'hulao-pass': { name: '虎牢关之战', targetSeconds: 900, targetTurns: 15, maxTurns: 30 },
     guangchuan: { name: '广川之战', targetSeconds: 720, targetTurns: 14, maxTurns: 30 },
     xindu: { name: '信都之战', targetSeconds: 780, targetTurns: 15, maxTurns: 30 },
-    julu: { name: '巨鹿之战', targetSeconds: 900, targetTurns: 16, maxTurns: 30 }
+    julu: { name: '巨鹿之战', targetSeconds: 900, targetTurns: 16, maxTurns: 30 },
+    qinghe: { name: '清河之战', targetSeconds: 840, targetTurns: 15, maxTurns: 30 }
   };
 
   let activeLevel = null;

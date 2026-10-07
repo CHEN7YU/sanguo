@@ -174,6 +174,15 @@
     L('world','进军巨鹿','关羽','兄长，好像是敌人。列队！')
   ];
 
+  // SNR1D.R3 chapter 1, Qinghe branch. The first five beats are the same
+  // original route consultation as Julu; the branch then follows Liu Bei
+  // toward Yan Gang and Qu Yi at Qinghe.
+  window.QINGHE_PRE_BATTLE_STORY = [
+    ...window.JULU_PRE_BATTLE_STORY.slice(0,5),
+    L('world','清河路线','关羽','明白了，那么去清河吧。'),
+    L('world','进军清河','关羽','好像是敌人，列队。')
+  ];
+
   window.NPC_DIALOGUE_BY_LEVEL = {
     'sishui-pass': window.PRE_BATTLE_NPC_DIALOGUE,
     'guangchuan': {
@@ -195,6 +204,7 @@
     'hulao-pass': window.HULAO_PRE_BATTLE_STORY,
     'guangchuan': window.GUANGCHUAN_PRE_BATTLE_STORY,
     'xindu': window.XINDU_PRE_BATTLE_STORY,
-    'julu': window.JULU_PRE_BATTLE_STORY
+    'julu': window.JULU_PRE_BATTLE_STORY,
+    'qinghe': window.QINGHE_PRE_BATTLE_STORY
   };
 })();
