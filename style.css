@@ -183,7 +183,6 @@ html:not(.touch-capable) .touch-controls{display:none!important}
 .title-intro-vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#02071322 0,transparent 18%,transparent 82%,#02071355 100%),radial-gradient(ellipse at center,transparent 68%,#02071355 100%)}
 .title-intro button{position:absolute;z-index:1;right:3%;bottom:3%;padding:8px 14px;border:1px solid #d3a44e88;background:#06162e99;color:#f5dfaad9;font:12px "Microsoft YaHei";letter-spacing:2px;cursor:pointer;opacity:.72;transition:.2s}
 .title-intro button:hover,.title-intro button:focus-visible{opacity:1;background:#76501fdd;border-color:#f0c76c;color:#fff4cf}
-.title-intro #titleIntroSoundBtn{left:50%;right:auto;bottom:8%;transform:translateX(-50%);padding:11px 20px;border-color:#f0c76ccc;background:#06162edb;color:#fff1c4;font-size:14px;font-weight:700;opacity:1;box-shadow:0 4px 24px #0009;animation:title-sound-pulse 1.4s ease-in-out infinite}
 @keyframes title-sound-pulse{50%{filter:brightness(1.25);transform:translateX(-50%) scale(1.035)}}
 .title-heading,.title-menu,.title-notice{transition:opacity .68s ease}
 .title-screen.intro-playing .title-heading,.title-screen.intro-playing .title-menu,.title-screen.intro-playing .title-notice{opacity:0;pointer-events:none}

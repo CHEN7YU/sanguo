@@ -7,14 +7,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
-  <link rel="stylesheet" href="style.css?build=20261007-named-general-style-v90" />
+  <link rel="stylesheet" href="style.css?build=20261009-support-animation-audio-v91" />
 </head>
 <body>
   <section id="titleScreen" class="title-screen intro-playing" aria-label="游戏开始画面">
     <div id="titleIntro" class="title-intro" aria-label="启动动画">
       <video id="titleIntroVideo" src="assets/video/title-intro.mp4" poster="assets/title-cover.webp" preload="auto" muted playsinline></video>
       <div class="title-intro-vignette"></div>
-      <button id="titleIntroSoundBtn" class="title-intro-sound hidden" type="button">♫ 轻触开启声音</button>
       <button id="titleIntroSkipBtn" type="button">点击或按任意键跳过</button>
     </div>
     <img class="title-art" src="assets/title-cover.webp" alt="刘备、关羽、张飞与汜水关">
@@ -78,7 +77,7 @@
       <div class="brand"><img class="seal" src="assets/inktolife-logo.webp" alt="InktoLife 标志"><div><b>三国志昭烈传</b><small>经典重燃InktoLife出品</small></div></div>
       <div class="chapter"><small>序章</small><strong>汜水关之战</strong><span id="levelBalanceBadge" class="balance-badge hidden">选关均衡 Lv.3</span></div>
       <div class="header-right">
-        <div class="music-control" title="战场音乐会在第一次点击游戏后播放">
+        <div class="music-control" title="游戏音乐">
           <button id="musicBtn" type="button" aria-pressed="true"><span>♫</span><b id="musicState">音乐</b></button>
           <input id="musicVolume" type="range" min="0" max="100" value="34" aria-label="音乐音量">
         </div>
@@ -275,7 +274,7 @@
     <button id="landscapeBtn" type="button">进入横屏</button>
     <button id="portraitContinueBtn" class="subtle" type="button">暂用竖屏</button>
   </div>
-  <audio id="titleMusic" src="assets/audio/title-theme.mp3" preload="auto" loop hidden></audio>
+  <audio id="titleMusic" src="assets/audio/title-theme.mp3" preload="auto" autoplay loop hidden></audio>
   <audio id="storyMusic" src="assets/audio/original-music-2.wav" preload="auto" loop hidden></audio>
   <audio id="battleMusic" src="assets/audio/knights-errant.mp3" preload="auto" loop hidden></audio>
   <script src="audio-config.js"></script>
@@ -291,6 +290,6 @@
   <script src="story-data.js?build=20261007-named-general-style-v90"></script>
   <script src="battle-view.js?build=20261003-hulao-grid-fix-v53"></script>
   <script src="leaderboard.js?build=20261007-named-general-style-v90"></script>
-  <script src="game.js?build=20261007-named-general-style-v90"></script>
+  <script src="game.js?build=20261009-support-animation-audio-v91"></script>
 </body>
 </html>

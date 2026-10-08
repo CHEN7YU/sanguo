@@ -17,6 +17,6 @@ for(const token of [
 ])if(!css.includes(token))fail(`missing tablet title layout rule: ${token}`);
 
 if(!html.includes('id="titleSettingsBtn">游戏设置</button>'))fail('settings button missing from title menu');
-if(!/style\.css\?build=20261007-[^"']+/.test(html))fail('versioned stylesheet cache key is missing');
+if(!/style\.css\?build=20\d{6}-[^"']+/.test(html))fail('versioned stylesheet cache key is missing');
 
 console.log('Tablet title layout verified: menu rises with limited viewport height and keeps the settings button reachable.');
