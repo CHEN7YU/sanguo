@@ -61,12 +61,17 @@
       {x:6,y:9,type:'bridge'},
       {x:12,y:8,type:'grass'}
     ],
-    // The remastered eastern river bend covers two original deployment cells.
-    // Preserve the audited source coordinates in units[] and move only the
-    // runtime pieces to the adjacent dry squares shown by the painting.
+    // The remastered eastern river bend cuts through the original deployment.
+    // Preserve the audited source coordinates in units[] and form Liu Bei's
+    // party up on the dry north bank. The legacy entries also migrate saves
+    // made with the previous two water-edge overrides.
     paintedDeploymentOverrides:[
-      {unitId:'guan',fromX:20,fromY:6,x:20,y:7},
-      {unitId:'jian',fromX:21,fromY:5,x:20,y:5}
+      {unitId:'liu',fromX:21,fromY:7,x:19,y:4},
+      {unitId:'guan',fromX:20,fromY:6,x:18,y:4},
+      {unitId:'guan',fromX:20,fromY:7,x:18,y:4},
+      {unitId:'zhang',fromX:20,fromY:8,x:19,y:5},
+      {unitId:'jian',fromX:21,fromY:5,x:18,y:5},
+      {unitId:'jian',fromX:20,fromY:5,x:18,y:5}
     ],
     battleTrack:'assets/level-03/thousand-suns-dw7th-mix.opus',nextBattle:'第四战 · 巨鹿或清河',nextLevelId:'julu',
     // SNR's battlefield-point event prints this as (3,1), in row/column

@@ -34,8 +34,12 @@ for(const [id,x,y,lvl] of expected){
   assert.deepEqual([u.x,u.y,u.level],[x,y,lvl],`deployment mismatch ${id}`);
 }
 assert.equal(JSON.stringify(level.paintedDeploymentOverrides),JSON.stringify([
-  {unitId:'guan',fromX:20,fromY:6,x:20,y:7},
-  {unitId:'jian',fromX:21,fromY:5,x:20,y:5}
+  {unitId:'liu',fromX:21,fromY:7,x:19,y:4},
+  {unitId:'guan',fromX:20,fromY:6,x:18,y:4},
+  {unitId:'guan',fromX:20,fromY:7,x:18,y:4},
+  {unitId:'zhang',fromX:20,fromY:8,x:19,y:5},
+  {unitId:'jian',fromX:21,fromY:5,x:18,y:5},
+  {unitId:'jian',fromX:20,fromY:5,x:18,y:5}
 ]));
 assert.equal(JSON.stringify(level.alternateVictory),JSON.stringify({unitId:'liu',x:1,y:3,exp:50,type:'gate'}));
 assert.equal(level.terrain[3][1],'plain');
@@ -43,6 +47,15 @@ assert.equal(level.terrain[2][1],'gate');
 const runtimeTerrain=level.terrain.map(row=>[...row]);
 for(const tile of level.paintedTerrainOverrides||[])runtimeTerrain[tile.y][tile.x]=tile.type;
 assert.equal(runtimeTerrain[2][1],'city');
+const runtimeAllies=level.units.filter(unit=>unit.side==='ally').map(unit=>{
+  const placement=level.paintedDeploymentOverrides.find(item=>item.unitId===unit.id&&item.fromX===unit.x&&item.fromY===unit.y);
+  return {...unit,x:placement?.x??unit.x,y:placement?.y??unit.y};
+});
+assert.equal(JSON.stringify(runtimeAllies.map(unit=>[unit.id,unit.x,unit.y])),JSON.stringify([
+  ['liu',19,4],['guan',18,4],['zhang',19,5],['jian',18,5]
+]));
+assert.equal(new Set(runtimeAllies.map(unit=>`${unit.x},${unit.y}`)).size,runtimeAllies.length,'allied deployments must be unique');
+for(const unit of runtimeAllies)assert.notEqual(runtimeTerrain[unit.y][unit.x],'water',`${unit.name} must not deploy in the river`);
 const paintedBridges=[[7,5],[12,6],[12,7],[6,9]];
 for(const [x,y] of paintedBridges)assert.equal(runtimeTerrain[y][x],'bridge',`painted bridge missing at ${x},${y}`);
 const paintedWater=[
