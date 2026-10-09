@@ -11,7 +11,7 @@ for(const token of [
   'const MUSIC_MIX_GAIN=.48,SFX_MIX_GAIN=1.35',
   'function mixedMusicVolume(multiplier=musicSceneMultiplier)',
   'function applySfxMix()',
-  "if(name==='movementStep'||!musicEnabled)return",
+  "if(['movementStep','hoofStep','footStep'].includes(name)||!musicEnabled)return",
   "musicSceneMultiplier*(['block','impact','fall'].includes(name)?.54:.68)",
   'musicSceneMultiplier=previousMusicSceneMultiplier;applyMusicMix()',
   'duckMusicForSfx(name);fn(a,sfxBus',

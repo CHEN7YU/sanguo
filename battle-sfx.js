@@ -47,6 +47,10 @@
     return troop==='cavalry'?'spear':'saber';
   }
 
+  function movementType(unit={}){
+    return unit.troop==='cavalry'||unit.mountedVisual===true?'hoof':'foot';
+  }
+
   function charge(ctx,destination,{pan=0,critical=false}={}){
     if(!ctx||!destination)return;
     const out=outputNode(ctx,destination,pan,critical?1:.78);
@@ -114,17 +118,29 @@
     if(kind==='sword')tone(ctx,out,{frequency:690,to:220,duration:.1,gain:.022,type:'triangle'});
   }
 
-  function movementStep(ctx,destination,{pan=0,mounted=false,alternate=false,terrain='plain'}={}){
+  function hoofStep(ctx,destination,{pan=0,alternate=false,terrain='plain'}={}){
     if(!ctx||!destination)return;
-    const soft=terrain==='forest'||terrain==='rough'||terrain==='hill',out=outputNode(ctx,destination,pan,mounted?.58:.32);
-    if(mounted){
-      tone(ctx,out,{frequency:alternate?132:112,to:alternate?61:49,duration:.09,gain:soft?.035:.055,type:'sine'});
-      noise(ctx,out,{duration:.045,gain:soft?.018:.038,frequency:soft?540:1120,to:160,q:.75,type:'bandpass'});
-      tone(ctx,out,{at:.055,frequency:alternate?98:118,to:43,duration:.075,gain:soft?.022:.038,type:'sine'});
-    }else{
-      noise(ctx,out,{duration:.065,gain:soft?.027:.035,frequency:soft?430:760,to:105,q:.55,type:'bandpass'});
-      tone(ctx,out,{frequency:78,to:39,duration:.07,gain:.022,type:'sine'});
-    }
+    const soft=terrain==='forest'||terrain==='rough'||terrain==='hill',out=outputNode(ctx,destination,pan,soft?.68:.84),first=alternate?146:126,second=alternate?108:119;
+    // Two separated, hard transients read as a horse's alternating hooves
+    // instead of a generic low thump. Softer ground removes most of the click.
+    tone(ctx,out,{frequency:first,to:54,duration:.095,gain:soft?.045:.072,type:'sine'});
+    noise(ctx,out,{duration:.052,gain:soft?.024:.052,frequency:soft?520:1480,to:170,q:.72,type:'bandpass'});
+    tone(ctx,out,{at:.072,frequency:second,to:42,duration:.085,gain:soft?.034:.055,type:'sine'});
+    noise(ctx,out,{at:.068,duration:.042,gain:soft?.017:.038,frequency:soft?420:1100,to:145,q:.68,type:'bandpass'});
+  }
+
+  function footStep(ctx,destination,{pan=0,alternate=false,terrain='plain'}={}){
+    if(!ctx||!destination)return;
+    const soft=terrain==='forest'||terrain==='rough'||terrain==='hill',out=outputNode(ctx,destination,pan,soft?.42:.54);
+    // A short sole impact plus a restrained armour/cloth rustle. Alternate
+    // feet vary the pitch so long routes do not sound like one repeated click.
+    noise(ctx,out,{duration:.082,gain:soft?.041:.058,frequency:soft?390:(alternate?920:760),to:92,q:.52,type:'bandpass'});
+    tone(ctx,out,{frequency:alternate?86:76,to:36,duration:.085,gain:soft?.027:.036,type:'sine'});
+    noise(ctx,out,{at:.024,duration:.055,gain:soft?.011:.017,frequency:alternate?1760:1420,to:420,q:1.1,type:'bandpass'});
+  }
+
+  function movementStep(ctx,destination,options={}){
+    return options.mounted?hoofStep(ctx,destination,options):footStep(ctx,destination,options);
   }
 
   function fall(ctx,destination,{pan=0,mounted=false}={}){
@@ -135,5 +151,5 @@
     if(mounted)tone(ctx,out,{at:.075,frequency:148,to:44,duration:.24,gain:.055,type:'triangle'});
   }
 
-  global.BattleSfx=Object.freeze({weaponType,charge,attack,block,impact,movementStep,fall});
+  global.BattleSfx=Object.freeze({weaponType,movementType,charge,attack,block,impact,hoofStep,footStep,movementStep,fall});
 })(window);

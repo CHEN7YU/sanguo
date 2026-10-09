@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261009-xindu-dry-spawn-v95';
+  const RUNTIME_BUILD='20261009-movement-sfx-v96';
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
   const levelIndex=bootParams.get('level');
@@ -283,7 +283,7 @@
   function applyMusicMix(multiplier=musicSceneMultiplier){const volume=mixedMusicVolume(multiplier);titleMusic.volume=volume;storyMusic.volume=volume;battleMusic.volume=volume}
   function applySfxMix(){if(sfxBus)sfxBus.gain.value=Math.max(0,Math.min(1.5,sfxVolume*SFX_MIX_GAIN))}
   function duckMusicForSfx(name){
-    if(name==='movementStep'||!musicEnabled)return;
+    if(['movementStep','hoofStep','footStep'].includes(name)||!musicEnabled)return;
     clearTimeout(musicDuckTimer);applyMusicMix(musicSceneMultiplier*(['block','impact','fall'].includes(name)?.54:.68));
     musicDuckTimer=setTimeout(()=>applyMusicMix(),name==='impact'||name==='fall'?420:300)
   }
@@ -475,7 +475,7 @@
   }
   async function animateStoryPath(actor,path,{delay=0,finalDir=null,stepMs=105}={}){
     if(!actor||!path.length){if(actor&&finalDir!==null){actor.dir=finalDir;positionStoryActor(actor)}return 0}if(delay)await storyWait(delay);startStoryWalk(actor);
-    let stepIndex=0;for(const [x,y] of path){if(!storyActive||storyActors.get(actor.name)!==actor)break;const dx=x-actor.x,dy=y-actor.y;actor.dir=storyDirection(dx,dy,actor.dir);actor.x=x;actor.y=y;positionStoryActor(actor,false,stepMs);if(stepIndex++%2===0)battleSfx('movementStep',actor,{mounted:false,alternate:stepIndex%4>1,terrain:'grass'});await storyWait(stepMs)}
+    let stepIndex=0;for(const [x,y] of path){if(!storyActive||storyActors.get(actor.name)!==actor)break;const dx=x-actor.x,dy=y-actor.y;actor.dir=storyDirection(dx,dy,actor.dir);actor.x=x;actor.y=y;positionStoryActor(actor,false,stepMs);if(stepIndex++%2===0)battleSfx('footStep',actor,{alternate:stepIndex%4>1,terrain:'grass'});await storyWait(stepMs)}
     stopStoryWalk(actor);if(finalDir!==null){actor.dir=finalDir;positionStoryActor(actor)}return delay+path.length*stepMs
   }
   async function moveStoryActor(name,target,delay=0){
@@ -876,7 +876,7 @@
   function passable(u,x,y){return Number.isFinite(tileCost(u,x,y))&&(!unitAt(x,y)||unitAt(x,y)===u)}
   function calcReach(u){const move=effectiveStat(u,'move'),dist=new Map([[keyOf(u.x,u.y),0]]),q=[[u.x,u.y]];while(q.length){const [x,y]=q.shift(),d=dist.get(keyOf(x,y));for(const [nx,ny] of neighbors(x,y)){const nd=d+tileCost(u,nx,ny),k=keyOf(nx,ny);if(nd<=move&&passable(u,nx,ny)&&(!dist.has(k)||nd<dist.get(k))){dist.set(k,nd);q.push([nx,ny])}}}return dist}
   function findPath(u,tx,ty){const start=keyOf(u.x,u.y),goal=keyOf(tx,ty),dist=new Map([[start,0]]),prev=new Map(),open=[[u.x,u.y]];while(open.length){open.sort((a,b)=>dist.get(keyOf(a[0],a[1]))-dist.get(keyOf(b[0],b[1])));const [x,y]=open.shift(),k=keyOf(x,y);if(k===goal)break;for(const [nx,ny] of neighbors(x,y)){if(!passable(u,nx,ny)&&keyOf(nx,ny)!==goal)continue;const nk=keyOf(nx,ny),nd=dist.get(k)+tileCost(u,nx,ny);if(nd<(dist.get(nk)??Infinity)){dist.set(nk,nd);prev.set(nk,k);open.push([nx,ny])}}}if(!dist.has(goal))return [{x:u.x,y:u.y}];const path=[];let k=goal;while(k){const [x,y]=k.split(',').map(Number);path.push({x,y});if(k===start)break;k=prev.get(k)}return path.reverse()}
-  function animateUnitMove(u,tx,ty){ensureBattleCamera(u);const path=findPath(u,tx,ty);if(path.length<2)return Promise.resolve();return new Promise(resolve=>{let segment=0,segmentStart=performance.now(),lastStep=-1;function frame(now){const fromTile=path[segment],toTile=path[segment+1],from=iso(fromTile.x,fromTile.y),to=iso(toTile.x,toTile.y),terrainType=map[toTile.y][toTile.x],terrainFactor=['forest','hill','rough'].includes(terrainType)?1.22:1,mounted=isMountedUnit(u),duration=(mounted?250:285)*terrainFactor/animationSpeed,p=Math.min(1,(now-segmentStart)/duration),ease=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2,travel=u.troop==='bandit'?p:ease,dx=to.x-from.x,tileDx=toTile.x-fromTile.x,tileDy=toTile.y-fromTile.y,direction=tileDx>0?'east':tileDx<0?'west':tileDy>0?'south':'north',facing=Math.abs(dx)>.2?(dx>0?1:-1):(u.facing??defaultFacing(u)),step=Math.floor((segment+p)*2);if(step!==lastStep){lastStep=step;battleSfx('movementStep',u,{mounted,alternate:step%2===1,terrain:terrainType})}anim={unit:u,pos:{x:from.x+dx*travel,y:from.y+(to.y-from.y)*travel},walkPhase:segment+p,facing,direction};draw();if(p<1){requestAnimationFrame(frame);return}u.x=toTile.x;u.y=toTile.y;u.facing=facing;segment++;if(segment<path.length-1){segmentStart=now;requestAnimationFrame(frame)}else{anim=null;draw();resolve()}}requestAnimationFrame(frame)})}
+  function animateUnitMove(u,tx,ty){ensureBattleCamera(u);const path=findPath(u,tx,ty);if(path.length<2)return Promise.resolve();return new Promise(resolve=>{let segment=0,segmentStart=performance.now(),lastStep=-1;function frame(now){const fromTile=path[segment],toTile=path[segment+1],from=iso(fromTile.x,fromTile.y),to=iso(toTile.x,toTile.y),terrainType=map[toTile.y][toTile.x],terrainFactor=['forest','hill','rough'].includes(terrainType)?1.22:1,mounted=isMountedUnit(u),movementSound=mounted?'hoofStep':'footStep',duration=(mounted?250:285)*terrainFactor/animationSpeed,p=Math.min(1,(now-segmentStart)/duration),ease=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2,travel=u.troop==='bandit'?p:ease,dx=to.x-from.x,tileDx=toTile.x-fromTile.x,tileDy=toTile.y-fromTile.y,direction=tileDx>0?'east':tileDx<0?'west':tileDy>0?'south':'north',facing=Math.abs(dx)>.2?(dx>0?1:-1):(u.facing??defaultFacing(u)),step=Math.floor((segment+p)*2);if(step!==lastStep){lastStep=step;battleSfx(movementSound,u,{alternate:step%2===1,terrain:terrainType})}anim={unit:u,pos:{x:from.x+dx*travel,y:from.y+(to.y-from.y)*travel},walkPhase:segment+p,facing,direction};draw();if(p<1){requestAnimationFrame(frame);return}u.x=toTile.x;u.y=toTile.y;u.facing=facing;segment++;if(segment<path.length-1){segmentStart=now;requestAnimationFrame(frame)}else{anim=null;draw();resolve()}}requestAnimationFrame(frame)})}
   function attackTiles(u){const out=[];for(let y=0;y<ROWS;y++)for(let x=0;x<COLS;x++){const d=Math.abs(x-u.x)+Math.abs(y-u.y);if(u.troop==='archer'?(d===2):(d===1))out.push({x,y})}return out}
   function inAttackRange(a,t){return attackTiles(a).some(q=>q.x===t.x&&q.y===t.y)}
   function selectUnit(u){if(dialogue||!playerTurn)return;ensureBattleCamera(u);if(u.side!=='ally'){if(phase!=='select'||selected)return;inspected=u;reachable.clear();attackable=[];moveOrigin=null;keyboardCursor={x:u.x,y:u.y};syncUI();status(`${u.name} · ${u.role} · ${u.className}${u.confused?' · 混乱中':''}`);draw();return}if(u.confused){flash(`${u.name}混乱中，无法行动`);status(`${u.name}本回合因混乱而无法行动`);return}if(u.acted)return;inspected=null;selected=u;phase='move';reachable=calcReach(u);attackable=[];hoverPath=[];moveOrigin={x:u.x,y:u.y};keyboardCursor={x:u.x,y:u.y};syncUI();status(`${u.name}：请选择移动位置`);draw()}
