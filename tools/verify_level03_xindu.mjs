@@ -39,11 +39,21 @@ assert.equal(level.terrain[2][1],'gate');
 const runtimeTerrain=level.terrain.map(row=>[...row]);
 for(const tile of level.paintedTerrainOverrides||[])runtimeTerrain[tile.y][tile.x]=tile.type;
 assert.equal(runtimeTerrain[2][1],'city');
-assert.equal(runtimeTerrain[6][12],'bridge');
-assert.equal(runtimeTerrain[7][12],'bridge');
+const paintedBridges=[[7,5],[12,6],[12,7],[6,9]];
+for(const [x,y] of paintedBridges)assert.equal(runtimeTerrain[y][x],'bridge',`painted bridge missing at ${x},${y}`);
+const paintedWater=[
+  [8,5],[21,5],
+  [6,6],[7,6],[8,6],[9,6],[10,6],[18,6],[19,6],[20,6],
+  [7,7],[10,7],[11,7],[13,7],[14,7],[15,7],[16,7],[17,7],[18,7],
+  [7,8],[14,8],[15,8],
+  [1,9],[2,9],[4,9],[5,9],[7,9],
+  [0,10],[1,10],[7,10],[8,10]
+];
+for(const [x,y] of paintedWater)assert.equal(runtimeTerrain[y][x],'water',`painted river must be impassable at ${x},${y}`);
+for(const [x,y] of [[4,7],[4,8],[13,9],[14,9]])assert.notEqual(runtimeTerrain[y][x],'bridge',`invisible source bridge remains passable at ${x},${y}`);
 assert.equal(runtimeTerrain[8][12],'grass');
 const blocked=new Set(['water','hill','wall','cliff','gate','fence','house','fire','muddyWater']);
-const route=[[21,7],[21,6],[20,6],[19,6],[18,6],[17,6],[16,6],[15,6],[14,6],[13,6],[12,6],[12,7],[12,8],[11,8],[10,8],[9,8],[9,7]];
+const route=[[21,7],[20,7],[19,7],[19,8],[18,8],[17,8],[16,8],[16,9],[15,9],[14,9],[13,9],[12,9],[11,9],[10,9],[9,9],[9,8],[9,7]];
 for(const [x,y] of route)assert.ok(!blocked.has(runtimeTerrain[y][x]),`central bridge treasure route blocked at ${x},${y}`);
 const cityRoute=[[1,3],[1,2],[1,1],[1,0],[2,0],[3,0],[4,0],[5,0]];
 for(const [x,y] of cityRoute)assert.ok(!blocked.has(runtimeTerrain[y][x]),`north-west city entrance blocked at ${x},${y}`);
@@ -77,6 +87,7 @@ assert.ok(html.includes('data-select-level="4"'));
 assert.ok(game.includes("levelIndex==='4' ? window.LEVEL_03_XINDU"));
 assert.ok(game.includes("targetId==='xindu'?'4'"));
 assert.ok(game.includes('function isSpecialPassable'));
+assert.ok(game.includes('const loadedMap=applyPaintedTerrainOverrides(save.map.map'), 'old saves must receive the corrected painted collision layer');
 assert.ok(game.includes("victory(false,'alternate')"));
 assert.ok(story.includes("'xindu': window.XINDU_PRE_BATTLE_STORY"));
 assert.ok(story.includes('淳于琼，你去信都城'));

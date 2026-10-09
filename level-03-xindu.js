@@ -24,16 +24,41 @@
     source:'用户原游戏 HEXZMAP.R3 / SNR1D.R3 / SNR1M.R3 / BAKDATA.R3 / MAIN.EXE',
     maxTurns:30,objective:'击退淳于琼，或刘备抵达信都城门',defeat:'刘备撤退或超过30回合',objectiveUnitId:'chunyu',originalRules:true,
     squareGrid:true,viewProjection:{x:.023,y:.07,dx:.0452,dy:.086,rowShift:[0,0,0,0,0,0,0,0,0,0,0]},battlefieldArt:'assets/level-03-xindu/xindu-map-v1.webp',
-    // The remastered painting places the central north-south bridge one cell
-    // east of the original tactical river crossing. Keep the extracted source
-    // grid intact, then align runtime collision with the bridge players see.
+    // Keep the extracted source grid intact for the audit, but use a collision
+    // layer that follows the remastered river pixel for pixel.  The painting
+    // moved all three crossings, so retaining the original bridge cells let a
+    // unit stand on visible water while some painted bridges stayed blocked.
     paintedTerrainOverrides:[
       // The painted north-west gate has a continuous road into the city. The
       // source gate cell was globally treated as impassable, which isolated
       // every otherwise-walkable city tile behind it.
       {x:1,y:2,type:'city'},
+
+      // Painted land that was river/bridge in the original tactical bitmap.
+      {x:8,y:4,type:'plain'},
+      {x:9,y:5,type:'grass'},{x:10,y:5,type:'grass'},
+      {x:11,y:6,type:'grass'},
+      {x:3,y:7,type:'grass'},{x:4,y:7,type:'forest'},{x:5,y:7,type:'grass'},{x:6,y:7,type:'grass'},
+      {x:0,y:8,type:'forest'},{x:2,y:8,type:'forest'},{x:3,y:8,type:'forest'},{x:4,y:8,type:'forest'},{x:5,y:8,type:'grass'},{x:13,y:8,type:'grass'},
+      {x:0,y:9,type:'forest'},{x:13,y:9,type:'grass'},{x:14,y:9,type:'grass'},
+      {x:13,y:10,type:'grass'},{x:14,y:10,type:'grass'},
+
+      // Every visibly blue square is impassable.  These cells cover both river
+      // branches, including the eastern bend that the old collision layer
+      // accidentally treated as open grass.
+      {x:21,y:5,type:'water'},
+      {x:18,y:6,type:'water'},{x:19,y:6,type:'water'},{x:20,y:6,type:'water'},
+      {x:7,y:7,type:'water'},{x:10,y:7,type:'water'},{x:11,y:7,type:'water'},{x:13,y:7,type:'water'},
+      {x:14,y:7,type:'water'},{x:15,y:7,type:'water'},{x:16,y:7,type:'water'},{x:17,y:7,type:'water'},{x:18,y:7,type:'water'},
+      {x:7,y:8,type:'water'},{x:14,y:8,type:'water'},{x:15,y:8,type:'water'},
+      {x:4,y:9,type:'water'},{x:5,y:9,type:'water'},{x:7,y:9,type:'water'},
+      {x:7,y:10,type:'water'},{x:8,y:10,type:'water'},
+
+      // Only the three bridges visible in the painting are passable crossings.
+      {x:7,y:5,type:'bridge'},
       {x:12,y:6,type:'bridge'},
       {x:12,y:7,type:'bridge'},
+      {x:6,y:9,type:'bridge'},
       {x:12,y:8,type:'grass'}
     ],
     battleTrack:'assets/level-03/thousand-suns-dw7th-mix.opus',nextBattle:'第四战 · 巨鹿或清河',nextLevelId:'julu',
