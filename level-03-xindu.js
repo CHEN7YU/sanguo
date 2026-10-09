@@ -61,6 +61,13 @@
       {x:6,y:9,type:'bridge'},
       {x:12,y:8,type:'grass'}
     ],
+    // The remastered eastern river bend covers two original deployment cells.
+    // Preserve the audited source coordinates in units[] and move only the
+    // runtime pieces to the adjacent dry squares shown by the painting.
+    paintedDeploymentOverrides:[
+      {unitId:'guan',fromX:20,fromY:6,x:20,y:7},
+      {unitId:'jian',fromX:21,fromY:5,x:20,y:5}
+    ],
     battleTrack:'assets/level-03/thousand-suns-dw7th-mix.opus',nextBattle:'第四战 · 巨鹿或清河',nextLevelId:'julu',
     // SNR's battlefield-point event prints this as (3,1), in row/column
     // order.  In the runtime's x/y order the gate approach is (1,3).

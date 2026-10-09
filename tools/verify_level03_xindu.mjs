@@ -33,6 +33,10 @@ for(const [id,x,y,lvl] of expected){
   assert.ok(u,`missing original unit ${id}`);
   assert.deepEqual([u.x,u.y,u.level],[x,y,lvl],`deployment mismatch ${id}`);
 }
+assert.equal(JSON.stringify(level.paintedDeploymentOverrides),JSON.stringify([
+  {unitId:'guan',fromX:20,fromY:6,x:20,y:7},
+  {unitId:'jian',fromX:21,fromY:5,x:20,y:5}
+]));
 assert.equal(JSON.stringify(level.alternateVictory),JSON.stringify({unitId:'liu',x:1,y:3,exp:50,type:'gate'}));
 assert.equal(level.terrain[3][1],'plain');
 assert.equal(level.terrain[2][1],'gate');
@@ -88,6 +92,7 @@ assert.ok(game.includes("levelIndex==='4' ? window.LEVEL_03_XINDU"));
 assert.ok(game.includes("targetId==='xindu'?'4'"));
 assert.ok(game.includes('function isSpecialPassable'));
 assert.ok(game.includes('const loadedMap=applyPaintedTerrainOverrides(save.map.map'), 'old saves must receive the corrected painted collision layer');
+assert.ok(game.includes('applyPaintedDeploymentOverride({...u,spawnOrder:u.spawnOrder??i'), 'old saves must move original water spawns onto dry painted cells');
 assert.ok(game.includes("victory(false,'alternate')"));
 assert.ok(story.includes("'xindu': window.XINDU_PRE_BATTLE_STORY"));
 assert.ok(story.includes('淳于琼，你去信都城'));
