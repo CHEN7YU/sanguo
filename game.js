@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261009-xindu-river-collision-v93';
+  const RUNTIME_BUILD='20261009-title-return-v94';
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
   const levelIndex=bootParams.get('level');
@@ -378,10 +378,15 @@
   }
   function closeGameMenu(){const overlay=document.getElementById('gameMenuOverlay');overlay.classList.add('hidden');overlay.classList.remove('from-story')}
   function titleVisible(){return!document.getElementById('titleScreen').classList.contains('hidden')}
-  function showTitle(){closeGameMenu();document.getElementById('settingsPanel').classList.add('hidden');document.getElementById('settingsPanel').classList.remove('title-open');document.getElementById('titleScreen').classList.remove('hidden');refreshContinueButton();storyMusic.pause();battleMusic.pause();startTitleMusic()}
+  function revealTitleMenu(animate=false){
+    const screen=document.getElementById('titleScreen'),overlay=document.getElementById('titleIntro'),video=document.getElementById('titleIntroVideo');
+    titleIntroActive=false;clearTimeout(titleIntroFadeTimer);video.pause();screen.classList.remove('intro-playing');overlay.classList.toggle('finishing',animate);overlay.classList.toggle('hidden',!animate);
+    if(animate)titleIntroFadeTimer=setTimeout(()=>{overlay.classList.add('hidden');overlay.classList.remove('finishing')},620)
+  }
+  function showTitle(){closeGameMenu();revealTitleMenu(false);document.getElementById('settingsPanel').classList.add('hidden');document.getElementById('settingsPanel').classList.remove('title-open');document.getElementById('titleScreen').classList.remove('hidden');refreshContinueButton();storyMusic.pause();battleMusic.pause();startTitleMusic()}
   function hideTitle(playMusic=true){document.getElementById('titleScreen').classList.add('hidden');titleMusic.pause();titleMusic.volume=mixedMusicVolume();if(playMusic)startBattleMusic()}
   function finishTitleIntro(){
-    if(!titleIntroActive)return;titleIntroActive=false;const screen=document.getElementById('titleScreen'),overlay=document.getElementById('titleIntro'),video=document.getElementById('titleIntroVideo');video.pause();screen.classList.remove('intro-playing');overlay.classList.add('finishing');clearTimeout(titleIntroFadeTimer);titleIntroFadeTimer=setTimeout(()=>{overlay.classList.add('hidden');overlay.classList.remove('finishing')},620);startTitleMusic()
+    if(!titleIntroActive)return;revealTitleMenu(true);startTitleMusic()
   }
   function playTitleIntro(){
     const screen=document.getElementById('titleScreen'),overlay=document.getElementById('titleIntro'),video=document.getElementById('titleIntroVideo');titleIntroActive=true;screen.classList.add('intro-playing');overlay.classList.remove('hidden','finishing');storyMusic.pause();battleMusic.pause();titleMusic.currentTime=0;startTitleMusic();video.currentTime=0;video.muted=true;const playback=video.play();if(playback)playback.catch(finishTitleIntro)
