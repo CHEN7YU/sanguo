@@ -1,0 +1,27 @@
+{
+  "source": "D:/baiduyundownload/三国英杰传/三国英杰传/SGYJ/BAKDATA.R3",
+  "source_sha256": "776e242a65c12f61de146d3ded7c9de6221af84c2ef5210daf9d785f4b98dc1d",
+  "record_layout": {
+    "base_offset_hex": "0x1100",
+    "record_bytes": 21,
+    "face_id_byte": 14
+  },
+  "portraits": [
+    {
+      "name": "赵云",
+      "character_id": 53,
+      "face_id": 3,
+      "original_reference": "docs/original-audit/level-05-jieqiao-portraits/zhao-yun-face-003.png",
+      "master": "assets-master/level-05-jieqiao/zhao-yun-portrait-v2.png",
+      "release": "assets/level-05-jieqiao/zhao-yun-portrait-v2.webp"
+    },
+    {
+      "name": "文丑",
+      "character_id": 52,
+      "face_id": 112,
+      "original_reference": "docs/original-audit/level-05-jieqiao-portraits/wen-chou-face-112.png",
+      "master": "assets-master/level-05-jieqiao/wen-chou-portrait-v2.png",
+      "release": "assets/level-05-jieqiao/wen-chou-portrait-v2.webp"
+    }
+  ]
+}

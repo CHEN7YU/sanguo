@@ -7,6 +7,8 @@ import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('..',import.meta.url));
 const levelSource=fs.readFileSync(path.join(root,'level-05-jieqiao.js'),'utf8');
 const game=fs.readFileSync(path.join(root,'game.js'),'utf8');
+const rules=fs.readFileSync(path.join(root,'AGENTS.md'),'utf8');
+const provenance=JSON.parse(fs.readFileSync(path.join(root,'docs','original-audit','level-05-jieqiao-portraits','portrait-provenance.json'),'utf8'));
 const portraitBlock=game.match(/const portraitPaths = \{([\s\S]*?)\n  \};/)?.[1]||'';
 const portraits=new Map([...portraitBlock.matchAll(/([a-zA-Z0-9_]+):'([^']+)'/g)].map(match=>[match[1],match[2]]));
 
@@ -46,6 +48,19 @@ assert.ok(game.includes("const duelAttackNativeFacing={zhaoyun:'right'}"),'Zhao 
 assert.ok(game.includes('attackProgress!==null&&attackNative!==staticNative?-flipX:flipX'),'Zhao Yun duel does not correct the attack-strip direction');
 assert.ok(game.includes('function portraitForUnit(u)'),'named portrait fallback is not wired');
 assert.ok(game.includes("previewParams.has('zhaoyunDuelPreview')"),'Zhao Yun duel QA route is missing');
+assert.ok(game.includes("previewParams.has('portraitPreview')"),'Jieqiao portrait QA route is missing');
+
+assert.ok(rules.includes('人物编号绝对不能直接当作头像编号'),'project portrait provenance rule is missing');
+assert.ok(rules.includes('BAKDATA.R3'),'project portrait rule does not name the original identity source');
+for(const expected of [{name:'赵云',character_id:53,face_id:3},{name:'文丑',character_id:52,face_id:112}]){
+  const entry=provenance.portraits.find(item=>item.name===expected.name);
+  assert.ok(entry,`missing portrait provenance for ${expected.name}`);
+  assert.equal(entry.character_id,expected.character_id,`${expected.name}: wrong original character id`);
+  assert.equal(entry.face_id,expected.face_id,`${expected.name}: wrong BAKDATA face mapping`);
+  for(const key of ['original_reference','master','release'])assert.ok(fs.existsSync(path.join(root,...entry[key].split('/'))),`${expected.name}: missing ${key}`);
+  assert.ok(game.includes(entry.release),`${expected.name}: remastered original portrait is not wired into the game`);
+  assert.ok(fs.statSync(path.join(root,...entry.release.split('/'))).size<250_000,`${expected.name}: release portrait exceeds 250 KiB`);
+}
 
 const map=fs.readFileSync(path.join(root,'assets','level-05-jieqiao','jieqiao-map-v3.webp'));
 assert.equal(map.subarray(0,4).toString(),'RIFF');

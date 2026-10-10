@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261010-jieqiao-audit-v101';
+  const RUNTIME_BUILD='20261010-original-portrait-v102';
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
   const levelIndex=bootParams.get('level');
@@ -155,7 +155,7 @@
     hanying:'assets/level-03/portraits/han-ying-v1.webp',guoshi:'assets/level-03/portraits/guo-shi-v1.webp',
     zhanghe:'assets/level-04-julu/portraits/zhang-he-v1.webp',yanliang:'assets/level-04-julu/portraits/yan-liang-v1.webp',
     quyi:'assets/level-04-qinghe/qu-yi-portrait-v1.webp',yangang:'assets/level-04-qinghe/yan-gang-portrait-v1.webp',
-    zhaoyun:'assets/level-05-jieqiao/zhao-yun-portrait-v1.webp',wenchou:'assets/level-05-jieqiao/wen-chou-portrait-v1.webp',
+    zhaoyun:'assets/level-05-jieqiao/zhao-yun-portrait-v2.webp',wenchou:'assets/level-05-jieqiao/wen-chou-portrait-v2.webp',
     yuanshao:'assets/story-portraits/remaster-v4/yuan-shao-v4.webp',tianfeng:'assets/level-05-jieqiao/portraits/tian-feng-v1.webp',
     chenlin:'assets/level-05-jieqiao/portraits/chen-lin-v1.webp',guotu:'assets/level-05-jieqiao/portraits/guo-tu-v1.webp',
     jushou:'assets/level-05-jieqiao/portraits/ju-shou-v1.webp',jiaochu:'assets/level-05-jieqiao/portraits/jiao-chu-v1.webp',
@@ -183,7 +183,7 @@
     麴义:'assets/level-04-qinghe/qu-yi-portrait-v1.webp',严纲:'assets/level-04-qinghe/yan-gang-portrait-v1.webp',
     公孙越:'assets/level-04-julu/portraits/gongsun-yue-v1.webp',关纯:'assets/level-04-julu/portraits/guan-chun-v1.webp',
     耿武:'assets/level-04-julu/portraits/geng-wu-v1.webp',羽则:'assets/level-04-julu/portraits/yu-ze-v1.webp',
-    赵云:'assets/level-05-jieqiao/zhao-yun-portrait-v1.webp',文丑:'assets/level-05-jieqiao/wen-chou-portrait-v1.webp',
+    赵云:'assets/level-05-jieqiao/zhao-yun-portrait-v2.webp',文丑:'assets/level-05-jieqiao/wen-chou-portrait-v2.webp',
     田丰:'assets/level-05-jieqiao/portraits/tian-feng-v1.webp',陈琳:'assets/level-05-jieqiao/portraits/chen-lin-v1.webp',
     郭图:'assets/level-05-jieqiao/portraits/guo-tu-v1.webp',沮授:'assets/level-05-jieqiao/portraits/ju-shou-v1.webp',
     焦触:'assets/level-05-jieqiao/portraits/jiao-chu-v1.webp',张南:'assets/level-05-jieqiao/portraits/zhang-nan-v1.webp',
@@ -1333,6 +1333,7 @@
   else if(previewParams.has('storySelect'))setTimeout(()=>{resetBattleState();hideTitle(false);if(level.id==='sishui-pass'){clearCampaignTransfer();playOpeningMovie(()=>playPreBattleStory(openBattlePrep))}else if(preBattleStory.length)playPreBattleStory(openBattlePrep);else openBattlePrep()},180);
   else if(previewParams.has('battleSelect'))setTimeout(()=>{resetBattleState();hideTitle(false);openBattlePrep()},180);
   else if(previewParams.get('level')==='2'&&previewParams.has('duelEventPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);animationSpeed=4;document.getElementById('shopOverlay').classList.add('hidden');startDuel()},320);
+  else if(level.id==='jieqiao'&&previewParams.has('portraitPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);document.getElementById('shopOverlay').classList.add('hidden');runDialogue([{speaker:'赵云',text:'常山赵子龙在此！'},{speaker:'文丑',text:'来将通名！'}],()=>{})},220);
   else if(level.id==='jieqiao'&&previewParams.has('zhaoyunDuelPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);animationSpeed=previewAnimationSpeed;document.getElementById('shopOverlay').classList.add('hidden');const script=level.openingDuelSequence.find(q=>q.winnerId==='zhaoyun'),zhao=units.find(q=>q.id==='zhaoyun'),wenchou=units.find(q=>q.id==='wenchou');zhao.side='guest';playDuelCinematic(zhao,wenchou,script)},320);
   else if(previewParams.has('duelPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);animationSpeed=.65;document.getElementById('shopOverlay').classList.add('hidden');const script=level.events.duel;playDuelCinematic(units.find(u=>u.id===script.attackerId),units.find(u=>u.id===script.defenderId))},320);
   else if(previewParams.get('level')==='2'&&previewParams.has('turnEventPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);document.getElementById('shopOverlay').classList.add('hidden');battleStarted=true;turn=Number(previewParams.get('turnEventPreview'))||18;document.getElementById('turnNumber').textContent=turn;triggerTimedEvents();draw()},320);
