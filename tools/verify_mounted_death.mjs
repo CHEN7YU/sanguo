@@ -11,6 +11,10 @@ for (const id of ['guan', 'zhang', 'gongsun', 'hua']) {
   if (!game.includes(`${id}:'assets/${id}-death-v1.webp'`)) fail(`death sheet not wired for ${id}`);
 }
 
+const zhaoDeath = fs.readFileSync(new URL('assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-death-v2.webp', root));
+if (zhaoDeath.length < 10000 || zhaoDeath.subarray(0, 4).toString() !== 'RIFF' || zhaoDeath.subarray(8, 12).toString() !== 'WEBP') fail('invalid death sheet for zhaoyun');
+if (!game.includes("zhaoyun:'assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-death-v2.webp'")) fail('death sheet not wired for zhaoyun');
+
 for (const token of [
   'const deathFrameBounds=',
   'function drawAuthoredDeathFrame(u,sheet,targetH,fx)',
@@ -24,5 +28,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('Mounted death verified: Guan Yu, Zhang Fei, Gongsun Zan and Hua Xiong use packed five-frame horse-and-rider falls.');
+  console.log('Mounted death verified: Guan Yu, Zhang Fei, Gongsun Zan, Hua Xiong and Zhao Yun use packed five-frame horse-and-rider falls.');
 }

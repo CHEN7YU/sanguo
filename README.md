@@ -53,6 +53,7 @@ node tools\verify_level03_xindu.mjs
 node tools\verify_level04_julu.mjs
 node tools\verify_level04_qinghe.mjs
 node tools\verify_level05_jieqiao.mjs
+node tools\verify_zhaoyun_animations.mjs
 ```
 
 巨鹿关使用从原游戏解出的18×18方格地形、原版部署与30回合限制。第3回合触发三支贼兵伏击以及关纯、耿武来援；刘备进入中部会让张郃军转为追击；张飞邻接颜良触发单挑。击退张郃获得金200，刘备抵达西面鹿砦则让全部存活我军获得经验50，不重复领取普通胜利金。
