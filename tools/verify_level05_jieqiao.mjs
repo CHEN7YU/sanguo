@@ -31,6 +31,6 @@ for(const route of ['julu','qinghe']){
   else{assert.ok(ids.has('zhanghe'));assert.ok(!ids.has('quyi'))}
 }
 
-const release=new URL('../assets/level-05-jieqiao/jieqiao-map-v2.webp',import.meta.url);
+const release=new URL('../assets/level-05-jieqiao/jieqiao-map-v3.webp',import.meta.url);
 assert.ok(fs.statSync(release).size<2_000_000,'release map exceeds 2 MB');
 console.log('Level 05 Jieqiao verification passed for both branch variants.');

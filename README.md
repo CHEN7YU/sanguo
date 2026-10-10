@@ -53,6 +53,7 @@ node tools\verify_level03_xindu.mjs
 node tools\verify_level04_julu.mjs
 node tools\verify_level04_qinghe.mjs
 node tools\verify_level05_jieqiao.mjs
+node tools\verify_jieqiao_presentation.mjs
 node tools\verify_zhaoyun_animations.mjs
 ```
 

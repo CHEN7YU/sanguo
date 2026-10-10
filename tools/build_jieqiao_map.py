@@ -11,8 +11,8 @@ from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "docs/original-audit/level-05-jieqiao-map.json"
-MASTER = ROOT / "assets-master/level-05-jieqiao/jieqiao-map-v2.png"
-RELEASE = ROOT / "assets/level-05-jieqiao/jieqiao-map-v2.webp"
+MASTER = ROOT / "assets-master/level-05-jieqiao/jieqiao-map-v3.png"
+RELEASE = ROOT / "assets/level-05-jieqiao/jieqiao-map-v3.webp"
 WIDTH, HEIGHT = 2048, 1536
 COLS, ROWS = 32, 24
 

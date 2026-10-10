@@ -57,7 +57,7 @@
     id:'jieqiao',chapter:'第一章 · 界桥之战',name:'界桥之战',width,height,terrain,terrainCodes,routeVariant:route,
     source:'用户原游戏 HEXZMAP.R3 map 6 / SNR1D.R3 paragraph 15 / MAIN.EXE',maxTurns:40,
     objective:'击退袁绍，或由刘备夺取袁军兵粮库',defeat:'刘备撤退或超过40回合',objectiveUnitId:'yuanshao',originalRules:true,
-    squareGrid:true,structuresBakedIntoArt:false,viewProjection:{x:1/64,y:1/48,dx:1/32,dy:1/24,rowShift:Array(24).fill(0)},battlefieldArt:'assets/level-05-jieqiao/jieqiao-map-v2.webp',nextBattle:'第六战 · 北海之战',
+    squareGrid:true,structuresBakedIntoArt:false,viewProjection:{x:1/64,y:1/48,dx:1/32,dy:1/24,rowShift:Array(24).fill(0)},battlefieldArt:'assets/level-05-jieqiao/jieqiao-map-v3.webp',nextBattle:'第六战 · 北海之战',
     alternateVictory:{unitId:'liu',x:27,y:1,exp:50,goldReward:200,type:'supply',label:'夺取袁绍兵粮库',log:'刘备夺取袁绍兵粮库，全体存活我军获得经验50'},
     openingDuelSequence:[
       {winnerId:'wenchou',loserId:'chenjiang',loserDefeated:true,title:'文丑　VS　陈蒋',kicker:'界桥 · 袁军突击',caption:'文丑阵前击破陈蒋',challenge:[{speaker:'袁绍',text:'敌军已经不堪一击。文丑！去取公孙瓒的首级！'},{speaker:'文丑',text:'我乃文丑，公孙瓒，明年的今天就是你的忌日！'},{speaker:'陈蒋',text:'主公，这里交给我吧。文丑，来受死！'}],exchange:[{speaker:'陈蒋',text:'太、太厉害了……'},{speaker:'文丑',text:'哈哈哈，凭你这点本事也想赢我！'}]},
