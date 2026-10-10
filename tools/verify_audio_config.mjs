@@ -14,7 +14,11 @@ for(const [id,asset] of Object.entries({'sishui-pass':'assets/audio/knights-erra
   const file=fs.readFileSync(full);
   if(file.length<100000||file.subarray(0,3).toString()!=='ID3')fail(`invalid MP3 asset for ${id}`);
 }
-console.log('Audio config verified: 汜水关 and 虎牢关 tracks are present and mapped by level id.');
+const jieqiaoTrack='assets/level-03/thousand-suns-dw7th-mix.opus';
+if(battles?.jieqiao!==jieqiaoTrack)fail('wrong battle music for jieqiao');
+const jieqiaoFile=fs.readFileSync(path.join(root,...jieqiaoTrack.split('/')));
+if(jieqiaoFile.length<100000||jieqiaoFile.subarray(0,4).toString()!=='OggS')fail('invalid Opus asset for jieqiao');
+console.log('Audio config verified: 汜水关、虎牢关和界桥之战 tracks are present and mapped by level id.');
 
 for(const levelFile of ['level-03-guangchuan.js','level-03-xindu.js']){
   const levelSandbox={window:{}};
