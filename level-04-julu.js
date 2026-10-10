@@ -32,7 +32,7 @@
     source:'用户原游戏 HEXZMAP.R3 map 4 / SNR1D.R3 paragraph 13 / MAIN.EXE',
     maxTurns:30,objective:'击退张郃，或刘备抵达西面鹿砦',defeat:'刘备撤退或超过30回合',objectiveUnitId:'zhanghe',originalRules:true,
     squareGrid:true,structuresBakedIntoArt:false,viewProjection:{x:1/36,y:1/36,dx:1/18,dy:1/18,rowShift:Array(18).fill(0)},battlefieldArt:'assets/level-04-julu/julu-map-aligned-v3.webp',
-    nextBattle:'第五战 · 界桥之战',
+    nextBattle:'第五战 · 界桥之战',nextLevelId:'jieqiao',
     alternateVictory:{unitId:'liu',x:0,y:10,exp:50,type:'fort',label:'突破巨鹿',log:'刘备抵达西面鹿砦，全体存活我军获得经验50'},
     areaEvents:[{
       id:'julu-central-trigger',unitId:'liu',rect:{x1:4,y1:8,x2:10,y2:13},

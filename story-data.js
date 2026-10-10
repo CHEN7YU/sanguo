@@ -183,6 +183,20 @@
     L('world','进军清河','关羽','好像是敌人，列队。')
   ];
 
+  // SNR1D.R3 chapter 1, paragraph 15.  The preceding report changes with
+  // the Julu/Qinghe branch; both routes reunite at Jieqiao.
+  const jieqiaoRoute=(()=>{try{const transfer=JSON.parse(localStorage.getItem('sanguozhi-zhaolie-campaign-v1')||'null');return ['julu','qinghe'].includes(transfer?.fromLevelId)?transfer.fromLevelId:'qinghe'}catch{return'qinghe'}})();
+  window.JIEQIAO_PRE_BATTLE_STORY = [
+    jieqiaoRoute==='julu'
+      ? L('tent','袁绍军营','麴义','主公，巨鹿的张郃军被刘备击破了。刘备军正向界桥赶来。')
+      : L('tent','袁绍军营','张郃','主公，清河的麴义军被刘备击破了。刘备军正向界桥赶来。'),
+    L('tent','袁绍军营','袁绍','刘备竟敢接连坏我大事！传令各部在界桥列阵，我要在这里彻底击溃公孙瓒。'),
+    L('world','界桥近郊','关羽','大哥，前面就是袁绍的主力。'),
+    L('world','界桥近郊','张飞','正好！俺早想会会河北那些名将。'),
+    L('world','界桥近郊','刘备','伯圭兄正在苦战。众将不可恋战，先与友军会合。'),
+    L('world','进军界桥','关羽','大哥，到界桥了，请列队。')
+  ];
+
   window.NPC_DIALOGUE_BY_LEVEL = {
     'sishui-pass': window.PRE_BATTLE_NPC_DIALOGUE,
     'guangchuan': {
@@ -205,6 +219,7 @@
     'guangchuan': window.GUANGCHUAN_PRE_BATTLE_STORY,
     'xindu': window.XINDU_PRE_BATTLE_STORY,
     'julu': window.JULU_PRE_BATTLE_STORY,
-    'qinghe': window.QINGHE_PRE_BATTLE_STORY
+    'qinghe': window.QINGHE_PRE_BATTLE_STORY,
+    'jieqiao': window.JIEQIAO_PRE_BATTLE_STORY
   };
 })();

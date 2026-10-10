@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
-  <link rel="stylesheet" href="style.css?build=20261009-movement-sfx-v96" />
+  <link rel="stylesheet" href="style.css?build=20261010-jieqiao-v97" />
 </head>
 <body>
   <section id="titleScreen" class="title-screen intro-playing" aria-label="游戏开始画面">
@@ -245,7 +245,7 @@
         <button class="level-choice xindu" data-select-level="4" type="button"><span>第三战B · 信都路线</span><strong>信都之战</strong><em>救援信都 · 张飞阵前单挑</em><small>选关均衡：前排 Lv.5</small></button>
         <button class="level-choice julu" data-select-level="5" type="button"><span>第四战A · 巨鹿路线</span><strong>巨鹿之战</strong><em>突破张郃防线 · 张飞阵前单挑</em><small>选关均衡：前排 Lv.7</small></button>
         <button class="level-choice qinghe" data-select-level="6" type="button"><span>第四战B · 清河路线</span><strong>清河之战</strong><em>突破麴义防线 · 关羽阵前单挑</em><small>选关均衡：前排 Lv.6</small></button>
-        <button class="level-choice jieqiao unavailable" type="button" disabled><span>第五战 · 路线汇合</span><strong>界桥之战</strong><em>巨鹿、清河两线汇合</em><small>完成后开放</small></button>
+        <button class="level-choice jieqiao" data-select-level="7" type="button"><span>第五战 · 路线汇合</span><strong>界桥之战</strong><em>救援公孙瓒 · 张飞阵前单挑</em><small>选关均衡：前排 Lv.9</small></button>
       </div>
       <p>选择后从该关剧情起点开始，并使用适合该关、能够取胜但不会碾压的均衡等级；远程与辅助通常比前排低1级。连续通关和读档仍继承实际等级，不套用选关等级。第三战与第四战分别为A/B平行路线，第五战在界桥汇合。</p>
     </section>
@@ -260,6 +260,7 @@
         <button type="button" data-leaderboard-level="xindu">信都</button>
         <button type="button" data-leaderboard-level="julu">巨鹿</button>
         <button type="button" data-leaderboard-level="qinghe">清河</button>
+        <button type="button" data-leaderboard-level="jieqiao">界桥</button>
       </nav>
       <div class="leaderboard-head"><span>名次</span><span>玩家</span><span>评分</span><span>评级</span><span>时间</span><span>回合</span><span>损失</span></div>
       <div id="leaderboardRows" class="leaderboard-rows"></div>
@@ -287,9 +288,10 @@
   <script src="level-03-xindu.js?build=20261009-xindu-dry-spawn-v95"></script>
   <script src="level-04-julu.js?build=20261004-julu-duel-continuation-v72"></script>
   <script src="level-04-qinghe.js?build=20261007-named-general-style-v90"></script>
-  <script src="story-data.js?build=20261007-named-general-style-v90"></script>
+  <script src="level-05-jieqiao.js?build=20261010-jieqiao-v97"></script>
+  <script src="story-data.js?build=20261010-jieqiao-v97"></script>
   <script src="battle-view.js?build=20261003-hulao-grid-fix-v53"></script>
-  <script src="leaderboard.js?build=20261007-named-general-style-v90"></script>
-  <script src="game.js?build=20261009-movement-sfx-v96"></script>
+  <script src="leaderboard.js?build=20261010-jieqiao-v97"></script>
+  <script src="game.js?build=20261010-jieqiao-v97"></script>
 </body>
 </html>
