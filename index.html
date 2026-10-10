@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
-  <link rel="stylesheet" href="style.css?build=20261010-jieqiao-granary-v103" />
+  <link rel="stylesheet" href="style.css?build=20261010-treasure-inventory-v104" />
 </head>
 <body>
   <section id="titleScreen" class="title-screen intro-playing" aria-label="游戏开始画面">
@@ -165,7 +165,7 @@
           <div class="morale-row"><span>士气</span><div><i id="moraleBar"></i></div><b id="moraleText">100 / 100</b></div>
           <div class="exp-row"><span>经验</span><div><i id="expBar"></i></div><b id="expText">0 / 100</b></div>
           <div class="sp-row"><span>策略</span><div><i id="spBar"></i></div><b id="spText">0 / 0</b></div>
-          <div class="equipment-row"><span>宝物</span><b id="equipmentText">无宝物</b><em id="fundsText">金 500</em></div>
+          <div class="equipment-row"><span>装备／宝物</span><b id="equipmentText">无装备</b><em id="fundsText">金 500</em></div>
           <div id="passiveSkill" class="passive-skill hidden"><b id="passiveSkillName">被动 · 仁德号令</b><span id="passiveSkillText">相邻友方单位所有属性增加10%</span></div>
           <div class="stats">
             <div><span>攻击</span><b id="atkStat">32</b></div>
@@ -189,6 +189,7 @@
             <button id="endTurnBtn" class="primary wide"><span>旗</span>结束回合</button>
           </div>
           <div id="itemMenu" class="item-menu hidden">
+            <section id="treasureItemList" class="treasure-item-list hidden" aria-label="当前武将装备与宝物"></section>
             <button data-item="bean"><b>豆</b><span>恢复200兵力</span><em id="beanCount">×0</em></button>
             <button data-item="wheat"><b>麦</b><span>恢复400兵力</span><em id="wheatCount">×0</em></button>
             <button data-item="wine"><b>酒</b><span>恢复50士气</span><em id="wineCount">×0</em></button>
@@ -289,10 +290,10 @@
   <script src="level-03-xindu.js?build=20261009-xindu-dry-spawn-v95"></script>
   <script src="level-04-julu.js?build=20261004-julu-duel-continuation-v72"></script>
   <script src="level-04-qinghe.js?build=20261007-named-general-style-v90"></script>
-  <script src="level-05-jieqiao.js?build=20261010-jieqiao-granary-v103"></script>
+  <script src="level-05-jieqiao.js?build=20261010-treasure-inventory-v104"></script>
   <script src="story-data.js?build=20261010-jieqiao-v97"></script>
   <script src="battle-view.js?build=20261003-hulao-grid-fix-v53"></script>
   <script src="leaderboard.js?build=20261010-jieqiao-v97"></script>
-  <script src="game.js?build=20261010-jieqiao-granary-v103"></script>
+  <script src="game.js?build=20261010-treasure-inventory-v104"></script>
 </body>
 </html>

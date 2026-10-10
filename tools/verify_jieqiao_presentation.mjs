@@ -7,6 +7,7 @@ import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('..',import.meta.url));
 const levelSource=fs.readFileSync(path.join(root,'level-05-jieqiao.js'),'utf8');
 const game=fs.readFileSync(path.join(root,'game.js'),'utf8');
+const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const rules=fs.readFileSync(path.join(root,'AGENTS.md'),'utf8');
 const provenance=JSON.parse(fs.readFileSync(path.join(root,'docs','original-audit','level-05-jieqiao-portraits','portrait-provenance.json'),'utf8'));
 const portraitBlock=game.match(/const portraitPaths = \{([\s\S]*?)\n  \};/)?.[1]||'';
@@ -54,6 +55,10 @@ assert.ok(game.includes("previewParams.has('portraitPreview')"),'Jieqiao portrai
 assert.ok(game.includes('function structureTileAt(sx,sy)'),'painted structures do not map clicks back to their logical tile');
 assert.ok(game.includes('function actionTileAt(sx,sy)'),'battle input does not use structure-aware tile picking');
 assert.ok(game.includes("previewParams.has('granaryAccessPreview')"),'Jieqiao granary interaction QA route is missing');
+assert.ok(html.includes('id="treasureItemList"'),'battle item menu has no equipment/treasure section');
+assert.ok(game.includes("previewParams.has('treasureInventoryPreview')"),'treasure inventory QA route is missing');
+assert.ok(game.includes("'longSpear','repeatingCrossbow'"),'long spear and repeating crossbow are not covered by treasure inventory QA');
+assert.ok(game.includes("treasures.map(id=>`<div class=\"treasure-item-row\""),'held treasures are not rendered in the battle item menu');
 
 assert.ok(rules.includes('人物编号绝对不能直接当作头像编号'),'project portrait provenance rule is missing');
 assert.ok(rules.includes('BAKDATA.R3'),'project portrait rule does not name the original identity source');
