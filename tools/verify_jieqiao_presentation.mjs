@@ -31,6 +31,8 @@ for(const route of ['julu','qinghe']){
   // mountain, river, fence or any other impassable terrain.
   const start=level.units.find(unit=>unit.id==='liu');
   const goal=level.alternateVictory;
+  assert.equal(level.terrain[goal.y][goal.x],'supply',`${route}: alternate victory is not placed on the granary tile`);
+  assert.ok(!level.units.some(unit=>unit.side!=='reserve'&&unit.x===goal.x&&unit.y===goal.y),`${route}: a unit permanently blocks the granary objective`);
   const blocked=new Set(['hill','water','wall','cliff','gate','fence','house','fire','muddyWater']);
   const queue=[[start.x,start.y]],seen=new Set([`${start.x},${start.y}`]);
   while(queue.length){
@@ -49,6 +51,9 @@ assert.ok(game.includes('attackProgress!==null&&attackNative!==staticNative?-fli
 assert.ok(game.includes('function portraitForUnit(u)'),'named portrait fallback is not wired');
 assert.ok(game.includes("previewParams.has('zhaoyunDuelPreview')"),'Zhao Yun duel QA route is missing');
 assert.ok(game.includes("previewParams.has('portraitPreview')"),'Jieqiao portrait QA route is missing');
+assert.ok(game.includes('function structureTileAt(sx,sy)'),'painted structures do not map clicks back to their logical tile');
+assert.ok(game.includes('function actionTileAt(sx,sy)'),'battle input does not use structure-aware tile picking');
+assert.ok(game.includes("previewParams.has('granaryAccessPreview')"),'Jieqiao granary interaction QA route is missing');
 
 assert.ok(rules.includes('人物编号绝对不能直接当作头像编号'),'project portrait provenance rule is missing');
 assert.ok(rules.includes('BAKDATA.R3'),'project portrait rule does not name the original identity source');
