@@ -177,6 +177,8 @@ node tools/verify_level06_beihai.mjs
 
 ## 12. 接下来做什么
 
+Cloudflare 的 `wrangler.jsonc` 已声明自动构建命令，执行 `npx wrangler deploy` 会先生成并校验 `dist`，不再依赖控制台填写独立构建步骤。在线部署结果仍需单独确认。
+
 以 [TODO.md](../TODO.md) 为具体待办：仓库/素材清理；每玩家独立进度与云存档；大陆网页托管验证；其他玩家成绩滚动展示；Web/PWA/封装 App 的路线比较。先保证已有内容稳定，不因重构丢剧情、关卡或存档兼容。
 
 给 Copilot 开始一项任务时可直接说：

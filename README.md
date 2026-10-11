@@ -51,6 +51,7 @@ Cloudflare 项目连接本仓库的 `main`，仓库根目录保持默认，设�
 | 部署命令 | `npx wrangler deploy` |
 
 上表命令用于 Cloudflare Linux 构建环境。本机 Windows 检查：
+根目录 Wrangler 配置也声明了相同的 `build.command`，因此仅执行 `npx wrangler deploy` 时会自动先打包，再上传 `dist`；控制台没有填写独立构建命令也可部署。若同时配置两处构建命令，会执行两次相同的打包检查。
 
 ```powershell
 git lfs pull

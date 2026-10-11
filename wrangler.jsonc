@@ -1,6 +1,9 @@
 {
   "name": "sanguo",
   "compatibility_date": "2026-10-11",
+  "build": {
+    "command": "node tools/build-cloudflare.mjs"
+  },
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page"
