@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261011-beihai-v108';
+  const RUNTIME_BUILD='20261011-early-story-roam-v109';
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
   const levelIndex=bootParams.get('level');
@@ -234,7 +234,11 @@
     武官:storyActorRoot+'officer-walk-sheet-v4.webp',道具屋:storyActorRoot+'shopkeeper-walk-sheet-v4.webp',
     少女:storyActorRoot+'maiden-walk-sheet-v4.webp',夫人:storyActorRoot+'lady-walk-sheet-v4.webp',
     简雍:storyActorRoot+'officer-walk-sheet-v4.webp',逢纪:storyActorRoot+'officer-walk-sheet-v4.webp',韩英:storyActorRoot+'officer-walk-sheet-v4.webp',郭适:storyActorRoot+'officer-walk-sheet-v4.webp',使者:storyActorRoot+'officer-walk-sheet-v4.webp',
-    淳于琼:storyActorRoot+'officer-walk-sheet-v4.webp',藩宫:storyActorRoot+'officer-walk-sheet-v4.webp'
+    淳于琼:storyActorRoot+'officer-walk-sheet-v4.webp',藩宫:storyActorRoot+'officer-walk-sheet-v4.webp',
+    张郃:'assets/level-05-jieqiao/core-animation/zhanghe/zhanghe-walk-v1.webp',
+    颜良:'assets/level-05-jieqiao/core-animation/yanliang/yanliang-walk-v1.webp',
+    麴义:'assets/level-05-jieqiao/core-animation/quyi/quyi-walk-v1.webp',
+    公孙越:storyActorRoot+'gongsun-zan-walk-sheet-v4.webp',严纲:storyActorRoot+'gongsun-zan-walk-sheet-v4.webp'
   };
   const storyWorldActorAssets={
     华雄:'assets/story-actors/world-v1/hua-xiong-march-sheet-v1.webp',

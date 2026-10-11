@@ -59,9 +59,12 @@ const assets=[
 let runtimeBytes=0;for(const asset of assets){const size=fs.statSync(path.join(root,asset)).size;assert.ok(size>1000,`missing ${asset}`);runtimeBytes+=size}
 assert.ok(runtimeBytes<3*1024*1024,`Qinghe core art exceeds budget: ${runtimeBytes}`);
 
-const story=context.window.QINGHE_PRE_BATTLE_STORY;assert.equal(story.length,7);
-assert.ok(story.every(line=>!line.freeRoam&&!line.setup&&!line.route),'Qinghe story must use backgrounds and portraits without new roaming scenes');
-assert.equal(story[5].text,'明白了，那么去清河吧。');assert.equal(story[6].text,'好像是敌人，列队。');
+const story=context.window.QINGHE_PRE_BATTLE_STORY;assert.equal(story.length,8);
+assert.equal(story[5].freeRoam,true,'Qinghe route resume must restore the council roam');
+for(const name of ['刘备','关羽','张飞','简雍','公孙瓒'])assert.ok(story[5].setup.some(actor=>actor.name===name),`Qinghe roam missing ${name}`);
+assert.equal(story[6].text,'明白了，那么去清河吧。');assert.equal(story[7].text,'好像是敌人，列队。');
+assert.ok(story.filter(line=>line.move||line.thenMove||line.route).length>=4,'Qinghe story actors must visibly walk between beats');
+assert.ok(context.window.NPC_DIALOGUE_BY_LEVEL.qinghe?.关羽?.length,'Qinghe free roam needs a Guan Yu departure interaction');
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8'),game=fs.readFileSync(path.join(root,'game.js'),'utf8');
 assert.ok(html.includes('data-select-level="6"'));assert.ok(html.includes('data-leaderboard-level="qinghe"'));
 assert.ok(game.includes("levelIndex==='6' ? window.LEVEL_04_QINGHE"));

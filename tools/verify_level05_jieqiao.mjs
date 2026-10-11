@@ -36,7 +36,10 @@ for(const route of ['julu','qinghe']){
   assert.equal(level.events.loot['8,21'].item,'fireScroll');
   assert.equal(level.events.loot['29,1'].treasureId,'repeatingCrossbow');
   assert.equal(level.intro.length,9);assert.equal(level.intro[0].speaker,'赵云');assert.equal(level.intro[5].speaker,'沮授');
-  assert.equal(story.length,5);assert.equal(story.at(-1).text,'大哥，到界桥了，请列队。');
+  assert.equal(story.length,6);assert.equal(story.at(-1).text,'大哥，到界桥了，请列队。');
+  const roam=story.find(line=>line.freeRoam);assert.ok(roam,`${route}: Jieqiao must restore pre-battle free conversation`);
+  for(const name of ['刘备','关羽','张飞','简雍'])assert.ok(roam.setup.some(actor=>actor.name===name),`${route}: Jieqiao roam missing ${name}`);
+  assert.ok(story.filter(line=>line.move||line.thenMove||line.route).length>=4,`${route}: Jieqiao story actors must visibly march`);
   assert.ok(!level.events.postVictory.some(line=>line.text.includes('正式与刘备')),'赵云不得在界桥后被错误写成立即入队');
   for(const unit of level.units.filter(unit=>unit.originalId<256))assert.ok(unit.defeatQuote,`${route}: named unit lacks defeat quote: ${unit.name}`);
   const front=new Map(level.areaEvents[0].aiUpdates.map(update=>[update.unitId,update]));
@@ -53,6 +56,12 @@ for(const route of ['julu','qinghe']){
     assert.equal(front.get('zhanghe').aiTarget,P(13,23));assert.deepEqual([...pursuit].sort(),['jiaochu','shenpei','tianfeng','yanliang','yuanshao','zhanghe'].sort());
     assert.equal(story[0].speaker,'张郃');assert.equal(story[1].speaker,'公孙越');
   }
+}
+
+{
+  const context={window:{},location:{search:''},URLSearchParams,localStorage:{getItem:()=>null}};
+  vm.createContext(context);vm.runInContext(storySource,context);
+  assert.ok(context.window.NPC_DIALOGUE_BY_LEVEL.jieqiao?.关羽?.length,'Jieqiao free roam needs a Guan Yu departure interaction');
 }
 
 const release=new URL('../assets/level-05-jieqiao/jieqiao-map-v3.webp',import.meta.url);

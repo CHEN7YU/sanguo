@@ -47,7 +47,11 @@ assert.deepEqual(rules.learnedStrategies({troop:'infantry',level:6}),['fire'],'S
 const assets=['assets/level-04-julu/julu-map-aligned-v3.webp','assets/level-04-julu/fort-v1.webp','assets/level-04-julu/portraits/zhang-he-v1.webp','assets/level-04-julu/portraits/yan-liang-v1.webp','assets/level-04-julu/portraits/gao-lan-v1.webp','assets/level-04-julu/portraits/shen-pei-v1.webp','assets/level-04-julu/portraits/gongsun-yue-v1.webp','assets/level-04-julu/portraits/guan-chun-v1.webp','assets/level-04-julu/portraits/geng-wu-v1.webp','assets/level-04-julu/portraits/yu-ze-v1.webp'];
 let runtimeBytes=0;for(const asset of assets){const size=fs.statSync(path.join(root,asset)).size;assert.ok(size>1000,`missing ${asset}`);runtimeBytes+=size}assert.ok(runtimeBytes<6*1024*1024,`Julu core art exceeds normal-level budget: ${runtimeBytes}`);
 
-const story=context.window.JULU_PRE_BATTLE_STORY;assert.equal(story.length,9);assert.ok(story.every(line=>!line.freeRoam&&!line.setup&&!line.route),'Julu story must use remastered backgrounds and portraits without roaming sprites');
+const story=context.window.JULU_PRE_BATTLE_STORY;assert.equal(story.length,10);
+const roam=story.find(line=>line.freeRoam);assert.ok(roam,'Julu must restore its early-chapter council roam');
+for(const name of ['刘备','关羽','张飞','简雍','公孙瓒'])assert.ok(roam.setup.some(actor=>actor.name===name),`Julu roam missing ${name}`);
+assert.ok(story.filter(line=>line.move||line.thenMove||line.route).length>=4,'Julu story actors must visibly walk between beats');
+assert.ok(context.window.NPC_DIALOGUE_BY_LEVEL.julu?.关羽?.length,'Julu free roam needs a Guan Yu departure interaction');
 for(const speaker of ['公孙瓒','刘备','关羽','张飞','颜良','张郃'])assert.ok(story.some(line=>line.speaker===speaker)||speaker==='刘备',`missing Julu story speaker ${speaker}`);
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8'),game=fs.readFileSync(path.join(root,'game.js'),'utf8');
 assert.ok(html.includes('data-select-level="5"'));assert.ok(html.includes('第四战A · 巨鹿路线'));assert.ok(html.includes('第四战B · 清河路线'));assert.ok(html.includes('第五战 · 路线汇合'));
@@ -60,4 +64,4 @@ assert.ok(game.includes('const duelEndsBattle=script.endsBattle??(h.id===objecti
 assert.ok(game.includes("status(`${h.name}败退，继续击退${units.find(u=>u.id===objectiveUnitId)?.name||'敌军主将'}`)"),'non-objective duel must return to the battle with the real objective still active');
 for(const id of ['zhanghe','yanliang','gaolan','shenpei','gongsunyue','guanchun','gengwu','yuze'])assert.ok(game.includes(`${id}:'assets/level-04-julu/portraits/`),`missing portrait binding ${id}`);
 
-console.log(`Julu verification passed: exact 18x18 original terrain, deployment, turn-three ambush/reinforcements, duel, alternate victory, static story presentation and ${(runtimeBytes/1024/1024).toFixed(2)} MiB core art.`);
+console.log(`Julu verification passed: exact 18x18 original terrain, deployment, turn-three ambush/reinforcements, duel, alternate victory, restored story roaming and ${(runtimeBytes/1024/1024).toFixed(2)} MiB core art.`);
