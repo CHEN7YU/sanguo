@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
-  <link rel="stylesheet" href="style.css?build=20261011-title-champions-v110" />
+  <link rel="stylesheet" href="style.css?build=20261011-xuzhou-complete-v112" />
 </head>
 <body>
   <section id="titleScreen" class="title-screen intro-playing" aria-label="游戏开始画面">
@@ -76,6 +76,7 @@
     <nav id="storyRouteChoices" class="story-route-choices hidden" aria-label="选择进军路线">
       <button type="button" data-story-route="3"><b>第三战A · 广川路线</b><span>路程较短，迎战逢纪</span></button>
       <button type="button" data-story-route="4"><b>第三战B · 信都路线</b><span>驰援信都，迎战淳于琼</span></button>
+      <button type="button" data-story-route="" class="hidden"><b>继续交谈</b><span></span></button>
     </nav>
   </section>
   <main id="app">
@@ -158,6 +159,10 @@
             </div>
             <small id="scoreUploadStatus" class="score-upload-status">输入昵称后上传本关最高成绩</small>
           </section>
+          <nav id="xuzhouPostBattleChoices" class="post-battle-choices hidden" aria-label="徐州战后选择">
+            <button type="button" data-xuzhou-branch="fight"><b>正面迎战曹操</b><span>整军守卫徐州，准备下一场大战</span></button>
+            <button type="button" data-xuzhou-branch="negotiate"><b>派张飞前往议和</b><span>由张飞出使曹营，进入议和分支</span></button>
+          </nav>
           <button id="restartBtn">重新挑战</button>
         </div>
       </div>
@@ -256,6 +261,7 @@
         <button class="level-choice qinghe" data-select-level="6" type="button"><span>第四战B · 清河路线</span><strong>清河之战</strong><em>突破麴义防线 · 关羽阵前单挑</em><small>选关均衡：前排 Lv.6</small></button>
         <button class="level-choice jieqiao" data-select-level="7" type="button"><span>第五战 · 路线汇合</span><strong>界桥之战</strong><em>救援公孙瓒 · 张飞阵前单挑</em><small>选关均衡：前排 Lv.9</small></button>
         <button class="level-choice beihai" data-select-level="8" type="button"><span>第六战</span><strong>北海之战</strong><em>解北海之围 · 赵云阵斩管亥</em><small>选关均衡：前排 Lv.7</small></button>
+        <button class="level-choice xuzhou" data-select-level="9" type="button"><span>第七战</span><strong>徐州之战</strong><em>驰援徐州 · 关羽阵前单挑于禁</em><small>选关均衡：前排 Lv.11</small></button>
       </div>
       <p>选择后从该关剧情起点开始，并使用适合该关、能够取胜但不会碾压的均衡等级；远程与辅助通常比前排低1级。连续通关和读档仍继承实际等级，不套用选关等级。第三战与第四战分别为A/B平行路线，第五战在界桥汇合。</p>
     </section>
@@ -272,6 +278,7 @@
         <button type="button" data-leaderboard-level="qinghe">清河</button>
         <button type="button" data-leaderboard-level="jieqiao">界桥</button>
         <button type="button" data-leaderboard-level="beihai">北海</button>
+        <button type="button" data-leaderboard-level="xuzhou">徐州</button>
       </nav>
       <div class="leaderboard-head"><span>名次</span><span>玩家</span><span>评分</span><span>评级</span><span>时间</span><span>回合</span><span>损失</span></div>
       <div id="leaderboardRows" class="leaderboard-rows"></div>
@@ -304,10 +311,12 @@
   <script src="level-04-qinghe.js?build=20261007-named-general-style-v90"></script>
   <script src="level-05-jieqiao.js?build=20261011-beihai-v108"></script>
   <script src="level-06-beihai.js?build=20261011-beihai-v108"></script>
+  <script src="level-07-xuzhou.js?build=20261011-xuzhou-complete-v112"></script>
   <script src="beihai-animation-bounds.js?build=20261011-beihai-v108"></script>
-  <script src="story-data.js?build=20261011-early-story-roam-v109"></script>
+  <script src="level-07-xuzhou-animation-bounds.js?build=20261011-xuzhou-complete-v112"></script>
+  <script src="story-data.js?build=20261011-xuzhou-complete-v112"></script>
   <script src="battle-view.js?build=20261003-hulao-grid-fix-v53"></script>
-  <script src="leaderboard.js?build=20261011-title-champions-v110"></script>
-  <script src="game.js?build=20261011-title-champions-v110"></script>
+  <script src="leaderboard.js?build=20261011-xuzhou-complete-v112"></script>
+  <script src="game.js?build=20261011-xuzhou-complete-v112"></script>
 </body>
 </html>

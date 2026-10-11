@@ -17,6 +17,7 @@ const levelRules = {
   qinghe: { name: "清河之战", targetSeconds: 840, targetTurns: 15, maxTurns: 30 },
   jieqiao: { name: "界桥之战", targetSeconds: 1200, targetTurns: 22, maxTurns: 40 },
   beihai: { name: "北海之战", targetSeconds: 900, targetTurns: 16, maxTurns: 30 },
+  xuzhou: { name: "徐州之战", targetSeconds: 1080, targetTurns: 18, maxTurns: 30 },
 } as const;
 
 type LevelId = keyof typeof levelRules;

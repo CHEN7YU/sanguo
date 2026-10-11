@@ -230,6 +230,31 @@
     L('world','北海城外','刘备','先解北海之围，再赴徐州。诸位，列阵迎敌！')
   ];
 
+  // SNR1D.R3 chapter 1, page 1 paragraph 4.  From Beihai settlement to the
+  // Xuzhou deployment.  Per the remaster presentation rule, this sequence
+  // uses painted backgrounds, portraits and dialogue instead of free-roam
+  // scene actors.
+  window.XUZHOU_PRE_BATTLE_STORY = [
+    L('palace','北海议事厅','太史慈','主公，我把刘备请出来了。',{chapter:'第一章 · 支援北海、徐州'}),
+    L('palace','北海议事厅','孔融','刘备，多亏你解了北海之围。此番大恩，北海百姓不会忘记。'),
+    L('palace','北海议事厅','军报','孔融赠予刘备军黄金500。'),
+    L('palace','北海议事厅','张飞','大哥，再不赶路就要误事啦。'),
+    L('palace','北海议事厅 · 自由交谈','提示','请选择交谈对象；也可以直接找关羽确认出征。',{conversationChoices:[
+      {title:'与孔融交谈',description:'听取孔融对徐州局势的嘱托',target:5},
+      {title:'与太史慈交谈',description:'询问北海义士的打算',target:6},
+      {title:'与关羽交谈',description:'确认整备并立即南下徐州',target:7}
+    ]}),
+    L('palace','北海议事厅 · 交谈','孔融','努力啊。徐州百姓也正盼着援军。'),
+    L('palace','北海议事厅 · 交谈','太史慈','谢谢你，有刘备支援，徐州就万无一失了。'),
+    L('palace','北海议事厅 · 出征确认','关羽','准备好了吗？'),
+    L('palace','北海议事厅 · 出征确认','刘备','军需已经整备妥当。即刻南下徐州。'),
+    L('world','北海至徐州','糜竺','快去徐州吧。'),
+    L('world','北海至徐州','糜竺','刘备，徐州在北海的南面，快去吧。'),
+    L('world','徐州近郊','史官','刘备军昼夜兼程，终于在曹操军合围之前抵达徐州外围。'),
+    L('world','徐州近郊','关羽','兄长，曹军已分布在城外各处。我们可击退敌军，也可设法直接进入徐州城。'),
+    L('world','进军徐州','刘备','先与陶谦大人会合。全军列阵，进军！')
+  ];
+
   window.NPC_DIALOGUE_BY_LEVEL = {
     'sishui-pass': window.PRE_BATTLE_NPC_DIALOGUE,
     'guangchuan': {
@@ -260,6 +285,11 @@
       '张飞':['大哥，袁绍主力就在前面，这一仗俺也去打头阵！'],
       '简雍':['界桥敌军众多，先确认粮仓和宝物库的位置再进军。'],
       '关羽':['兄长，全军已经集结。','进军界桥！']
+    },
+    'xuzhou': {
+      '孔融':['努力啊。徐州百姓也正盼着援军。'],
+      '太史慈':['谢谢你，有刘备支援，徐州就万无一失了。'],
+      '关羽':['准备好了吗？','进军徐州！']
     }
   };
 
@@ -271,6 +301,7 @@
     'julu': window.JULU_PRE_BATTLE_STORY,
     'qinghe': window.QINGHE_PRE_BATTLE_STORY,
     'jieqiao': window.JIEQIAO_PRE_BATTLE_STORY,
-    'beihai': window.BEIHAI_PRE_BATTLE_STORY
+    'beihai': window.BEIHAI_PRE_BATTLE_STORY,
+    'xuzhou': window.XUZHOU_PRE_BATTLE_STORY
   };
 })();

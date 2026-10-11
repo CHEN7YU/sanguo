@@ -1,0 +1,76 @@
+{
+  "source": "BAKDATA.R3 character record byte 14 -> FACEDAT.R3 portrait record",
+  "formula": "0x1100 + characterId * 21, face id at +14",
+  "portraits": [
+    {
+      "name": "于禁",
+      "characterId": 62,
+      "faceId": 39,
+      "slug": "yu-jin",
+      "reference": "docs/original-audit/level-07-xuzhou-portraits/yu-jin-face-039.png"
+    },
+    {
+      "name": "乐进",
+      "characterId": 217,
+      "faceId": 40,
+      "slug": "yue-jin",
+      "reference": "docs/original-audit/level-07-xuzhou-portraits/yue-jin-face-040.png"
+    },
+    {
+      "name": "李典",
+      "characterId": 115,
+      "faceId": 41,
+      "slug": "li-dian",
+      "reference": "docs/original-audit/level-07-xuzhou-portraits/li-dian-face-041.png"
+    },
+    {
+      "name": "郭嘉",
+      "characterId": 61,
+      "faceId": 34,
+      "slug": "guo-jia",
+      "reference": "docs/original-audit/level-07-xuzhou-portraits/guo-jia-face-034.png"
+    },
+    {
+      "name": "曹洪",
+      "characterId": 19,
+      "faceId": 31,
+      "slug": "cao-hong",
+      "reference": "docs/original-audit/level-07-xuzhou-portraits/cao-hong-face-031.png"
+    },
+    {
+      "name": "夏侯渊",
+      "characterId": 17,
+      "faceId": 29,
+      "slug": "xiahou-yuan",
+      "reference": "docs/original-audit/level-07-xuzhou-portraits/xiahou-yuan-face-029.png"
+    },
+    {
+      "name": "陶谦",
+      "characterId": 15,
+      "faceId": 189,
+      "slug": "tao-qian",
+      "reference": "docs/original-audit/level-07-xuzhou-portraits/tao-qian-face-189.png"
+    },
+    {
+      "name": "糜芳",
+      "characterId": 81,
+      "faceId": 14,
+      "slug": "mi-fang",
+      "reference": "docs/original-audit/level-07-xuzhou-portraits/mi-fang-face-014.png"
+    },
+    {
+      "name": "孙乾",
+      "characterId": 63,
+      "faceId": 12,
+      "slug": "sun-qian",
+      "reference": "docs/original-audit/level-07-xuzhou-portraits/sun-qian-face-012.png"
+    },
+    {
+      "name": "太史慈",
+      "characterId": 149,
+      "faceId": 85,
+      "slug": "taishi-ci",
+      "reference": "docs/original-audit/level-07-xuzhou-portraits/taishi-ci-face-085.png"
+    }
+  ]
+}

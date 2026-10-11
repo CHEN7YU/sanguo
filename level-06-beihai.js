@@ -49,7 +49,7 @@
     id:'beihai',chapter:'第一章 · 支援北海、徐州',name:'北海之战',width,height,terrain,terrainCodes,
     source:'用户原游戏 HEXZMAP.R3 section 7 / SNR1D.R3 page 1 paragraphs 0–3 / BAKDATA.R3',maxTurns:30,
     objective:'击退管亥',defeat:'刘备撤退或超过30回合',objectiveUnitId:'guanhai',originalRules:true,squareGrid:true,structuresBakedIntoArt:true,
-    viewProjection:{x:1/48,y:1/40,dx:1/24,dy:1/20,rowShift:Array(20).fill(0)},battlefieldArt:'assets/level-06-beihai/beihai-map-v1.webp',nextBattle:'第七战 · 徐州之战',
+    viewProjection:{x:1/48,y:1/40,dx:1/24,dy:1/20,rowShift:Array(20).fill(0)},battlefieldArt:'assets/level-06-beihai/beihai-map-v1.webp',nextLevelId:'xuzhou',nextBattle:'第七战 · 徐州之战',
     intro:[{speaker:'管亥',text:'哈哈哈．这个城就等于到手了．混蛋们，把城里的金银财宝统统给我拿来．'}],
     areaEvents:[
       {id:'beihai-open-gate',rect:{x1:7,y1:9,x2:19,y2:14},dialogue:[{speaker:'太史慈',text:'主公，不知道来的是什么人，但我们现在应该杀出去配合他们．'},{speaker:'军报',text:'城门打开，孔融军杀了出去！'}],terrainUpdates:[{x:2,y:2,type:'plain'}],aiUpdates:[{unitId:'kongrong',aiType:1},{unitId:'taishici',aiType:1},{unitId:'mengsu',aiType:1}],log:'北海城门打开，孔融军开始主动出击'},

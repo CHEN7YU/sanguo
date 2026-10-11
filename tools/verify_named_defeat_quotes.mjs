@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 
 const root=fileURLToPath(new URL('..',import.meta.url));
 const fail=message=>{throw new Error(message)};
-const levelFiles=fs.readdirSync(root).filter(name=>/^level-(01|02|03|04|05|06).*\.js$/.test(name)&&!name.includes('animation-bounds'));
+const levelFiles=fs.readdirSync(root).filter(name=>/^level-(01|02|03|04|05|06|07).*\.js$/.test(name)&&!name.includes('animation-bounds'));
 let namedCount=0;
 for(const file of levelFiles){
   const sandbox={window:{},location:{search:''},localStorage:{getItem:()=>null},URLSearchParams};
@@ -21,8 +21,8 @@ for(const file of levelFiles){
 const game=fs.readFileSync(path.join(root,'game.js'),'utf8');
 for(const expected of [
   'await playDefeatQuote(target);if(target.id===objectiveUnitId)',
-  'await playDefeatQuote(t);if(t.id===objectiveUnitId)',
-  'await playDefeatQuote(a);if(a.id===objectiveUnitId)',
+  'await playDefeatQuote(t);if(checkEnemyForceVictory(t))',
+  'await playDefeatQuote(a);if(checkEnemyForceVictory(a))',
   'unit.defeatQuotePlayed=true'
 ])if(!game.includes(expected))fail(`defeat dialogue ordering regression: ${expected}`);
 if(!game.includes("previewParams.has('defeatQuotePreview')"))fail('defeat quote browser preview is missing');
