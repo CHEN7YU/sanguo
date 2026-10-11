@@ -7,6 +7,7 @@ const checks = [
   ["duelNativeFacing[duelVisualKeyFor(u)]", 'duel facing must not fall back to the character id'],
   ["duelFacingScale(g,'right')", 'the left-side attacker must face right during exchanges'],
   ["duelFacingScale(h,'left')", 'the right-side defender must face left during exchanges'],
+  ["yujin:'left',yuejin:'left',lidian:'left',guojia:'left',caohong:'left',xiahouyuan:'left'", 'Xuzhou action sheets must keep their authored left-facing direction'],
   ["duelFacingScale(lvbu,ms>=8400?'right':'left')", 'Lu Bu may face right only after his retreat begins']
 ];
 
@@ -22,6 +23,7 @@ const duelFiles = [
   ['level-04-julu.js', "attackerId:'zhang',defenderId:'yanliang'"]
   ,['level-05-jieqiao.js', "attackerId:'zhang',defenderId:'wenchou'"]
   ,['level-06-beihai.js', "attackerId:'zhaoyun',defenderId:'guanhai'"]
+  ,['level-07-xuzhou.js', "attackerId:'guan',defenderId:'yujin'"]
 ];
 
 for (const [file, duel] of duelFiles) {
@@ -29,4 +31,4 @@ for (const [file, duel] of duelFiles) {
   if (!source.includes(duel)) throw new Error(`${file} duel roster changed; re-audit its facing`);
 }
 
-console.log('Duel facing verified for Sishui, Hulao, Guangchuan, Xindu, Julu, Jieqiao and Beihai.');
+console.log('Duel facing verified for Sishui, Hulao, Guangchuan, Xindu, Julu, Jieqiao, Beihai and Xuzhou.');

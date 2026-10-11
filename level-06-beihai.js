@@ -18,6 +18,28 @@
   const U=data=>Object.assign(data,stats(data.troop,data.level,data.wuli,data.zhili,data.tongyu));
   const E=(id,originalId,name,role,troop,level,x,y,wuli,zhili,tongyu,extra={})=>U({id,originalId,name,role,className:{infantry:'短兵',archer:'弓兵',cavalry:'轻骑兵',bandit:'山贼',beast:'猛兽兵团'}[troop],troop,level,side:'enemy',x,y,wuli,zhili,tongyu,aiType:0,range:troop==='archer'?2:undefined,weapon:troop==='archer'?'角弓':troop==='beast'?'驭兽鞭':'环首刀',color:'#9e443f',accent:'#d0ad5d',...extra});
   const P=(x,y)=>x|(y<<8);
+  // The remastered background widened and shifted several bends of the
+  // original river.  Keep the decoded original grid in `terrain`, then apply
+  // these runtime-only overrides so every visibly wet square is impassable
+  // and both painted bridges remain the only legal crossings.
+  const paintedWater=[
+    [12,0],[12,1],
+    [0,2],[1,2],[3,2],[4,2],[5,2],[6,2],[7,2],[8,2],[9,2],[10,2],[11,2],[12,2],[13,2],
+    [0,3],[1,3],[3,3],[4,3],[5,3],[6,3],[7,3],[8,3],[9,3],[10,3],[11,3],[12,3],[13,3],[14,3],
+    [13,4],[14,4],[15,4],[14,5],[15,5],[16,5],[17,5],[18,5],[19,5],
+    [18,6],[19,6],[20,6],[20,7],[20,8],[21,11],[22,11],[22,12],[23,12],[23,13],[23,14]
+  ];
+  const paintedBridges=[[2,3],[20,9],[21,9],[20,10],[21,10]];
+  const paintedGround=[
+    [12,4,'grass'],[13,5,'grass'],[13,6,'grass'],[14,6,'forest'],[15,6,'forest'],[16,6,'forest'],[17,6,'forest'],
+    [15,7,'forest'],[16,7,'forest'],[17,7,'forest'],[18,7,'forest'],[17,8,'forest'],[18,8,'forest'],
+    [18,9,'forest'],[19,9,'grass'],[18,10,'grass'],[19,10,'grass'],[22,10,'grass'],[23,10,'grass'],[23,11,'grass']
+  ];
+  const paintedTerrainOverrides=[
+    ...paintedGround.map(([x,y,type])=>({x,y,type})),
+    ...paintedWater.map(([x,y])=>({x,y,type:'water'})),
+    ...paintedBridges.map(([x,y])=>({x,y,type:'bridge'}))
+  ];
   const heroes=[
     U({id:'liu',originalId:0,name:'刘备',role:'平原相',className:'短兵',troop:'infantry',level:6,side:'ally',x:22,y:3,wuli:75,zhili:64,tongyu:91,critRate:.12,blockRate:.14,weapon:'佩剑',color:'#45a9cf',accent:'#e0ba59',carryover:true,defeatQuote:'北海尚未解围……我岂能倒在这里……'}),
     U({id:'guan',originalId:1,name:'关羽',role:'别部司马',className:'轻骑兵',troop:'cavalry',level:7,side:'ally',x:21,y:4,wuli:98,zhili:80,tongyu:100,critRate:.20,blockRate:.15,weapon:'青龙偃月刀',treasureItems:['qinglong'],color:'#3fa574',accent:'#cf4940',carryover:true,defeatQuote:'兄长……云长暂且退下。'}),
@@ -31,7 +53,7 @@
     U({id:'mengsu',originalId:233,name:'孟肃',role:'北海守军',className:'山贼',troop:'bandit',level:1,side:'guest',x:1,y:0,wuli:69,zhili:31,tongyu:52,aiType:2,stationary:true,critRate:.10,blockRate:.10,weapon:'环首刀',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'主公，孟肃守不住了……'})
   ];
   const enemies=[
-    E('guanhai',216,'管亥','黄巾首领','bandit',10,6,7,68,14,52,{boss:true,aiType:6,aiTarget:P(7,10),critRate:.16,blockRate:.12,weapon:'大刀',defeatQuote:'倒霉！你们再晚一点来，这个城就成我的了．'}),
+    E('guanhai',216,'管亥','黄巾首领','bandit',10,6,7,68,14,52,{boss:true,aiType:6,aiTarget:P(7,10),runtimeAiTarget:P(10,7),critRate:.16,blockRate:.12,weapon:'大刀',defeatQuote:'倒霉！你们再晚一点来，这个城就成我的了．'}),
     E('bandit1',310,'贼兵','攻城前锋','bandit',6,2,9,50,40,30,{aiType:6,aiTarget:P(9,15)}),
     E('bandit2',311,'贼兵','攻城前锋','bandit',6,3,8,50,40,30,{aiType:6,aiTarget:P(9,16)}),
     E('bandit3',312,'贼兵','攻城前锋','bandit',5,7,6,50,40,30,{aiType:6,aiTarget:P(8,10)}),
@@ -46,10 +68,10 @@
     E('beast2',333,'猛兽师','黄巾驭兽师','beast',4,6,12,70,10,40,{aiType:6,aiTarget:P(7,13)})
   ];
   window.LEVEL_06_BEIHAI={
-    id:'beihai',chapter:'第一章 · 支援北海、徐州',name:'北海之战',width,height,terrain,terrainCodes,
+    id:'beihai',chapter:'第一章 · 支援北海、徐州',name:'北海之战',width,height,terrain,terrainCodes,paintedTerrainOverrides,
     source:'用户原游戏 HEXZMAP.R3 section 7 / SNR1D.R3 page 1 paragraphs 0–3 / BAKDATA.R3',maxTurns:30,
     objective:'击退管亥',defeat:'刘备撤退或超过30回合',objectiveUnitId:'guanhai',originalRules:true,squareGrid:true,structuresBakedIntoArt:true,
-    viewProjection:{x:1/48,y:1/40,dx:1/24,dy:1/20,rowShift:Array(20).fill(0)},battlefieldArt:'assets/level-06-beihai/beihai-map-v1.webp',nextLevelId:'xuzhou',nextBattle:'第七战 · 徐州之战',
+    viewProjection:{x:1/48,y:1/40,dx:1/24,dy:1/20,rowShift:Array(20).fill(0)},battlefieldArt:'assets/level-06-beihai/beihai-map-v1.webp',battleTrack:'assets/audio/hulao-lubu-theme.mp3',nextLevelId:'xuzhou',nextBattle:'第七战 · 徐州之战',
     intro:[{speaker:'管亥',text:'哈哈哈．这个城就等于到手了．混蛋们，把城里的金银财宝统统给我拿来．'}],
     areaEvents:[
       {id:'beihai-open-gate',rect:{x1:7,y1:9,x2:19,y2:14},dialogue:[{speaker:'太史慈',text:'主公，不知道来的是什么人，但我们现在应该杀出去配合他们．'},{speaker:'军报',text:'城门打开，孔融军杀了出去！'}],terrainUpdates:[{x:2,y:2,type:'plain'}],aiUpdates:[{unitId:'kongrong',aiType:1},{unitId:'taishici',aiType:1},{unitId:'mengsu',aiType:1}],log:'北海城门打开，孔融军开始主动出击'},

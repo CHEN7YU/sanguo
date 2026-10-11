@@ -64,6 +64,15 @@
     source:'用户原游戏 HEXZMAP.R3 section 8 / SNR1D.R3 page 1 paragraph 5 / BAKDATA.R3',maxTurns:30,
     objective:'全歼曹操军，或令刘备进入徐州城',defeat:'刘备撤退或超过30回合',objectiveUnitId:'enemy-force',victoryCondition:'eliminateAllEnemies',originalRules:true,squareGrid:true,structuresBakedIntoArt:true,
     viewProjection:{x:1/60,y:1/36,dx:1/30,dy:1/18,rowShift:Array(18).fill(0)},battlefieldArt:'assets/level-07-xuzhou/xuzhou-map-v1.webp',nextBattle:'徐州战后抉择',
+    paintedTerrainOverrides:[
+      // The remastered painting moved the northern crossing and added the
+      // clearly visible central bridge. Keep the extracted source grid above
+      // intact, but make collision follow the bridge decks players can see.
+      {x:25,y:4,type:'plain'},{x:25,y:5,type:'plain'},
+      {x:27,y:3,type:'bridge'},{x:28,y:3,type:'bridge'},
+      {x:27,y:4,type:'bridge'},{x:28,y:4,type:'bridge'},
+      {x:20,y:8,type:'bridge'},{x:21,y:8,type:'bridge'}
+    ],
     alternateVictory:{unitId:'liu',rect:{x1:28,y1:10,x2:29,y2:14},exp:50,goldReward:0,label:'刘备进入徐州城',log:'刘备进入徐州城，全体残存部队获得经验50'},
     intro:[{speaker:'于禁',text:'说什么？刘备攻过来了？有多少兵？……不好。一定设法等夏侯渊的到来。'}],
     timedEvents:[{turn:5,once:'xuzhou-taishici-turn5',unitId:'taishici',musicId:12,spawns:[{unitId:'taishici',side:'guest',x:6,y:17,aiType:4}],dialogue:[{speaker:'太史慈',text:'刘备，遵孔融之命，太史慈前来助你。'},{speaker:'军报',text:'太史慈前来支援！'}]}],

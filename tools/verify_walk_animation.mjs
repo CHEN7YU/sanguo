@@ -28,5 +28,7 @@ for(const token of ["u.troop==='archer'","u.role!=='前锋'","return'infantry'"]
 for(const token of ["walkPhase:segment+p","travel=u.troop==='bandit'?p:ease","banditGait=walking&&authoredWalk&&u.troop==='bandit'"]){
   if(!game.includes(token))fail(`missing continuous bandit gait behavior: ${token}`);
 }
+if(!game.includes('const GLOBAL_MOVEMENT_SPEED=1.5'))fail('global battlefield movement must be 50% faster');
+if(!game.includes('/(animationSpeed*GLOBAL_MOVEMENT_SPEED)'))fail('all battlefield movement must apply the global speed multiplier');
 if(game.includes('walkPhase:segment+p*1.5'))fail('walk phase still jumps backwards at tile boundaries');
-console.log('Walk animation verified: authored four-direction sheets load for standard, specialist and military-band units, and bandit gait stays continuous across tile boundaries.');
+console.log('Walk animation verified: authored four-direction sheets load for all troop families, gait stays continuous, and global battlefield movement is 50% faster.');

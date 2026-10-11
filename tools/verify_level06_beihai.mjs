@@ -25,6 +25,7 @@ for(const [id,x,y] of [['liu',22,3],['guan',21,4],['zhang',20,5],['jian',22,5],[
 }
 check(byId.kongrong.aiType===2&&byId.taishici.aiType===2&&byId.mengsu.aiType===2,'North Sea defenders must begin in original AI2 wait mode');
 check(byId.guanhai.aiType===6&&byId.guanhai.aiTarget===(7|(10<<8)),'Guan Hai original AI6 destination is wrong');
+check(byId.guanhai.runtimeAiTarget===(10|(7<<8)),'Guan Hai must stop on reachable painted ground instead of entering the sealed hill pocket');
 check(level.units.filter(unit=>unit.side==='enemy').length===13,'Original enemy deployment must contain 13 units');
 check(level.units.filter(unit=>unit.troop==='beast').length===2,'Two beast trainers are required');
 
@@ -36,6 +37,32 @@ check(level.areaEvents.some(event=>event.rect.x1===5&&event.rect.y1===11&&event.
 check(level.areaEvents.some(event=>event.rect.x1===17&&event.rect.y1===13&&event.item==='moraleScroll'),'Morale scroll hidden event is missing');
 check(level.events.duel.attackerId==='zhaoyun'&&level.events.duel.defenderId==='guanhai'&&level.events.duel.endsBattle,'Original Zhao Yun vs Guan Hai duel is wrong');
 check(level.events.battleReward===300,'Original gold reward must be 300');
+check(level.battleTrack==='assets/audio/hulao-lubu-theme.mp3','Beihai must reuse the approved Hulao battle music');
+const runtimeTerrain=level.terrain.map(row=>[...row]);
+for(const update of level.paintedTerrainOverrides||[])runtimeTerrain[update.y][update.x]=update.type;
+for(const [x,y] of [[0,2],[14,3],[19,5],[20,8],[21,11],[23,14]])check(runtimeTerrain[y][x]==='water',`Painted river cell ${x},${y} must be impassable`);
+for(const [x,y] of [[2,3],[20,9],[21,9],[20,10],[21,10]])check(runtimeTerrain[y][x]==='bridge',`Painted bridge cell ${x},${y} must remain passable`);
+for(const [x,y] of [[13,6],[16,7],[18,9],[23,10]])check(runtimeTerrain[y][x]!=='water',`Painted land cell ${x},${y} must not retain stale river collision`);
+
+const cardinal=[[1,0],[-1,0],[0,1],[0,-1]];
+const reachable=(start,goal,blocked)=>{
+  const queue=[start];
+  const seen=new Set([start.join(',')]);
+  while(queue.length){
+    const [x,y]=queue.shift();
+    if(x===goal[0]&&y===goal[1])return true;
+    for(const [dx,dy] of cardinal){
+      const nx=x+dx,ny=y+dy,key=`${nx},${ny}`;
+      if(nx<0||ny<0||nx>=level.width||ny>=level.height||seen.has(key)||blocked.has(runtimeTerrain[ny][nx]))continue;
+      seen.add(key); queue.push([nx,ny]);
+    }
+  }
+  return false;
+};
+const bossRuntime=[byId.guanhai.runtimeAiTarget&0xff,byId.guanhai.runtimeAiTarget>>8];
+const ordinaryBlocked=new Set(['water','wall','hill']);
+check(reachable([byId.liu.x,byId.liu.y],bossRuntime,ordinaryBlocked),'Player infantry must be able to reach Guan Hai runtime position without crossing water, wall, or mountain');
+for(const unit of level.units)check(runtimeTerrain[unit.y][unit.x]!=='water',`${unit.id} must not deploy in painted river water`);
 
 const storyContext={window:{},location:{search:''},localStorage:{getItem:()=>null},URLSearchParams};
 loadScript('story-data.js',storyContext);
@@ -46,7 +73,7 @@ for(const required of ['曹操','糜竺','公孙瓒','赵云','管亥'])check(st
 for(const relative of [
   level.battlefieldArt,'assets/level-06-beihai/portraits/guan-hai-v1.webp','assets/level-06-beihai/portraits/kong-rong-v1.webp',
   'assets/level-06-beihai/portraits/taishi-ci-v1.webp','assets/level-06-beihai/portraits/meng-su-v1.webp',
-  'assets/level-06-beihai/animation/guan-hai/guan-hai-walk-v1.webp','assets/level-06-beihai/animation/taishi-ci/taishi-ci-attack-v1.webp',
+  'assets/level-06-beihai/animation/guan-hai/guan-hai-walk-v2.webp','assets/level-06-beihai/animation/taishi-ci/taishi-ci-attack-v2.webp',
   'assets/level-06-beihai/animation/beast/beast-death-v1.webp'
 ])check(fs.existsSync(path.join(root,relative)),`Missing Beihai asset: ${relative}`);
 
