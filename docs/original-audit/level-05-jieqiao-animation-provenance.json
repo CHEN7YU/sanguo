@@ -1,0 +1,58 @@
+{
+  "level": "05-jieqiao",
+  "purpose": "Record the retained lossless animation masters used to build the compressed web sheets.",
+  "characters": {
+    "wenchou": {
+      "releaseDirectory": "assets/level-05-jieqiao/wen-chou-animation",
+      "masters": {
+        "walk": {
+          "path": "assets-master/level-05-jieqiao/wen-chou-animation/wen-chou-walk-atlas-v1.png",
+          "sha256": "f5e8e676046320642a441513772620dca3bb2710510c2b1164521e16800cc527"
+        },
+        "combat": {
+          "path": "assets-master/level-05-jieqiao/wen-chou-animation/wen-chou-combat-atlas-v1.png",
+          "sha256": "b220056f81f4642b0ffeebcd420296df0277d41f9ec1f5e0537ff215a5f6b34c"
+        }
+      }
+    },
+    "yanliang": {
+      "releaseDirectory": "assets/level-05-jieqiao/core-animation/yanliang",
+      "masters": {
+        "walk": {
+          "path": "assets-master/level-05-jieqiao/core-animation/yanliang/yanliang-walk-atlas-v1.png",
+          "sha256": "a389dd34fc43c80273c6585eab5bb593f8ff84496068582aabe739c297bd8f4d"
+        },
+        "combat": {
+          "path": "assets-master/level-05-jieqiao/core-animation/yanliang/yanliang-combat-atlas-v1.png",
+          "sha256": "905b01938696d6e3d0bf7143ce32fcdd6699c2cc7e5064bba74b18944c43c984"
+        }
+      }
+    },
+    "zhanghe": {
+      "releaseDirectory": "assets/level-05-jieqiao/core-animation/zhanghe",
+      "masters": {
+        "walk": {
+          "path": "assets-master/level-05-jieqiao/core-animation/zhanghe/zhanghe-walk-atlas-v1.png",
+          "sha256": "7988a6ed36c5f62abc43ee168c216850f3986980735fc0c5da9ad91c6351d368"
+        },
+        "combat": {
+          "path": "assets-master/level-05-jieqiao/core-animation/zhanghe/zhanghe-combat-atlas-v1.png",
+          "sha256": "751df1bad6bf2b7071e3bec481cbded829792193edb6f7d12a72591b6688c0c3"
+        }
+      }
+    },
+    "quyi": {
+      "releaseDirectory": "assets/level-05-jieqiao/core-animation/quyi",
+      "masters": {
+        "walk": {
+          "path": "assets-master/level-05-jieqiao/core-animation/quyi/quyi-walk-atlas-v1.png",
+          "sha256": "5119ec6006135a245bbf2f983215eeb45d329ee43efb34a1c44b63fd7c7a8b8f"
+        },
+        "combat": {
+          "path": "assets-master/level-05-jieqiao/core-animation/quyi/quyi-combat-atlas-v1.png",
+          "sha256": "73ef3096a3df7cfafca1724f262e09fffb92385ca6f4f23eba32239fbece64f8"
+        }
+      }
+    }
+  }
+}

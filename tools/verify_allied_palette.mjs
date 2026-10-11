@@ -21,7 +21,7 @@ for(const token of [
   "if(u.side==='enemy')return;const s=bgRect.scale,color=u.side==='guest'?'#85dff1':'#45c9dd'",
   'drawFactionGroundMarker(u,pos,isMounted,done,flagFade)',
   "portraitImage.style.filter=''",
-  "!portraitPaths[x.id]&&usesGenericFriendlyArt(x)?'ally-generic':''"
+  "!portraitPaths[x.id]&&!storyPortraits[x.name]&&usesGenericFriendlyArt(x)?'ally-generic':''"
 ]) if(!game.includes(token))throw new Error(`missing natural-colour friendly marker rule: ${token}`);
 
 console.log('Friendly colours verified: generic allies keep natural skin and mount colours while flags, bars, rings and UI borders show faction.');

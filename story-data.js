@@ -185,15 +185,16 @@
 
   // SNR1D.R3 chapter 1, paragraph 15.  The preceding report changes with
   // the Julu/Qinghe branch; both routes reunite at Jieqiao.
-  const jieqiaoRoute=(()=>{try{const transfer=JSON.parse(localStorage.getItem('sanguozhi-zhaolie-campaign-v1')||'null');return ['julu','qinghe'].includes(transfer?.fromLevelId)?transfer.fromLevelId:'qinghe'}catch{return'qinghe'}})();
+  const jieqiaoRoute=(()=>{const explicit=typeof URLSearchParams==='function'&&typeof location!=='undefined'?new URLSearchParams(location.search).get('jieqiaoRoute'):null;if(['julu','qinghe'].includes(explicit))return explicit;try{const transfer=JSON.parse(localStorage.getItem('sanguozhi-zhaolie-campaign-v1')||'null');return ['julu','qinghe'].includes(transfer?.fromLevelId)?transfer.fromLevelId:'qinghe'}catch{return'qinghe'}})();
   window.JIEQIAO_PRE_BATTLE_STORY = [
     jieqiaoRoute==='julu'
-      ? L('tent','袁绍军营','麴义','主公，巨鹿的张郃军被刘备击破了。刘备军正向界桥赶来。')
-      : L('tent','袁绍军营','张郃','主公，清河的麴义军被刘备击破了。刘备军正向界桥赶来。'),
-    L('tent','袁绍军营','袁绍','刘备竟敢接连坏我大事！传令各部在界桥列阵，我要在这里彻底击溃公孙瓒。'),
-    L('world','界桥近郊','关羽','大哥，前面就是袁绍的主力。'),
-    L('world','界桥近郊','张飞','正好！俺早想会会河北那些名将。'),
-    L('world','界桥近郊','刘备','伯圭兄正在苦战。众将不可恋战，先与友军会合。'),
+      ? L('world','巨鹿近郊','麴义','什么？巨鹿的张郃被公孙瓒军突破了？没办法，只好返回主公坐镇的界桥。')
+      : L('world','清河近郊','张郃','什么！清河的麴义被公孙瓒军突破了，没办法。撤回主公坐镇的界桥！'),
+    jieqiaoRoute==='julu'
+      ? L('world','巨鹿近郊','严纲','可恶，要是我的武力再强一点，就能捉住麴义。')
+      : L('world','清河近郊','公孙越','可恶，我的兵力再强大一点，就能捉住张郃。'),
+    L('world','界桥近郊','关羽','前面就是袁绍主力所在的界桥！'),
+    L('world','界桥近郊','张飞','大哥，快去界桥吧！'),
     L('world','进军界桥','关羽','大哥，到界桥了，请列队。')
   ];
 

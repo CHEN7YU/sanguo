@@ -47,7 +47,8 @@ for(const route of ['julu','qinghe']){
   assert.ok(seen.has(`${goal.x},${goal.y}`),`${route}: northern granary route is blocked`);
 }
 
-assert.ok(game.includes("const duelAttackNativeFacing={zhaoyun:'right'}"),'Zhao Yun duel attack facing is not declared');
+const duelAttackFacing=game.match(/const duelAttackNativeFacing=\{([^}]+)\}/)?.[1]||'';
+for(const id of ['zhaoyun','wenchou','yanliang','zhanghe','quyi'])assert.ok(duelAttackFacing.includes(`${id}:'right'`),`${id} duel attack facing is not declared`);
 assert.ok(game.includes('attackProgress!==null&&attackNative!==staticNative?-flipX:flipX'),'Zhao Yun duel does not correct the attack-strip direction');
 assert.ok(game.includes('function portraitForUnit(u)'),'named portrait fallback is not wired');
 assert.ok(game.includes("previewParams.has('zhaoyunDuelPreview')"),'Zhao Yun duel QA route is missing');

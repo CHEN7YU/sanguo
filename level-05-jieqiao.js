@@ -19,6 +19,7 @@
   const stats=(troop,level,wuli,zhili,tongyu)=>{const[a,d,h,g,m]=bases[troop]||bases.infantry,morale=100;return{hp:h+g*(level-1),maxHp:h+g*(level-1),morale,atk:Math.floor((Math.floor(4000/(140-wuli))+a*2+morale)*(level+10)/10),def:Math.floor((Math.floor(4000/(140-tongyu))+d*2+morale)*(level+10)/10),move:m,strategy:Math.floor((level+10)*zhili*5/200),maxStrategy:Math.floor((level+10)*zhili*5/200)}};
   const U=data=>Object.assign(data,stats(data.troop,data.level,data.wuli,data.zhili,data.tongyu));
   const E=(id,originalId,name,role,troop,level,x,y,wuli,zhili,tongyu,extra={})=>U({id,originalId,name,role,className:{infantry:'短兵',archer:'弓兵',cavalry:'轻骑兵',transport:'运输队',support:'军乐队',bandit:'山贼'}[troop],troop,level,side:'enemy',x,y,wuli,zhili,tongyu,aiType:0,range:troop==='archer'?2:undefined,critRate:originalId<256?.1:undefined,blockRate:originalId<256?.1:undefined,weapon:troop==='archer'?'角弓':troop==='cavalry'?'长枪':'佩剑',color:'#9e443f',accent:troop==='support'||troop==='transport'?'#c3a85d':'#d0ad5d',...extra});
+  const P=(x,y)=>x|(y<<8);
   function previousRoute(){const p=new URLSearchParams(location.search),explicit=p.get('jieqiaoRoute');if(['julu','qinghe'].includes(explicit))return explicit;try{const t=JSON.parse(localStorage.getItem('sanguozhi-zhaolie-campaign-v1')||'null');if(['julu','qinghe'].includes(t?.fromLevelId))return t.fromLevelId}catch{}return'qinghe'}
   const route=previousRoute();
   const heroes=[
@@ -38,7 +39,7 @@
     E('chenlin',98,'陈琳','袁军运输','transport',8,15,23,23,80,55,{defeatQuote:'军资难保……陈琳先退！'}),
     E('guotu',92,'郭图','袁军将领','infantry',7,27,3,34,76,31,{defeatQuote:'粮仓有失，战局不利……撤！'}),
     E('e1',256,'步兵队','后军','infantry',5,28,6,40,30,50),E('e2',257,'步兵队','后军','infantry',5,29,6,40,30,50),
-    E('cav1',292,'骑兵队','前军','cavalry',3,15,21,50,30,40),E('cav2',293,'骑兵队','前军','cavalry',3,5,19,50,30,40)
+    E('cav1',292,'骑兵队','前军','cavalry',3,15,21,50,30,40),E('cav2',293,'骑兵队','前军','cavalry',3,route==='julu'?23:5,19,50,30,40)
   ];
   const qingheSurvivors=[
     E('jushou',50,'沮授','袁军谋士','archer',8,7,17,60,85,71,{defeatQuote:'界桥阵势已破……沮授无颜见主公。'}),E('jiaochu',138,'焦触','袁军将领','archer',7,25,16,65,34,61,{defeatQuote:'敌势已近本阵……焦触先退！'}),
@@ -53,6 +54,10 @@
     E('chenzhen',56,'陈震','袁军将领','infantry',7,24,16,35,65,32,{defeatQuote:'敌军来势太猛……撤！'}),E('xuyou',55,'许攸','袁军参军','support',7,25,16,45,61,40,{defeatQuote:'形势不妙，许攸先走一步！'}),
     E('bandit1',310,'贼兵','前军','bandit',6,8,19,50,40,30,{aiType:1}),E('band1',328,'军乐队','支援','support',5,10,17,20,70,35)
   ];
+  const frontAiUpdates=route==='julu'?
+    [{unitId:'tianfeng',aiType:4,aiTarget:P(15,21)},{unitId:'yuanshao',aiType:4,aiTarget:P(16,22)},{unitId:'cav2',aiType:4,aiTarget:P(16,21)},{unitId:'chenzhen',aiType:4,aiTarget:P(15,23)},{unitId:'xuyou',aiType:4,aiTarget:P(14,22)},{unitId:'quyi',aiType:4,aiTarget:P(13,23)},{unitId:'chenlin',aiType:1,aiTarget:0},{unitId:'jiaochu',aiType:1,aiTarget:0},{unitId:'cav1',aiType:1,aiTarget:0}]:
+    [{unitId:'yuanshao',aiType:4,aiTarget:P(16,22)},{unitId:'shenpei',aiType:4,aiTarget:P(15,23)},{unitId:'tianfeng',aiType:4,aiTarget:P(15,21)},{unitId:'yanliang',aiType:4,aiTarget:P(14,22)},{unitId:'zhanghe',aiType:4,aiTarget:P(13,23)},{unitId:'cav2',aiType:4,aiTarget:P(16,21)},{unitId:'chenlin',aiType:1,aiTarget:0},{unitId:'jiaochu',aiType:1,aiTarget:0},{unitId:'cav1',aiType:1,aiTarget:0},{unitId:'band2',aiType:1,aiTarget:0}];
+  const granaryAiUpdates=(route==='julu'?['yuanshao','tianfeng','quyi','cav2','chenzhen','xuyou']:['yuanshao','shenpei','tianfeng','jiaochu','yanliang','zhanghe']).map(unitId=>({unitId,aiType:3,aiTarget:0}));
   window.LEVEL_05_JIEQIAO={
     id:'jieqiao',chapter:'第一章 · 界桥之战',name:'界桥之战',width,height,terrain,terrainCodes,routeVariant:route,
     source:'用户原游戏 HEXZMAP.R3 map 6 / SNR1D.R3 paragraph 15 / MAIN.EXE',maxTurns:40,
@@ -60,21 +65,21 @@
     squareGrid:true,structuresBakedIntoArt:false,viewProjection:{x:1/64,y:1/48,dx:1/32,dy:1/24,rowShift:Array(24).fill(0)},battlefieldArt:'assets/level-05-jieqiao/jieqiao-map-v3.webp',nextBattle:'第六战 · 北海之战',
     alternateVictory:{unitId:'liu',x:27,y:1,exp:50,goldReward:200,type:'supply',label:'夺取袁绍兵粮库',log:'刘备夺取袁绍兵粮库，全体存活我军获得经验50'},
     openingDuelSequence:[
-      {winnerId:'wenchou',loserId:'chenjiang',loserDefeated:true,title:'文丑　VS　陈蒋',kicker:'界桥 · 袁军突击',caption:'文丑阵前击破陈蒋',challenge:[{speaker:'袁绍',text:'敌军已经不堪一击。文丑！去取公孙瓒的首级！'},{speaker:'文丑',text:'我乃文丑，公孙瓒，明年的今天就是你的忌日！'},{speaker:'陈蒋',text:'主公，这里交给我吧。文丑，来受死！'}],exchange:[{speaker:'陈蒋',text:'太、太厉害了……'},{speaker:'文丑',text:'哈哈哈，凭你这点本事也想赢我！'}]},
-      {winnerId:'zhaoyun',loserId:'wenchou',loserDefeated:false,spawnWinner:{side:'guest',x:0,y:17},moveLoser:{x:15,y:22},title:'赵云　VS　文丑',kicker:'界桥 · 白马救主',caption:'赵云挺枪救公孙瓒',challenge:[{speaker:'文丑',text:'公孙瓒，哪里走！纳命来！'},{speaker:'公孙瓒',text:'看来我命到此休矣！'},{speaker:'赵云',text:'等一下，这次我来战你。'},{speaker:'文丑',text:'和公孙瓒一起作我枪下之鬼吧！'}],exchange:[{speaker:'文丑',text:'好厉害！先撤吧！'},{speaker:'公孙瓒',text:'刚才差一点没了命，真是太感谢你了。请问大名？'},{speaker:'赵云',text:'我叫赵云。以前曾跟随袁绍，看透了他既不忠君，也不爱惜百姓。'},{speaker:'公孙瓒',text:'你能不能帮助我？'},{speaker:'赵云',text:'好！'}]}
+      {winnerId:'wenchou',loserId:'chenjiang',loserDefeated:true,title:'文丑　VS　陈蒋',kicker:'界桥 · 袁军突击',caption:'文丑阵前击破陈蒋',challenge:[{speaker:'袁绍',text:'敌军已经不堪一击。文丑！去取公孙瓒的首级！'},{speaker:'文丑',text:'我乃文丑，公孙瓒，明年的今天就是你的忌日。'},{speaker:'公孙瓒',text:'怎么搞的！援军还没有到啊。'},{speaker:'陈蒋',text:'主公，这交给我吧。文丑来受死吧！'},{speaker:'文丑',text:'嘘，无名小卒，快滚回去吧。'}],exchange:[{speaker:'文丑',text:'杀……'},{speaker:'陈蒋',text:'啊……'},{speaker:'陈蒋',text:'太、太厉害了。'},{speaker:'文丑',text:'哈哈哈，怎么样！凭你这点儿本事想赢我！'}]},
+      {winnerId:'zhaoyun',loserId:'wenchou',loserDefeated:false,spawnWinner:{side:'guest',x:0,y:17},moveLoser:{x:15,y:22},title:'赵云　VS　文丑',kicker:'界桥 · 白马救主',caption:'赵云挺枪救公孙瓒',challenge:[{speaker:'文丑',text:'公孙瓒，哪里走！纳命来！'},{speaker:'公孙瓒',text:'看来我命到此休矣！'},{speaker:'赵云',text:'等一下，这次我来战你。'},{speaker:'文丑',text:'你是何人？'},{speaker:'文丑',text:'不知死活的家伙，和公孙瓒一起作我枪下之鬼吧。'}],exchange:[{speaker:'赵云',text:'呸！！'},{speaker:'文丑',text:'哦！杀啊！妈的，好厉害，先撤吧。'},{speaker:'公孙瓒',text:'刚才差一点没了命，真是太感谢你了。请问大名？'},{speaker:'赵云',text:'我叫赵云。以前曾跟随袁绍，看透了他既不忠君，也不爱惜百姓。'},{speaker:'公孙瓒',text:'你能不能帮助我？'},{speaker:'赵云',text:'好！'}]}
     ],
-    intro:[{speaker:'公孙瓒',text:'那支军队是？'},{speaker:'赵云',text:'那是平原刘备的援军。诸位，援军到了！'},{speaker:'关羽',text:'大哥，好像赶上了。'},{speaker:'刘备',text:'听说伯圭兄正在苦战，我特地从平原赶来助战。'},{speaker:'张飞',text:'大哥，敌军强大，我们去袭击敌人的粮仓吧。'},{speaker:'田丰',text:'主公，刘备军来了。'},{speaker:'袁绍',text:'好，一起杀死他们祭旗！'}],
+    intro:[{speaker:'赵云',text:'嗯？公孙瓒，那支军队是？'},{speaker:'公孙瓒',text:'噢，那是平原刘备的军队啊！诸位，刘备的援军到了！'},{speaker:'张飞',text:'大哥，好像赶上了。'},{speaker:'刘备',text:'听说公孙瓒正在打仗，我特地从平原赶来助战。'},{speaker:'关羽',text:'大哥，敌军强大，我们去袭击敌人的粮仓吧。'},{speaker:'沮授',text:'主公，刘备军来了。'},{speaker:'袁绍',text:'哎呀，是那个刘备军吗？'},{speaker:'田丰',text:'主公，怕什么，不能放过这次机会。'},{speaker:'袁绍',text:'……对了，好，一起杀死他们祭旗！'}],
     areaEvents:[
-      {id:'jieqiao-front-reacts',rect:{x1:17,y1:10,x2:23,y2:15},dialogue:[{speaker:'田丰',text:'主公，敌军兵力虽少，却已经接近中军。'}],aiUpdates:[{unitId:'yuanshao',aiType:4,aiTarget:0},{unitId:'tianfeng',aiType:4,aiTarget:0},{unitId:'yanliang',aiType:4,aiTarget:0},{unitId:'zhanghe',aiType:4,aiTarget:0},{unitId:'quyi',aiType:4,aiTarget:0},{unitId:'chenlin',aiType:1,aiTarget:0},{unitId:'jiaochu',aiType:1,aiTarget:0},{unitId:'cav1',aiType:1,aiTarget:0},{unitId:'band1',aiType:1,aiTarget:0}],log:'刘备军逼近中军，袁绍军阵线开始前移'},
-      {id:'jieqiao-granary-reacts',unitId:'liu',rect:{x1:23,y1:6,x2:29,y2:9},dialogue:[{speaker:'郭图',text:'主公，刘备正向兵粮库逼近！'}],aiUpdates:[{unitId:'yuanshao',aiType:3,aiTarget:0},{unitId:'tianfeng',aiType:3,aiTarget:0},{unitId:'jushou',aiType:3,aiTarget:0},{unitId:'jiaochu',aiType:3,aiTarget:0},{unitId:'yanliang',aiType:3,aiTarget:0},{unitId:'zhanghe',aiType:3,aiTarget:0},{unitId:'quyi',aiType:3,aiTarget:0}],log:'刘备逼近兵粮库，袁绍中军开始追击'}
+      {id:'jieqiao-front-reacts',rect:{x1:17,y1:10,x2:23,y2:15},dialogue:[],aiUpdates:frontAiUpdates,log:'刘备军逼近中军，袁绍军依原阵令前移'},
+      {id:'jieqiao-granary-reacts',unitId:'liu',rect:{x1:23,y1:6,x2:29,y2:9},dialogue:[],aiUpdates:granaryAiUpdates,log:'刘备逼近兵粮库，袁绍中军开始追击'}
     ],
     environmentFx:{forestZones:[[0,0,.23,.37,.4],[.58,0,.18,.55,1.7],[.74,.62,.26,.38,2.7]],waterBands:[{from:[0,.77],to:[.20,1],bend:.03,width:.06,speed:.035,gaps:[]}]},
     events:{
-      loot:{'8,21':{item:'fireScroll',amount:1},'22,3':{treasureId:'longSpear'},'14,23':{item:'wheat',amount:1},'29,1':{treasureId:'repeatingCrossbow'}},supply:{item:'wheat'},
-      duel:{attackerId:'zhang',defenderId:'wenchou',endsBattle:false,title:'张飞　VS　文丑',kicker:'界桥 · 阵前再战',caption:'丈八蛇矛逼退河北文丑',challenge:[{speaker:'文丑',text:'刚才因大意受挫，这次不会了，要让你们看看我的厉害！'},{speaker:'张飞',text:'还有没有稍微有点骨气的？俺跟你玩玩！'}],exchange:[{speaker:'张飞',text:'怎么如此不中用，没意思！'},{speaker:'文丑',text:'不，不应该这么不争气！'},{speaker:'张飞',text:'你回去吧，俺懒得和你交手。'},{speaker:'文丑',text:'噢噢！刚才败了，这次也败了！'}],levelUp:{speaker:'军报',text:'张飞等级上升了！'},confirmation:{speaker:'刘备',text:'翼德取胜，继续向袁绍本阵推进。'},occupation:{speaker:'军报',text:'文丑败退，袁绍军前锋动摇。'}},
-      normalVictory:[{speaker:'袁绍',text:'刘备这个混账！我不会善罢甘休。全军撤退！'},{speaker:'军报',text:'界桥之战，公孙瓒军取得胜利。'}],
-      alternateVictory:[{speaker:'刘备',text:'好！我们夺取了袁绍的兵粮库。'},{speaker:'郭图',text:'这样袁绍军就没有粮食了！'},{speaker:'军报',text:'袁绍军失去兵粮，被迫撤退。'}],
-      postVictory:[{speaker:'公孙瓒',text:'刘备，你来得正好。这次多亏你来帮我们。'},{speaker:'军报',text:'战后，赵云将正式与刘备相识。'}],battleReward:200
+      loot:{'8,21':{item:'fireScroll',amount:1},'14,23':{treasureId:'longSpear'},'22,3':{item:'wheat',amount:1},'29,1':{treasureId:'repeatingCrossbow'}},supply:{item:'wheat'},
+      duel:{attackerId:'zhang',defenderId:'wenchou',endsBattle:false,title:'张飞　VS　文丑',kicker:'界桥 · 阵前再战',caption:'丈八蛇矛逼退河北文丑',challenge:[{speaker:'文丑',text:'刚才因大意受挫，这次不会了，要让你们看看我的厉害。'},{speaker:'张飞',text:'喂，还有没有稍微有点骨气的？唉，我跟你玩玩吧。'}],exchange:[{speaker:'张飞',text:'怎么如此不中用啊。没意思。'},{speaker:'文丑',text:'不，不应该这么不争气。'},{speaker:'张飞',text:'你回去好啦，懒得和你交手。'},{speaker:'文丑',text:'你这个家伙！不要侮辱人！'},{speaker:'文丑',text:'哈哈，怎、怎么样……'},{speaker:'张飞',text:'……你惹恼了我，别走！'},{speaker:'文丑',text:'噢噢！刚才败了，这次也败了。'}],levelUp:{speaker:'军报',text:'张飞等级上升了！'},confirmation:{speaker:'刘备',text:'翼德取胜，继续向袁绍本阵推进。'},occupation:{speaker:'军报',text:'文丑败退，袁绍军前锋动摇。'}},
+      normalVictory:[{speaker:'袁绍',text:'唉，刘备这个混账，你再晚来一步我就可以杀死公孙瓒了……妈的，我不会善罢干休！公孙瓒啊，败军之恨，总有一天要报的。全军撤退！'},{speaker:'军报',text:'界桥之战，公孙瓒取得了胜利。'}],
+      alternateVictory:[{speaker:'刘备',text:'好！我们夺取了袁绍的粮仓。'},{speaker:'关羽',text:'噢，兄长。太棒了。'},{speaker:'张飞',text:'这样袁绍军就没有粮食了。'},{speaker:'简雍',text:'这仗我们赢定了。'}],
+      postVictory:[{speaker:'旁白',text:'刘备军和赵云的奋战，使公孙瓒在界桥取得了胜利。'},{speaker:'旁白',text:'持续数月的交战使双方将士都已疲惫。董卓借天子之名出面调停，袁绍与公孙瓒各自罢兵，界桥之战就此结束。'}],battleReward:200
     },
     ai:{strategyCooldown:6},units:[...heroes,...common,...(route==='julu'?juluSurvivors:qingheSurvivors)]
   };
