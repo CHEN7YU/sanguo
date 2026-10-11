@@ -23,6 +23,8 @@
   let clockRunning = false;
   let lastResult = null;
   let shownLevelId = 'sishui-pass';
+  let championsLoadedAt = 0;
+  const CHAMPION_REFRESH_MS = 5 * 60 * 1000;
 
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
   const playerId = (() => {
@@ -127,6 +129,123 @@
     return `${String(minutes).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
   }
 
+  function championEntries(entries) {
+    const winners = new Map();
+    (Array.isArray(entries) ? entries : []).forEach(entry => {
+      if (!entry || !levels[entry.levelId] || !Number.isFinite(Number(entry.score))) return;
+      const candidate = {
+        ...entry,
+        score: Number(entry.score),
+        elapsedMs: Math.max(0, Number(entry.elapsedMs) || 0),
+        turns: Math.max(0, Number(entry.turns) || 0)
+      };
+      const current = winners.get(candidate.levelId);
+      const better = !current
+        || candidate.score > current.score
+        || (candidate.score === current.score && candidate.elapsedMs < current.elapsedMs)
+        || (candidate.score === current.score && candidate.elapsedMs === current.elapsedMs && candidate.turns < current.turns);
+      if (better) winners.set(candidate.levelId, candidate);
+    });
+    return Object.keys(levels).map(levelId => winners.get(levelId)).filter(Boolean);
+  }
+
+  function setChampionLabel(text) {
+    const label = document.querySelector('.title-champion-label');
+    if (!label) return;
+    const mark = document.createElement('span');
+    mark.setAttribute('aria-hidden', 'true');
+    mark.textContent = '◆';
+    label.replaceChildren(mark, document.createTextNode(` ${text}`));
+  }
+
+  function createChampionItem(entry, duplicate = false) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'title-champion-item';
+    button.dataset.championLevel = entry.levelId;
+    if (duplicate) button.tabIndex = -1;
+    button.title = `查看${levels[entry.levelId].name}完整排行榜`;
+    button.addEventListener('click', () => void openLeaderboard(entry.levelId));
+
+    const levelName = document.createElement('strong');
+    levelName.textContent = levels[entry.levelId].name;
+    const grade = document.createElement('em');
+    grade.textContent = entry.grade || '—';
+    const nickname = document.createElement('span');
+    nickname.textContent = entry.nickname || '无名将军';
+    const score = document.createElement('b');
+    score.textContent = `${entry.score.toLocaleString('zh-CN')}分`;
+    const detail = document.createElement('small');
+    detail.textContent = `${formatTime(Math.round(entry.elapsedMs / 1000))} · ${entry.turns}回合`;
+    button.append(levelName, grade, nickname, score, detail);
+    return button;
+  }
+
+  function createChampionSet(entries, duplicate = false) {
+    const set = document.createElement('div');
+    set.className = 'title-champion-set';
+    if (duplicate) set.setAttribute('aria-hidden', 'true');
+    entries.forEach(entry => set.appendChild(createChampionItem(entry, duplicate)));
+    return set;
+  }
+
+  function renderChampionTicker(entries, mode = 'online') {
+    const ticker = document.getElementById('titleChampionTicker');
+    const track = document.getElementById('titleChampionTrack');
+    if (!ticker || !track) return;
+    const champions = championEntries(entries);
+    track.replaceChildren();
+    ticker.classList.remove('hidden');
+    ticker.dataset.mode = mode;
+    ticker.setAttribute('aria-label', mode === 'local' ? '本机各关最高战绩' : '全服各关最高战绩');
+    setChampionLabel(mode === 'local' ? '本机战报' : '天下战报');
+
+    if (!champions.length) {
+      track.classList.add('static');
+      const empty = document.createElement('div');
+      empty.className = 'title-champion-set';
+      const message = document.createElement('span');
+      message.className = 'title-champion-item title-champion-empty';
+      message.textContent = mode === 'local' ? '网络暂不可用 · 本机尚无通关纪录' : '全服尚无战绩 · 首位通关者将登上战报';
+      empty.appendChild(message);
+      track.appendChild(empty);
+      return;
+    }
+
+    track.classList.remove('static');
+    track.style.setProperty('--ticker-duration', `${Math.max(32, champions.length * 8)}s`);
+    track.append(createChampionSet(champions), createChampionSet(champions, true));
+  }
+
+  async function loadTitleChampions(force = false) {
+    if (!force && Date.now() - championsLoadedAt < CHAMPION_REFRESH_MS) return;
+    championsLoadedAt = Date.now();
+    try {
+      if (!API_URL) throw new Error('offline');
+      const response = await fetch(`${API_URL}/api/leaderboard?scope=champions`, { cache: 'no-store' });
+      if (!response.ok && [400, 404].includes(response.status)) {
+        const legacyResponses = await Promise.allSettled(Object.keys(levels).map(async levelId => {
+          const levelResponse = await fetch(`${API_URL}/api/leaderboard?level=${encodeURIComponent(levelId)}`, { cache: 'no-store' });
+          if (!levelResponse.ok) return null;
+          const levelData = await levelResponse.json();
+          return levelData.entries?.[0] || null;
+        }));
+        const legacyChampions = legacyResponses
+          .filter(result => result.status === 'fulfilled' && result.value)
+          .map(result => result.value);
+        if (legacyChampions.length) {
+          renderChampionTicker(legacyChampions, 'online');
+          return;
+        }
+      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      renderChampionTicker(data.entries || [], 'online');
+    } catch {
+      renderChampionTicker(localEntries(), 'local');
+    }
+  }
+
   function renderScoreCard(result) {
     const card = document.getElementById('battleScoreCard');
     if (!card) return;
@@ -189,10 +308,12 @@
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       status.textContent = data.improved === false ? `已有更高纪录 · 当前第${data.rank}名` : `上传成功 · 本关第${data.rank}名`;
+      void loadTitleChampions(true);
       await openLeaderboard(lastResult.levelId);
     } catch {
       storeLocal({ ...payload, createdAt: new Date().toISOString() });
       status.textContent = '在线榜暂不可用，成绩已保存在本机试玩榜';
+      void loadTitleChampions(true);
     } finally {
       button.disabled = false;
     }
@@ -253,10 +374,17 @@
     document.querySelectorAll('[data-leaderboard-level]').forEach(button => button.addEventListener('click', () => openLeaderboard(button.dataset.leaderboardLevel)));
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) pauseClock();
-      else if (activeLevel && !lastResult) resumeClock();
+      else {
+        if (activeLevel && !lastResult) resumeClock();
+        if (!document.getElementById('titleScreen')?.classList.contains('hidden')) void loadTitleChampions();
+      }
     });
+    void loadTitleChampions();
+    setInterval(() => {
+      if (!document.hidden && !document.getElementById('titleScreen')?.classList.contains('hidden')) void loadTitleChampions();
+    }, CHAMPION_REFRESH_MS);
   }
 
-  window.ZhaolieLeaderboard = { init, reset, start, finish, snapshotClock, restoreClock, scoreMetrics, openLeaderboard };
+  window.ZhaolieLeaderboard = { init, reset, start, finish, snapshotClock, restoreClock, scoreMetrics, championEntries, loadTitleChampions, openLeaderboard };
   init();
 })();

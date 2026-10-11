@@ -15,6 +15,8 @@ const levelRules = {
   xindu: { name: "信都之战", targetSeconds: 780, targetTurns: 15, maxTurns: 30 },
   julu: { name: "巨鹿之战", targetSeconds: 900, targetTurns: 16, maxTurns: 30 },
   qinghe: { name: "清河之战", targetSeconds: 840, targetTurns: 15, maxTurns: 30 },
+  jieqiao: { name: "界桥之战", targetSeconds: 1200, targetTurns: 22, maxTurns: 40 },
+  beihai: { name: "北海之战", targetSeconds: 900, targetTurns: 16, maxTurns: 30 },
 } as const;
 
 type LevelId = keyof typeof levelRules;
@@ -85,6 +87,21 @@ export async function OPTIONS(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
+  if (request.nextUrl.searchParams.get("scope") === "champions") {
+    const db = getDb();
+    const champions: ReturnType<typeof publicEntry>[] = [];
+    for (const currentLevelId of Object.keys(levelRules) as LevelId[]) {
+      const [leader] = await db
+        .select()
+        .from(scores)
+        .where(eq(scores.levelId, currentLevelId))
+        .orderBy(desc(scores.score), asc(scores.elapsedMs), asc(scores.turns), asc(scores.updatedAt))
+        .limit(1);
+      if (leader) champions.push(publicEntry(leader));
+    }
+    return json(request, { entries: champions });
+  }
+
   const levelId = request.nextUrl.searchParams.get("level") as LevelId | null;
   if (!levelId || !(levelId in levelRules)) return json(request, { error: "未知关卡" }, 400);
 

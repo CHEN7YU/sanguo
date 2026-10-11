@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
-  <link rel="stylesheet" href="style.css?build=20261011-early-story-roam-v109" />
+  <link rel="stylesheet" href="style.css?build=20261011-title-champions-v110" />
 </head>
 <body>
   <section id="titleScreen" class="title-screen intro-playing" aria-label="游戏开始画面">
@@ -37,6 +37,12 @@
       <button id="titleSettingsBtn">游戏设置</button>
     </nav>
     <input id="saveImportInput" type="file" accept=".json,.zhaolie-save,application/json" hidden>
+    <section id="titleChampionTicker" class="title-champion-ticker hidden" aria-label="各关最高战绩">
+      <b class="title-champion-label"><span aria-hidden="true">◆</span> 天下战报</b>
+      <div class="title-champion-window">
+        <div id="titleChampionTrack" class="title-champion-track"></div>
+      </div>
+    </section>
     <div id="titleNotice" class="title-notice" aria-live="polite"></div>
   </section>
   <section id="openingOverlay" class="opening-overlay hidden" aria-label="开篇动画">
@@ -301,7 +307,7 @@
   <script src="beihai-animation-bounds.js?build=20261011-beihai-v108"></script>
   <script src="story-data.js?build=20261011-early-story-roam-v109"></script>
   <script src="battle-view.js?build=20261003-hulao-grid-fix-v53"></script>
-  <script src="leaderboard.js?build=20261011-beihai-v108"></script>
-  <script src="game.js?build=20261011-early-story-roam-v109"></script>
+  <script src="leaderboard.js?build=20261011-title-champions-v110"></script>
+  <script src="game.js?build=20261011-title-champions-v110"></script>
 </body>
 </html>
