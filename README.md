@@ -41,32 +41,35 @@ node server.mjs
 ## Cloudflare Workers 试玩部署
 
 首次部署只发布静态游戏，未迁移排行榜数据库或接入微信登录、云存档。原排行榜接口的 CORS 尚未授权新域名，在线榜单需后续单独配置。Cloudflare 全球免费服务不代表大陆网络已经验证可用。
-`feature/wechat-login` 分支增加了游客入口、微信登录和账号云存档；未配置微信权限和 D1 时明确显示未配置，游客试玩仍可用。正式 `main` 是否具备这些功能以实际合并为准，Git 推送也不等于已经发布。旧游客档不会自动迁入账号。
+`feature/wechat-login` 分支增加了游客入口和账号云存档；按用户最新决定，微信登录已改为**用户名＋4位数字密码**。不再需要微信 AppID、AppSecret 或平台审核。分支名称及测试 Worker 名称暂保留，正式 `main` 是否具备这些功能以实际合并为准，Git 推送也不等于已经发布。旧游客档不会自动迁入账号。
 
-### 微信登录配置（功能分支）
+### 用户名与4位数字密码（功能分支）
 
-网页登录使用网站应用扫码（`snsapi_login`）；微信内打开使用已认证服务号网页授权（`snsapi_base`），只获取身份，不请求头像、昵称或手机号。两种 AppID 的账号目前独立；尚未实现 UnionID 跨应用绑定，不能宣称两种入口自动共享账户。
+游客点击“直接开始游戏”即可玩；需要跨设备存档时点击“账号登录 / 注册”，用用户名和4位数字密码注册，成功后直接登录。登录已有账号使用相同表单；新用户名不会自动注册，必须明确切到注册模式。
 
-先取得微信相应权限，再建立专用测试 D1，并在 Wrangler 配置增加 `d1_databases` 项，字段为 `binding: AUTH_DB`、实际 `database_name`、实际 `database_id`、`migrations_dir: migrations`。不得复用或覆盖原排行榜数据库。数据库 ID 不是密钥，可提交；AppSecret 必须使用 Secret，不得提交到源码、聊天或前端。
+用户名为2—20个中文、英文字母、数字或下划线，去除首尾空格，英文字母不区分大小写。密码必须是**恰好4个 ASCII 数字**，允许 `0000`、`0123`，不得将其转换成数字丢掉开头的0。目前没有找回、重置或旧微信账号绑定功能，请记住账号并定期导出进度。不要使用银行卡或手机支付密码。
 
-Cloudflare Linux / Wrangler 命令：
+建立专用测试 D1，在 Wrangler 配置增加 `d1_databases` 项，字段为 `binding: AUTH_DB`、实际 `database_name`、实际 `database_id`、`migrations_dir: migrations`，另设 `AUTH_ORIGIN` 为完整 HTTPS 游戏源站（不含路径）。不得复用或覆盖原排行榜数据库。数据库 ID 不是密钥，可提交；密码 Pepper 必须使用 Secret，不能放源码、前端或聊天里。
+
+本分支独立测试环境已有 D1 绑定，更新它时应用新增的 **0003** 迁移，再设置至少32字符的随机 `AUTH_PASSWORD_PEPPER`（建议密码管理器生成64字符随机值）。同一数据库后续部署必须保留相同 Pepper；直接换值会使现有密码无法登录，目前没有密钥轮换流程。
 
 ```text
-npx wrangler d1 create sanguo-auth-test
-npx wrangler d1 migrations apply sanguo-auth-test --remote
-npx wrangler secret put WECHAT_WEBSITE_APP_SECRET
-npx wrangler secret put WECHAT_SERVICE_APP_SECRET
+npx wrangler d1 migrations apply sanguo-wechat-preview --remote --env preview
+npx wrangler secret put AUTH_PASSWORD_PEPPER --env preview
+npx wrangler deploy --env preview
 ```
 
-迁移前先完成对应 D1 配置。只启用一种入口时只配置该入口的 Secret 和 AppID。设置变量 `AUTH_ORIGIN` 为完整 HTTPS 游戏源站（例如实际的 workers.dev 域名，不含路径），`WECHAT_WEBSITE_APP_ID` 为网站应用 AppID，`WECHAT_SERVICE_APP_ID` 为服务号 AppID。微信后台配置对应回调域名；回调路径为 `/api/auth/wechat/callback`，服务号还需完成网页授权域名验证。不得使用无权限的 AppID 伪装接入成功。
+以上是独立预览环境命令，不能省略 `--env preview`。新环境须配置单独数据库并应用 **0001、0002、0003** 全部迁移。不要重写已经执行的旧迁移；历史微信身份表留存但接口已移除，不把新用户名擅自关联到旧账号。未配置 D1、HTTPS 源站或 Pepper 时登录明确显示未配置，游客入口仍可使用。
 
-Worker 仅在 `/api/*` 执行后端，其他文件仍由静态资源服务处理。登录采用一次性微信 code、五分钟 state 流程 Cookie、七天安全会话 Cookie，D1 只存会话令牌的 SHA-256 哈希；退出登录撤销当前会话。服务端失败返回明确错误，不影响游客入口。正式开放前需限制登录接口请求频率、确认隐私说明及游戏合规，不将 OpenID 当作实名验证。
+Worker 仅在 `/api/*` 执行后端，其他文件由静态资源服务处理。注册/登录仅接受同源 POST JSON；密码先经服务器 Pepper HMAC，再用随机盐和 PBKDF2-SHA256（100000次）派生，D1 不存明文密码。七天 HttpOnly/Secure 会话 Cookie，D1 只存令牌 SHA-256 哈希；登录替换当前会话，每账号最多五个有效会话，退出撤销当前会话。
 
-本机 Node.js 24 可运行 `node tools\verify_wechat_login.mjs` 和 `node tools\verify_cloud_saves.mjs`（内存 SQLite、模拟微信与存档客户端，不访问真实账号）。`node server.mjs` 只提供静态试玩，不模拟微信成功；完整后端需 Wrangler 预览与实际微信配置验证。真实微信授权、手机扫码衔接、账号合并、线上 D1、跨设备同步与真实设备均须另行验收。本机是 Windows ARM64，原生 ARM64 Node 的 workerd 安装失败；改用官方 x64 Node（核对 SHA-256）及可用的 Wrangler 4.147.0 后，预览 Worker 的 `deploy --env preview --dry-run` 已通过。这不等于已经部署或验收真实微信。
+每用户名最多5次/15分钟尝试，每来源 IP 登录最多20次/15分钟，注册最多5次/小时；成功也计入窗口，不自动清零。限额使用 D1 原子计数，超限返回429与 Retry-After，不在日志里记录密码或原始 IP。过期桶随请求限量清理。**4位密码仅有一万种组合，限流与加密不能使它达到高强度账号安全标准**；不要存敏感资料，正式开放前仍需隐私/删除流程、滥用处理与真实 Worker CPU/数据库负载验收。
+
+本机 Node.js 24 可运行 `node tools\verify_password_login.mjs` 和 `node tools\verify_cloud_saves.mjs`（内存 SQLite、客户端模拟，不访问真实账号）。`node server.mjs` 只提供静态试玩，不伪装账号服务。完整后端测试用 Wrangler 与独立 D1；本机 `.dev.vars`/`.dev.vars.preview` 已忽略提交，可保存仅用于本地的测试 Pepper，不能复用生产密钥。本机 Windows ARM64 的原生 Node 无法安装 workerd，可使用已校验官方 x64 Node 与 Wrangler 4.147.0。手机/平板真机、跨设备同步与负载需另行验收。
 
 ### 账号云存档（功能分支）
 
-配置 `AUTH_DB` 后应用 **0001、0002 两个迁移**，同时设置 `AUTH_ORIGIN`；不要只建登录表就开放服务。`GET /api/saves` 读取整套进度，`PUT /api/saves` 以服务器会话确定归属、校验来源并按版本原子写入，`GET /api/saves/history` 读取历史。客户端传来的账号标识仅用于检测其他页面切换会话，不用于授权。
+配置 `AUTH_DB` 后应用 **0001、0002、0003 三个迁移**，同时设置 `AUTH_ORIGIN` 与 `AUTH_PASSWORD_PEPPER`；不要只建登录表就开放服务。`GET /api/saves` 读取整套进度，`PUT /api/saves` 以服务器会话确定归属、校验来源并按版本原子写入，`GET /api/saves/history` 读取历史。客户端传来的账号标识仅用于检测其他页面切换会话，不用于授权。
 
 游戏等待身份及本机档读取完成后才初始化关卡。游客沿用原浏览器存档；账号的自动档、六个手动档、跨关继承、导入备份与待同步记录存入独立命名空间。登录后可通过“继续游戏”恢复最近档位，主线/选关标记、剧情及战后分支随档保留。音量等浏览器设置和原排行榜身份暂不随账号同步。
 
@@ -82,11 +85,11 @@ Worker 仅在 `/api/*` 执行后端，其他文件仍由静态资源服务处理
 
 用户选择独立测试 Worker，`feature/wechat-login` 使用 `wrangler.jsonc` 的 `preview` 环境，Worker 名为 `sanguo-wechat-preview`。部署命令为 `npx wrangler deploy --env preview`；**不要省略 `--env preview`**，默认命令仍指向正式 `sanguo`。预览不切换正式 Worker 流量，也不复用排行榜/正式存档数据库。
 
-预览地址：`https://sanguo-wechat-preview.chenqiyu2010.workers.dev`。2026-10-11 已部署独立 Worker；测试 D1 `sanguo-wechat-preview` 已创建并应用两个迁移，数据库 ID 与绑定写入 `env.preview`，不是密钥。预览兼容日期采用本机 workerd 支持的 `2026-10-08`，默认生产配置日期保持不变。微信 AppID/Secret 仍未配置，不能用此预览宣称已完成真实微信和跨设备云档验收。
+预览地址：`https://sanguo-wechat-preview.chenqiyu2010.workers.dev`。2026-10-11 已按用户要求更新为**用户名＋4位数字密码**版本，发布 ID 为 `6c120495-ec84-48d2-b9ed-bf918a51ceb3`。独立测试 D1 `sanguo-wechat-preview` 已应用全部三个迁移，预览专用随机 Pepper 已存入 Worker Secret；数据库 ID 与绑定不是密钥。预览兼容日期采用本机 workerd 支持的 `2026-10-08`，默认生产配置日期保持不变。正式 `main` 和正式站点未更新。
 
-当前实际检查：首页、会话 API 与 `.mjs` 返回200，未登录云档返回401，`.git/config` 返回404；浏览器可直接开始游客游戏并写入剧情存档。徐州十张走动图均返回200，发布包缺失资源校验通过。正式站点仍单独运行，预览不会把测试存档写入正式环境。
+当前实际检查：首页、会话 API、登录样式/脚本与 `.mjs` 返回200，会话显示密码登录可用，未登录云档返回401，`.git/config` 返回404。线上浏览器观察中文用户名注册后进入账号；独立测试账号完成真实注册201、云档上传200、退出、重新登录200及云端版本1读取校验，测试账号已清理。发布包缺失资源校验通过。此前徐州十张走动图均返回200；手机/平板真机、跨真设备和负载仍未验收。正式站点仍单独运行，预览不会把测试存档写入正式环境。
 
-测试数据库在 `env.preview.d1_databases` 绑定 `AUTH_DB`，测试域名在 `env.preview.vars.AUTH_ORIGIN` 配置；预览 Secret 必须通过 `npx wrangler secret put <名称> --env preview` 单独设置。微信仍需实际平台权限，未配置时只能游客试玩，不能假冒登录成功。独立 Worker 并非 Pages 自动分支预览，后续更新此分支仍需明确执行预览部署；Git push 本身不保证更新该预览。
+测试数据库在 `env.preview.d1_databases` 绑定 `AUTH_DB`，测试域名在 `env.preview.vars.AUTH_ORIGIN` 配置；预览 Secret 必须通过 `npx wrangler secret put AUTH_PASSWORD_PEPPER --env preview` 单独设置，不再配置微信。独立 Worker 并非 Pages 自动分支预览，后续更新此分支仍需明确执行预览部署；Git push 本身不保证更新该预览。
 
 Cloudflare 项目连接本仓库的 `main`，仓库根目录保持默认，设置：
 

@@ -10,7 +10,7 @@ import { validatePayload, MAX_SLOT_BYTES, MAX_BUNDLE_BYTES } from '../save-forma
 import { collectReleaseAssets } from './release-assets.mjs';
 
 const sqlite = new DatabaseSync(':memory:');
-for (const name of ['0001_auth.sql', '0002_cloud_saves.sql']) {
+for (const name of ['0001_auth.sql', '0002_cloud_saves.sql', '0003_password_login.sql']) {
   sqlite.exec(fs.readFileSync(new URL(`../migrations/${name}`, import.meta.url), 'utf8'));
 }
 const db = {
@@ -148,7 +148,7 @@ try {
       setTimeout(fn, delay) { const id = ++timerId; timers.set(id, { fn, delay }); return id; }, clearTimeout(id) { timers.delete(id); },
       fetch: async (url, options = {}) => {
         if (offline) throw new Error('offline');
-        if (url === '/api/auth/session') return Response.json({ user: sessionAccount ? { id: sessionAccount } : null, providers: { website: false, wechat: false } });
+        if (url === '/api/auth/session') return Response.json({ user: sessionAccount ? { id: sessionAccount } : null, providers: { password: true } });
         if (invalidSession) return Response.json({ error: 'expired' }, { status: 401 });
         if (url.endsWith('/history')) return Response.json({ userId: user, entries: [{ payload: payload(77), revision: 1 }] });
         if (options.method !== 'PUT') return Response.json(remote);

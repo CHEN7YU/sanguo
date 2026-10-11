@@ -9,7 +9,7 @@
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
   <link rel="stylesheet" href="style.css?build=20261011-cloud-saves-v113" />
   <link rel="modulepreload" href="save-format.mjs?build=20261011-cloud-saves-v1" />
-  <link rel="stylesheet" href="auth.css?build=20261011-cloud-saves-v1" />
+  <link rel="stylesheet" href="auth.css?build=20261011-password-login-v2" />
 </head>
 <body>
   <section id="titleScreen" class="title-screen intro-playing" aria-label="游戏开始画面">
@@ -40,13 +40,32 @@
     </nav>
     <aside class="title-account" aria-label="玩家登录">
       <div class="title-account-actions">
-        <button id="wechatLoginBtn" type="button" disabled>微信登录</button>
-        <button id="wechatLogoutBtn" type="button" hidden>退出登录</button>
+        <button id="accountLoginBtn" type="button" disabled>账号登录 / 注册</button>
+        <button id="accountLogoutBtn" type="button" hidden>退出登录</button>
       </div>
       <small id="accountStatus" role="status" aria-live="polite">游客可直接试玩 · 正在检查登录服务</small>
       <button id="cloudManageBtn" type="button">管理云存档</button>
       <small id="cloudSaveSummary" role="status" aria-live="polite">正在读取存档</small>
     </aside>
+    <dialog id="accountDialog" class="cloud-save-dialog account-dialog" aria-labelledby="accountDialogTitle">
+      <h2 id="accountDialogTitle">账号登录</h2>
+      <form id="accountForm">
+        <label for="accountUsername">用户名</label>
+        <input id="accountUsername" name="username" type="text" required minlength="2" maxlength="20"
+          pattern="[A-Za-z0-9_\u3400-\u9fff]{2,20}" autocomplete="username" autocapitalize="none" spellcheck="false"
+          placeholder="2—20个中文、字母、数字或下划线">
+        <label for="accountPassword">4位数字密码</label>
+        <input id="accountPassword" name="password" type="password" inputmode="numeric" required
+          minlength="4" maxlength="4" pattern="[0-9]{4}" autocomplete="current-password" placeholder="例如 0123">
+        <p id="accountNotice" role="status" aria-live="polite">密码固定4位数字，请记住用户名和密码；目前不支持找回。</p>
+        <p class="account-warning">仅用于游戏存档，请勿使用银行卡或手机支付密码。英文字母不区分大小写。</p>
+        <div class="cloud-save-actions">
+          <button id="accountSubmitBtn" type="submit">登录</button>
+          <button id="accountToggleBtn" type="button">没有账号，去注册</button>
+          <button id="accountCloseBtn" type="button">游客继续 / 关闭</button>
+        </div>
+      </form>
+    </dialog>
     <dialog id="cloudSaveDialog" class="cloud-save-dialog">
       <h2>账号与云存档</h2>
       <p id="cloudSaveStatus" role="status" aria-live="polite">正在读取存档</p>
@@ -346,6 +365,6 @@
   <script src="battle-view.js?build=20261003-hulao-grid-fix-v53"></script>
   <script src="leaderboard.js?build=20261011-xuzhou-complete-v112"></script>
   <script src="game.js?build=20261011-cloud-saves-v113"></script>
-  <script src="auth.js?build=20261011-cloud-saves-v1"></script>
+  <script src="auth.js?build=20261011-password-login-v2"></script>
 </body>
 </html>

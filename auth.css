@@ -23,3 +23,8 @@
 .cloud-save-dialog button{min-height:40px;padding:6px 12px;background:#12375a;color:var(--ink);border:1px solid var(--gold2);cursor:pointer}
 .cloud-save-dialog button[hidden]{display:none}
 .title-account{flex-wrap:wrap}
+.account-dialog{width:min(480px,94vw)}
+.account-dialog form{display:grid;gap:10px}
+.account-dialog h2{margin:0 0 14px;font-size:24px}
+.account-dialog input{width:100%;min-height:44px;padding:8px;font:inherit;color:var(--ink);background:#102b49;border:1px solid var(--gold2)}
+.account-dialog .account-warning{color:var(--muted);margin:0}
