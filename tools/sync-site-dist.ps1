@@ -47,11 +47,24 @@ foreach ($file in $runtimeFiles) {
 }
 
 $assetPattern = 'assets/[A-Za-z0-9_./\- ()\u3400-\u9fff]+?\.(?:png|jpe?g|webp|avif|svg|mp3|opus|wav|mp4)'
+$assetRootPattern = 'const\s+([A-Za-z_$][A-Za-z0-9_$]*)\s*=\s*[''"](assets/[A-Za-z0-9_./\- ()\u3400-\u9fff]+/)[''"]'
+$assetSuffixPattern = '[A-Za-z0-9_./\- ()\u3400-\u9fff]+?\.(?:png|jpe?g|webp|avif|svg|mp3|opus|wav|mp4)'
 $assetReferences = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
 foreach ($file in $runtimeFiles) {
   $content = Get-Content -LiteralPath (Join-Path $sourceRoot $file) -Raw
   foreach ($match in [regex]::Matches($content, $assetPattern)) {
     [void]$assetReferences.Add($match.Value)
+  }
+  # Runtime maps keep large related asset families readable by joining a
+  # literal assets root with individual filenames. Resolve those joins here
+  # so the lightweight release package does not silently omit story art.
+  foreach ($rootMatch in [regex]::Matches($content, $assetRootPattern)) {
+    $variable = [regex]::Escape($rootMatch.Groups[1].Value)
+    $root = $rootMatch.Groups[2].Value
+    $joinedPattern = $variable + '\s*\+\s*[''"](' + $assetSuffixPattern + ')[''"]'
+    foreach ($joinedMatch in [regex]::Matches($content, $joinedPattern)) {
+      [void]$assetReferences.Add($root + $joinedMatch.Groups[1].Value)
+    }
   }
 }
 
