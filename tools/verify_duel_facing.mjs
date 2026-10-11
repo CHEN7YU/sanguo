@@ -20,6 +20,8 @@ const duelFiles = [
   ['level-03-guangchuan.js', "attackerId:'guan',defenderId:'fengji'"],
   ['level-03-xindu.js', "attackerId:'zhang',defenderId:'chunyu'"],
   ['level-04-julu.js', "attackerId:'zhang',defenderId:'yanliang'"]
+  ,['level-05-jieqiao.js', "attackerId:'zhang',defenderId:'wenchou'"]
+  ,['level-06-beihai.js', "attackerId:'zhaoyun',defenderId:'guanhai'"]
 ];
 
 for (const [file, duel] of duelFiles) {
@@ -27,4 +29,4 @@ for (const [file, duel] of duelFiles) {
   if (!source.includes(duel)) throw new Error(`${file} duel roster changed; re-audit its facing`);
 }
 
-console.log('Duel facing verified for Sishui, Hulao, Guangchuan, Xindu and Julu.');
+console.log('Duel facing verified for Sishui, Hulao, Guangchuan, Xindu, Julu, Jieqiao and Beihai.');

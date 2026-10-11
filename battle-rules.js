@@ -10,7 +10,8 @@ const BattleRules=(()=>{
     bandit:{attack:50,defense:40,hp:540,hpGrowth:40,move:5},
     support:{attack:20,defense:30,hp:400,hpGrowth:40,move:5},
     transport:{attack:20,defense:30,hp:400,hpGrowth:40,move:5},
-    martial:{attack:60,defense:40,hp:500,hpGrowth:50,move:5}
+    martial:{attack:60,defense:40,hp:500,hpGrowth:50,move:5},
+    beast:{attack:70,defense:30,hp:500,hpGrowth:50,move:5}
   };
   const ORIGINAL_STRATEGY_LEARNING={
     // Original PC version, base troop tiers.  Higher-tier skills are added
@@ -18,7 +19,7 @@ const BattleRules=(()=>{
     infantry:[{id:'fire',level:6},{id:'falseReport',level:10},{id:'encourage',level:15}],
     cavalry:[{id:'whirlwind',level:10},{id:'falseReport',level:20}],
     archer:[{id:'vortex',level:6},{id:'fortify',level:10},{id:'recover',level:15}],
-    bandit:[],support:[],transport:[],martial:[]
+    bandit:[],support:[],transport:[],martial:[],beast:[]
   };
 
   function troopBase(troop){const base=TROOP_BASE[troop];if(!base)throw new Error(`Unsupported original troop type: ${troop}`);return base}

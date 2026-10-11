@@ -5,8 +5,8 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 
 const root=fileURLToPath(new URL('..',import.meta.url));
-const levelFiles=['level-01.js','level-02.js','level-03-guangchuan.js','level-03-xindu.js','level-04-julu.js'];
-const dedicated=new Set(['liu','guan','zhang','gongsun','tao','hua','lvbu','zhangliao','houcheng','songxian','weixu','yanliang','zhanghe']);
+const levelFiles=['level-01.js','level-02.js','level-03-guangchuan.js','level-03-xindu.js','level-04-julu.js','level-04-qinghe.js','level-05-jieqiao.js','level-06-beihai.js'];
+const dedicated=new Set(['liu','guan','zhang','gongsun','tao','hua','lvbu','zhangliao','houcheng','songxian','weixu','yanliang','zhanghe','quyi','yangang','zhaoyun','wenchou','guanhai','kongrong','taishici','mengsu']);
 const friendlyFile={
   hua:'hua-squad-friendly-v1.webp',
   infantry:'infantry-squad-friendly-v1.webp',
@@ -20,7 +20,7 @@ const visualKey=u=>u.troop==='cavalry'?'hua':u.troop==='archer'?'archer':u.troop
 
 const report=[];
 for(const file of levelFiles){
-  const context={window:{}};
+  const context={window:{},location:{search:''},localStorage:{getItem:()=>null},URLSearchParams};
   vm.runInNewContext(fs.readFileSync(path.join(root,file),'utf8'),context,{filename:file});
   const level=Object.values(context.window).find(value=>value&&Array.isArray(value.units));
   assert.ok(level,`${file}: level data must load`);

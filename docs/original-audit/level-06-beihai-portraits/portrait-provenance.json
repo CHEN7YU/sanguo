@@ -1,0 +1,48 @@
+{
+  "source": "BAKDATA.R3 character record byte 14 -> FACEDAT.R3 portrait record",
+  "formula": "0x1100 + characterId * 21, face id at +14",
+  "portraits": [
+    {
+      "name": "赵云",
+      "characterId": 53,
+      "faceId": 3,
+      "slug": "zhao-yun",
+      "reference": "docs/original-audit/level-06-beihai-portraits/zhao-yun-face-003.png"
+    },
+    {
+      "name": "糜竺",
+      "characterId": 64,
+      "faceId": 13,
+      "slug": "mi-zhu",
+      "reference": "docs/original-audit/level-06-beihai-portraits/mi-zhu-face-013.png"
+    },
+    {
+      "name": "太史慈",
+      "characterId": 149,
+      "faceId": 85,
+      "slug": "taishi-ci",
+      "reference": "docs/original-audit/level-06-beihai-portraits/taishi-ci-face-085.png"
+    },
+    {
+      "name": "孔融",
+      "characterId": 7,
+      "faceId": 195,
+      "slug": "kong-rong",
+      "reference": "docs/original-audit/level-06-beihai-portraits/kong-rong-face-195.png"
+    },
+    {
+      "name": "管亥",
+      "characterId": 216,
+      "faceId": 197,
+      "slug": "guan-hai",
+      "reference": "docs/original-audit/level-06-beihai-portraits/guan-hai-face-197.png"
+    },
+    {
+      "name": "孟肃",
+      "characterId": 233,
+      "faceId": 208,
+      "slug": "meng-su",
+      "reference": "docs/original-audit/level-06-beihai-portraits/meng-su-face-208.png"
+    }
+  ]
+}

@@ -13,7 +13,8 @@
     xindu: { name: '信都之战', targetSeconds: 780, targetTurns: 15, maxTurns: 30 },
     julu: { name: '巨鹿之战', targetSeconds: 900, targetTurns: 16, maxTurns: 30 },
     qinghe: { name: '清河之战', targetSeconds: 840, targetTurns: 15, maxTurns: 30 },
-    jieqiao: { name: '界桥之战', targetSeconds: 1200, targetTurns: 22, maxTurns: 40 }
+    jieqiao: { name: '界桥之战', targetSeconds: 1200, targetTurns: 22, maxTurns: 40 },
+    beihai: { name: '北海之战', targetSeconds: 900, targetTurns: 16, maxTurns: 30 }
   };
 
   let activeLevel = null;

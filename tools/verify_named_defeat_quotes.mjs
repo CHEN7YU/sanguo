@@ -5,10 +5,10 @@ import {fileURLToPath} from 'node:url';
 
 const root=fileURLToPath(new URL('..',import.meta.url));
 const fail=message=>{throw new Error(message)};
-const levelFiles=fs.readdirSync(root).filter(name=>/^level-(01|02|03|04).*\.js$/.test(name));
+const levelFiles=fs.readdirSync(root).filter(name=>/^level-(01|02|03|04|05|06).*\.js$/.test(name)&&!name.includes('animation-bounds'));
 let namedCount=0;
 for(const file of levelFiles){
-  const sandbox={window:{}};
+  const sandbox={window:{},location:{search:''},localStorage:{getItem:()=>null},URLSearchParams};
   vm.runInNewContext(fs.readFileSync(path.join(root,file),'utf8'),sandbox);
   for(const level of Object.values(sandbox.window).filter(value=>value&&Array.isArray(value.units))){
     for(const unit of level.units.filter(unit=>(unit.originalId??999)<256)){

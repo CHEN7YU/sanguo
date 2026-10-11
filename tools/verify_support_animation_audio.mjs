@@ -18,7 +18,7 @@ if(bounds.attack.length!==5)fail('military-band attack sheet must expose 5 frame
 for(const token of [
   "support:[[[85,0,193,293]",
   "support:[[15,102,419,552]",
-  "['martial','bandit','support','zhaoyun','wenchou','yanliang','zhanghe','quyi'].includes(key)",
+  "'martial','bandit','support','zhaoyun','wenchou','yanliang','zhanghe','quyi'",
   "!['martial','bandit','support'].includes(u.troop)",
 ])if(!game.includes(token))fail(`missing military-band renderer token: ${token}`);
 

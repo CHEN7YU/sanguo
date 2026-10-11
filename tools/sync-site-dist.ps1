@@ -21,12 +21,14 @@ $runtimeFiles = @(
   'zhao-yun-animation-bounds.js',
   'wen-chou-animation-bounds.js',
   'jieqiao-core-animation-bounds.js',
+  'beihai-animation-bounds.js',
   'level-02.js',
   'level-03-guangchuan.js',
   'level-03-xindu.js',
   'level-04-julu.js',
   'level-04-qinghe.js',
   'level-05-jieqiao.js',
+  'level-06-beihai.js',
   'story-data.js',
   'style.css'
 )

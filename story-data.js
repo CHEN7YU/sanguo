@@ -198,6 +198,36 @@
     L('world','进军界桥','关羽','大哥，到界桥了，请列队。')
   ];
 
+  // SNR1D.R3 chapter 1, page 1 paragraphs 0–2.  This sequence begins after
+  // Jieqiao and follows the original Chenliu -> Pingyuan -> Beiping ->
+  // Pingyuan -> march-to-Xuzhou order before the Beihai encounter.
+  window.BEIHAI_PRE_BATTLE_STORY = [
+    L('prologue','第一章　支援北海、徐州','史官','界桥之战在刘备军与赵云的奋战下结束。袁绍与公孙瓒此后又交战数月，双方将士都已疲惫。',{chapter:'第一章'}),
+    L('prologue','第一章　支援北海、徐州','史官','董卓借天子之名出面调停，两军终于罢兵。不久，王允利用貂蝉离间董卓与吕布，董卓被吕布所杀。'),
+    L('prologue','第一章　支援北海、徐州','史官','吕布又败给董卓旧部，只得离开长安。中原战火没有平息，新的危机已逼近徐州。'),
+    L('tent','陈留','武官','主公，大事不好！徐州方面传来了噩耗。'),
+    L('tent','陈留','曹操','父仇不能不报。于禁，立即整顿兵马，向徐州进军！'),
+    L('tent','陈留','武官','遵命！'),
+    L('tent','平原议事厅','糜竺','刘使君，曹操大军压境，徐州危在旦夕。陶谦大人命我前来求援。'),
+    L('tent','平原议事厅','刘备','陶谦大人有难，我岂能坐视不理。只是平原兵力不足，须先去北平请公孙瓒相助。'),
+    L('tent','平原议事厅','关羽','兄长所言极是。事不宜迟，我们立刻动身。'),
+    L('palace','北平议事厅','公孙瓒','刘备，好久不见。你亲自赶来，可是徐州出了大事？'),
+    L('palace','北平议事厅','刘备','曹操正进攻徐州，陶谦派糜竺求援。我军势单，特来向兄长借兵。'),
+    L('palace','北平议事厅','公孙瓒','我会助你。赵云，你进来吧。'),
+    L('palace','北平议事厅','赵云','您叫我吗？'),
+    L('palace','北平议事厅','军报','赵云加入刘备军！'),
+    L('palace','北平议事厅','公孙瓒','那么，赵云让你辛苦一趟。刘备，祝你成功。'),
+    L('tent','平原议事厅','糜竺','刘备，我一直在等你。请你准备出兵。'),
+    L('tent','平原议事厅','赵云','主公，听你吩咐。'),
+    L('tent','平原议事厅','糜竺','准备好了吗？'),
+    L('world','前往徐州','糜竺','那么快往徐州吧。'),
+    L('world','前往徐州','糜竺','徐州在这个平原的南面，快速行军吧。'),
+    L('world','北海近郊','张飞','嗯？好像情况不对啊，怎么回事？'),
+    L('world','北海城外','管亥','哈哈哈，进攻进攻！再攻一会儿城池就归我了。'),
+    L('world','北海城外','关羽','看来好像是草寇作乱。'),
+    L('world','北海城外','刘备','先解北海之围，再赴徐州。诸位，列阵迎敌！')
+  ];
+
   window.NPC_DIALOGUE_BY_LEVEL = {
     'sishui-pass': window.PRE_BATTLE_NPC_DIALOGUE,
     'guangchuan': {
@@ -221,6 +251,7 @@
     'xindu': window.XINDU_PRE_BATTLE_STORY,
     'julu': window.JULU_PRE_BATTLE_STORY,
     'qinghe': window.QINGHE_PRE_BATTLE_STORY,
-    'jieqiao': window.JIEQIAO_PRE_BATTLE_STORY
+    'jieqiao': window.JIEQIAO_PRE_BATTLE_STORY,
+    'beihai': window.BEIHAI_PRE_BATTLE_STORY
   };
 })();

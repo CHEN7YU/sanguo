@@ -33,7 +33,7 @@ TERRAIN = {
 }
 
 
-def parse_map(path: Path) -> dict:
+def parse_map(path: Path, column_major: bool = False) -> dict:
     data = path.read_bytes()
     if len(data) < 2:
         raise ValueError("map section is too short")
@@ -46,7 +46,9 @@ def parse_map(path: Path) -> dict:
     tactical = data[tactical_offset:tactical_offset + width * height]
     if len(tactical) != width * height:
         raise ValueError("truncated tactical map")
-    rows = [list(tactical[y * width:(y + 1) * width]) for y in range(height)]
+    rows = ([[tactical[x * height + y] for x in range(width)] for y in range(height)]
+            if column_major else
+            [list(tactical[y * width:(y + 1) * width]) for y in range(height)])
     counts = Counter(tactical)
     return {
         "width": width,
@@ -58,13 +60,14 @@ def parse_map(path: Path) -> dict:
         "display_length": display_size,
         "tactical_offset": tactical_offset,
         "tactical_length": len(tactical),
+        "storage_order": "column-major" if column_major else "row-major",
         "terrain_legend": {f"{code:02X}": name for code, (name, _) in TERRAIN.items()},
         "terrain_counts": {f"{code:02X}": {"name": TERRAIN.get(code, ("未知", ""))[0], "count": count} for code, count in sorted(counts.items())},
         "terrain_codes": rows,
     }
 
 
-def render_svg(parsed: dict, destination: Path) -> None:
+def render_svg(parsed: dict, destination: Path, title: str = "原版战术地图") -> None:
     cell = 34
     pad_left, pad_top = 54, 58
     width, height = parsed["width"], parsed["height"]
@@ -73,7 +76,7 @@ def render_svg(parsed: dict, destination: Path) -> None:
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{svg_width}" height="{svg_height}" viewBox="0 0 {svg_width} {svg_height}">',
         '<rect width="100%" height="100%" fill="#0c1821"/>',
         '<style>text{font-family:"Microsoft YaHei",sans-serif}.code{font-size:10px;fill:#fff;text-anchor:middle;dominant-baseline:middle}.axis{font-size:11px;fill:#aab8bd;text-anchor:middle}.title{font-size:20px;font-weight:700;fill:#f0d487}</style>',
-        f'<text class="title" x="{svg_width/2}" y="28" text-anchor="middle">原版第一关：汜水关之战战术地图（{width}×{height}）</text>',
+        f'<text class="title" x="{svg_width/2}" y="28" text-anchor="middle">{title}（{width}×{height}）</text>',
     ]
     for x in range(width):
         parts.append(f'<text class="axis" x="{pad_left+x*cell+cell/2}" y="49">{x}</text>')
@@ -93,13 +96,15 @@ def main() -> None:
     parser.add_argument("source", type=Path)
     parser.add_argument("json_output", type=Path)
     parser.add_argument("--svg", type=Path)
+    parser.add_argument("--column-major", action="store_true", help="decode tactical cells stored by x, then y")
+    parser.add_argument("--title", default="原版战术地图")
     args = parser.parse_args()
-    parsed = parse_map(args.source)
+    parsed = parse_map(args.source, column_major=args.column_major)
     args.json_output.parent.mkdir(parents=True, exist_ok=True)
     args.json_output.write_text(json.dumps(parsed, ensure_ascii=False, indent=2), encoding="utf-8")
     if args.svg:
         args.svg.parent.mkdir(parents=True, exist_ok=True)
-        render_svg(parsed, args.svg)
+        render_svg(parsed, args.svg, args.title)
     print(json.dumps({k: parsed[k] for k in ("width", "height", "tactical_offset", "tactical_length")}, ensure_ascii=False))
 
 
