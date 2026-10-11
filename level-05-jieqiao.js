@@ -1,4 +1,5 @@
-(function(){
+(function buildJieqiaoLevel(){
+  window.refreshJieqiaoLevel=buildJieqiaoLevel;
   const encodedRows=[
     '01010101010101010101020202020201010101070700000c0000000000000000','01010101010101010202020202020202020101010700000c0000000f0010000e',
     '07010101010101020202020202020202020202010700000c0000000000000000','00070701010102020202020202020202020202010700100c000e000e000e0000',
@@ -20,7 +21,7 @@
   const U=data=>Object.assign(data,stats(data.troop,data.level,data.wuli,data.zhili,data.tongyu));
   const E=(id,originalId,name,role,troop,level,x,y,wuli,zhili,tongyu,extra={})=>U({id,originalId,name,role,className:{infantry:'短兵',archer:'弓兵',cavalry:'轻骑兵',transport:'运输队',support:'军乐队',bandit:'山贼'}[troop],troop,level,side:'enemy',x,y,wuli,zhili,tongyu,aiType:0,range:troop==='archer'?2:undefined,critRate:originalId<256?.1:undefined,blockRate:originalId<256?.1:undefined,weapon:troop==='archer'?'角弓':troop==='cavalry'?'长枪':'佩剑',color:'#9e443f',accent:troop==='support'||troop==='transport'?'#c3a85d':'#d0ad5d',...extra});
   const P=(x,y)=>x|(y<<8);
-  function previousRoute(){const p=new URLSearchParams(location.search),explicit=p.get('jieqiaoRoute');if(['julu','qinghe'].includes(explicit))return explicit;try{const t=JSON.parse(localStorage.getItem('sanguozhi-zhaolie-campaign-v1')||'null');if(['julu','qinghe'].includes(t?.fromLevelId))return t.fromLevelId}catch{}return'qinghe'}
+  function previousRoute(){const p=new URLSearchParams(location.search),explicit=p.get('jieqiaoRoute');if(['julu','qinghe'].includes(explicit))return explicit;try{const t=JSON.parse((window.ZhaolieStorage||localStorage).getItem('sanguozhi-zhaolie-campaign-v1')||'null');if(['julu','qinghe'].includes(t?.fromLevelId))return t.fromLevelId}catch{}return'qinghe'}
   const route=previousRoute();
   const heroes=[
     U({id:'liu',originalId:0,name:'刘备',role:'我军主将',className:'短兵',troop:'infantry',level:4,side:'ally',x:0,y:14,wuli:75,zhili:64,tongyu:91,critRate:.12,blockRate:.14,weapon:'佩剑',color:'#45a9cf',accent:'#e0ba59',carryover:true,defeatQuote:'汉室未兴……我怎能倒在这里……'}),

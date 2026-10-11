@@ -6,7 +6,7 @@ import {collectReleaseAssets} from './release-assets.mjs';
 const projectRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const releaseRoot=path.resolve(process.argv[2]||path.join(projectRoot,'site-test','dist'));
 const sourceFiles=fs.readdirSync(releaseRoot,{withFileTypes:true})
-  .filter(entry=>entry.isFile()&&/\.(?:html|css|js)$/i.test(entry.name))
+  .filter(entry=>entry.isFile()&&/\.(?:html|css|m?js)$/i.test(entry.name))
   .map(entry=>path.join(releaseRoot,entry.name));
 const references=collectReleaseAssets(sourceFiles.map(source=>fs.readFileSync(source,'utf8')));
 const missing=[...references].filter(reference=>!fs.existsSync(path.join(releaseRoot,...reference.split('/')))).sort();

@@ -1,11 +1,32 @@
 {
   "name": "sanguo",
+  "main": "worker/index.mjs",
   "compatibility_date": "2026-10-11",
   "build": {
     "command": "node tools/build-cloudflare.mjs"
   },
   "assets": {
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
     "directory": "./dist",
     "not_found_handling": "404-page"
+  },
+  "env": {
+    "preview": {
+      "name": "sanguo-wechat-preview",
+      "workers_dev": true,
+      "compatibility_date": "2026-10-08",
+      "vars": {
+        "AUTH_ORIGIN": "https://sanguo-wechat-preview.chenqiyu2010.workers.dev"
+      },
+      "d1_databases": [
+        {
+          "binding": "AUTH_DB",
+          "database_name": "sanguo-wechat-preview",
+          "database_id": "33fc6085-5b7b-40fc-ba34-cbbbab92a9c6",
+          "migrations_dir": "migrations"
+        }
+      ]
+    }
   }
 }

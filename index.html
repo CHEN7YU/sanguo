@@ -7,7 +7,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
-  <link rel="stylesheet" href="style.css?build=20261011-xuzhou-complete-v112" />
+  <link rel="stylesheet" href="style.css?build=20261011-cloud-saves-v113" />
+  <link rel="modulepreload" href="save-format.mjs?build=20261011-cloud-saves-v1" />
+  <link rel="stylesheet" href="auth.css?build=20261011-cloud-saves-v1" />
 </head>
 <body>
   <section id="titleScreen" class="title-screen intro-playing" aria-label="游戏开始画面">
@@ -23,7 +25,7 @@
       <div><small>经典重燃</small><h1>三国志昭烈传</h1><p>InktoLife &amp; Pandaking联合出品</p></div>
     </div>
     <nav class="title-menu" aria-label="主菜单">
-      <button id="newGameBtn" class="primary" type="button">开始游戏</button>
+      <button id="newGameBtn" class="primary" type="button">直接开始游戏（无需登录）</button>
       <button id="continueGameBtn">继续游戏</button>
       <button id="titleLoadBtn">读取进度</button>
       <button id="titleLevelSelectBtn">选择关卡</button>
@@ -36,6 +38,31 @@
       <button id="titleUndoImportBtn" class="title-undo-import hidden" type="button">撤销上次导入</button>
       <button id="titleSettingsBtn">游戏设置</button>
     </nav>
+    <aside class="title-account" aria-label="玩家登录">
+      <div class="title-account-actions">
+        <button id="wechatLoginBtn" type="button" disabled>微信登录</button>
+        <button id="wechatLogoutBtn" type="button" hidden>退出登录</button>
+      </div>
+      <small id="accountStatus" role="status" aria-live="polite">游客可直接试玩 · 正在检查登录服务</small>
+      <button id="cloudManageBtn" type="button">管理云存档</button>
+      <small id="cloudSaveSummary" role="status" aria-live="polite">正在读取存档</small>
+    </aside>
+    <dialog id="cloudSaveDialog" class="cloud-save-dialog">
+      <h2>账号与云存档</h2>
+      <p id="cloudSaveStatus" role="status" aria-live="polite">正在读取存档</p>
+      <p id="cloudSaveNotice">同步保存整套自动档、六个手动档与跨关进度。游客存档不会自动迁入账号。</p>
+      <div class="cloud-save-actions">
+        <button id="cloudSyncBtn" type="button" hidden>立即同步本机进度</button>
+        <button id="cloudUseRemoteBtn" type="button" hidden>采用云端/历史版本（备份本机）</button>
+        <button id="cloudUseLocalBtn" type="button" hidden>保留本机版本（备份云端）</button>
+        <button id="cloudImportGuestBtn" type="button" hidden>迁入游客存档（仅空账号）</button>
+        <button id="cloudHistoryBtn" type="button">查看云端历史版本</button>
+        <button id="cloudExportBackupBtn" type="button">备份账号本机原始记录</button>
+        <button id="cloudGuestBtn" type="button" hidden>切换游客（保留账号进度）</button>
+        <button id="cloudCloseBtn" type="button">返回游戏</button>
+      </div>
+      <div id="cloudHistoryList"></div>
+    </dialog>
     <input id="saveImportInput" type="file" accept=".json,.zhaolie-save,application/json" hidden>
     <section id="titleChampionTicker" class="title-champion-ticker hidden" aria-label="各关最高战绩">
       <b class="title-champion-label"><span aria-hidden="true">◆</span> 天下战报</b>
@@ -296,6 +323,7 @@
   <audio id="titleMusic" src="assets/audio/title-theme.mp3" preload="auto" autoplay loop hidden></audio>
   <audio id="storyMusic" src="assets/audio/original-music-2.wav" preload="auto" loop hidden></audio>
   <audio id="battleMusic" src="assets/audio/knights-errant.mp3" preload="auto" loop hidden></audio>
+  <script src="cloud-saves.js?build=20261011-cloud-saves-v1"></script>
   <script src="audio-config.js?build=20261010-jieqiao-music-v99"></script>
   <script src="battle-sfx.js?build=20261009-movement-sfx-v96"></script>
   <script src="battle-rules.js?build=20261003-military-band-v55"></script>
@@ -309,7 +337,7 @@
   <script src="level-03-xindu.js?build=20261009-xindu-dry-spawn-v95"></script>
   <script src="level-04-julu.js?build=20261004-julu-duel-continuation-v72"></script>
   <script src="level-04-qinghe.js?build=20261007-named-general-style-v90"></script>
-  <script src="level-05-jieqiao.js?build=20261011-beihai-v108"></script>
+  <script src="level-05-jieqiao.js?build=20261011-cloud-saves-v1"></script>
   <script src="level-06-beihai.js?build=20261011-beihai-v108"></script>
   <script src="level-07-xuzhou.js?build=20261011-xuzhou-complete-v112"></script>
   <script src="beihai-animation-bounds.js?build=20261011-beihai-v108"></script>
@@ -317,6 +345,7 @@
   <script src="story-data.js?build=20261011-xuzhou-complete-v112"></script>
   <script src="battle-view.js?build=20261003-hulao-grid-fix-v53"></script>
   <script src="leaderboard.js?build=20261011-xuzhou-complete-v112"></script>
-  <script src="game.js?build=20261011-xuzhou-complete-v112"></script>
+  <script src="game.js?build=20261011-cloud-saves-v113"></script>
+  <script src="auth.js?build=20261011-cloud-saves-v1"></script>
 </body>
 </html>

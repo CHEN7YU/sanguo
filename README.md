@@ -40,7 +40,53 @@ node server.mjs
 
 ## Cloudflare Workers 试玩部署
 
-第一阶段只部署静态游戏，不迁移排行榜数据库，也不提供微信登录或云存档。原排行榜接口的 CORS 尚未授权新域名，在线榜单需后续单独配置。Cloudflare 全球免费服务不代表大陆网络已经验证可用。
+首次部署只发布静态游戏，未迁移排行榜数据库或接入微信登录、云存档。原排行榜接口的 CORS 尚未授权新域名，在线榜单需后续单独配置。Cloudflare 全球免费服务不代表大陆网络已经验证可用。
+`feature/wechat-login` 分支增加了游客入口、微信登录和账号云存档；未配置微信权限和 D1 时明确显示未配置，游客试玩仍可用。正式 `main` 是否具备这些功能以实际合并为准，Git 推送也不等于已经发布。旧游客档不会自动迁入账号。
+
+### 微信登录配置（功能分支）
+
+网页登录使用网站应用扫码（`snsapi_login`）；微信内打开使用已认证服务号网页授权（`snsapi_base`），只获取身份，不请求头像、昵称或手机号。两种 AppID 的账号目前独立；尚未实现 UnionID 跨应用绑定，不能宣称两种入口自动共享账户。
+
+先取得微信相应权限，再建立专用测试 D1，并在 Wrangler 配置增加 `d1_databases` 项，字段为 `binding: AUTH_DB`、实际 `database_name`、实际 `database_id`、`migrations_dir: migrations`。不得复用或覆盖原排行榜数据库。数据库 ID 不是密钥，可提交；AppSecret 必须使用 Secret，不得提交到源码、聊天或前端。
+
+Cloudflare Linux / Wrangler 命令：
+
+```text
+npx wrangler d1 create sanguo-auth-test
+npx wrangler d1 migrations apply sanguo-auth-test --remote
+npx wrangler secret put WECHAT_WEBSITE_APP_SECRET
+npx wrangler secret put WECHAT_SERVICE_APP_SECRET
+```
+
+迁移前先完成对应 D1 配置。只启用一种入口时只配置该入口的 Secret 和 AppID。设置变量 `AUTH_ORIGIN` 为完整 HTTPS 游戏源站（例如实际的 workers.dev 域名，不含路径），`WECHAT_WEBSITE_APP_ID` 为网站应用 AppID，`WECHAT_SERVICE_APP_ID` 为服务号 AppID。微信后台配置对应回调域名；回调路径为 `/api/auth/wechat/callback`，服务号还需完成网页授权域名验证。不得使用无权限的 AppID 伪装接入成功。
+
+Worker 仅在 `/api/*` 执行后端，其他文件仍由静态资源服务处理。登录采用一次性微信 code、五分钟 state 流程 Cookie、七天安全会话 Cookie，D1 只存会话令牌的 SHA-256 哈希；退出登录撤销当前会话。服务端失败返回明确错误，不影响游客入口。正式开放前需限制登录接口请求频率、确认隐私说明及游戏合规，不将 OpenID 当作实名验证。
+
+本机 Node.js 24 可运行 `node tools\verify_wechat_login.mjs` 和 `node tools\verify_cloud_saves.mjs`（内存 SQLite、模拟微信与存档客户端，不访问真实账号）。`node server.mjs` 只提供静态试玩，不模拟微信成功；完整后端需 Wrangler 预览与实际微信配置验证。真实微信授权、手机扫码衔接、账号合并、线上 D1、跨设备同步与真实设备均须另行验收。本机是 Windows ARM64，原生 ARM64 Node 的 workerd 安装失败；改用官方 x64 Node（核对 SHA-256）及可用的 Wrangler 4.147.0 后，预览 Worker 的 `deploy --env preview --dry-run` 已通过。这不等于已经部署或验收真实微信。
+
+### 账号云存档（功能分支）
+
+配置 `AUTH_DB` 后应用 **0001、0002 两个迁移**，同时设置 `AUTH_ORIGIN`；不要只建登录表就开放服务。`GET /api/saves` 读取整套进度，`PUT /api/saves` 以服务器会话确定归属、校验来源并按版本原子写入，`GET /api/saves/history` 读取历史。客户端传来的账号标识仅用于检测其他页面切换会话，不用于授权。
+
+游戏等待身份及本机档读取完成后才初始化关卡。游客沿用原浏览器存档；账号的自动档、六个手动档、跨关继承、导入备份与待同步记录存入独立命名空间。登录后可通过“继续游戏”恢复最近档位，主线/选关标记、剧情及战后分支随档保留。音量等浏览器设置和原排行榜身份暂不随账号同步。
+
+进度先保存本机，自动同步按一分钟合并，手动存档与“立即同步”立即尝试。离线待同步记录保留在本机；恢复网络时重新检查会话，账号变化或失效不把旧进度写给新账号。网络响应丢失后重用原请求 ID，避免重复版本。关闭网页前仍应确认“已同步”；突然关闭不保证最后一分钟已上传，清除浏览器数据会丢失未上传内容。
+
+新账号不会自动继承游客档；只有确认云端和本机账号为空才允许点击迁入。版本冲突显示双方最近关卡、回合/剧情、主线/选关和时间，由玩家选择整套版本，不按时间擅自覆盖。被替换版本留作本机导入备份，可用标题的“撤销上次导入”恢复；也可导出“账号本机原始记录”作人工恢复备份，此原始文件不是普通导入格式。历史恢复需再次确认，并作为新云版本保存。
+
+单档上限 **100 KiB**，账号当前进度包上限 **350 KiB**；最多保留三个旧版本，当前包和历史的 JSON 数据总量不超过 **500 KiB**，超出时从最旧历史开始淘汰。数据库表、索引、账号和会话另占空间，仍需监控 D1 总容量与读写额度；不承诺 1000 人并发或免费额度下无限同步。大档上传失败仍保留本机，不伪装同步成功。
+
+同浏览器同账号使用 Web Locks 保持一个写入页面；第二页面只读并提示关闭另一页面后刷新，避免本机相互覆盖。不支持 Web Locks 的旧浏览器需更新或使用游客模式。云端不同设备的并发靠版本冲突处理。当前是技术原型，正式开放前仍需限流、隐私/账号删除流程、故障演练与真实网络负载测试。
+
+### 独立分支预览
+
+用户选择独立测试 Worker，`feature/wechat-login` 使用 `wrangler.jsonc` 的 `preview` 环境，Worker 名为 `sanguo-wechat-preview`。部署命令为 `npx wrangler deploy --env preview`；**不要省略 `--env preview`**，默认命令仍指向正式 `sanguo`。预览不切换正式 Worker 流量，也不复用排行榜/正式存档数据库。
+
+预览地址：`https://sanguo-wechat-preview.chenqiyu2010.workers.dev`。2026-10-11 已部署独立 Worker；测试 D1 `sanguo-wechat-preview` 已创建并应用两个迁移，数据库 ID 与绑定写入 `env.preview`，不是密钥。预览兼容日期采用本机 workerd 支持的 `2026-10-08`，默认生产配置日期保持不变。微信 AppID/Secret 仍未配置，不能用此预览宣称已完成真实微信和跨设备云档验收。
+
+当前实际检查：首页、会话 API 与 `.mjs` 返回200，未登录云档返回401，`.git/config` 返回404；浏览器可直接开始游客游戏并写入剧情存档。徐州十张走动图均返回200，发布包缺失资源校验通过。正式站点仍单独运行，预览不会把测试存档写入正式环境。
+
+测试数据库在 `env.preview.d1_databases` 绑定 `AUTH_DB`，测试域名在 `env.preview.vars.AUTH_ORIGIN` 配置；预览 Secret 必须通过 `npx wrangler secret put <名称> --env preview` 单独设置。微信仍需实际平台权限，未配置时只能游客试玩，不能假冒登录成功。独立 Worker 并非 Pages 自动分支预览，后续更新此分支仍需明确执行预览部署；Git push 本身不保证更新该预览。
 
 Cloudflare 项目连接本仓库的 `main`，仓库根目录保持默认，设置：
 
@@ -59,7 +105,7 @@ node tools\build-cloudflare.mjs
 node tools\verify_release_assets.mjs dist
 ```
 
-构建从 `index.html` 收集脚本和样式，沿用资源校验器对完整路径及 `const root + 文件名` 的扫描规则，复制所需资源到忽略提交的 `dist`。增加新的动态拼接形式时须扩展扫描器并测试。构建会拒绝缺失文件、Git LFS 指针及超过 25 MiB 的单个文件，不会删除源素材。重复构建只替换带本工具标记的 `dist`；已有其他工具的 `dist` 会报错，需先人工确认。
+构建从 `index.html` 收集脚本、样式与 `modulepreload` 的 `.mjs`（共享存档校验模块），沿用资源校验器对完整路径及 `const root + 文件名` 的扫描规则，复制所需资源到忽略提交的 `dist`。增加新的动态拼接或模块依赖时须显式声明并扩展扫描器、测试。构建会拒绝缺失文件、Git LFS 指针及超过 25 MiB 的单个文件，不会删除源素材。重复构建只更新带本工具标记的 `dist` 文件、清除陈旧文件，保留目录以免 Windows Wrangler 监听占用导致删除目录失败；拒绝输出中的符号链接，已有其他工具的 `dist` 会报错。不要同时运行多个构建进程。旧 Sites 脚本同步从 HTML 取运行文件，但仍只发布静态页，不提供登录/云存档 API，目标路径须按实际机器核对。
 
 **不得将静态资源目录设成仓库根目录 `.`**，否则会包含 Git 历史、母版、原游戏数据和开发工具。Wrangler 只上传 `dist`，构建标记由 `.assetsignore` 排除。不要将 LFS 指针当作音乐或视频发布；构建环境若未下载 LFS 实体文件，需先解决 LFS 下载再重试。
 

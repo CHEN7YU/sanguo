@@ -1,0 +1,25 @@
+.title-account{position:absolute;left:8px;top:6px;width:38vw;z-index:3;display:flex;align-items:center;gap:10px;padding:6px 10px;background:#071a34ed;border:1px solid var(--gold2);border-radius:5px}
+.title-account-actions{display:flex;justify-content:flex-end;gap:8px}
+.title-account button{min-height:36px;padding:6px 14px;background:#0d493b;color:var(--ink);border:1px solid #5cae80;font:inherit;cursor:pointer;touch-action:manipulation}
+.title-account button:disabled{opacity:.6;cursor:default}
+.title-account button[hidden]{display:none}
+.title-account small{display:block;font-size:11px;line-height:1.5;color:var(--muted)}
+@media(max-height:500px){.title-account{padding:4px 8px}.title-account button{min-height:28px}.title-account small{font-size:10px}}
+@media(orientation:portrait){
+  .title-account{right:8px;width:auto;display:grid;grid-template-columns:1fr auto;gap:4px}
+  .title-account small{grid-column:1/-1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .title-account-actions{justify-content:flex-start}
+  #cloudManageBtn{grid-row:1;grid-column:2}
+  .title-screen .title-heading{top:104px}
+  .title-screen .title-heading small{display:none}
+  .title-screen .title-heading h1{font-size:30px}
+  .title-screen .title-heading>img{width:44px;height:44px}
+  .title-screen .title-menu{top:max(174px,27vh)}
+}
+.cloud-save-dialog{width:min(680px,94vw);max-height:85dvh;overflow:auto;background:#071a34;color:var(--ink);border:2px solid var(--gold);padding:18px}
+.cloud-save-dialog::backdrop{background:#020814dd}
+.cloud-save-dialog p{font-size:13px;line-height:1.6}
+.cloud-save-actions,#cloudHistoryList{display:flex;flex-wrap:wrap;gap:8px}
+.cloud-save-dialog button{min-height:40px;padding:6px 12px;background:#12375a;color:var(--ink);border:1px solid var(--gold2);cursor:pointer}
+.cloud-save-dialog button[hidden]{display:none}
+.title-account{flex-wrap:wrap}
