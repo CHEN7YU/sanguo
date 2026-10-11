@@ -1,6 +1,7 @@
 site-test/
 site-publish-checkout-*/
 dist/
+.wrangler/
 node_modules/
 *.tar.gz
 *.zip

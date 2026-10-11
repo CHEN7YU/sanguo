@@ -38,6 +38,32 @@ node server.mjs
 
 两人直接在 `main` 协作时，每次开工先 `git pull --ff-only origin main`，完成并验证后再 Commit、Pull 一次并 Push。开始任务前先在群里说明要改的文件；同一时间只能由一人修改 `game.js`、`story-data.js` 或同一套关卡素材。出现非快进更新时停止 Push，先检查并整合对方提交，禁止强推覆盖。
 
+## Cloudflare Workers 试玩部署
+
+第一阶段只部署静态游戏，不迁移排行榜数据库，也不提供微信登录或云存档。原排行榜接口的 CORS 尚未授权新域名，在线榜单需后续单独配置。Cloudflare 全球免费服务不代表大陆网络已经验证可用。
+
+Cloudflare 项目连接本仓库的 `main`，仓库根目录保持默认，设置：
+
+| 配置 | 值 |
+|---|---|
+| Worker 名称 | `sanguo`（与根目录 `wrangler.jsonc` 一致） |
+| 构建命令 | `node tools/build-cloudflare.mjs` |
+| 部署命令 | `npx wrangler deploy` |
+
+上表命令用于 Cloudflare Linux 构建环境。本机 Windows 检查：
+
+```powershell
+git lfs pull
+node tools\build-cloudflare.mjs
+node tools\verify_release_assets.mjs dist
+```
+
+构建从 `index.html` 收集脚本和样式，沿用资源校验器对完整路径及 `const root + 文件名` 的扫描规则，复制所需资源到忽略提交的 `dist`。增加新的动态拼接形式时须扩展扫描器并测试。构建会拒绝缺失文件、Git LFS 指针及超过 25 MiB 的单个文件，不会删除源素材。重复构建只替换带本工具标记的 `dist`；已有其他工具的 `dist` 会报错，需先人工确认。
+
+**不得将静态资源目录设成仓库根目录 `.`**，否则会包含 Git 历史、母版、原游戏数据和开发工具。Wrangler 只上传 `dist`，构建标记由 `.assetsignore` 排除。不要将 LFS 指针当作音乐或视频发布；构建环境若未下载 LFS 实体文件，需先解决 LFS 下载再重试。
+
+配置必须先提交并推送到 GitHub 才会用于远程构建。上线后仍需检查正常菜单、各关资源、视频 Range 播放、存档导入/导出和真实设备；旧站与新域名的本地存档不自动共享。Git Push、构建成功与网页验收是三个独立步骤。
+
 原版第一关数据对账：
 
 ```powershell
