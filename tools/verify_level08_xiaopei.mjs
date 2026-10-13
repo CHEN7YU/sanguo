@@ -12,7 +12,21 @@ assert(level?.id==='xiaopei','missing Xiaopei level');
 assert(level.width===24&&level.height===16,'original map must be 24x16');
 assert(level.terrain.length===16&&level.terrain.every(row=>row.length===24),'terrain dimensions invalid');
 for(const tile of ['22,4','15,9'])assert(level.structureOverlayTiles?.includes(tile),`missing village art overlay must be restored at (${tile})`);
-for(const [x,y,type] of [[8,9,'plain'],[9,9,'bridge'],[10,9,'plain'],[11,13,'plain'],[12,13,'bridge'],[13,13,'plain']])assert(level.paintedTerrainOverrides?.some(q=>q.x===x&&q.y===y&&q.type===type),`bridge corridor override missing at (${x},${y})`);
+const runtime=level.terrain.map(row=>[...row]);
+for(const override of level.paintedTerrainOverrides||[])runtime[override.y][override.x]=override.type;
+const paintedAlignment=[
+  [7,8,'plain'],[8,8,'bridge'],[9,8,'bridge'],[9,9,'plain'],
+  [10,9,'water'],[11,9,'water'],[9,10,'forest'],[11,10,'water'],[9,11,'forest'],[10,12,'forest'],
+  [11,13,'plain'],[12,13,'bridge'],[12,12,'bridge'],[13,12,'plain'],[13,13,'hill']
+];
+for(const [x,y,type] of paintedAlignment)assert(runtime[y][x]===type,`painted terrain mismatch at (${x},${y}): ${runtime[y][x]} != ${type}`);
+for(const route of [[[8,9],[8,8],[9,8],[10,8]],[[11,13],[12,13],[12,12],[13,12]]]){
+  for(let i=0;i<route.length;i++){
+    const [x,y]=route[i];assert(!['water','hill','fence'].includes(runtime[y][x]),`bridge route blocked at (${x},${y})`);
+    if(i){const [px,py]=route[i-1];assert(Math.abs(x-px)+Math.abs(y-py)===1,'bridge route contains a non-adjacent step')}
+  }
+}
+for(const [x,y] of [[10,9],[11,9],[11,10]])assert(runtime[y][x]==='water',`painted river must be impassable at (${x},${y})`);
 const counts={};
 level.terrain.flat().forEach(type=>counts[type]=(counts[type]||0)+1);
 for(const [type,count] of Object.entries({plain:134,forest:53,hill:79,water:31,bridge:2,grass:69,village:2,fence:9,camp:5}))assert(counts[type]===count,`${type} count ${counts[type]} != ${count}`);
@@ -67,6 +81,7 @@ assert(game.includes("target?.id!=='caocao'")&&game.includes("Math.floor(raw*.2)
 for(const path of ['performCounter','async function attack(attacker,target)','async function attackNpc(a,t)','success&&type===\'fire\''])assert(game.includes(path),`Jianxiong damage integration missing near ${path}`);
 assert(game.includes("passiveName.textContent='被动 · 奸雄'")&&game.includes("passiveName.textContent='增益 · 奸雄'"),'Jianxiong panel descriptions missing');
 assert(game.includes("jianxiongPreview"),'Jianxiong regression preview missing');
+assert(game.includes("audit=[{bridge:[9,8],start:[10,8]},{bridge:[12,13],start:[11,13]}]"),'bridge audit preview coordinates are stale');
 assert(game.includes('xiaopeiChoiceFlow')&&game.includes('chooseXiaopeiStoryBranch'),'level-select route choice missing');
 assert(index.includes('level-08-xiaopei.js')&&index.includes('level-08-xiaopei-animation-bounds.js')&&index.includes('data-select-level="10"'),'level script/menu entry missing');
 assert(audio.includes("'xiaopei': 'assets/audio/dynasty-warriors-2-arena.opus'")&&audio.includes("'dynasty-warriors-2-arena'"),'Xiaopei ARENA battle-music mapping missing');

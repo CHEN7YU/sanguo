@@ -68,8 +68,10 @@
     objective:'击退曹操军；第10回合曹军因陈留遇袭撤退',defeat:'刘备撤退或超过30回合',objectiveUnitId:'caocao',victoryCondition:'eliminateAllEnemies',originalRules:true,squareGrid:true,structuresBakedIntoArt:true,
     viewProjection:{x:1/48,y:1/32,dx:1/24,dy:1/16,rowShift:Array(16).fill(0)},battlefieldArt:'assets/level-08-xiaopei/xiaopei-map-v2.webp',structureOverlayTiles:['22,4','15,9'],
     paintedTerrainOverrides:[
-      {x:8,y:9,type:'plain'},{x:9,y:9,type:'bridge'},{x:10,y:9,type:'plain'},
-      {x:11,y:13,type:'plain'},{x:12,y:13,type:'bridge'},{x:13,y:13,type:'plain'}
+      {x:7,y:8,type:'plain'},{x:8,y:8,type:'bridge'},{x:9,y:8,type:'bridge'},{x:9,y:9,type:'plain'},
+      {x:10,y:9,type:'water'},{x:11,y:9,type:'water'},{x:9,y:10,type:'forest'},{x:11,y:10,type:'water'},
+      {x:9,y:11,type:'forest'},{x:10,y:12,type:'forest'},
+      {x:11,y:13,type:'plain'},{x:12,y:13,type:'bridge'},{x:12,y:12,type:'bridge'},{x:13,y:12,type:'plain'},{x:13,y:13,type:'hill'}
     ],nextBattle:'饿虎吕布来访',
     intro:[{speaker:'曹操',text:'刘备小儿，与我仇敌为友，我绝不宽恕你。杀尽刘备军！'}],
     timedEvents:[
