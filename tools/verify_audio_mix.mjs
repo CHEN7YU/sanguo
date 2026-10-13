@@ -8,11 +8,12 @@ const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const fail=message=>{throw new Error(message)};
 
 for(const token of [
-  'const MUSIC_MIX_GAIN=.48,SFX_MIX_GAIN=1.35',
+  'const MUSIC_MIX_GAIN=.44,SFX_MIX_GAIN=2.1',
   'function mixedMusicVolume(multiplier=musicSceneMultiplier)',
   'function applySfxMix()',
-  "if(['movementStep','hoofStep','footStep'].includes(name)||!musicEnabled)return",
-  "musicSceneMultiplier*(['block','impact','fall'].includes(name)?.54:.68)",
+  'if(!musicEnabled)return',
+  "const movement=['movementStep','hoofStep','footStep'].includes(name),heavy=['block','impact','fall'].includes(name),strike=['attack','charge'].includes(name)",
+  'musicSceneMultiplier*(heavy?.32:strike?.44:movement?.62:.5)',
   'musicSceneMultiplier=previousMusicSceneMultiplier;applyMusicMix()',
   'duckMusicForSfx(name);fn(a,sfxBus',
 ])if(!game.includes(token))fail(`missing global audio mix behavior: ${token}`);

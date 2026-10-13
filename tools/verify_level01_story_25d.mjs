@@ -55,6 +55,6 @@ assert(css.includes('--story-camera-zoom') && css.includes('storyFireGlow'), 'ca
 assert(game.includes('function setStoryCamera') && game.includes("setStoryCamera(speaker)"), 'dialogue camera follows the active speaker');
 assert(game.includes("storyMusicAssets={2:") && game.includes("original-music-12.opus"), 'all first-stage scene music resolves to packaged Opus assets');
 assert(game.includes("u.id==='caocao'?1.05:1"), 'Cao Cao battle unit is consistently scaled to 105%');
-assert(html.includes('20261013-level01-story-layout-v143') && game.includes('20261013-level01-story-layout-v143'), 'cache-busting build id is synchronized');
+assert(html.includes('20261013-early-access-audit-v144') && game.includes('20261013-early-access-audit-v144'), 'cache-busting build id is synchronized');
 
 console.log('Level 01 pre-rendered 2.5D story verification complete.');
