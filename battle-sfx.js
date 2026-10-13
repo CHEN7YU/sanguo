@@ -3,10 +3,13 @@
 
   const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
   const safePan=value=>clamp(Number(value)||0,-.85,.85);
+  // Lift all procedural effects together so weapons, impacts and movement
+  // remain audible beside mastered music tracks.
+  const MASTER_OUTPUT_GAIN=1.75;
 
   function outputNode(ctx,destination,pan=0,gain=.9){
     const level=ctx.createGain();
-    level.gain.value=gain;
+    level.gain.value=clamp(gain*MASTER_OUTPUT_GAIN,0,2.4);
     if(typeof ctx.createStereoPanner==='function'){
       const panner=ctx.createStereoPanner();
       panner.pan.value=safePan(pan);

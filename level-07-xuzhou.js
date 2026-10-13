@@ -37,7 +37,7 @@
   const guests=[
     U({id:'tao',originalId:15,name:'陶谦',role:'徐州牧',className:'短兵',troop:'infantry',level:10,side:'guest',x:29,y:12,wuli:53,zhili:61,tongyu:42,aiType:2,stationary:true,critRate:.08,blockRate:.10,weapon:'佩剑',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'徐州百姓……老夫有负所托。'}),
     U({id:'mifang',originalId:81,name:'糜芳',role:'徐州将领',className:'短兵',troop:'infantry',level:7,side:'guest',x:29,y:11,wuli:63,zhili:25,tongyu:59,aiType:2,stationary:true,critRate:.10,blockRate:.10,weapon:'环首刀',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'主公，糜芳守不住了！'}),
-    U({id:'sunqian',originalId:63,name:'孙乾',role:'徐州从事',className:'弓兵',troop:'archer',level:7,side:'guest',x:29,y:13,wuli:38,zhili:74,tongyu:34,range:2,aiType:2,stationary:true,critRate:.08,blockRate:.08,weapon:'角弓',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'徐州危急……孙乾先退一步。'}),
+    U({id:'sunqian',originalId:63,name:'孙乾',role:'徐州从事',className:'运输队',troop:'transport',level:7,side:'guest',x:29,y:13,wuli:38,zhili:74,tongyu:34,aiType:2,stationary:true,critRate:.08,blockRate:.08,weapon:'护身短刀',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'徐州危急……孙乾先退一步。'}),
     U({id:'taishici',originalId:149,name:'太史慈',role:'北海义士',className:'轻骑兵',troop:'cavalry',level:13,side:'reserve',x:-1,y:-1,wuli:94,zhili:67,tongyu:81,aiType:4,aiTarget:P(27,12),critRate:.18,blockRate:.15,weapon:'长枪',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'援军未至徐州……太史慈岂能倒下！'})
   ];
   const enemies=[

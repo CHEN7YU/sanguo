@@ -84,8 +84,8 @@ check(!game.includes('fallbackDirectionalSheet')&&!game.includes('drawAuthoredWa
 for(const troop of ['infantry','archer','cavalry','martial','bandit','support','transport'])check(game.includes(`u.troop==='${troop}'`)||troop==='infantry',`Missing runtime visual routing for ${troop}`);
 check(game.includes("toLevelId:'xuzhou-postbattle'")&&game.includes('postBattleChoice:branch'),'Xuzhou postbattle branch save is missing');
 check(game.includes("fillText('入城'"),'Xuzhou city objective highlight is missing');
-check(index.includes('data-select-level="9"')&&index.includes('level-07-xuzhou.js?build=20261011-xuzhou-bridge-v124'),'Xuzhou menu or cache-busted level script include is missing');
-check(index.includes('game.js?build=20261011-xuzhou-bridge-v124'),'Xuzhou bridge runtime build token is missing');
+check(index.includes('data-select-level="9"')&&index.includes('level-07-xuzhou.js?build=20261012-sunqian-transport-v134'),'Xuzhou menu or cache-busted level script include is missing');
+check(index.includes('game.js?build=20261013-level01-story-layout-v143'),'Xuzhou bridge runtime build token is missing');
 check(index.includes('data-xuzhou-branch="fight"')&&index.includes('data-xuzhou-branch="negotiate"'),'Xuzhou postbattle choices are missing');
 check(leaderboard.includes("xuzhou: { name: '徐州之战'"),'Xuzhou leaderboard rule is missing');
 

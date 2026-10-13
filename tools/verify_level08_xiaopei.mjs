@@ -1,0 +1,74 @@
+import fs from 'node:fs';
+import vm from 'node:vm';
+
+const code=fs.readFileSync(new URL('../dist/level-08-xiaopei.js',import.meta.url),'utf8');
+const context={window:{}};
+vm.createContext(context);
+vm.runInContext(code,context);
+const level=context.window.LEVEL_08_XIAOPEI;
+const assert=(ok,message)=>{if(!ok)throw new Error(message)};
+
+assert(level?.id==='xiaopei','missing Xiaopei level');
+assert(level.width===24&&level.height===16,'original map must be 24x16');
+assert(level.terrain.length===16&&level.terrain.every(row=>row.length===24),'terrain dimensions invalid');
+assert(level.structureOverlayTiles?.includes('15,9'),'missing village art overlay must be restored at (15,9)');
+for(const [x,y,type] of [[8,9,'plain'],[9,9,'bridge'],[10,9,'plain'],[11,13,'plain'],[12,13,'bridge'],[13,13,'plain']])assert(level.paintedTerrainOverrides?.some(q=>q.x===x&&q.y===y&&q.type===type),`bridge corridor override missing at (${x},${y})`);
+const counts={};
+level.terrain.flat().forEach(type=>counts[type]=(counts[type]||0)+1);
+for(const [type,count] of Object.entries({plain:134,forest:53,hill:79,water:31,bridge:2,grass:69,village:2,fence:9,camp:5}))assert(counts[type]===count,`${type} count ${counts[type]} != ${count}`);
+assert(level.units.filter(u=>u.side==='enemy').length===22,'expected 22 enemy units');
+assert(level.units.some(u=>u.id==='caocao'&&u.level===23&&u.x===1&&u.y===13&&u.boss),'Cao Cao deployment mismatch');
+assert(level.units.some(u=>u.id==='liu'&&u.x===21&&u.y===4),'Liu Bei deployment mismatch');
+assert(level.units.some(u=>u.id==='zhaoyun'&&u.x===20&&u.y===7),'Zhao Yun deployment mismatch');
+assert(level.units.some(u=>u.id==='tao'&&u.level===11&&u.x===23&&u.y===2),'Tao Qian deployment/level mismatch');
+assert(level.units.some(u=>u.id==='sunqian'&&u.level===8&&u.carryover&&u.originalId===63&&u.troop==='transport'&&u.className==='运输队'&&u.range===undefined),'Sun Qian must retain original transport class and join/carry over');
+const xuzhouCode=fs.readFileSync(new URL('../dist/level-07-xuzhou.js',import.meta.url),'utf8');
+const xuzhouContext={window:{}};vm.createContext(xuzhouContext);vm.runInContext(xuzhouCode,xuzhouContext);
+assert(xuzhouContext.window.LEVEL_07_XUZHOU.units.some(u=>u.id==='sunqian'&&u.originalId===63&&u.troop==='transport'&&u.className==='运输队'&&u.range===undefined),'Xuzhou Sun Qian must retain original transport class');
+for(const unit of level.units)assert(unit.x>=0&&unit.x<24&&unit.y>=0&&unit.y<16,`${unit.name} out of bounds`);
+assert(new Set(level.units.map(u=>`${u.x},${u.y}`)).size===level.units.length,'deployment overlap detected');
+assert(level.timedEvents.map(e=>e.turn).join(',')==='4,8,10','timed event turns mismatch');
+assert(level.timedEvents.find(e=>e.turn===10)?.endBattleVariant==='withdrawal','turn 10 must withdraw');
+assert(level.events.duel.attackerId==='zhang'&&level.events.duel.defenderId==='xiahouyuan'&&!level.events.duel.endsBattle,'duel mismatch');
+assert(level.events.battleReward===300&&level.events.withdrawalReward===0,'reward routes mismatch');
+for(const unit of level.units.filter(u=>(u.originalId??999)<256))assert(unit.defeatQuote,`${unit.name} missing defeat quote`);
+const commanderAssets=['caocao','xiahoudun','xunyu'].flatMap(id=>['unit','walk','action','death'].map(kind=>`dist/assets/level-08-xiaopei/units/${id}-${kind}-v1.webp`));
+for(const asset of ['dist/assets/level-08-xiaopei/xiaopei-map-v2.webp','assets-master/level-08-xiaopei/xiaopei-map-master-v2.png','dist/assets/level-08-xiaopei/portraits/xiahou-dun-v1.webp','dist/assets/level-08-xiaopei/portraits/xun-yu-v1.webp','dist/assets/audio/original-music-10.opus','dist/assets/level-07-xuzhou/units/sunqian-transport-unit-v2.webp','dist/assets/level-07-xuzhou/units/sunqian-transport-walk-v2.webp','dist/assets/level-07-xuzhou/units/sunqian-transport-action-v2.webp','dist/level-08-xiaopei-animation-bounds.js',...commanderAssets])assert(fs.existsSync(new URL(`../${asset}`,import.meta.url)),`missing ${asset}`);
+const boundsCode=fs.readFileSync(new URL('../dist/level-08-xiaopei-animation-bounds.js',import.meta.url),'utf8');
+const boundsContext={window:{}};vm.createContext(boundsContext);vm.runInContext(boundsCode,boundsContext);
+for(const id of ['caocao','xiahoudun','xunyu']){
+  const bounds=boundsContext.window.XIAOPEI_ANIMATION_BOUNDS?.[id];
+  assert(bounds?.walk?.length===4&&bounds.walk.every(row=>row.length===4),`${id} walk bounds incomplete`);
+  for(const kind of ['attack','hurt','block','critical','death'])assert(bounds?.[kind]?.length===5,`${id} ${kind} bounds incomplete`);
+}
+const game=fs.readFileSync(new URL('../dist/game.js',import.meta.url),'utf8');
+const index=fs.readFileSync(new URL('../dist/index.html',import.meta.url),'utf8');
+const audio=fs.readFileSync(new URL('../dist/audio-config.js',import.meta.url),'utf8');
+const story=fs.readFileSync(new URL('../dist/story-data.js',import.meta.url),'utf8');
+assert(game.includes("levelIndex==='10' ? window.LEVEL_08_XIAOPEI"),'runtime level router missing');
+assert(game.includes('level.structureOverlayTiles?.includes(`${x},${y}`)'),'runtime per-tile structure overlay missing');
+assert(game.includes("map[y][x]==='bridge'&&reachable.has(keyOf(x,y))"),'touch bridge target recovery missing');
+assert(game.includes("u.troop='transport';u.className='运输队';u.weapon='护身短刀';delete u.range"),'old-save Sun Qian class migration missing');
+assert(game.includes('sunqian-transport-unit-v2.webp')&&game.includes('sunqian-transport-walk-v2.webp')&&game.includes('sunqian-transport-action-v2.webp'),'Sun Qian transport visual set missing');
+for(const id of ['caocao','xiahoudun','xunyu']){
+  for(const kind of ['unit','walk','action','death'])assert(game.includes(`level-08-xiaopei/units/${id}-${kind}-v1.webp`),`${id} ${kind} runtime mapping missing`);
+}
+assert(game.includes("const xiaopeiCommanderCombatIds=new Set(['caocao','xiahoudun','xunyu'])"),'Xiaopei authored combat set missing');
+assert(!game.includes("caocao:'assets/zhangliao-")&&!game.includes("xiahoudun:'assets/level-07-xuzhou/units/xiahouyuan-")&&!game.includes("xunyu:'assets/level-07-xuzhou/units/guojia-"),'Xiaopei commanders still reuse another character');
+assert(game.includes("snapshot.phaseType='postbattle'")&&game.includes("saveXiaopeiPostBattle('negotiate')"),'Xiaopei postbattle autosave missing');
+assert(game.includes("if(save.phaseType==='postbattle')"),'postbattle resume handler missing');
+assert(game.includes("campaignVictoryType=duel?'duel':variant;window.ZhaolieLeaderboard?.finish?.({level,turns:turn,units,victoryType:campaignVictoryType})"),'all completed battles, including turn-10 withdrawal, must generate a score');
+assert(!game.includes("if(!withdrawal)window.ZhaolieLeaderboard?.finish"),'withdrawal victory must not be excluded from the leaderboard');
+assert(game.includes("previewVictory==='withdrawal'?'withdrawal'"),'withdrawal victory regression preview missing');
+assert(game.includes("saveXiaopeiPostBattle('negotiate')")&&!game.includes("completeXiaopeiNegotiation(){window.ZhaolieLeaderboard"),'negotiated no-battle route must stay outside battle scoring');
+assert(game.includes("hasJianxiongAura(u)&&(key==='atk'||key==='def')")&&game.includes('value*=1.08'),'Jianxiong 8% attack/defense aura missing');
+assert(game.includes("effectiveStrategyHit(caster,rule)")&&game.includes("hasJianxiongAura(u)?.1:0"),'Jianxiong +10 percentage-point strategy accuracy missing');
+assert(game.includes("target?.id!=='caocao'")&&game.includes("Math.floor(raw*.2)"),'Jianxiong 20% damage transfer missing');
+for(const path of ['performCounter','async function attack(attacker,target)','async function attackNpc(a,t)','success&&type===\'fire\''])assert(game.includes(path),`Jianxiong damage integration missing near ${path}`);
+assert(game.includes("passiveName.textContent='被动 · 奸雄'")&&game.includes("passiveName.textContent='增益 · 奸雄'"),'Jianxiong panel descriptions missing');
+assert(game.includes("jianxiongPreview"),'Jianxiong regression preview missing');
+assert(game.includes('xiaopeiChoiceFlow')&&game.includes('chooseXiaopeiStoryBranch'),'level-select route choice missing');
+assert(index.includes('level-08-xiaopei.js')&&index.includes('level-08-xiaopei-animation-bounds.js')&&index.includes('data-select-level="10"'),'level script/menu entry missing');
+assert(audio.includes("'xiaopei': 'assets/audio/dynasty-warriors-2-arena.opus'")&&audio.includes("'dynasty-warriors-2-arena'"),'Xiaopei ARENA battle-music mapping missing');
+assert(story.includes('XIAOPEI_PRE_BATTLE_STORY')&&story.includes('XIAOPEI_NEGOTIATE_STORY'),'story branches missing');
+console.log('level 08 Xiaopei verification passed');

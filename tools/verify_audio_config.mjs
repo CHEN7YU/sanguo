@@ -36,6 +36,22 @@ if(noSurrender?.title!=='No Surrender'||noSurrender?.source!=='Langrisser II'||n
 if(noSurrender?.asset!=='assets/audio/langrisser-ii-no-surrender.opus')fail('No Surrender library asset is wrong');
 const noSurrenderPath=path.join(root,noSurrender.asset);
 if(!fs.existsSync(noSurrenderPath)||fs.statSync(noSurrenderPath).size<1500000)fail('No Surrender compressed audio is missing or invalid');
+const welcomeToChina=library?.['dynasty-warriors-6-welcome-to-china'];
+if(welcomeToChina?.title!=='WELCOME TO CHINA'||welcomeToChina?.source!=='Dynasty Warriors 6'||welcomeToChina?.usage!=='sishui-pass')fail('WELCOME TO CHINA library metadata is missing');
+if(welcomeToChina?.asset!=='assets/audio/dynasty-warriors-6-welcome-to-china.opus')fail('WELCOME TO CHINA library asset is wrong');
+if(battles?.['sishui-pass']!==welcomeToChina.asset)fail('汜水关 battle music is not mapped to WELCOME TO CHINA');
+const welcomeFile=fs.readFileSync(path.join(root,...welcomeToChina.asset.split('/')));
+if(welcomeFile.length<1000000||welcomeFile.subarray(0,4).toString()!=='OggS')fail('WELCOME TO CHINA compressed Opus asset is missing or invalid');
+const welcomeMaster=path.join(root,'assets-master','audio','dynasty-warriors-6-welcome-to-china.mp3');
+if(!fs.existsSync(welcomeMaster)||fs.statSync(welcomeMaster).size<2000000)fail('WELCOME TO CHINA master MP3 is missing');
+const arena=library?.['dynasty-warriors-2-arena'];
+if(arena?.title!=='ARENA〈行军〉'||arena?.source!=='Dynasty Warriors 2'||arena?.usage!=='xiaopei')fail('ARENA library metadata is missing');
+if(arena?.asset!=='assets/audio/dynasty-warriors-2-arena.opus')fail('ARENA library asset is wrong');
+if(battles?.xiaopei!==arena.asset)fail('小沛之战 battle music is not mapped to ARENA');
+const arenaFile=fs.readFileSync(path.join(root,...arena.asset.split('/')));
+if(arenaFile.length<1000000||arenaFile.subarray(0,4).toString()!=='OggS')fail('ARENA compressed Opus asset is missing or invalid');
+const arenaMaster=path.join(root,'assets-master','audio','dynasty-warriors-2-arena.mp3');
+if(!fs.existsSync(arenaMaster)||fs.statSync(arenaMaster).size<2000000)fail('ARENA master MP3 is missing');
 const game=fs.readFileSync(path.join(root,'game.js'),'utf8');
 for(const token of [
   'const configuredShopTrack=window.GAME_AUDIO_CONFIG?.shop',
@@ -44,7 +60,7 @@ for(const token of [
   "classList.remove('hidden');startShopMusic();syncShop()",
   "else if(!document.getElementById('shopOverlay').classList.contains('hidden'))startShopMusic()"
 ])if(!game.includes(token))fail(`Shop music runtime integration is missing: ${token}`);
-for(const [id,asset] of Object.entries({'sishui-pass':'assets/audio/knights-errant.mp3','hulao-pass':'assets/audio/hulao-lubu-theme.mp3','beihai':'assets/audio/hulao-lubu-theme.mp3'})){
+for(const [id,asset] of Object.entries({'hulao-pass':'assets/audio/hulao-lubu-theme.mp3','beihai':'assets/audio/hulao-lubu-theme.mp3'})){
   if(battles?.[id]!==asset)fail(`wrong battle music for ${id}`);
   const full=path.join(root,...asset.split('/'));
   const file=fs.readFileSync(full);
@@ -54,7 +70,7 @@ const jieqiaoTrack='assets/level-03/thousand-suns-dw7th-mix.opus';
 if(battles?.jieqiao!==jieqiaoTrack)fail('wrong battle music for jieqiao');
 const jieqiaoFile=fs.readFileSync(path.join(root,...jieqiaoTrack.split('/')));
 if(jieqiaoFile.length<100000||jieqiaoFile.subarray(0,4).toString()!=='OggS')fail('invalid Opus asset for jieqiao');
-console.log('Audio config verified: 汜水关、虎牢关、北海和界桥之战 tracks are present and mapped by level id.');
+console.log('Audio config verified: 汜水关使用 WELCOME TO CHINA；虎牢关、北海和界桥之战曲目均已正确映射。');
 
 for(const levelFile of ['level-03-guangchuan.js','level-03-xindu.js']){
   const levelSandbox={window:{}};

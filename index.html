@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
-  <link rel="stylesheet" href="style.css?build=20261011-level-select-xuzhou-v114" />
+  <link rel="stylesheet" href="style.css?build=20261013-level01-story-layout-v143" />
 </head>
 <body>
   <section id="titleScreen" class="title-screen intro-playing" aria-label="游戏开始画面">
@@ -51,18 +51,25 @@
     <button id="openingSkipBtn" type="button">点击或按任意键跳过</button>
   </section>
   <section id="storyOverlay" class="story-overlay hidden" aria-label="序章剧情">
-    <div id="storyBackdrop" class="story-backdrop"></div>
-    <div class="story-atmosphere"><i></i><i></i><i></i></div>
-    <header class="story-chapter"><small id="storyChapter">序章</small><b id="storyLocation">群雄起兵讨伐董卓</b><span id="storyProgress">1 / 1</span></header>
-    <div id="storyCast" class="story-cast story-actors" aria-label="剧情场景人物">
-      <div id="storyForeground" class="story-foreground" aria-hidden="true">
-        <i class="story-prop tent-table"></i>
-        <i class="story-prop tent-chair"></i>
-        <i class="story-prop tent-armory"></i>
-        <i class="story-prop tent-stool-left"></i>
-        <i class="story-prop tent-stool-center"></i>
+    <div id="storyStage" class="story-stage">
+      <div id="storyBackdrop" class="story-backdrop"></div>
+      <div class="story-lighting" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="story-atmosphere" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div id="storyCast" class="story-cast story-actors" aria-label="剧情场景人物">
+        <div id="storyForeground" class="story-foreground" aria-hidden="true">
+          <i class="story-depth-copy depth-palace"></i>
+          <i class="story-depth-copy depth-tent"></i>
+          <i class="story-depth-copy depth-luoyang"></i>
+          <i class="story-depth-copy depth-world"></i>
+          <i class="story-prop tent-table"></i>
+          <i class="story-prop tent-chair"></i>
+          <i class="story-prop tent-armory"></i>
+          <i class="story-prop tent-stool-left"></i>
+          <i class="story-prop tent-stool-center"></i>
+        </div>
       </div>
     </div>
+    <header class="story-chapter"><small id="storyChapter">序章</small><b id="storyLocation">群雄起兵讨伐董卓</b><span id="storyProgress">1 / 1</span></header>
     <div id="storyObjective" class="story-objective hidden">自由行动 · 点击人物交谈 · 与关羽交谈出征</div>
     <div class="story-dialogue">
       <figure id="storyPortrait"><img id="storyPortraitImage" alt=""><span id="storyPortraitMark">史</span></figure>
@@ -97,7 +104,7 @@
       <header><b>战斗设置</b><button id="settingsCloseBtn">×</button></header>
       <label>动画速度<select id="animationSpeed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label>
       <label>重复战斗动画<span><input id="compactAnimations" type="checkbox" checked> 自动加速</span></label>
-      <label>音效音量<input id="sfxVolume" type="range" min="0" max="100" value="70"></label>
+      <label>音效音量<input id="sfxVolume" type="range" min="0" max="100" value="85"></label>
       <label>界面比例<select id="uiScale"><option value="0.9">90%</option><option value="1" selected>100%</option><option value="1.1">110%</option></select></label>
       <button id="fullscreenBtn" class="fullscreen-btn">切换全屏</button>
     </div>
@@ -262,6 +269,7 @@
         <button class="level-choice jieqiao" data-select-level="7" type="button"><span>第五战 · 路线汇合</span><strong>界桥之战</strong><em>救援公孙瓒 · 张飞阵前单挑</em><small>选关均衡：前排 Lv.9</small></button>
         <button class="level-choice beihai" data-select-level="8" type="button"><span>第六战</span><strong>北海之战</strong><em>解北海之围 · 赵云阵斩管亥</em><small>选关均衡：前排 Lv.7</small></button>
         <button class="level-choice xuzhou" data-select-level="9" type="button"><span>第七战</span><strong>徐州之战</strong><em>驰援徐州 · 关羽阵前单挑于禁</em><small>选关均衡：前排 Lv.11</small></button>
+        <button class="level-choice xiaopei" data-select-level="10" type="button"><span>第八战 · 可跳过分支</span><strong>小沛之战</strong><em>迎战曹操 · 张飞阵前单挑夏侯渊</em><small>选关均衡：前排 Lv.17</small></button>
       </div>
       <p>选择后从该关剧情起点开始，并使用适合该关、能够取胜但不会碾压的均衡等级；远程与辅助通常比前排低1级。连续通关和读档仍继承实际等级，不套用选关等级。第三战与第四战分别为A/B平行路线，第五战在界桥汇合。</p>
     </section>
@@ -279,6 +287,7 @@
         <button type="button" data-leaderboard-level="jieqiao">界桥</button>
         <button type="button" data-leaderboard-level="beihai">北海</button>
         <button type="button" data-leaderboard-level="xuzhou">徐州</button>
+        <button type="button" data-leaderboard-level="xiaopei">小沛</button>
       </nav>
       <div class="leaderboard-head"><span>名次</span><span>玩家</span><span>评分</span><span>评级</span><span>时间</span><span>回合</span><span>损失</span></div>
       <div id="leaderboardRows" class="leaderboard-rows"></div>
@@ -294,10 +303,10 @@
     <button id="portraitContinueBtn" class="subtle" type="button">暂用竖屏</button>
   </div>
   <audio id="titleMusic" src="assets/audio/title-theme.mp3" preload="auto" autoplay loop hidden></audio>
-  <audio id="storyMusic" src="assets/audio/original-music-2.wav" preload="auto" loop hidden></audio>
+  <audio id="storyMusic" src="assets/audio/original-music-2.opus" preload="auto" loop hidden></audio>
   <audio id="battleMusic" src="assets/audio/knights-errant.mp3" preload="auto" loop hidden></audio>
-  <script src="audio-config.js?build=20261011-no-surrender-v120"></script>
-  <script src="battle-sfx.js?build=20261009-movement-sfx-v96"></script>
+  <script src="audio-config.js?build=20261012-zhaoyun-danqi-v131"></script>
+  <script src="battle-sfx.js?build=20261013-global-sfx-mix-v138"></script>
   <script src="battle-rules.js?build=20261003-military-band-v55"></script>
   <script src="level-01.js?build=20260927-campaign-link"></script>
   <script src="level-02.js?build=20261003-hulao-route-v54"></script>
@@ -311,12 +320,14 @@
   <script src="level-04-qinghe.js?build=20261007-named-general-style-v90"></script>
   <script src="level-05-jieqiao.js?build=20261011-beihai-v108"></script>
   <script src="level-06-beihai.js?build=20261011-beihai-terrain-motion-v113"></script>
-  <script src="level-07-xuzhou.js?build=20261011-xuzhou-bridge-v124"></script>
+  <script src="level-07-xuzhou.js?build=20261012-sunqian-transport-v134"></script>
+  <script src="level-08-xiaopei.js?build=20261012-xiaopei-animation-v135"></script>
+  <script src="level-08-xiaopei-animation-bounds.js?build=20261012-xiaopei-animation-v135"></script>
   <script src="beihai-animation-bounds.js?build=20261011-beihai-terrain-motion-v113"></script>
-  <script src="level-07-xuzhou-animation-bounds.js?build=20261011-xuzhou-complete-v112"></script>
-  <script src="story-data.js?build=20261011-xuzhou-complete-v112"></script>
+  <script src="level-07-xuzhou-animation-bounds.js?build=20261012-sunqian-transport-v134"></script>
+  <script src="story-data.js?build=20261013-level01-story-layout-v143"></script>
   <script src="battle-view.js?build=20261003-hulao-grid-fix-v53"></script>
-  <script src="leaderboard.js?build=20261011-xuzhou-complete-v112"></script>
-  <script src="game.js?build=20261011-xuzhou-bridge-v124"></script>
+  <script src="leaderboard.js?build=20261012-zhaoyun-danqi-v131"></script>
+  <script src="game.js?build=20261013-level01-story-layout-v143"></script>
 </body>
 </html>
