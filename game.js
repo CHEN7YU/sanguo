@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261013-romance-dialogue-v150';
+  const RUNTIME_BUILD='20261014-ui-portrait-fix-v151';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -240,12 +240,12 @@
   };
   const storyPortraitRoot='assets/story-portraits/remaster-v4/';
   const storyPortraits={
-    刘备:storyPortraitRoot+'liu-bei-v4.webp',关羽:storyPortraitRoot+'guan-yu-v4.webp',张飞:storyPortraitRoot+'zhang-fei-v4.webp',
+    刘备:portraitPaths.liu,关羽:portraitPaths.guan,张飞:portraitPaths.zhang,
     曹操:storyPortraitRoot+'cao-cao-v4.webp',袁绍:storyPortraitRoot+'yuan-shao-v4.webp',袁术:storyPortraitRoot+'yuan-shu-v4.webp',
-    公孙瓒:storyPortraitRoot+'gongsun-zan-v4.webp',陶谦:storyPortraitRoot+'tao-qian-v4.webp',孔融:storyPortraitRoot+'kong-rong-v4.webp',
-    董卓:storyPortraitRoot+'dong-zhuo-v4.webp',吕布:storyPortraitRoot+'lv-bu-v4.webp',华雄:storyPortraitRoot+'hua-xiong-v4.webp',
+    公孙瓒:portraitPaths.gongsun,陶谦:portraitPaths.tao,孔融:portraitPaths.kongrong,
+    董卓:storyPortraitRoot+'dong-zhuo-v4.webp',吕布:portraitPaths.lvbu,华雄:portraitPaths.hua,
     李儒:storyPortraitRoot+'li-ru-v4.webp',李傕:storyPortraitRoot+'li-jue-v4.webp',郭汜:storyPortraitRoot+'guo-si-v4.webp',
-    李肃:storyPortraitRoot+'li-su-v4.webp',胡轸:storyPortraitRoot+'hu-zhen-v4.webp',赵岑:storyPortraitRoot+'zhao-cen-v4.webp',
+    李肃:portraitPaths.li,胡轸:portraitPaths.hu,赵岑:portraitPaths.zhao,
     董承:storyPortraitRoot+'dong-cheng-v4.webp',献帝:storyPortraitRoot+'emperor-v4.webp',
     武官:storyPortraitRoot+'officer-v4.webp',道具屋:storyPortraitRoot+'shopkeeper-v4.webp',使者:storyPortraitRoot+'officer-v4.webp',
     简雍:'assets/level-03/portraits/jian-yong-v1.webp',逢纪:'assets/level-03/portraits/feng-ji-v1.webp',韩英:'assets/level-03/portraits/han-ying-v1.webp',郭适:'assets/level-03/portraits/guo-shi-v1.webp',

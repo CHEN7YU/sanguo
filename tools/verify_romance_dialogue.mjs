@@ -76,9 +76,10 @@ assert(game.includes("window.ZhaolieDialogue?.romance?.(line.text,line.speaker)|
 assert(game.includes("function preserveDialogueMode(params)"), 'original dialogue mode is not preserved across navigation');
 assert((game.match(/preserveDialogueMode\(/g)||[]).length >= 7, 'not every route/load/level navigation preserves original dialogue mode');
 const html = fs.readFileSync('index.html','utf8');
-const storyIndex = html.indexOf('story-data.js?build=20261013-romance-dialogue-v150');
-const styleIndex = html.indexOf('dialogue-style.js?build=20261013-romance-dialogue-v150');
-const gameIndex = html.indexOf('game.js?build=20261013-romance-dialogue-v150');
+const build=game.match(/const RUNTIME_BUILD='([^']+)'/)?.[1];
+const storyIndex = html.indexOf('story-data.js?build='+build);
+const styleIndex = html.indexOf('dialogue-style.js?build='+build);
+const gameIndex = html.indexOf('game.js?build='+build);
 assert(storyIndex >= 0 && storyIndex < styleIndex && styleIndex < gameIndex, 'dialogue style script load order is invalid');
 
 console.log(`Romance dialogue verified: ${rows.length} uses, ${changed} rewritten, original mode preserved.`);

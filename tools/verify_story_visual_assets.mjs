@@ -13,6 +13,14 @@ const groups=[
   ['storyGestureRoot','assets/story-actors/gestures-v1']
 ];
 
+const canonicalStoryPortraits=[
+  ['刘备','liu'],['关羽','guan'],['张飞','zhang'],['公孙瓒','gongsun'],['陶谦','tao'],
+  ['孔融','kongrong'],['吕布','lvbu'],['华雄','hua'],['李肃','li'],['胡轸','hu'],['赵岑','zhao']
+];
+for(const [name,id] of canonicalStoryPortraits){
+  if(!game.includes(name+':portraitPaths.'+id))fail(name+' story portrait must reuse the canonical battle portrait');
+}
+
 let checked=0;
 for(const [symbol,directory] of groups){
   const matcher=new RegExp(`${symbol}\\+'([^']+)'`,'g');
