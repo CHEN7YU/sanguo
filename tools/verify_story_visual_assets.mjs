@@ -20,6 +20,9 @@ const canonicalStoryPortraits=[
 for(const [name,id] of canonicalStoryPortraits){
   if(!game.includes(name+':portraitPaths.'+id))fail(name+' story portrait must reuse the canonical battle portrait');
 }
+const zhaoyunStorySheet="赵云:storyActorRoot+'zhao-yun-walk-sheet-v1.webp'";
+if((game.match(new RegExp(zhaoyunStorySheet.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'))||[]).length<2)fail('赵云室内与行军剧情必须统一使用专属步行小人');
+if(game.includes("赵云:storyActorRoot+'gongsun-zan-walk-sheet-v4.webp'")||game.includes("赵云:'assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-walk-v2.webp'"))fail('赵云剧情仍在复用公孙瓒或战斗骑兵素材');
 
 let checked=0;
 for(const [symbol,directory] of groups){

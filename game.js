@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261014-xiaopei-bridge-fix-v153';
+  const RUNTIME_BUILD='20261014-zhaoyun-story-actor-v154';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -288,7 +288,7 @@
     颜良:'assets/level-05-jieqiao/core-animation/yanliang/yanliang-walk-v1.webp',
     麴义:'assets/level-05-jieqiao/core-animation/quyi/quyi-walk-v1.webp',
     公孙越:storyActorRoot+'gongsun-zan-walk-sheet-v4.webp',严纲:storyActorRoot+'gongsun-zan-walk-sheet-v4.webp',
-    赵云:storyActorRoot+'gongsun-zan-walk-sheet-v4.webp',糜竺:storyActorRoot+'officer-walk-sheet-v4.webp',
+    赵云:storyActorRoot+'zhao-yun-walk-sheet-v1.webp',糜竺:storyActorRoot+'officer-walk-sheet-v4.webp',
     管亥:'assets/level-06-beihai/animation/guan-hai/guan-hai-walk-v2.webp',
     太史慈:'assets/level-06-beihai/animation/taishi-ci/taishi-ci-walk-v2.webp',
     孟肃:'assets/level-06-beihai/animation/meng-su/meng-su-walk-v2.webp',
@@ -299,7 +299,7 @@
   const storyWorldActorAssets={
     华雄:'assets/story-actors/world-v1/hua-xiong-march-sheet-v1.webp',
     吕布:'assets/story-actors/world-v1/lv-bu-march-sheet-v1.webp',
-    赵云:'assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-walk-v2.webp',
+    赵云:storyActorRoot+'zhao-yun-walk-sheet-v1.webp',
     张郃:'assets/level-05-jieqiao/core-animation/zhanghe/zhanghe-walk-v1.webp',
     颜良:'assets/level-05-jieqiao/core-animation/yanliang/yanliang-walk-v1.webp',
     麴义:'assets/level-05-jieqiao/core-animation/quyi/quyi-walk-v1.webp',
