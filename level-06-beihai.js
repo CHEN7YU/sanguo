@@ -33,7 +33,7 @@
   const paintedGround=[
     [12,4,'grass'],[13,5,'grass'],[13,6,'grass'],[14,6,'forest'],[15,6,'forest'],[16,6,'forest'],[17,6,'forest'],
     [15,7,'forest'],[16,7,'forest'],[17,7,'forest'],[18,7,'forest'],[17,8,'forest'],[18,8,'forest'],
-    [18,9,'forest'],[19,9,'grass'],[18,10,'grass'],[19,10,'grass'],[22,10,'grass'],[23,10,'grass'],[23,11,'grass']
+    [18,9,'forest'],[19,9,'grass'],[18,10,'village'],[19,10,'grass'],[18,11,'grass'],[22,10,'grass'],[23,10,'grass'],[23,11,'grass']
   ];
   const paintedTerrainOverrides=[
     ...paintedGround.map(([x,y,type])=>({x,y,type})),

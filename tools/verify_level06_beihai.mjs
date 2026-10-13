@@ -40,6 +40,8 @@ check(level.events.battleReward===300,'Original gold reward must be 300');
 check(level.battleTrack==='assets/audio/hulao-lubu-theme.mp3','Beihai must reuse the approved Hulao battle music');
 const runtimeTerrain=level.terrain.map(row=>[...row]);
 for(const update of level.paintedTerrainOverrides||[])runtimeTerrain[update.y][update.x]=update.type;
+check(runtimeTerrain[10][18]==='village','Painted North Sea village must align to visible building at (18,10)');
+check(runtimeTerrain[11][18]==='grass','Stale village trigger below the painted building must be removed from (18,11)');
 for(const [x,y] of [[0,2],[14,3],[19,5],[20,8],[21,11],[23,14]])check(runtimeTerrain[y][x]==='water',`Painted river cell ${x},${y} must be impassable`);
 for(const [x,y] of [[2,3],[20,9],[21,9],[20,10],[21,10]])check(runtimeTerrain[y][x]==='bridge',`Painted bridge cell ${x},${y} must remain passable`);
 for(const [x,y] of [[13,6],[16,7],[18,9],[23,10]])check(runtimeTerrain[y][x]!=='water',`Painted land cell ${x},${y} must not retain stale river collision`);

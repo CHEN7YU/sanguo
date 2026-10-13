@@ -191,6 +191,13 @@ for (const token of [
   "previewParams.has('storySelect')"
 ]) assert.ok(game.includes(token), `campaign runtime is missing: ${token}`);
 
+assert.ok(game.includes('const LIU_CLEAR_EXP=50'),'Liu Bei clear bonus must remain 50 EXP');
+assert.ok(game.includes('const clearExp=awardLiuBeiClearExp()'),'Every completed battle must award Liu Bei clear EXP');
+const clearAwardIndex=game.indexOf('const clearExp=awardLiuBeiClearExp()');
+const transferAfterAward=game.indexOf('writeCampaignTransfer(campaignVictoryType)',clearAwardIndex);
+assert.ok(clearAwardIndex>=0&&transferAfterAward>clearAwardIndex,'Liu Bei clear EXP must be applied before campaign transfer is saved');
+assert.ok(game.includes('刘备额外获得经验${clearExp.amount}'),'Victory summary must disclose Liu Bei clear EXP');
+
 assert.equal(levels.get('julu').level.events.duel?.endsBattle, false, 'Julu duel must not end the battle');
 assert.equal(levels.get('jieqiao').level.events.duel?.endsBattle, false, 'Jieqiao duel must not end the battle');
 assert.equal(levels.get('xuzhou').level.events.duel?.endsBattle, false, 'Xuzhou duel must not end the battle');
