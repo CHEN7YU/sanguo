@@ -66,7 +66,7 @@
     id:'xiaopei',chapter:'第一章 · 支援北海、徐州',name:'小沛之战',width,height,terrain,terrainCodes,
     source:'用户原游戏 HEXZMAP.R3 section 9 / SNR1D.R3 page 1 paragraph 7 / BAKDATA.R3',maxTurns:30,
     objective:'击退曹操军；第10回合曹军因陈留遇袭撤退',defeat:'刘备撤退或超过30回合',objectiveUnitId:'caocao',victoryCondition:'eliminateAllEnemies',originalRules:true,squareGrid:true,structuresBakedIntoArt:true,
-    viewProjection:{x:1/48,y:1/32,dx:1/24,dy:1/16,rowShift:Array(16).fill(0)},battlefieldArt:'assets/level-08-xiaopei/xiaopei-map-v2.webp',structureOverlayTiles:['15,9'],
+    viewProjection:{x:1/48,y:1/32,dx:1/24,dy:1/16,rowShift:Array(16).fill(0)},battlefieldArt:'assets/level-08-xiaopei/xiaopei-map-v2.webp',structureOverlayTiles:['22,4','15,9'],
     paintedTerrainOverrides:[
       {x:8,y:9,type:'plain'},{x:9,y:9,type:'bridge'},{x:10,y:9,type:'plain'},
       {x:11,y:13,type:'plain'},{x:12,y:13,type:'bridge'},{x:13,y:13,type:'plain'}
