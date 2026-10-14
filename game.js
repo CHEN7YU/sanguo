@@ -1225,7 +1225,7 @@
     else if(success){target.containedUntil=turn+1;applyMoraleLoss(target,Math.max(1,20+Math.floor(caster.level/10)-Math.floor(target.level/10)),{preventRout:bossProtected});flash('牵制成功');addLog(`${target.name}受到牵制：攻击与移动下降20%`,true)}
     else{flash(`${rule.name}失败`);addLog(`${caster.name}对${target.name}施展${rule.name}失败`)}
     if(caster.side==='guest')gainStrategyExp(caster,success?8:4);draw();syncUI();if(await resolveJianxiongProtector(jianxiongSplit,caster)){phase=previousPhase;return true}
-    if(target.hp<=0){phase=previousPhase;addLog(`${target.name}撤退`,true);await playDefeatQuote(target);if(checkEnemyForceVictory(target))return true;else if(target.id==='liu')defeat('刘备撤退');return true}
+    if(target.hp<=0){phase=previousPhase;addLog(`${target.name}撤退`,true);await playDefeatQuote(target);if(checkEnemyForceVictory(target))return true;if(target.id==='liu'){defeat('刘备撤退');return true}syncUI();draw();return false}
     phase=previousPhase;syncUI();draw();return false
   }
   function checkAlternateVictory(u){const rule=level.alternateVictory;if(!rule||u.id!==rule.unitId||!alternateVictoryContains(u.x,u.y))return false;const amount=Math.max(0,Number(rule.exp)||0);for(const ally of units.filter(q=>(q.side==='ally'||q.side==='guest')&&q.hp>0)){ally.exp=(ally.exp||0)+amount;while(ally.exp>=100){ally.exp-=100;levelUp(ally)}}addLog(rule.log||`${u.name}抵达目标，全体残存部队获得经验${amount}`,true);victory(false,'alternate');return true}
