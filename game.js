@@ -791,7 +791,19 @@
       if(sx<p.x-halfWidth||sx>p.x+halfWidth||sy<p.y-halfHeight||sy>p.y+halfHeight)continue;
       const distance=(sx-p.x)**2+(sy-p.y)**2;if(distance<bestDistance){bestDistance=distance;best={x,y}}
     }
-    return best
+    if(best)return best;
+    // If a tall mounted sprite covers the gap beyond the visible rectangle,
+    // treat its upper body as click-through and recover the nearest empty cell
+    // in the one or two rows above it. The unit's own feet remain selectable.
+    const spriteHit=unitSpriteTileAt(sx,sy),spriteUnit=spriteHit&&unitAt(spriteHit.x,spriteHit.y),cell=bgRect.cell||Math.min(bgRect.w/COLS,bgRect.h/ROWS);
+    if(!spriteUnit)return null;
+    const spriteCenter=iso(spriteUnit.x,spriteUnit.y);if(sy>=spriteCenter.y-cell*.16)return null;
+    let fallback=null,fallbackDistance=Infinity;
+    for(const key of reachable.keys()){
+      const [x,y]=key.split(',').map(Number);if(unitAt(x,y)||y>=spriteUnit.y||spriteUnit.y-y>2||Math.abs(x-spriteUnit.x)>1)continue;
+      const p=iso(x,y),distance=Math.hypot(sx-p.x,sy-p.y);if(distance<=cell*.9&&distance<fallbackDistance){fallbackDistance=distance;fallback={x,y}}
+    }
+    return fallback
   }
   function actionTileAt(sx,sy){
     // Use the rectangles actually drawn on screen. A tall commander sprite may
