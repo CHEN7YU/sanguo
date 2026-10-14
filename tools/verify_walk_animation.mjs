@@ -11,12 +11,12 @@ for(const [id,file] of Object.entries({liu:'liu-walk-v1.webp',guan:'guan-walk-v1
   if(bytes.length<10000||bytes.subarray(0,4).toString()!=='RIFF'||bytes.subarray(8,12).toString()!=='WEBP')fail(`invalid walk sheet for ${id}`);
   if(!game.includes(`${id}:'assets/${file}'`))fail(`walk sheet not wired for ${id}`);
 }
-for(const [id,file] of Object.entries({martial:'martial-artist-walk-v2.webp',bandit:'bandit-walk-v2.webp',support:'military-band-walk-v1.webp'})){
+for(const [id,file] of Object.entries({martial:'martial-artist-walk-v2.webp',bandit:'bandit-walk-v3.webp',support:'military-band-walk-v1.webp'})){
   const bytes=fs.readFileSync(path.join(root,'assets','troops',file));
   if(bytes.length<10000||bytes.subarray(0,4).toString()!=='RIFF'||bytes.subarray(8,12).toString()!=='WEBP')fail(`invalid troop walk sheet for ${id}`);
   if(!game.includes(`${id}:'assets/troops/${file}'`))fail(`troop walk sheet not wired for ${id}`);
 }
-for(const [id,file] of Object.entries({martial:'martial-artist-walk-friendly-v2.webp',bandit:'bandit-walk-friendly-v2.webp'})){
+for(const [id,file] of Object.entries({martial:'martial-artist-walk-friendly-v2.webp',bandit:'bandit-walk-friendly-v3.webp'})){
   const bytes=fs.readFileSync(path.join(root,'assets','friendly',file));
   if(bytes.length<10000||bytes.subarray(0,4).toString()!=='RIFF'||bytes.subarray(8,12).toString()!=='WEBP')fail(`invalid friendly walk sheet for ${id}`);
   if(!game.includes(`${id}:'assets/friendly/${file}'`))fail(`friendly walk sheet not wired for ${id}`);
@@ -24,6 +24,7 @@ for(const [id,file] of Object.entries({martial:'martial-artist-walk-friendly-v2.
 for(const token of ["west:0","north:1","east:2","south:3","direction=tileDx>0?'east'","drawAuthoredWalkFrame"]){
   if(!game.includes(token))fail(`missing four-direction walk pipeline token: ${token}`);
 }
+if(!game.includes("bandit:[[[24,6,282,316]")||!game.includes("[[28,0,220,298],[14,0,240,296],[32,0,228,296],[46,0,204,300]]"))fail('bandit atlas must keep complete west/north/east/south frame bounds');
 for(const token of ["u.troop==='archer'","u.role!=='前锋'","return'infantry'"])if(!game.includes(token))fail(`missing generic walk fallback: ${token}`);
 for(const token of ["walkPhase:segment+p","travel=u.troop==='bandit'?p:ease","banditGait=walking&&authoredWalk&&u.troop==='bandit'"]){
   if(!game.includes(token))fail(`missing continuous bandit gait behavior: ${token}`);
