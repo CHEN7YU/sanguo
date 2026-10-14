@@ -38,6 +38,11 @@ assert.equal(level.terrain[7][11],'village');assert.equal(level.terrain[13][7],'
 assert.equal(JSON.stringify(level.events.loot['5,8']),JSON.stringify({item:'wheat',amount:1}));
 assert.equal(level.events.duel.attackerId,'zhang');assert.equal(level.events.duel.defenderId,'yanliang');
 assert.equal(level.events.duel.endsBattle,false,'Yan Liang duel must not defeat Zhang He or end Julu');
+const isolatedYuZe={...level.units.find(unit=>unit.id==='yuze'),x:8,y:16,hp:500,maxHp:500};
+const distantLiu={...level.units.find(unit=>unit.id==='liu'),x:14,y:10,hp:650,maxHp:650};
+for(const id of ['yanliang','e2','e3']){const guard=level.units.find(unit=>unit.id===id);assert.equal(rules.retaliationTargetId({aiType:guard.aiType,actorX:guard.x,actorY:guard.y,currentTurn:4,candidates:[isolatedYuZe,distantLiu]}),'yuze',id+' must react when Yu Ze enters its local guard zone')}
+const distantGuard=level.units.find(unit=>unit.id==='gaolan');assert.equal(rules.retaliationTargetId({aiType:distantGuard.aiType,actorX:distantGuard.x,actorY:distantGuard.y,currentTurn:4,candidates:[isolatedYuZe,distantLiu]}),null,'distant stationary troops must hold formation');
+assert.equal(rules.retaliationTargetId({aiType:distantGuard.aiType,provokedBy:'yuze',provokedTurn:4,currentTurn:4,actorX:distantGuard.x,actorY:distantGuard.y,candidates:[isolatedYuZe,distantLiu]}),'yuze','a directly attacked stationary troop must retaliate even outside its local guard zone');
 const turn3=level.timedEvents.find(event=>event.turn===3);assert.ok(turn3);assert.equal(turn3.spawns.length,5);
 assert.equal(JSON.stringify(turn3.spawns.map(x=>x.unitId)),JSON.stringify(['bandit1','bandit2','bandit3','guanchun','gengwu']));
 assert.equal(level.areaEvents[0].unitId,'liu');assert.equal(JSON.stringify(level.areaEvents[0].rect),JSON.stringify({x1:4,y1:8,x2:10,y2:13}));

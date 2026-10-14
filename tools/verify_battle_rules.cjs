@@ -59,4 +59,12 @@ assert.deepEqual(rules.learnedStrategies({troop:'archer',level:6}),['vortex']);
 assert.deepEqual(rules.learnedStrategies({troop:'support',level:1}),[]);
 assert.deepEqual(rules.learnedStrategies({troop:'cavalry',level:1,override:['fire']}),['fire']);
 
-console.log('Battle rules verified: original stats, damage, experience, terrain recovery, fire scroll, morale, rout, confusion, hit-rate bounds and restrained AI tactic priority.');
+const nearbyForces=[{id:'yuze',hp:500,maxHp:500,x:8,y:16,spawnOrder:2},{id:'liu',hp:650,maxHp:650,x:12,y:12,spawnOrder:0}];
+assert.equal(rules.retaliationTargetId({aiType:0,provokedBy:'yuze',provokedTurn:4,currentTurn:4,actorX:7,actorY:16,candidates:nearbyForces}),'yuze');
+assert.equal(rules.retaliationTargetId({aiType:0,provokedBy:'yuze',provokedTurn:3,currentTurn:4,actorX:7,actorY:16,candidates:nearbyForces}),'yuze');
+assert.equal(rules.retaliationTargetId({aiType:0,actorX:6,actorY:15,detectionRange:3,currentTurn:4,candidates:nearbyForces}),'yuze');
+assert.equal(rules.retaliationTargetId({aiType:0,actorX:2,actorY:2,detectionRange:3,currentTurn:4,candidates:nearbyForces}),null);
+assert.equal(rules.retaliationTargetId({aiType:1,provokedBy:'yuze',provokedTurn:4,currentTurn:4,actorX:7,actorY:16,candidates:nearbyForces}),null);
+assert.equal(rules.retaliationTargetId({aiType:0,provokedBy:'yuze',provokedTurn:4,currentTurn:4,actorX:7,actorY:16,candidates:[{id:'yuze',hp:0,maxHp:500,x:8,y:16}]}),null);
+
+console.log('Battle rules verified: original stats, damage, experience, terrain recovery, fire scroll, morale, rout, confusion, hit-rate bounds and restrained AI tactic priority and stationary-unit retaliation.');

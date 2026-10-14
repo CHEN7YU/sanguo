@@ -158,7 +158,7 @@ check(html.includes('data-select-level="1"') && html.includes('data-select-level
 check(game.includes("params.set('storySelect','1')"), 'level selector must route to the selected battle story');
 check(game.includes("previewParams.has('storySelect')"), 'selected-level story boot route is not wired');
 check(game.includes("previewParams.has('battleSelect')"), 'battle-only audit route must remain available');
-check(game.includes("let plan=e.aiType===6?bestAiAction(e,allies,false):bestAiAction(e,allies,mobile&&!supportUnit)"), 'enemy AI must let AI6 attack in place before following its scripted waypoint');
+check(game.includes("e.aiType===6?bestAiAction(e,allies,false):bestAiAction(e,allies,mobile&&!supportUnit)"), 'enemy AI must let AI6 attack in place before following its scripted waypoint');
 check(game.includes("if(plan.target&&plan.target.hp>0&&inAttackRange(e,plan.target))await attackNpc(e,plan.target)"), 'waypoint AI must still use an available adjacent basic attack');
 check(game.includes("const mobile=e.aiType===1||e.aiType===3||e.aiType===4,cells=mobile?calcReach(e)"), 'danger preview must respect stationary and move-only AI modes');
 check(game.includes('function capturePrepBaseline()'), 'battle-entry preparation baseline is not captured');
