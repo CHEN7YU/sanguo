@@ -191,6 +191,10 @@ for (const token of [
   "previewParams.has('storySelect')"
 ]) assert.ok(game.includes(token), `campaign runtime is missing: ${token}`);
 
+assert.ok(game.includes("new URLSearchParams({newGame:'1',build:RUNTIME_BUILD})"),'Start Game must route every later-level title screen to a clean first-chapter entry');
+assert.ok(game.includes("if(previewParams.has('newGame'))setTimeout(launchFirstChapterNewGame"),'Clean new-game boot dispatch is missing');
+assert.ok(game.includes("levelSelectActive=false;selectedBalanceLevel=null"),'New Game must clear level-select balancing state');
+
 assert.ok(game.includes('const LIU_CLEAR_EXP=50'),'Liu Bei clear bonus must remain 50 EXP');
 assert.ok(game.includes('const clearExp=awardLiuBeiClearExp()'),'Every completed battle must award Liu Bei clear EXP');
 const clearAwardIndex=game.indexOf('const clearExp=awardLiuBeiClearExp()');

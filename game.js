@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261014-xuzhou-hall-free-roam-v161';
+  const RUNTIME_BUILD='20261014-title-new-game-v162';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -706,7 +706,15 @@
   }
   function playPreBattleStory(onDone,startIndex=0){storyDone=onDone;storyIndex=Math.max(0,Math.min(preBattleStory.length-1,startIndex));storyActive=true;storyAuto=false;storyFreeRoam=false;storyAdvanceLocked=false;storyInteraction=null;storyRouteChoicePending=false;storyScene='';const stage=document.getElementById('storyStage');if(stage){stage.style.setProperty('--story-camera-x','0%');stage.style.setProperty('--story-camera-y','0%');stage.style.setProperty('--story-camera-zoom','1');stage.dataset.cameraTarget='wide'}document.getElementById('storyOverlay').classList.remove('hidden');showStoryLine();setTimeout(()=>{if(storyActive&&storyIndex===startIndex)saveStoryAutoCheckpoint()},0)}
   function fadeOutTitleMusic(onDone){if(titleMusic.paused){onDone();return}const from=titleMusic.volume,start=performance.now(),duration=360;function frame(now){const p=Math.min(1,(now-start)/duration);titleMusic.volume=from*(1-p);if(p<1)requestAnimationFrame(frame);else{titleMusic.pause();titleMusic.volume=mixedMusicVolume();onDone()}}requestAnimationFrame(frame)}
-  function startNewGame(){requestGameFullscreen();if(level.id==='sishui-pass')clearCampaignTransfer();resetBattleState();fadeOutTitleMusic(()=>{hideTitle(false);if(level.id==='sishui-pass')playOpeningMovie(()=>playPreBattleStory(openBattlePrep));else if(preBattleStory.length)playPreBattleStory(openBattlePrep);else openBattlePrep()})}
+  function launchFirstChapterNewGame(){
+    clearCampaignTransfer();levelSelectActive=false;selectedBalanceLevel=null;resetBattleState();fadeOutTitleMusic(()=>{hideTitle(false);playOpeningMovie(()=>playPreBattleStory(openBattlePrep))})
+  }
+  function startNewGame(){
+    requestGameFullscreen();
+    const mustReloadFirstChapter=level.id!=='sishui-pass'||levelSelectActive||bootParams.has('level')||bootParams.has('storySelect')||bootParams.has('battleSelect')||bootParams.has('loadSlot');
+    if(mustReloadFirstChapter){clearCampaignTransfer();const params=preserveDialogueMode(new URLSearchParams({newGame:'1',build:RUNTIME_BUILD}));location.href=`${location.pathname}?${params}`;return}
+    launchFirstChapterNewGame()
+  }
   function restartBattle(){resetBattleState();hideTitle();openBattlePrep()}
   function returnToTitleAfterBattle(){resetBattleState();showTitle()}
   function canOpenBattlePrep(){return turn===1&&playerTurn&&!ending&&phase==='select'&&units.filter(u=>u.side==='ally').every(u=>!u.acted)}
@@ -1581,7 +1589,8 @@
   const previewParams=bootParams;
   const previewAnimationSpeed=Math.max(.1,Number(previewParams.get('previewSpeed'))||.65);
   if([...previewParams.keys()].length)document.getElementById('titleScreen').classList.add('hidden');
-  if(previewParams.has('loadSlot'))setTimeout(()=>{const token=previewParams.get('loadSlot'),store=readSaveStore(),save=token==='auto'?store.auto:store.manual[Number(token)];if(validSnapshot(save)){requestGameFullscreen();loadSnapshot(save)}else showTitle()},180);
+  if(previewParams.has('newGame'))setTimeout(launchFirstChapterNewGame,120);
+  else if(previewParams.has('loadSlot'))setTimeout(()=>{const token=previewParams.get('loadSlot'),store=readSaveStore(),save=token==='auto'?store.auto:store.manual[Number(token)];if(validSnapshot(save)){requestGameFullscreen();loadSnapshot(save)}else showTitle()},180);
   else if(previewParams.has('routeChoice')||previewParams.has('secondRouteChoice'))setTimeout(()=>{resetBattleState();hideTitle(false);if(preBattleStory.length)playPreBattleStory(openBattlePrep);else openBattlePrep()},180);
   else if(previewParams.has('routeResume'))setTimeout(()=>{resetBattleState();hideTitle(false);const routeStart=['julu','qinghe'].includes(level.id)?5:14;if(preBattleStory.length)playPreBattleStory(openBattlePrep,Math.min(routeStart,preBattleStory.length-1));else openBattlePrep()},180);
   else if(previewParams.has('storySelect'))setTimeout(()=>{resetBattleState();hideTitle(false);if(level.id==='sishui-pass'){clearCampaignTransfer();playOpeningMovie(()=>playPreBattleStory(openBattlePrep))}else if(preBattleStory.length)playPreBattleStory(openBattlePrep);else openBattlePrep()},180);
