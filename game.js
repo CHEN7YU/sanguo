@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261014-beihai-guanhai-duel-facing-v159';
+  const RUNTIME_BUILD='20261014-xuzhou-hall-free-roam-v161';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -329,7 +329,7 @@
     {match:/袁绍军营|公孙瓒军营/,key:'warlord-camp',art:storyHd2dRoot+'warlord-command-tent-hd2d-v1.webp',nav:{minX:4,maxX:28,minY:7,maxY:17,obstacles:[{x1:23,y1:5,x2:28,y2:7}]}},
     {match:/平原议事厅/,key:'pingyuan-hall',art:storyHd2dRoot+'pingyuan-council-hall-hd2d-v1.webp',nav:{minX:5,maxX:28,minY:7,maxY:17,obstacles:[{x1:23,y1:5,x2:28,y2:8},{x1:5,y1:7,x2:8,y2:10}]}},
     {match:/北平议事厅/,key:'beiping-hall',art:storyHd2dRoot+'beiping-command-hall-hd2d-v1.webp'},
-    {match:/北海议事厅/,key:'beihai-hall',art:storyHd2dRoot+'beihai-council-hall-hd2d-v1.webp'},
+    {match:/北海议事厅/,key:'beihai-hall',art:storyHd2dRoot+'beihai-council-hall-hd2d-v1.webp',nav:{minX:4,maxX:28,minY:7,maxY:17,obstacles:[{x1:23,y1:5,x2:28,y2:8},{x1:4,y1:7,x2:8,y2:10}]}},
     {match:/徐州议事厅/,key:'xuzhou-hall',art:storyHd2dRoot+'xuzhou-council-hall-hd2d-v1.webp'},
     {match:/曹操军营帐|陈留/,key:'cao-camp',art:storyHd2dRoot+'xiaopei-cao-camp-hd2d-v1.webp'},
     {match:/北海城外|北海近郊/,key:'beihai-siege',art:storyHd2dRoot+'beihai-siege-hd2d-v1.webp'},

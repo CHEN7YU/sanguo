@@ -58,9 +58,13 @@ check(level.events.battleReward===300&&level.alternateVictory.exp===50,'Original
 const storyContext={window:{}};
 loadScript('story-data.js',storyContext);
 const story=storyContext.window.STORY_BY_LEVEL.xuzhou;
-check(Array.isArray(story)&&story.length>=12,'Xuzhou prebattle story is incomplete');
+check(Array.isArray(story)&&story.length>=11,'Xuzhou prebattle story is incomplete');
 for(const required of ['孔融','太史慈','张飞','关羽','糜竺'])check(story.some(line=>line.speaker===required),`Story is missing ${required}`);
-check(story.some(line=>Array.isArray(line.conversationChoices)&&line.conversationChoices.length===3),'Xuzhou conversation choice scene is missing');
+const councilRoam=story.find(line=>line.freeRoam&&line.location.includes('北海议事厅'));
+check(councilRoam?.setup?.some(actor=>actor.name==='刘备')&&councilRoam.setup.some(actor=>actor.name==='关羽'),'Beihai council must use Liu Bei free-roam with Guan Yu departure');
+for(const name of ['孔融','太史慈','张飞','赵云','糜竺'])check(councilRoam.setup.some(actor=>actor.name===name),`Beihai council free-roam is missing ${name}`);
+check(!story.some(line=>Array.isArray(line.conversationChoices)),'Beihai council must not use bottom conversation-choice cards');
+for(const name of ['孔融','太史慈','张飞','赵云','糜竺','关羽'])check(storyContext.window.NPC_DIALOGUE_BY_LEVEL.xuzhou?.[name]?.length,`Xuzhou free-roam dialogue is missing ${name}`);
 
 for(const relative of [level.battlefieldArt,'assets/audio/original-music-9.opus','docs/original-audit/level-07-xuzhou-audit.md','docs/original-audit/level-07-xuzhou-map.json'])check(fs.existsSync(path.join(root,relative)),`Missing Xuzhou resource: ${relative}`);
 for(const id of ['yu-jin','yue-jin','li-dian','guo-jia','cao-hong','xiahou-yuan','mi-fang','sun-qian'])check(fs.existsSync(path.join(root,`assets/level-07-xuzhou/portraits/${id}-v1.webp`)),`Missing Xuzhou portrait: ${id}`);
