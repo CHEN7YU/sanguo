@@ -782,10 +782,22 @@
     }
     return best
   }
+  function reachableTileAt(sx,sy){
+    if(phase!=='move'||!reachable.size)return null;
+    let best=null,bestDistance=Infinity;
+    for(const key of reachable.keys()){
+      const [x,y]=key.split(',').map(Number);if(unitAt(x,y))continue;
+      const p=iso(x,y),px=iso(x+.5,y),mx=iso(x-.5,y),py=iso(x,y+.5),my=iso(x,y-.5),halfWidth=Math.abs(px.x-mx.x)*.46,halfHeight=Math.abs(py.y-my.y)*.46;
+      if(sx<p.x-halfWidth||sx>p.x+halfWidth||sy<p.y-halfHeight||sy>p.y+halfHeight)continue;
+      const distance=(sx-p.x)**2+(sy-p.y)**2;if(distance<bestDistance){bestDistance=distance;best={x,y}}
+    }
+    return best
+  }
   function actionTileAt(sx,sy){
+    // Use the rectangles actually drawn on screen. A tall commander sprite may
+    // overlap the row above, but it must never swallow a highlighted empty cell.
+    const movementHit=reachableTileAt(sx,sy);if(movementHit)return movementHit;
     const ground=screenToTile(sx,sy);
-    // During movement, a highlighted empty ground cell must win over the tall
-    // sprite painted across it. This keeps the row above mounted units tappable.
     if(phase==='move'&&ground&&reachable.has(keyOf(ground.x,ground.y))&&!unitAt(ground.x,ground.y))return ground;
     // In every other case resolve the visible body first so a soldier's head or
     // torso remains easy to select, especially when two painted rows overlap.
