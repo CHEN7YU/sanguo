@@ -30,7 +30,8 @@
     // eastern approach. The original source cell is forest, which made the
     // visibly clear square beside Guan Yu impassable to cavalry.
     paintedTerrainOverrides:[
-      {x:13,y:5,type:'plain'}
+      {x:13,y:5,type:'plain'},
+      {x:9,y:7,type:'plain'}
     ],
     intro:[
       {speaker:'关羽',text:'那是？兄长，像是袁绍军。'},

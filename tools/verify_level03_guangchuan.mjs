@@ -18,6 +18,10 @@ assert.equal(level.terrain[5][13],'forest','original audited terrain must remain
 assert.equal(runtimeTerrain[5][13],'plain','painted open ground west of Guan Yu must be passable');
 assert.equal(runtimeTerrain[5][14],'plain','eastern approach origin must remain passable');
 assert.equal(runtimeTerrain[6][13],'plain','corrected square must connect to the southern open ground');
+assert.equal(level.terrain[7][9],'forest','second original audited terrain cell must remain preserved');
+assert.equal(runtimeTerrain[7][9],'plain','painted grass north-east of the south-west treasure must be passable');
+assert.equal(runtimeTerrain[8][9],'plain','corrected grass square must connect to Guan Yu southward');
+assert.equal(runtimeTerrain[7][10],'plain','corrected grass square must connect to the eastern field');
 assert.equal(level.terrain[6][7],'village');assert.equal(level.terrain[6][15],'treasure');assert.equal(level.terrain[9][5],'treasure');
 assert.equal(JSON.stringify(level.events.loot['15,6']),JSON.stringify({item:'bean',amount:1}));assert.equal(JSON.stringify(level.events.loot['5,9']),JSON.stringify({gold:100}));
 assert.equal(level.events.duel.attackerId,'guan');assert.equal(level.events.duel.defenderId,'fengji');assert.equal(level.events.battleReward,200);
