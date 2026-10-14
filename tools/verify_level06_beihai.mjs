@@ -26,6 +26,8 @@ for(const [id,x,y] of [['liu',22,3],['guan',21,4],['zhang',20,5],['jian',22,5],[
 check(byId.kongrong.aiType===2&&byId.taishici.aiType===2&&byId.mengsu.aiType===2,'North Sea defenders must begin in original AI2 wait mode');
 check(byId.guanhai.aiType===6&&byId.guanhai.aiTarget===(7|(10<<8)),'Guan Hai original AI6 destination is wrong');
 check(byId.guanhai.runtimeAiTarget===(10|(7<<8)),'Guan Hai must stop on reachable painted ground instead of entering the sealed hill pocket');
+check(level.alliedAiAvoidsObjective===true,'Beihai allied AI must leave Guan Hai to the player');
+check(level.objectiveAiTargetsPlayerOnly===true,'Guan Hai must engage Liu Bei army instead of fighting Beihai allied AI');
 check(level.units.filter(unit=>unit.side==='enemy').length===13,'Original enemy deployment must contain 13 units');
 check(level.units.filter(unit=>unit.troop==='beast').length===2,'Two beast trainers are required');
 
@@ -88,6 +90,10 @@ const leaderboard=fs.readFileSync(path.join(root,'leaderboard.js'),'utf8');
 check(game.includes("levelIndex==='8' ? window.LEVEL_06_BEIHAI"),'Level 8 loader is missing');
 check(game.includes("targetId==='beihai'?'8'"),'Beihai save routing is missing');
 check(game.includes("level.nextLevelId==='beihai'?'8'"),'Jieqiao-to-Beihai campaign routing is missing');
+check(game.includes("level.alliedAiAvoidsObjective?allEnemies.filter(u=>u.id!==objectiveUnitId):allEnemies"),'Allied AI objective-avoidance support is missing');
+check(game.includes("level.objectiveAiTargetsPlayerOnly&&e.id===objectiveUnitId?allAllies.filter(u=>u.side==='ally'):allAllies"),'Objective commander player-only targeting support is missing');
+check(game.includes("caster.side==='guest'&&level.alliedAiAvoidsObjective&&target.id===objectiveUnitId"),'Allied strategies must also avoid the objective commander');
+check(game.includes("caster.id===objectiveUnitId&&level.objectiveAiTargetsPlayerOnly&&target.side==='guest'"),'Objective commander strategies must also ignore allied NPCs');
 check(game.includes('for(const update of event.terrainUpdates||[])'),'Runtime terrain update support is missing');
 check(index.includes('data-select-level="8"')&&index.includes('level-06-beihai.js'),'Beihai menu or script include is missing');
 check(leaderboard.includes("beihai: { name: '北海之战'"),'Beihai leaderboard rule is missing');
