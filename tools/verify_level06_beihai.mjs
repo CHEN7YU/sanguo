@@ -98,4 +98,7 @@ check(game.includes('for(const update of event.terrainUpdates||[])'),'Runtime te
 check(index.includes('data-select-level="8"')&&index.includes('level-06-beihai.js'),'Beihai menu or script include is missing');
 check(leaderboard.includes("beihai: { name: '北海之战'"),'Beihai leaderboard rule is missing');
 
+check((game.match(/guanhai:'right'/g) || []).length === 2, 'Guan Hai static and attack duel sheets must both be registered as native-right');
+check(!game.includes("guanhai:'left'"), 'Guan Hai duel metadata must not claim the right-facing sheets are native-left');
+
 console.log(`Beihai verified: ${level.width}x${level.height}, ${level.units.length} units, ${story.length} story beats, gate/loot/duel/AI/save/leaderboard integration.`);

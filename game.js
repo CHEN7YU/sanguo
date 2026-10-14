@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261014-beihai-commander-ai-v158';
+  const RUNTIME_BUILD='20261014-beihai-guanhai-duel-facing-v159';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -1304,10 +1304,10 @@
   const duelNativeFacing={
     liu:'left',guan:'left',zhang:'left',gongsun:'left',tao:'left',
     hua:'right',lvbu:'right',officer:'right',infantry:'right',archer:'right',support:'right',
-    guanhai:'left',kongrong:'left',taishici:'left',mengsu:'left',beast:'left',
+    guanhai:'right',kongrong:'left',taishici:'left',mengsu:'left',beast:'left',
     yujin:'left',yuejin:'left',lidian:'left',guojia:'left',caohong:'left',xiahouyuan:'left',mifang:'left',sunqian:'left',transport:'left'
   };
-  const duelAttackNativeFacing={zhaoyun:'right',wenchou:'right',yanliang:'right',zhanghe:'right',quyi:'right',guanhai:'left',kongrong:'left',taishici:'left',mengsu:'left',beast:'left',yujin:'left',yuejin:'left',lidian:'left',guojia:'left',caohong:'left',xiahouyuan:'left',mifang:'left',sunqian:'left',transport:'left'};
+  const duelAttackNativeFacing={zhaoyun:'right',wenchou:'right',yanliang:'right',zhanghe:'right',quyi:'right',guanhai:'right',kongrong:'left',taishici:'left',mengsu:'left',beast:'left',yujin:'left',yuejin:'left',lidian:'left',guojia:'left',caohong:'left',xiahouyuan:'left',mifang:'left',sunqian:'left',transport:'left'};
   function duelVisualKeyFor(u){return art[u.id]?u.id:genericVisualKeyFor(u)}
   function duelFacingScale(u,direction){const native=duelNativeFacing[duelVisualKeyFor(u)]||(u.side==='enemy'?'right':'left');return native===direction?1:-1}
   // Resolve facing from the illustration actually drawn. Named recruits and
