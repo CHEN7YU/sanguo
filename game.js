@@ -783,12 +783,14 @@
     return best
   }
   function actionTileAt(sx,sy){
-    // Unit art is much taller than its logical tile. Resolve the visible body
-    // before the ground grid so clicking a soldier's head or torso still picks
-    // that soldier, especially when two rows visually overlap on warped maps.
+    const ground=screenToTile(sx,sy);
+    // During movement, a highlighted empty ground cell must win over the tall
+    // sprite painted across it. This keeps the row above mounted units tappable.
+    if(phase==='move'&&ground&&reachable.has(keyOf(ground.x,ground.y))&&!unitAt(ground.x,ground.y))return ground;
+    // In every other case resolve the visible body first so a soldier's head or
+    // torso remains easy to select, especially when two painted rows overlap.
     const unitHit=unitSpriteTileAt(sx,sy);
     if(unitHit)return unitHit;
-    const ground=screenToTile(sx,sy);
     if(ground&&unitAt(ground.x,ground.y))return ground;
     if(phase!=='move')return ground;
     // Buildings are taller and wider than one grid cell.  Their old rectangular
