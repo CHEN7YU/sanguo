@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261014-guangchuan-southwest-tile-v168';
+  const RUNTIME_BUILD='20261014-unit-sprite-hit-v169';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -763,7 +763,31 @@
     }
     return hit&&{x:hit.x,y:hit.y}
   }
+  function unitSpriteTileAt(sx,sy){
+    const canTarget=u=>{
+      if(u.side==='reserve'||u.hp<=0)return false;
+      const highlighted=attackable.some(q=>q.x===u.x&&q.y===u.y);
+      if(phase==='attack')return u.side==='enemy'&&highlighted;
+      if(phase==='strategy'||phase==='item')return highlighted;
+      return true
+    };
+    let best=null,bestScore=Infinity;
+    for(const u of units.filter(canTarget)){
+      const p=iso(u.x,u.y),s=bgRect.scale,mounted=isMountedUnit(u),commander=(u.originalId??999)<256;
+      const height=(u.boss?108:commander?(mounted?102:91):(mounted?87:78))*s*(u.id==='guan'?588/497:1)*(u.id==='zhaoyun'?1.08:1)*(u.id==='caocao'?1.05:1)*(['martial','bandit'].includes(u.troop)?1.16:1);
+      const halfWidth=(mounted?45:35)*s*(['martial','bandit'].includes(u.troop)?1.1:1),top=p.y-height-8*s,bottom=p.y+18*s;
+      if(sx<p.x-halfWidth||sx>p.x+halfWidth||sy<top||sy>bottom)continue;
+      const centerY=p.y-height*.43,nx=(sx-p.x)/halfWidth,ny=(sy-centerY)/(height*.62),score=nx*nx+ny*ny;
+      if(score<bestScore){bestScore=score;best={x:u.x,y:u.y}}
+    }
+    return best
+  }
   function actionTileAt(sx,sy){
+    // Unit art is much taller than its logical tile. Resolve the visible body
+    // before the ground grid so clicking a soldier's head or torso still picks
+    // that soldier, especially when two rows visually overlap on warped maps.
+    const unitHit=unitSpriteTileAt(sx,sy);
+    if(unitHit)return unitHit;
     const ground=screenToTile(sx,sy);
     if(ground&&unitAt(ground.x,ground.y))return ground;
     if(phase!=='move')return ground;
