@@ -8,8 +8,13 @@ const checks = [
   ["duelFacingScale(g,'right')", 'the left-side attacker must face right during exchanges'],
   ["duelFacingScale(h,'left')", 'the right-side defender must face left during exchanges'],
   ["yujin:'left',yuejin:'left',lidian:'left',guojia:'left',caohong:'left',xiahouyuan:'left'", 'Xuzhou action sheets must keep their authored left-facing direction'],
-  ["duelFacingScale(lvbu,ms>=8400?'right':'left')", 'Lu Bu may face right only after his retreat begins']
+  ["duelFacingScale(lvbu,ms>=8400?'right':'left')", 'Lu Bu may face right only after his retreat begins'],
+  ["assets/cinematics/warm-wine-slay-hua-xiong-v1.webp", "warm-wine victory scene must use the dedicated full-screen illustration"],
+  ["overlay.classList.add('warm-wine-scene')", "warm-wine scene must use its dedicated presentation state"]
 ];
+
+const warmWineFunction = game.match(/function playWarmWineCinematic\(g\)\{([\s\S]*?)\n  \}\n  const criticalQuotes=/)?.[1] || '';
+if (warmWineFunction.includes('cupX') || warmWineFunction.includes('drawDuelUnit(')) throw new Error('warm-wine scene must not draw the old cup or battlefield unit cutout');
 
 for (const [needle, message] of checks) {
   if (!game.includes(needle)) throw new Error(message);

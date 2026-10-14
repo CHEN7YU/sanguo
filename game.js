@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261014-shop-slot-label-v164';
+  const RUNTIME_BUILD='20261014-warm-wine-art-v165';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -102,6 +102,7 @@
   const unitPaletteFilters={};
   const woundedArt=new Image();woundedArt.src='assets/wounded-units-atlas-v1.webp';
   const friendlyWoundedArt=new Image();friendlyWoundedArt.src='assets/friendly/wounded-units-atlas-friendly-v1.webp';
+  const warmWineArt=new Image();warmWineArt.src='assets/cinematics/warm-wine-slay-hua-xiong-v1.webp';
   const woundedAtlasOrder=['liu','guan','zhang','gongsun','tao','hua','lvbu','zhangliao','houcheng','songxian','weixu','infantry','archer','officer'];
   const woundedFrameBounds={
     liu:[19,35,263,304],guan:[1,15,289,324],zhang:[0,30,291,309],gongsun:[0,1,289,338],
@@ -1384,8 +1385,24 @@
       if(t<1)requestAnimationFrame(frame);else{overlay.classList.add('hidden');resolve()}}requestAnimationFrame(frame)})
   }
   function playWarmWineCinematic(g){
-    const overlay=document.getElementById('duelOverlay'),kicker=document.getElementById('duelKicker'),heading=document.getElementById('duelHeading'),caption=document.getElementById('duelCaption');kicker.textContent='温酒斩华雄';heading.textContent='酒尚温　将已还';caption.textContent='青龙刀归鞘，帐中温酒未冷';overlay.classList.remove('hidden');const previousMusicSceneMultiplier=musicSceneMultiplier;musicSceneMultiplier=.28;applyMusicMix();const dpr=Math.min(devicePixelRatio||1,2),W=overlay.clientWidth,H=overlay.clientHeight;duelCanvas.width=Math.round(W*dpr);duelCanvas.height=Math.round(H*dpr);duelCanvas.style.width=W+'px';duelCanvas.style.height=H+'px';duelCtx.setTransform(dpr,0,0,dpr,0,0);const duration=2200;let chimed=false;
-    return new Promise(resolve=>{const start=performance.now();function frame(now){const ms=(now-start)*animationSpeed,t=Math.min(1,ms/duration),c=duelCtx,fade=Math.min(1,ms/420)*Math.min(1,(duration-ms)/360);c.clearRect(0,0,W,H);const glow=c.createRadialGradient(W*.5,H*.5,20,W*.5,H*.5,W*.55);glow.addColorStop(0,'#704113');glow.addColorStop(.45,'#192a2b');glow.addColorStop(1,'#050c16');c.fillStyle=glow;c.fillRect(0,0,W,H);c.save();c.globalAlpha=fade*.8;c.fillStyle='#d6a34e';c.beginPath();c.arc(W*.5,H*.44,Math.min(W,H)*.23,0,Math.PI*2);c.fill();c.globalCompositeOperation='destination-out';c.beginPath();c.arc(W*.5,H*.44,Math.min(W,H)*.21,0,Math.PI*2);c.fill();c.restore();drawDuelUnit(g,W*.47,H*.79,-1,null,0,fade);const cupX=W*.68,cupY=H*.67;c.save();c.globalAlpha=fade;c.strokeStyle='#e9c878';c.fillStyle='#744318';c.lineWidth=3;c.beginPath();c.moveTo(cupX-28,cupY);c.lineTo(cupX-21,cupY+25);c.quadraticCurveTo(cupX,cupY+38,cupX+21,cupY+25);c.lineTo(cupX+28,cupY);c.closePath();c.fill();c.stroke();c.beginPath();c.ellipse(cupX,cupY,28,8,0,0,Math.PI*2);c.fillStyle='#d58b35';c.fill();c.stroke();for(let i=0;i<3;i++){const sway=Math.sin(ms*.004+i)*7;c.globalAlpha=fade*(.55-i*.12);c.beginPath();c.moveTo(cupX-12+i*12,cupY-8);c.bezierCurveTo(cupX-18+i*12+sway,cupY-35,cupX+i*10-sway,cupY-48,cupX-7+i*9,cupY-66);c.strokeStyle='#fff2cf';c.lineWidth=2;c.stroke()}c.restore();if(ms>700&&!chimed){chimed=true;playCharge(g)}if(t<1)requestAnimationFrame(frame);else{overlay.classList.add('hidden');musicSceneMultiplier=previousMusicSceneMultiplier;applyMusicMix();resolve()}}requestAnimationFrame(frame)})
+    const overlay=document.getElementById('duelOverlay'),kicker=document.getElementById('duelKicker'),heading=document.getElementById('duelHeading'),caption=document.getElementById('duelCaption');
+    kicker.textContent='温酒斩华雄';heading.textContent='酒尚温　将已还';caption.textContent='青龙刀归鞘，帐中温酒未冷';overlay.classList.add('warm-wine-scene');overlay.classList.remove('hidden');
+    const previousMusicSceneMultiplier=musicSceneMultiplier;musicSceneMultiplier=.28;applyMusicMix();
+    const dpr=Math.min(devicePixelRatio||1,2),W=overlay.clientWidth,H=overlay.clientHeight;duelCanvas.width=Math.round(W*dpr);duelCanvas.height=Math.round(H*dpr);duelCanvas.style.width=W+'px';duelCanvas.style.height=H+'px';duelCtx.setTransform(dpr,0,0,dpr,0,0);
+    const duration=3400;let chimed=false;
+    return new Promise(resolve=>{const start=performance.now();function frame(now){
+      const ms=(now-start)*animationSpeed,t=Math.min(1,ms/duration),ease=1-Math.pow(1-t,3),fade=Math.min(1,ms/520)*Math.min(1,(duration-ms)/520),c=duelCtx;
+      c.clearRect(0,0,W,H);c.fillStyle='#071018';c.fillRect(0,0,W,H);
+      if(mediaReady(warmWineArt)){
+        const baseScale=Math.max(W/mediaWidth(warmWineArt),H/mediaHeight(warmWineArt)),scale=baseScale*(1+.032*ease),dw=mediaWidth(warmWineArt)*scale,dh=mediaHeight(warmWineArt)*scale,dx=(W-dw)/2-W*.012*ease,dy=(H-dh)/2+H*.006*ease;
+        c.save();c.globalAlpha=fade;c.filter='saturate(.94) contrast(1.03) brightness(.88)';c.drawImage(warmWineArt,dx,dy,dw,dh);c.restore();
+      }
+      const topShade=c.createLinearGradient(0,0,0,H*.32);topShade.addColorStop(0,'rgba(1,6,12,.82)');topShade.addColorStop(1,'rgba(1,6,12,0)');c.fillStyle=topShade;c.fillRect(0,0,W,H*.34);
+      const bottomShade=c.createLinearGradient(0,H*.64,0,H);bottomShade.addColorStop(0,'rgba(1,6,12,0)');bottomShade.addColorStop(1,'rgba(1,6,12,.88)');c.fillStyle=bottomShade;c.fillRect(0,H*.62,W,H*.38);
+      const vignette=c.createRadialGradient(W*.5,H*.48,Math.min(W,H)*.2,W*.5,H*.48,Math.max(W,H)*.7);vignette.addColorStop(.56,'rgba(0,0,0,0)');vignette.addColorStop(1,'rgba(0,0,0,.46)');c.fillStyle=vignette;c.fillRect(0,0,W,H);
+      if(ms>760&&!chimed){chimed=true;playCharge(g)}
+      if(t<1)requestAnimationFrame(frame);else{overlay.classList.add('hidden');overlay.classList.remove('warm-wine-scene');musicSceneMultiplier=previousMusicSceneMultiplier;applyMusicMix();resolve()}
+    }requestAnimationFrame(frame)})
   }
   const criticalQuotes={
     liu:'汉室正统在此，破敌！',
@@ -1600,6 +1617,7 @@
   else if(previewParams.get('level')==='2'&&previewParams.has('duelEventPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);animationSpeed=4;document.getElementById('shopOverlay').classList.add('hidden');startDuel()},320);
   else if(level.id==='jieqiao'&&previewParams.has('portraitPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);document.getElementById('shopOverlay').classList.add('hidden');runDialogue([{speaker:'赵云',text:'常山赵子龙在此！'},{speaker:'文丑',text:'来将通名！'}],()=>{})},220);
   else if(level.id==='jieqiao'&&previewParams.has('zhaoyunDuelPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);animationSpeed=previewAnimationSpeed;document.getElementById('shopOverlay').classList.add('hidden');const script=level.openingDuelSequence.find(q=>q.winnerId==='zhaoyun'),zhao=units.find(q=>q.id==='zhaoyun'),wenchou=units.find(q=>q.id==='wenchou');zhao.side='guest';playDuelCinematic(zhao,wenchou,script)},320);
+  else if(level.id==='sishui-pass'&&previewParams.has('warmWinePreview'))setTimeout(()=>{resetBattleState();hideTitle(false);document.getElementById('shopOverlay').classList.add('hidden');playWarmWineCinematic(units.find(u=>u.id==='guan'))},260);
   else if(previewParams.has('duelPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);animationSpeed=previewAnimationSpeed;document.getElementById('shopOverlay').classList.add('hidden');const script=level.events.duel;playDuelCinematic(units.find(u=>u.id===script.attackerId),units.find(u=>u.id===script.defenderId))},320);
   else if(previewParams.has('turnEventPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);document.getElementById('shopOverlay').classList.add('hidden');battleStarted=true;turn=Number(previewParams.get('turnEventPreview'))||18;document.getElementById('turnNumber').textContent=turn;triggerTimedEvents();draw()},320);
   else if(previewParams.has('victoryPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);document.getElementById('shopOverlay').classList.add('hidden');battleStarted=true;window.ZhaolieLeaderboard?.start?.(level);const previewVictory=previewParams.get('victoryPreview');victory(previewVictory==='duel',previewVictory==='withdrawal'?'withdrawal':previewVictory==='alternate'?'alternate':'normal')},260);
