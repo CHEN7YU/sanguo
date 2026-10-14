@@ -17,6 +17,7 @@ const check = (condition, message) => { if (!condition) errors.push(message); };
 
 check(JSON.stringify(guan.treasureItems) === '["qinglong"]', '关羽应初始携带青龙偃月刀');
 check(JSON.stringify(zhang.treasureItems) === '["spear"]', '张飞应初始携带蛇矛');
+check(!guan.inventory && !zhang.inventory, '关羽、张飞初始不应自带豆或其他消耗品');
 check(!liu.treasureItems, '刘备初始不应携带宝物');
 check(/qinglong:\{name:'青龙偃月刀',effect:'attack',bonus:12\}/.test(source), '青龙偃月刀应提供12%攻击加成');
 check(/spear:\{name:'蛇矛',effect:'attack',bonus:10\}/.test(source), '蛇矛应提供10%攻击加成');
@@ -24,6 +25,7 @@ check(source.includes("if(kind==='treasure')"), '转交处理必须覆盖宝物'
 check(source.includes('refreshPassiveTreasures(from);refreshPassiveTreasures(to)'), '宝物转交后必须重算双方被动效果');
 check(source.includes('u.treasureItems=[...base.treasureItems]'), '重置整备必须恢复进入本关时的宝物归属');
 check(source.includes('function capturePrepBaseline()'), '必须记录进入本关时的继承宝物与道具');
+check(source.includes("function shopHolderLabel(u){return`${u.name}（携带${carriedCount(u)}/8 · 豆${inventoryCount(u,'bean')}）`}"), '道具屋必须明确区分携带栏占用和豆数量');
 
 const attack = bonus => BattleRules.derivedStats({
   troop: liu.troop,

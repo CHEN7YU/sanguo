@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261014-chenliu-perspective-v163';
+  const RUNTIME_BUILD='20261014-shop-slot-label-v164';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -1444,14 +1444,15 @@
   function treasureLabel(id){const item=treasureCatalog[id];return item?(item.effect==='equipment'?item.name:`${item.name}（${item.effect==='defense'?'防御':'攻击'}+${item.bonus}%）`):id}
   function treasureDetail(id){const item=treasureCatalog[id];if(!item)return'未知宝物';if(item.effect==='equipment')return'武器装备 · 已收入携带栏';return`${item.effect==='defense'?'防御':'攻击'}提高${item.bonus}% · 常驻生效`}
   function inventoryLabel(u){const parts=(u.treasureItems||[]).map(treasureLabel);for(const type of ['bean','wheat','wine','fireScroll']){const count=inventoryCount(u,type);if(count)parts.push(`${shopItems[type].name}×${count}`)}return parts.length?parts.join('　'):'尚未携带道具'}
+  function shopHolderLabel(u){return`${u.name}（携带${carriedCount(u)}/8 · 豆${inventoryCount(u,'bean')}）`}
   function syncShop(){
     document.getElementById('shopGold').textContent=gold;
-    document.getElementById('shopFundingHint').textContent=`本关当前可用军资金${gold}。宝物和消耗品均占携带栏，可在我军间转交，每人最多8件。`;
+    document.getElementById('shopFundingHint').textContent=`本关当前可用军资金${gold}。宝物和消耗品均占携带栏，可在我军间转交，每人最多8件；“携带1/8”可能是武器占格，并不代表有一颗豆。`;
     const allies=units.filter(u=>u.side==='ally');
     document.getElementById('shopInventory').innerHTML=allies.map(u=>`<div><b>${u.name}</b><span>${inventoryLabel(u)}</span><em>${carriedCount(u)}/8</em></div>`).join('');
     document.querySelectorAll('[data-shop-item]').forEach(row=>{
       const type=row.dataset.shopItem,select=row.querySelector('select'),previous=select.value;
-      select.innerHTML=allies.map(u=>`<option value="${u.id}">${u.name}（${carriedCount(u)}/8）</option>`).join('');
+      select.innerHTML=allies.map(u=>`<option value="${u.id}">${shopHolderLabel(u)}</option>`).join('');
       select.value=allies.some(u=>u.id===previous)?previous:(allies[0]?.id||'');
       const holder=allies.find(u=>u.id===select.value),button=row.querySelector('button');
       button.disabled=!holder||gold<shopItems[type].price||carriedCount(holder)>=8;
@@ -1460,7 +1461,7 @@
     syncTransfer()
   }
   function transferChoices(u){const out=(u.treasureItems||[]).map(id=>({value:`treasure:${id}`,label:treasureLabel(id)}));for(const type of ['bean','wheat','wine','fireScroll']){const count=inventoryCount(u,type);if(count)out.push({value:`item:${type}`,label:`${shopItems[type].name} ×${count}`})}return out}
-  function syncTransfer(){const allies=units.filter(u=>u.side==='ally'),fromEl=document.getElementById('transferFrom'),itemEl=document.getElementById('transferItem'),toEl=document.getElementById('transferTo'),button=document.getElementById('transferBtn'),oldFrom=fromEl.value||allies[0]?.id,oldItem=itemEl.value,oldTo=toEl.value;fromEl.innerHTML=allies.map(u=>`<option value="${u.id}">${u.name}</option>`).join('');fromEl.value=allies.some(u=>u.id===oldFrom)?oldFrom:allies[0]?.id;const from=units.find(u=>u.id===fromEl.value),choices=transferChoices(from);itemEl.innerHTML=choices.length?choices.map(item=>`<option value="${item.value}">${item.label}</option>`).join(''):'<option value="">无可转交物品</option>';if(choices.some(item=>item.value===oldItem))itemEl.value=oldItem;const receivers=allies.filter(u=>u!==from);toEl.innerHTML=receivers.map(u=>`<option value="${u.id}">${u.name}（${carriedCount(u)}/8）</option>`).join('');if(receivers.some(u=>u.id===oldTo))toEl.value=oldTo;const to=units.find(u=>u.id===toEl.value);button.disabled=!itemEl.value||!to||carriedCount(to)>=8}
+  function syncTransfer(){const allies=units.filter(u=>u.side==='ally'),fromEl=document.getElementById('transferFrom'),itemEl=document.getElementById('transferItem'),toEl=document.getElementById('transferTo'),button=document.getElementById('transferBtn'),oldFrom=fromEl.value||allies[0]?.id,oldItem=itemEl.value,oldTo=toEl.value;fromEl.innerHTML=allies.map(u=>`<option value="${u.id}">${u.name}</option>`).join('');fromEl.value=allies.some(u=>u.id===oldFrom)?oldFrom:allies[0]?.id;const from=units.find(u=>u.id===fromEl.value),choices=transferChoices(from);itemEl.innerHTML=choices.length?choices.map(item=>`<option value="${item.value}">${item.label}</option>`).join(''):'<option value="">无可转交物品</option>';if(choices.some(item=>item.value===oldItem))itemEl.value=oldItem;const receivers=allies.filter(u=>u!==from);toEl.innerHTML=receivers.map(u=>`<option value="${u.id}">${shopHolderLabel(u)}</option>`).join('');if(receivers.some(u=>u.id===oldTo))toEl.value=oldTo;const to=units.find(u=>u.id===toEl.value);button.disabled=!itemEl.value||!to||carriedCount(to)>=8}
   function transferInventoryItem(){const from=units.find(u=>u.id===document.getElementById('transferFrom').value),to=units.find(u=>u.id===document.getElementById('transferTo').value),token=document.getElementById('transferItem').value;if(!from||!to||!token||carriedCount(to)>=8)return;const[kind,type]=token.split(':');let name='';if(kind==='treasure'){const i=from.treasureItems.indexOf(type);if(i<0)return;from.treasureItems.splice(i,1);to.treasureItems.push(type);refreshPassiveTreasures(from);refreshPassiveTreasures(to);name=treasureCatalog[type].name}else{if(inventoryCount(from,type)<=0)return;removeInventoryItem(from,type);to.inventory.push(type);name=shopItems[type].name}addLog(`${from.name}将${name}转交给${to.name}`);syncShop();syncUI();flash(`${name}已交给${to.name}`)}
   function purchaseShopItem(row){const type=row.dataset.shopItem,item=shopItems[type],holder=units.find(u=>u.side==='ally'&&u.id===row.querySelector('select').value);if(!holder||gold<item.price||carriedCount(holder)>=8)return;gold-=item.price;holder.inventory.push(type);addLog(`${holder.name}购入${item.name}`,false);syncShop();syncUI();flash(`${holder.name}获得${item.name}`)}
   function resetShop(){if(!prepBaseline)capturePrepBaseline();gold=prepBaseline.gold;units.filter(u=>u.side==='ally').forEach(u=>{const base=prepBaseline.units[u.id]||{inventory:[],treasureItems:treasureIdsFor(level.units.find(source=>source.id===u.id)||{})};u.inventory=[...base.inventory];u.treasureItems=[...base.treasureItems];refreshPassiveTreasures(u)});for(let i=logs.length-1;i>=0;i--)if(logs[i].msg.includes('购入')||logs[i].msg.includes('转交'))logs.splice(i,1);addLog('战前整备已重置');syncShop();syncUI();flash('已恢复进入本关时的军需与宝物')}
