@@ -36,6 +36,13 @@ for (const scene of ['prologue', 'palace', 'tent', 'luoyang', 'world']) {
   assert(story.some(line => line.scene === scene), `first-stage story contains ${scene} scene`);
 }
 assert(story.some(line => line.freeRoam), 'original Liu Bei free-roam conversation segment is preserved');
+const chenliuLines = story.filter(line => line.location.startsWith('陈留营帐'));
+const chenliuPoints = [];
+for (const line of chenliuLines) {
+  for (const actor of [...(line.setup || []), ...(line.spawn || [])]) chenliuPoints.push([actor.name, actor.x, actor.y]);
+  for (const moves of [line.move, line.thenMove]) for (const [name, point] of Object.entries(moves || {})) chenliuPoints.push([name, point[0], point[1]]);
+}
+assert(!chenliuPoints.some(([, x, y]) => x >= 19 && x <= 29 && y < 12), 'Chenliu actors never stand on the command table');
 const npcDialogue = context.window.PRE_BATTLE_NPC_DIALOGUE || {};
 for (const speaker of ['刘备', '关羽', '张飞', '曹操', '袁绍', '董卓', '华雄', '吕布']) {
   assert(story.some(line => line.speaker === speaker) || Object.hasOwn(npcDialogue, speaker), `${speaker} dialogue remains present`);
@@ -53,6 +60,7 @@ assert(palaceLines.length > 0 && palaceLines.every(line => line.location === '�
 for (const asset of assets) assert(css.includes(asset), `${asset} is wired into the story stage`);
 assert(css.includes('--story-camera-zoom') && css.includes('storyFireGlow'), 'camera and dynamic lighting rules are present');
 assert(game.includes('function setStoryCamera') && game.includes("setStoryCamera(speaker)"), 'dialogue camera follows the active speaker');
+assert(game.includes("key:'chenliu-coalition'") && game.includes("farScale:.76,nearScale:1.18"), 'Chenliu tent has scene-specific walk bounds and depth scaling');
 assert(game.includes("storyMusicAssets={2:") && game.includes("original-music-12.opus"), 'all first-stage scene music resolves to packaged Opus assets');
 assert(game.includes("u.id==='caocao'?1.05:1"), 'Cao Cao battle unit is consistently scaled to 105%');
 const runtimeBuild=game.match(/const RUNTIME_BUILD='([^']+)'/)?.[1];

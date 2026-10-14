@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261014-title-new-game-v162';
+  const RUNTIME_BUILD='20261014-chenliu-perspective-v163';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -325,13 +325,14 @@
   };
   const storyHd2dRoot='assets/story-scenes/chapter-1-hd2d/';
   const storyLocationProfiles=[
+    {match:/^陈留营帐/,key:'chenliu-coalition',art:storyHd2dRoot+'xiaopei-cao-camp-hd2d-v1.webp',nav:{minX:3,maxX:28,minY:9,maxY:17,obstacles:[{x1:19,y1:4,x2:29,y2:11},{x1:3,y1:9,x2:7,y2:11},{x1:27,y1:14,x2:28,y2:17}]},depth:{farY:10,nearY:17,farScale:.76,nearScale:1.18}},
     {match:/汜水关至虎牢关|进军虎牢关/,key:'hulao-road',art:storyHd2dRoot+'hulao-pursuit-road-hd2d-v1.webp'},
     {match:/袁绍军营|公孙瓒军营/,key:'warlord-camp',art:storyHd2dRoot+'warlord-command-tent-hd2d-v1.webp',nav:{minX:4,maxX:28,minY:7,maxY:17,obstacles:[{x1:23,y1:5,x2:28,y2:7}]}},
     {match:/平原议事厅/,key:'pingyuan-hall',art:storyHd2dRoot+'pingyuan-council-hall-hd2d-v1.webp',nav:{minX:5,maxX:28,minY:7,maxY:17,obstacles:[{x1:23,y1:5,x2:28,y2:8},{x1:5,y1:7,x2:8,y2:10}]}},
     {match:/北平议事厅/,key:'beiping-hall',art:storyHd2dRoot+'beiping-command-hall-hd2d-v1.webp'},
     {match:/北海议事厅/,key:'beihai-hall',art:storyHd2dRoot+'beihai-council-hall-hd2d-v1.webp',nav:{minX:4,maxX:28,minY:7,maxY:17,obstacles:[{x1:23,y1:5,x2:28,y2:8},{x1:4,y1:7,x2:8,y2:10}]}},
     {match:/徐州议事厅/,key:'xuzhou-hall',art:storyHd2dRoot+'xuzhou-council-hall-hd2d-v1.webp'},
-    {match:/曹操军营帐|陈留/,key:'cao-camp',art:storyHd2dRoot+'xiaopei-cao-camp-hd2d-v1.webp'},
+    {match:/曹操军营帐/,key:'cao-camp',art:storyHd2dRoot+'xiaopei-cao-camp-hd2d-v1.webp'},
     {match:/北海城外|北海近郊/,key:'beihai-siege',art:storyHd2dRoot+'beihai-siege-hd2d-v1.webp'},
     {match:/北海至徐州|徐州近郊|进军徐州|徐州至小沛|小沛近郊/,key:'eastern-map',art:storyHd2dRoot+'eastern-campaign-map-hd2d-v1.webp'},
     {match:/平原至界桥|广川路线|进军广川|信都路线|进军信都|袁绍军进军信都|巨鹿路线|进军巨鹿|清河路线|进军清河|巨鹿近郊|清河近郊|界桥近郊|进军界桥|前往徐州/,key:'jizhou-map',art:storyHd2dRoot+'jizhou-campaign-map-hd2d-v1.webp'}
@@ -591,7 +592,7 @@
     if(storyActorAssets[actor.name])actor.walkTimer=setInterval(()=>{actor.frame=((actor.frame||0)+1)%4;renderStoryActorFrame(actor)},105)
   }
   function positionStoryActor(actor,animate=false,moveMs=120){
-    const el=actor.el||storyActorElement(actor),depth=.86+Math.max(0,Math.min(1,(actor.y-6)/12))*.18;el.style.left=`${actor.x/32*100}%`;el.style.top=`${actor.y/20*100}%`;el.style.zIndex=String(100+Math.round(actor.y*10));el.style.setProperty('--story-depth',depth.toFixed(3));el.style.setProperty('--story-move-ms',`${moveMs}ms`);renderStoryActorFrame(actor);if(animate)startStoryWalk(actor)
+    const el=actor.el||storyActorElement(actor),profile=storyLocationProfiles.find(item=>item.key===storyLocationKey),perspective=profile?.depth,progress=perspective?Math.max(0,Math.min(1,(actor.y-perspective.farY)/Math.max(1,perspective.nearY-perspective.farY))):Math.max(0,Math.min(1,(actor.y-6)/12)),depth=perspective?perspective.farScale+(perspective.nearScale-perspective.farScale)*progress:.86+progress*.18;el.style.left=`${actor.x/32*100}%`;el.style.top=`${actor.y/20*100}%`;el.style.zIndex=String(100+Math.round(actor.y*10));el.style.setProperty('--story-depth',depth.toFixed(3));el.style.setProperty('--story-move-ms',`${moveMs}ms`);renderStoryActorFrame(actor);if(animate)startStoryWalk(actor)
   }
   function addStoryActor(spec){const actor={...spec,frame:0,walkTimer:null,gestureFrame:null,gestureTimer:null};storyActors.set(actor.name,actor);positionStoryActor(actor);return actor}
   function resetStoryActors(list=[]){storyActors.forEach(actor=>{stopStoryGesture(actor,false);stopStoryWalk(actor)});storyActors.clear();document.querySelectorAll('#storyCast .story-actor').forEach(el=>el.remove());list.forEach(addStoryActor)}

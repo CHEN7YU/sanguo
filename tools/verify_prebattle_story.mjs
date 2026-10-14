@@ -37,7 +37,7 @@ for(const line of story){
   for(const name of line.removeAfter||[])actors.delete(name);
 }
 if(facedLines<40)fail(`too few authored facing beats: ${facedLines}`);
-const tentNavigation={minX:3,maxX:28,minY:6,maxY:17,obstacles:[{x1:18,y1:9,x2:23,y2:12},{x1:28,y1:14,x2:28,y2:17},{x1:4,y1:8,x2:8,y2:10}]};
+const tentNavigation={minX:3,maxX:28,minY:9,maxY:17,obstacles:[{x1:19,y1:4,x2:29,y2:11},{x1:3,y1:9,x2:7,y2:11},{x1:27,y1:14,x2:28,y2:17}]};
 const blocked=point=>point[0]<tentNavigation.minX||point[0]>tentNavigation.maxX||point[1]<tentNavigation.minY||point[1]>tentNavigation.maxY||tentNavigation.obstacles.some(o=>point[0]>=o.x1&&point[0]<=o.x2&&point[1]>=o.y1&&point[1]<=o.y2);
 for(const [index,line] of story.entries())if(line.scene==='tent'){
   for(const actor of [...(line.setup||[]),...(line.spawn||[])])if(blocked([actor.x,actor.y]))fail(`tent actor starts inside scenery at beat ${index+1}: ${actor.name}`);
