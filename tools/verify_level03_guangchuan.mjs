@@ -12,6 +12,12 @@ assert.equal(level.units.length,13);assert.equal(level.units.filter(u=>u.side===
 const expected=[[54,0,2,6,0],[256,4,6,4,4],[257,7,7,4,1],[274,1,3,3,0],[292,9,8,1,1],[293,10,8,1,1],[310,1,4,3,0],[311,6,5,2,1],[312,4,4,2,1]];
 for(const [id,x,y,lvl,ai] of expected){const u=level.units.find(q=>q.originalId===id);assert.ok(u,`missing ${id}`);assert.deepEqual([u.x,u.y,u.level,u.aiType],[x,y,lvl,ai],`deployment mismatch ${id}`)}
 for(const u of level.units)assert.ok(!['water','hill','cliff','wall'].includes(level.terrain[u.y][u.x]),`${u.name} starts on impassable terrain`);
+const runtimeTerrain=level.terrain.map(row=>[...row]);
+for(const override of level.paintedTerrainOverrides||[])runtimeTerrain[override.y][override.x]=override.type;
+assert.equal(level.terrain[5][13],'forest','original audited terrain must remain preserved');
+assert.equal(runtimeTerrain[5][13],'plain','painted open ground west of Guan Yu must be passable');
+assert.equal(runtimeTerrain[5][14],'plain','eastern approach origin must remain passable');
+assert.equal(runtimeTerrain[6][13],'plain','corrected square must connect to the southern open ground');
 assert.equal(level.terrain[6][7],'village');assert.equal(level.terrain[6][15],'treasure');assert.equal(level.terrain[9][5],'treasure');
 assert.equal(JSON.stringify(level.events.loot['15,6']),JSON.stringify({item:'bean',amount:1}));assert.equal(JSON.stringify(level.events.loot['5,9']),JSON.stringify({gold:100}));
 assert.equal(level.events.duel.attackerId,'guan');assert.equal(level.events.duel.defenderId,'fengji');assert.equal(level.events.battleReward,200);
