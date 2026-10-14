@@ -146,6 +146,14 @@
     return options.mounted?hoofStep(ctx,destination,options):footStep(ctx,destination,options);
   }
 
+  function heal(ctx,destination,{pan=0,strong=false}={}){
+    if(!ctx||!destination)return;
+    const out=outputNode(ctx,destination,pan,strong?.82:.66),boost=strong?1.08:1;
+    tone(ctx,out,{frequency:392,to:523,duration:.24,gain:.034*boost,type:'sine'});
+    tone(ctx,out,{at:.09,frequency:523,to:659,duration:.28,gain:.031*boost,type:'triangle'});
+    tone(ctx,out,{at:.19,frequency:659,to:784,duration:.32,gain:.027*boost,type:'sine'});
+    noise(ctx,out,{at:.03,duration:.42,gain:.011*boost,frequency:2400,to:760,q:1.25,type:'bandpass'});
+  }
   function fall(ctx,destination,{pan=0,mounted=false}={}){
     if(!ctx||!destination)return;
     const out=outputNode(ctx,destination,pan,mounted?1.06:.86);
@@ -154,5 +162,5 @@
     if(mounted)tone(ctx,out,{at:.075,frequency:148,to:44,duration:.24,gain:.055,type:'triangle'});
   }
 
-  global.BattleSfx=Object.freeze({weaponType,movementType,charge,attack,block,impact,hoofStep,footStep,movementStep,fall});
+  global.BattleSfx=Object.freeze({weaponType,movementType,charge,attack,block,impact,heal,hoofStep,footStep,movementStep,fall});
 })(window);

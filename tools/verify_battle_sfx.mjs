@@ -12,7 +12,7 @@ const api=sandbox.window.BattleSfx;
 function check(condition,message){if(!condition)throw new Error(message)}
 
 check(api&&Object.isFrozen(api),'BattleSfx must expose a frozen reusable API');
-for(const name of ['weaponType','movementType','charge','attack','block','impact','hoofStep','footStep','movementStep','fall'])check(typeof api[name]==='function',`missing ${name} sound`);
+for(const name of ['weaponType','movementType','charge','attack','block','impact','heal','hoofStep','footStep','movementStep','fall'])check(typeof api[name]==='function',`missing ${name} sound`);
 check(api.weaponType({troop:'archer',weapon:'角弓'})==='bow','archer weapon mapping');
 check(api.weaponType({troop:'cavalry',weapon:'蛇矛'})==='spear','spear weapon mapping');
 check(api.weaponType({troop:'infantry',weapon:'佩剑'})==='sword','sword weapon mapping');
@@ -41,8 +41,10 @@ function renderMovementSound(name,options={}){
 }
 const hoofGraph=renderMovementSound('hoofStep',{alternate:true,terrain:'plain'});
 const footGraph=renderMovementSound('footStep',{alternate:false,terrain:'plain'});
+const healGraph=renderMovementSound('heal',{strong:true});
 check(hoofGraph.oscillators===2&&hoofGraph.noiseSources===2,'hoof sound must contain two separated hoof impacts');
 check(footGraph.oscillators===1&&footGraph.noiseSources===2,'footstep must contain a sole impact and armour/cloth rustle');
+check(healGraph.oscillators===3&&healGraph.noiseSources===1,'heal sound must contain an ascending three-note chime and shimmer');
 
 const scriptOrder=[...html.matchAll(/<script src="([^"]+)/g)].map(match=>match[1]);
 check(scriptOrder.some(x=>x.startsWith('battle-sfx.js')),'battle-sfx.js is not loaded');
@@ -56,6 +58,7 @@ for(const snippet of [
   "battleSfx('block'",
   "battleSfx('impact'",
   "battleSfx('fall'",
+  "battleSfx('heal'",
   "weaponSfxType(attacker)",
   "mounted=isMountedUnit(u)"
 ])check(gameSource.includes(snippet),`game integration missing: ${snippet}`);
