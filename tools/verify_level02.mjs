@@ -168,7 +168,8 @@ check(game.includes('已恢复进入本关时的军需与宝物'), 'shop reset m
 check(game.includes('levelId:level.id'), 'save snapshots must record their battle id');
 check(game.includes("params.set('loadSlot',token)"), 'loading another battle must route to its saved slot');
 check(game.includes("previewParams.has('loadSlot')"), 'cross-battle saved-slot boot route is missing');
-check(game.includes("if(level.id==='sishui-pass')playOpeningMovie"), 'new game on battle two must not replay battle-one prologue');
+check(game.includes("const mustReloadFirstChapter=level.id!=='sishui-pass'"), 'new game from a later battle must route back to the first chapter');
+check(game.includes("if(previewParams.has('newGame'))setTimeout(launchFirstChapterNewGame,120)"), 'first-chapter new-game boot route is missing');
 check(!game.includes('hp:u.hp,strategy:u.strategy,morale:u.morale??100'), 'campaign transfer must not persist tactical troop, strategy or morale');
 check(game.includes('u.hp=u.maxHp')&&game.includes('u.strategy=u.maxStrategy')&&game.includes('u.morale=100'), 'battle two must replenish troop, strategy and morale from original battle-entry rules');
 check(level.marchDialogue.length===6&&level.marchDialogue[1].speaker==='张飞'&&level.marchDialogue[1].text.includes('乘胜追击'), 'the omitted Zhang Fei pursuit line must be restored');
