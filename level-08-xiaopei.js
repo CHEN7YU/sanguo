@@ -72,7 +72,7 @@
       {x:10,y:9,type:'water'},{x:11,y:9,type:'water'},{x:9,y:10,type:'forest'},{x:11,y:10,type:'water'},
       {x:9,y:11,type:'forest'},{x:10,y:12,type:'forest'},
       {x:11,y:13,type:'plain'},{x:12,y:13,type:'bridge'},{x:12,y:12,type:'bridge'},{x:13,y:12,type:'plain'},{x:13,y:13,type:'hill'}
-    ],nextBattle:'饿虎吕布来访',
+    ],nextLevelId:'taishan',nextBattle:'泰山之战',
     intro:[{speaker:'曹操',text:'刘备小儿，与我仇敌为友，我绝不宽恕你。杀尽刘备军！'}],
     timedEvents:[
       {turn:4,once:'xiaopei-turn4',musicId:11,activateUnitIds:['guojia','lidian','caohong','infantry3','archer3','cavalry2'],dialogue:[{speaker:'曹操',text:'哼，这种战斗力还能打仗吗？再狠狠地给我杀！'}]},

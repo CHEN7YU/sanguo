@@ -16,7 +16,8 @@
     jieqiao: { name: '界桥之战', targetSeconds: 1200, targetTurns: 22, maxTurns: 40 },
     beihai: { name: '北海之战', targetSeconds: 900, targetTurns: 16, maxTurns: 30 },
     xuzhou: { name: '徐州之战', targetSeconds: 1080, targetTurns: 18, maxTurns: 30 },
-    xiaopei: { name: '小沛之战', targetSeconds: 900, targetTurns: 10, maxTurns: 30 }
+    xiaopei: { name: '小沛之战', targetSeconds: 900, targetTurns: 10, maxTurns: 30 },
+    taishan: { name: '泰山之战', targetSeconds: 1080, targetTurns: 18, maxTurns: 40 }
   };
 
   let activeLevel = null;

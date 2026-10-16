@@ -45,6 +45,7 @@ for(const update of level.paintedTerrainOverrides||[])runtimeTerrain[update.y][u
 check(runtimeTerrain[10][18]==='village','Painted North Sea village must align to visible building at (18,10)');
 check(runtimeTerrain[11][18]==='grass','Stale village trigger below the painted building must be removed from (18,11)');
 check(runtimeTerrain[16][13]==='treasure','Painted southern North Sea treasure depot must align to visible building at (13,16)');
+check(level.movementCostOverrides?.['13,16']===1,'Southern North Sea treasure depot must cost one movement point so Zhao Yun can enter it from six painted cells away');
 check(runtimeTerrain[17][13]==='plain','Stale treasure trigger below the painted building must be removed from (13,17)');
 check(runtimeTerrain[5][11]==='treasure','Northern North Sea treasure depot must remain aligned at (11,5)');
 for(const [x,y] of [[0,2],[14,3],[19,5],[20,8],[21,11],[23,14]])check(runtimeTerrain[y][x]==='water',`Painted river cell ${x},${y} must be impassable`);
@@ -95,6 +96,8 @@ check(game.includes("level.objectiveAiTargetsPlayerOnly&&e.id===objectiveUnitId?
 check(game.includes("caster.side==='guest'&&level.alliedAiAvoidsObjective&&target.id===objectiveUnitId"),'Allied strategies must also avoid the objective commander');
 check(game.includes("caster.id===objectiveUnitId&&level.objectiveAiTargetsPlayerOnly&&target.side==='guest'"),'Objective commander strategies must also ignore allied NPCs');
 check(game.includes('for(const update of event.terrainUpdates||[])'),'Runtime terrain update support is missing');
+check(game.includes("level.movementCostOverrides?.[keyOf(x,y)]"),'Per-level movement-cost overrides are not wired into pathfinding');
+check(game.includes("structureTileAt(sx,sy,true)"),'Reachable structure artwork must map its central click area to the structure tile');
 check(index.includes('data-select-level="8"')&&index.includes('level-06-beihai.js'),'Beihai menu or script include is missing');
 check(leaderboard.includes("beihai: { name: '北海之战'"),'Beihai leaderboard rule is missing');
 

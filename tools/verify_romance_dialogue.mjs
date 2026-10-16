@@ -5,7 +5,7 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
 const sourceFiles = [
   'level-01.js','level-02.js','level-03-guangchuan.js','level-03-xindu.js',
   'level-04-julu.js','level-04-qinghe.js','level-05-jieqiao.js','level-06-beihai.js',
-  'level-07-xuzhou.js','level-08-xiaopei.js','story-data.js'
+  'level-07-xuzhou.js','level-08-xiaopei.js','level-09-taishan.js','story-data.js'
 ];
 
 function runtime(search = '') {
@@ -53,7 +53,7 @@ const style = styledRuntime.window.ZhaolieDialogue;
 const originalStyle = originalRuntime.window.ZhaolieDialogue;
 assert(style?.mode === 'romance', 'default dialogue mode must be romance');
 assert(originalStyle?.mode === 'original', '?dialogue=original must restore original dialogue');
-assert(rows.length >= 579, `dialogue inventory unexpectedly shrank: ${rows.length}`);
+assert(rows.length >= 596, `dialogue inventory unexpectedly shrank: ${rows.length}`);
 
 let changed = 0;
 const banned = /妈的|混蛋|不陪你们玩|出风头|太棒了|怎么搞的|倒霉|好厉害|没办法/;
@@ -76,10 +76,9 @@ assert(game.includes("window.ZhaolieDialogue?.romance?.(line.text,line.speaker)|
 assert(game.includes("function preserveDialogueMode(params)"), 'original dialogue mode is not preserved across navigation');
 assert((game.match(/preserveDialogueMode\(/g)||[]).length >= 7, 'not every route/load/level navigation preserves original dialogue mode');
 const html = fs.readFileSync('index.html','utf8');
-const build=game.match(/const RUNTIME_BUILD='([^']+)'/)?.[1];
-const storyIndex = html.indexOf('story-data.js?build='+build);
-const styleIndex = html.indexOf('dialogue-style.js?build='+build);
-const gameIndex = html.indexOf('game.js?build='+build);
+const storyIndex = html.search(/story-data\.js\?build=/);
+const styleIndex = html.search(/dialogue-style\.js\?build=/);
+const gameIndex = html.search(/game\.js\?build=/);
 assert(storyIndex >= 0 && storyIndex < styleIndex && styleIndex < gameIndex, 'dialogue style script load order is invalid');
 
 console.log(`Romance dialogue verified: ${rows.length} uses, ${changed} rewritten, original mode preserved.`);

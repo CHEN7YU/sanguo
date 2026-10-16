@@ -5,7 +5,7 @@
 ## 原文保留方式
 
 - 各 `level-*.js` 与 `story-data.js` 中的原对白保持不变。
-- `original-dialogue-snapshot-20261013.json` 保存了改写前的 579 个对白使用点，便于审计和批量恢复。
+- `original-dialogue-snapshot-20261013.json` 保存了当前已制作关卡的原文对白使用点；泰山之战接入后共 624 个，便于审计和批量恢复。
 - `dialogue-style.js` 只在显示时转换文本，不修改关卡对象、存档、事件条件或胜负逻辑。
 - 地址加入 `?dialogue=original`（已有参数时加入 `&dialogue=original`）可运行原文版；该模式会在选关、读档、路线跳转和连续通关时保留。
 

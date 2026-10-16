@@ -77,4 +77,15 @@ const requiredActors=['赵云','管亥','太史慈','郭嘉','于禁','孙乾','
 for(const name of requiredActors)if(!game.includes(`${name}:`))fail(`后期剧情缺少重制人物：${name}`);
 if(!game.includes("陈登:'assets/level-07-xuzhou/portraits/chen-deng-v1.webp'"))fail('陈登没有使用经原作核对的重绘头像');
 
+const beihaiCouncil=stories.xuzhou.find(line=>line.location==='北海议事厅'&&Array.isArray(line.setup));
+const beihaiCouncilPositions=new Map((beihaiCouncil?.setup||[]).map(actor=>[actor.name,[actor.x,actor.y]]));
+for(const [name,expectedPosition] of Object.entries({'孔融':[25,8.2],'太史慈':[20.5,10.4],'刘备':[16.5,12],'关羽':[12.5,13.4],'张飞':[9.5,15.4],'赵云':[18.5,15],'糜竺':[22.5,13.2]})){
+  const actual=beihaiCouncilPositions.get(name);
+  if(!actual||actual[0]!==expectedPosition[0]||actual[1]!==expectedPosition[1])fail(`北海议事厅 ${name} 站位没有按主位与宾客队列布置`);
+}
+const councilFaces=beihaiCouncil?.face||{};
+for(const name of ['刘备','关羽','张飞','赵云','糜竺'])if(councilFaces[name]!=='孔融')fail(`北海议事厅 ${name} 没有面向主位`);
+const councilRoam=stories.xuzhou.find(line=>line.location==='北海议事厅 · 自由交谈');
+if(JSON.stringify(councilRoam?.setup)!==JSON.stringify(beihaiCouncil?.setup))fail('北海议事厅自由交谈站位与剧情开场不一致');
+
 console.log(`第2—10关 HD-2D 剧情校验通过：${expected.length}个关卡剧情、${art.length}张地点背景、人物站位/移动/朝向与关键头像映射均已覆盖。`);

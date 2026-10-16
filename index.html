@@ -7,9 +7,19 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
-  <link rel="stylesheet" href="style.css?build=20261014-renzhong-lubu-v172" />
+  <link rel="stylesheet" href="style.css?build=20261016-fangong-portrait-ratio-v189" />
 </head>
 <body>
+  <aside id="directFileNotice" style="position:fixed;inset:0;z-index:100000;display:none;place-items:center;padding:24px;background:#06182d;color:#f4d58a;font-family:'Microsoft YaHei',sans-serif;text-align:center">
+    <div style="max-width:720px;padding:36px;border:1px solid #bd842d;background:#0a2746;box-shadow:0 16px 60px #0008">
+      <h1 style="margin:0 0 18px;font-size:30px">启动方式不正确</h1>
+      <p style="margin:0 0 12px;color:#fff;line-height:1.8">游戏不能直接双击 <b>index.html</b> 运行。浏览器会阻止脚本、音频和存档资源加载，所以画面会停在空白背景。</p>
+      <p style="margin:0;color:#fff;line-height:1.8">请关闭本页，双击正式游戏目录中的 <b>启动试玩.bat</b>，然后使用 <b>http://127.0.0.1:4173/</b>。</p>
+    </div>
+  </aside>
+  <script>
+    if(location.protocol==='file:')document.getElementById('directFileNotice').style.display='grid';
+  </script>
   <section id="titleScreen" class="title-screen intro-playing" aria-label="游戏开始画面">
     <div id="titleIntro" class="title-intro" aria-label="启动动画">
       <video id="titleIntroVideo" src="assets/video/title-intro.mp4" poster="assets/title-cover.webp" preload="auto" muted playsinline></video>
@@ -184,7 +194,7 @@
           <div class="exp-row"><span>经验</span><div><i id="expBar"></i></div><b id="expText">0 / 100</b></div>
           <div class="sp-row"><span>策略</span><div><i id="spBar"></i></div><b id="spText">0 / 0</b></div>
           <div class="equipment-row"><span>装备／宝物</span><b id="equipmentText">无装备</b><em id="fundsText">金 500</em></div>
-          <div id="passiveSkill" class="passive-skill hidden"><b id="passiveSkillName">被动 · 仁德号令</b><span id="passiveSkillText">周围一圈8格内友方单位战斗属性提高10%</span></div>
+          <div id="passiveSkill" class="passive-skill hidden"><b id="passiveSkillName">被动 · 仁德号令 · 桃园护援</b><span id="passiveSkillText">周围一圈8格内友方单位战斗属性提高10%；濒死兄弟相邻时可由另一名兄弟承受物理攻击</span></div>
           <div class="stats">
             <div><span>攻击</span><b id="atkStat">32</b></div>
             <div><span>防御</span><b id="defStat">28</b></div>
@@ -214,6 +224,8 @@
             <button data-item="premiumWine"><b>醇</b><span>特级酒 · 恢复100士气</span><em id="premiumWineCount">×0</em></button>
             <button data-item="moraleScroll"><b>气</b><span>平气书 · 恢复25士气</span><em id="moraleScrollCount">×0</em></button>
             <button data-item="fireScroll"><b>火</b><span>焦热书 · 必中单体火攻</span><em id="fireScrollCount">×0</em></button>
+            <button data-item="rockScroll"><b>石</b><span>落石书 · 必中单体落石</span><em id="rockScrollCount">×0</em></button>
+            <button data-item="bomb"><b>爆</b><span>炸弹 · 削减目标25%最大兵力</span><em id="bombCount">×0</em></button>
           </div>
           <div id="strategyMenu" class="item-menu strategy-menu hidden">
             <button data-strategy="fire"><b>焦</b><span>焦热 · 射程3 · 命中70%</span><em>SP 4</em></button>
@@ -251,14 +263,14 @@
         <button id="menuExportSaveBtn">导出存档</button>
         <button id="menuImportSaveBtn">导入存档</button>
         <button id="resumeGameBtn" class="primary">返回游戏</button>
-        <button id="battlePrepBtn">战前整备</button>
+        <button id="battlePrepBtn">重新整备本关</button>
         <button id="returnTitleBtn">返回开始画面</button>
       </footer>
     </section>
   </div>
   <div id="levelSelectOverlay" class="level-select-overlay hidden" role="dialog" aria-modal="true" aria-label="选择关卡">
     <section class="level-select-card">
-      <header><div><small>序章 · 讨董联军</small><b>选择关卡</b></div><button id="levelSelectCloseBtn" aria-label="关闭关卡选择">×</button></header>
+      <header><div><b>选择关卡</b></div><button id="levelSelectCloseBtn" aria-label="关闭关卡选择">×</button></header>
       <div class="level-select-list">
         <button class="level-choice sishui" data-select-level="1" type="button"><span>第一战</span><strong>汜水关之战</strong><em>击败华雄 · 关羽阵前单挑</em><small>选关均衡：前排 Lv.3</small></button>
         <button class="level-choice hulao" data-select-level="2" type="button"><span>第二战</span><strong>虎牢关之战</strong><em>击退吕布 · 张飞阵前单挑</em><small>选关均衡：前排 Lv.4</small></button>
@@ -270,6 +282,7 @@
         <button class="level-choice beihai" data-select-level="8" type="button"><span>第六战</span><strong>北海之战</strong><em>解北海之围 · 赵云阵斩管亥</em><small>选关均衡：前排 Lv.7</small></button>
         <button class="level-choice xuzhou" data-select-level="9" type="button"><span>第七战</span><strong>徐州之战</strong><em>驰援徐州 · 关羽阵前单挑于禁</em><small>选关均衡：前排 Lv.11</small></button>
         <button class="level-choice xiaopei" data-select-level="10" type="button"><span>第八战 · 可跳过分支</span><strong>小沛之战</strong><em>迎战曹操 · 张飞阵前单挑夏侯渊</em><small>选关均衡：前排 Lv.17</small></button>
+        <button class="level-choice taishan" data-select-level="11" type="button"><span>第九战</span><strong>泰山之战</strong><em>平定泰山 · 刘备可劝降李明</em><small>选关均衡：前排 Lv.10</small></button>
       </div>
       <p>选择后从该关剧情起点开始，并使用适合该关、能够取胜但不会碾压的均衡等级；远程与辅助通常比前排低1级。连续通关和读档仍继承实际等级，不套用选关等级。第三战与第四战分别为A/B平行路线，第五战在界桥汇合。</p>
     </section>
@@ -288,6 +301,7 @@
         <button type="button" data-leaderboard-level="beihai">北海</button>
         <button type="button" data-leaderboard-level="xuzhou">徐州</button>
         <button type="button" data-leaderboard-level="xiaopei">小沛</button>
+        <button type="button" data-leaderboard-level="taishan">泰山</button>
       </nav>
       <div class="leaderboard-head"><span>名次</span><span>玩家</span><span>评分</span><span>评级</span><span>时间</span><span>回合</span><span>损失</span></div>
       <div id="leaderboardRows" class="leaderboard-rows"></div>
@@ -305,8 +319,8 @@
   <audio id="titleMusic" src="assets/audio/title-theme.mp3" preload="auto" autoplay loop hidden></audio>
   <audio id="storyMusic" src="assets/audio/original-music-2.opus" preload="auto" loop hidden></audio>
   <audio id="battleMusic" src="assets/audio/knights-errant.mp3" preload="auto" loop hidden></audio>
-  <script src="audio-config.js?build=20261012-zhaoyun-danqi-v131"></script>
-  <script src="battle-sfx.js?build=20261014-julu-tent-foot-v171"></script>
+  <script src="audio-config.js?build=20261016-xuzhou-welcome-to-china-v187"></script>
+  <script src="battle-sfx.js?build=20261016-duel-clash-sfx-v185"></script>
   <script src="battle-rules.js?build=20261003-military-band-v55"></script>
   <script src="level-01.js?build=20260927-campaign-link"></script>
   <script src="level-02.js?build=20261003-hulao-route-v54"></script>
@@ -319,16 +333,19 @@
   <script src="level-04-julu.js?build=20261004-julu-duel-continuation-v72"></script>
   <script src="level-04-qinghe.js?build=20261013-early-access-audit-v144"></script>
   <script src="level-05-jieqiao.js?build=20261011-beihai-v108"></script>
-  <script src="level-06-beihai.js?build=20261011-beihai-terrain-motion-v113"></script>
-  <script src="level-07-xuzhou.js?build=20261012-sunqian-transport-v134"></script>
+  <script src="level-06-beihai.js?build=20261016-battle-prep-recovery-v184"></script>
+  <script src="level-07-xuzhou.js?build=20261016-xuzhou-village-anchor-v188"></script>
   <script src="level-08-xiaopei.js?build=20261012-xiaopei-animation-v135"></script>
   <script src="level-08-xiaopei-animation-bounds.js?build=20261012-xiaopei-animation-v135"></script>
+  <script src="level-09-taishan.js?build=20261016-taishan-road-v198"></script>
+  <script src="level-09-taishan-animation-bounds.js?build=20261016-battle-prep-recovery-v184"></script>
   <script src="beihai-animation-bounds.js?build=20261011-beihai-terrain-motion-v113"></script>
   <script src="level-07-xuzhou-animation-bounds.js?build=20261012-sunqian-transport-v134"></script>
-  <script src="story-data.js?build=20261014-julu-tent-foot-v171"></script>
-  <script src="dialogue-style.js?build=20261014-julu-tent-foot-v171"></script>
+  <script src="story-data.js?build=20261016-archer-directional-walk-v192"></script>
+  <script src="dialogue-style.js?build=20261016-archer-directional-walk-v192"></script>
   <script src="battle-view.js?build=20261003-hulao-grid-fix-v53"></script>
-  <script src="leaderboard.js?build=20261012-zhaoyun-danqi-v131"></script>
-  <script src="game.js?build=20261014-renzhong-lubu-v172"></script>
+  <script src="leaderboard.js?build=20261016-battle-prep-recovery-v184"></script>
+  <script src="mounted-combat-bounds-v1.js?build=20261016-battle-prep-recovery-v184"></script>
+  <script src="game.js?build=20261016-taishan-road-v198"></script>
 </body>
 </html>

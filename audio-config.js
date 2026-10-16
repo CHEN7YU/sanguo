@@ -19,7 +19,7 @@ window.GAME_AUDIO_CONFIG = Object.freeze({
       source: 'Langrisser II',
       version: 'Mega Drive',
       asset: 'assets/audio/langrisser-ii-ones-side.opus',
-      usage: 'unassigned'
+      usage: 'taishan'
     }),
     'langrisser-ii-theme': Object.freeze({
       title: 'Theme of Langrisser',
@@ -54,7 +54,7 @@ window.GAME_AUDIO_CONFIG = Object.freeze({
       source: 'Dynasty Warriors 6',
       version: 'Original Soundtrack',
       asset: 'assets/audio/dynasty-warriors-6-welcome-to-china.opus',
-      usage: 'sishui-pass'
+      usage: 'sishui-pass,xuzhou'
     })
   }),
   shop: 'assets/audio/langrisser-ii-theme-of-langrisser.opus',
@@ -63,7 +63,8 @@ window.GAME_AUDIO_CONFIG = Object.freeze({
     'hulao-pass': 'assets/audio/hulao-lubu-theme.mp3',
     'jieqiao': 'assets/level-03/thousand-suns-dw7th-mix.opus',
     'beihai': 'assets/audio/hulao-lubu-theme.mp3',
-    'xuzhou': 'assets/audio/original-music-9.opus',
-    'xiaopei': 'assets/audio/dynasty-warriors-2-arena.opus'
+    'xuzhou': 'assets/audio/dynasty-warriors-6-welcome-to-china.opus',
+    'xiaopei': 'assets/audio/dynasty-warriors-2-arena.opus',
+    'taishan': 'assets/audio/langrisser-ii-ones-side.opus'
   })
 });

@@ -38,9 +38,9 @@ check(game.includes("if(!knowsStrategy(caster,type))return false"),'NPC strategy
 check(game.includes("hasPhysicalAttack:!!physicalPlan?.target"),'AI strategy must yield to a reachable physical attack');
 check(game.includes("if(checkEnemyForceVictory(target))return true;if(target.id==='liu'){defeat('刘备撤退');return true}syncUI();draw();return false"),'ordinary NPC strategy defeats must resume the AI phase instead of freezing the turn');
 check(!game.includes("else if(target.id==='liu')defeat('刘备撤退');return true"),'NPC strategy defeat handler still treats every defeated target as a phase-ending result');
-check(html.includes('id="passiveSkill"')&&game.includes("passiveName.textContent='被动 · 仁德号令'"),'Liu Bei passive skill description is missing');
+check(html.includes('id="passiveSkill"')&&game.includes("passiveName.textContent='被动 · 仁德号令 · 桃园护援'"),'Liu Bei passive skill description is missing');
 check(game.includes("Math.max(Math.abs(u.x-liu.x),Math.abs(u.y-liu.y))===1"),'Liu Bei aura must cover all eight surrounding tiles');
 check(game.includes('周围一圈8格内的友方单位攻击、防御、移动、会心与格挡提高10%（敌军无效）'),'Liu Bei eight-tile aura scope is not explained');
-check(html.includes('周围一圈8格内友方单位战斗属性提高10%'),'Liu Bei title-panel aura description is stale');
+check(html.includes('周围一圈8格内友方单位战斗属性提高10%')&&html.includes('濒死兄弟相邻时可由另一名兄弟承受物理攻击'),'Liu Bei title-panel aura or brother-guard description is stale');
 
 console.log('Strategy access verified: battle-one and battle-two units cast no tactics; original infantry/cavalry/archer thresholds, NPC execution guard, physical-attack priority, and Liu Bei aura are enforced.');

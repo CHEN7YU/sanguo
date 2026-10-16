@@ -95,6 +95,28 @@
     for(const [frequency,to,duration,gain] of partials)tone(ctx,out,{frequency,to,duration,gain,type:'triangle'});
   }
 
+  function duelClash(ctx,destination,{pan=0,heavy=false}={}){
+    if(!ctx||!destination)return;
+    const out=outputNode(ctx,destination,pan,heavy?1.12:.98);
+    // A hard transient followed by several inharmonic metallic partials makes
+    // ordinary duel contacts read as blade-on-blade rather than body impacts.
+    noise(ctx,out,{duration:.055,gain:.085,frequency:5200,to:1350,q:1.35,type:'bandpass'});
+    tone(ctx,out,{frequency:1120,to:760,duration:.34,gain:.072,type:'triangle'});
+    tone(ctx,out,{frequency:1780,to:1260,duration:.28,gain:.054,type:'triangle'});
+    tone(ctx,out,{frequency:2860,to:1940,duration:.22,gain:.034,type:'sine'});
+    noise(ctx,out,{at:.026,duration:.16,gain:.024,frequency:3300,to:920,q:2.1,type:'bandpass'});
+  }
+
+  function duelFinish(ctx,destination,{pan=0,critical=true}={}){
+    if(!ctx||!destination)return;
+    const out=outputNode(ctx,destination,pan,critical?1.08:.96);
+    // The decisive blow is deliberately soft and low: a short flesh hit with
+    // no metallic ring, followed by a restrained body thump.
+    noise(ctx,out,{duration:.12,gain:.096,frequency:620,to:82,q:.42,type:'lowpass'});
+    tone(ctx,out,{frequency:104,to:34,duration:.2,gain:.105,type:'sine'});
+    noise(ctx,out,{at:.018,duration:.075,gain:.036,frequency:360,to:68,q:.5,type:'bandpass'});
+  }
+
   function impact(ctx,destination,{kind='saber',pan=0,critical=false,fatal=false}={}){
     if(!ctx||!destination)return;
     const power=(critical?1.22:1)*(fatal?1.08:1),out=outputNode(ctx,destination,pan,power);
@@ -162,5 +184,5 @@
     if(mounted)tone(ctx,out,{at:.075,frequency:148,to:44,duration:.24,gain:.055,type:'triangle'});
   }
 
-  global.BattleSfx=Object.freeze({weaponType,movementType,charge,attack,block,impact,heal,hoofStep,footStep,movementStep,fall});
+  global.BattleSfx=Object.freeze({weaponType,movementType,charge,attack,block,duelClash,duelFinish,impact,heal,hoofStep,footStep,movementStep,fall});
 })(window);

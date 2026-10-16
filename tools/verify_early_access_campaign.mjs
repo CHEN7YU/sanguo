@@ -18,7 +18,8 @@ const levelFiles = [
   ['7', 'level-05-jieqiao.js', 'LEVEL_05_JIEQIAO'],
   ['8', 'level-06-beihai.js', 'LEVEL_06_BEIHAI'],
   ['9', 'level-07-xuzhou.js', 'LEVEL_07_XUZHOU'],
-  ['10', 'level-08-xiaopei.js', 'LEVEL_08_XIAOPEI']
+  ['10', 'level-08-xiaopei.js', 'LEVEL_08_XIAOPEI'],
+  ['11', 'level-09-taishan.js', 'LEVEL_09_TAISHAN']
 ];
 
 function loadLevel(file, globalName) {
@@ -49,7 +50,8 @@ const expectedGraph = new Map([
   ['jieqiao', ['beihai']],
   ['beihai', ['xuzhou']],
   ['xuzhou', ['xiaopei']],
-  ['xiaopei', []]
+  ['xiaopei', ['taishan']],
+  ['taishan', []]
 ]);
 
 const impassable = new Set(['water', 'cliff', 'wall', 'fence', 'void', 'mountain']);
@@ -154,7 +156,7 @@ for (const [id, { level }] of levels) {
   if (nextIds.length === 1 && id !== 'xuzhou') assert.equal(level.nextLevelId, nextIds[0], `${id}: next level must be ${nextIds[0]}`);
   if (id === 'xuzhou') assert.ok(!level.nextLevelId, 'xuzhou must stop for the fight/negotiate choice before Xiaopei');
   if (nextIds.length > 1) assert.ok(nextIds.includes(level.nextLevelId), `${id}: default next level ${level.nextLevelId} is outside its route fork`);
-  if (!nextIds.length) assert.ok(!level.nextLevelId, `${id}: early-access finale must not route into unfinished content`);
+  if (!nextIds.length) assert.ok(!level.nextLevelId, `${id}: current campaign finale must not route into unfinished content`);
 }
 
 const game = fs.readFileSync(path.join(root, 'game.js'), 'utf8');
@@ -184,6 +186,7 @@ for (const token of [
   "if(alternate&&alternateExp)units.filter(u=>u.side==='ally'&&u.hp>0)",
   "if(level.id==='hulao-pass')params.set('routeChoice','1')",
   "if(['guangchuan','xindu'].includes(level.id))params.set('secondRouteChoice','1')",
+  "targetId==='taishan'?'11'",
   "targetId==='xiaopei'?'10'",
   "if(save.phaseType==='postbattle')",
   "params.set('storySelect','1')",
@@ -207,4 +210,4 @@ assert.equal(levels.get('jieqiao').level.events.duel?.endsBattle, false, 'Jieqia
 assert.equal(levels.get('xuzhou').level.events.duel?.endsBattle, false, 'Xuzhou duel must not end the battle');
 assert.equal(levels.get('xiaopei').level.events.duel?.endsBattle, false, 'Xiaopei duel must not end the battle');
 
-console.log(`Early-access campaign audit passed: ${levels.size} battles, both route forks, all deployments/objectives/reward tiles, story entry points, save routing and non-ending duels.`);
+console.log(`Campaign audit passed: ${levels.size} battles through Taishan, both route forks, all deployments/objectives/reward tiles, story entry points, save routing and non-ending duels.`);

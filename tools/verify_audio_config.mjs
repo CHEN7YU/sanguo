@@ -11,8 +11,9 @@ const battles=sandbox.window.GAME_AUDIO_CONFIG?.battles;
 const library=sandbox.window.GAME_AUDIO_CONFIG?.library;
 const onesSide=library?.['langrisser-ii-ones-side'];
 if(onesSide?.title!=="One's Side"||onesSide?.source!=='Langrisser II'||onesSide?.version!=='Mega Drive')fail("One's Side library metadata is missing");
-if(onesSide?.usage!=='unassigned')fail("One's Side must remain unassigned until a level is selected");
+if(onesSide?.usage!=='taishan')fail("One's Side must be assigned to Taishan");
 if(onesSide?.asset!=='assets/audio/langrisser-ii-ones-side.opus')fail("One's Side library asset is wrong");
+if(battles?.taishan!==onesSide.asset)fail('泰山之战 battle music is not mapped to One\'s Side');
 const onesSidePath=path.join(root,onesSide.asset);
 if(!fs.existsSync(onesSidePath)||fs.statSync(onesSidePath).size<1000000)fail("One's Side compressed audio is missing or invalid");
 const shopTheme=library?.['langrisser-ii-theme'];
@@ -37,9 +38,10 @@ if(noSurrender?.asset!=='assets/audio/langrisser-ii-no-surrender.opus')fail('No 
 const noSurrenderPath=path.join(root,noSurrender.asset);
 if(!fs.existsSync(noSurrenderPath)||fs.statSync(noSurrenderPath).size<1500000)fail('No Surrender compressed audio is missing or invalid');
 const welcomeToChina=library?.['dynasty-warriors-6-welcome-to-china'];
-if(welcomeToChina?.title!=='WELCOME TO CHINA'||welcomeToChina?.source!=='Dynasty Warriors 6'||welcomeToChina?.usage!=='sishui-pass')fail('WELCOME TO CHINA library metadata is missing');
+if(welcomeToChina?.title!=='WELCOME TO CHINA'||welcomeToChina?.source!=='Dynasty Warriors 6'||welcomeToChina?.usage!=='sishui-pass,xuzhou')fail('WELCOME TO CHINA library metadata is missing');
 if(welcomeToChina?.asset!=='assets/audio/dynasty-warriors-6-welcome-to-china.opus')fail('WELCOME TO CHINA library asset is wrong');
 if(battles?.['sishui-pass']!==welcomeToChina.asset)fail('汜水关 battle music is not mapped to WELCOME TO CHINA');
+if(battles?.xuzhou!==welcomeToChina.asset)fail('徐州之战 battle music is not mapped to WELCOME TO CHINA');
 const welcomeFile=fs.readFileSync(path.join(root,...welcomeToChina.asset.split('/')));
 if(welcomeFile.length<1000000||welcomeFile.subarray(0,4).toString()!=='OggS')fail('WELCOME TO CHINA compressed Opus asset is missing or invalid');
 const welcomeMaster=path.join(root,'assets-master','audio','dynasty-warriors-6-welcome-to-china.mp3');
@@ -53,8 +55,16 @@ if(arenaFile.length<1000000||arenaFile.subarray(0,4).toString()!=='OggS')fail('A
 const arenaMaster=path.join(root,'assets-master','audio','dynasty-warriors-2-arena.mp3');
 if(!fs.existsSync(arenaMaster)||fs.statSync(arenaMaster).size<2000000)fail('ARENA master MP3 is missing');
 const game=fs.readFileSync(path.join(root,'game.js'),'utf8');
+const sfxSandbox={window:{}};
+vm.runInNewContext(fs.readFileSync(path.join(root,'battle-sfx.js'),'utf8'),sfxSandbox);
+if(typeof sfxSandbox.window.BattleSfx?.duelClash!=='function')fail('Duel weapon-clash sound is missing');
+if(typeof sfxSandbox.window.BattleSfx?.duelFinish!=='function')fail('Duel finishing flesh-hit sound is missing');
+if(!game.includes("battleSfx('duelClash',actor,{heavy:true})")||!game.includes("battleSfx('duelClash',h,{heavy:true})"))fail('Ordinary duel contacts are not using the weapon-clash sound');
+if(!game.includes("battleSfx('duelFinish',lvbu,{critical:true})")||!game.includes("battleSfx('duelFinish',h,{critical:true})"))fail('Decisive duel blows are not using the finishing flesh-hit sound');
 for(const token of [
   'const configuredShopTrack=window.GAME_AUDIO_CONFIG?.shop',
+  'SHOP_MUSIC_VOLUME_MULTIPLIER=1.3',
+  "storyMusicMode==='shop'?SHOP_MUSIC_VOLUME_MULTIPLIER:1",
   'function startShopMusic()',
   "storyMusicMode='shop'",
   "classList.remove('hidden');startShopMusic();syncShop()",
@@ -70,7 +80,7 @@ const jieqiaoTrack='assets/level-03/thousand-suns-dw7th-mix.opus';
 if(battles?.jieqiao!==jieqiaoTrack)fail('wrong battle music for jieqiao');
 const jieqiaoFile=fs.readFileSync(path.join(root,...jieqiaoTrack.split('/')));
 if(jieqiaoFile.length<100000||jieqiaoFile.subarray(0,4).toString()!=='OggS')fail('invalid Opus asset for jieqiao');
-console.log('Audio config verified: 汜水关使用 WELCOME TO CHINA；虎牢关、北海和界桥之战曲目均已正确映射。');
+console.log("Audio config verified: 汜水关与徐州使用 WELCOME TO CHINA；其余已开放关卡曲目均已正确映射。");
 
 for(const levelFile of ['level-03-guangchuan.js','level-03-xindu.js']){
   const levelSandbox={window:{}};

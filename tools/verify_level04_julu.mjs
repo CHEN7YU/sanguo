@@ -22,7 +22,7 @@ assert.deepEqual([level.alternateVictory.unitId,level.alternateVictory.x,level.a
 assert.equal(level.alternateVictory.exp,50);assert.equal(level.events.battleReward,200);
 
 const expected=[
-  [102,5,17,10,0],[51,6,15,7,0],[103,4,14,7,0],[91,12,6,6,1],[54,11,14,7,1],
+  [102,5,17,9,0],[51,6,15,7,0],[103,4,14,7,0],[91,12,6,6,1],[54,11,14,7,1],
   [256,10,6,5,1],[257,7,16,5,0],[274,9,17,4,0],[292,10,14,3,1],[336,13,5,4,1],[348,4,16,4,0]
 ];
 for(const [id,x,y,lvl,ai] of expected){const u=level.units.find(q=>q.originalId===id);assert.ok(u,`missing original unit ${id}`);assert.deepEqual([u.x,u.y,u.level,u.aiType],[x,y,lvl,ai],`deployment mismatch ${id}`)}
@@ -37,6 +37,7 @@ assert.equal(level.terrain[10][0],'fort');assert.equal(level.terrain[8][5],'supp
 assert.equal(level.terrain[7][11],'village');assert.equal(level.terrain[13][7],'village');
 assert.equal(JSON.stringify(level.events.loot['5,8']),JSON.stringify({item:'wheat',amount:1}));
 assert.equal(level.events.duel.attackerId,'zhang');assert.equal(level.events.duel.defenderId,'yanliang');
+assert.equal(level.events.duel.trigger,'combat','the original Zhang Fei/Yan Liang duel must trigger on combat, not mere adjacency');
 assert.equal(level.events.duel.endsBattle,false,'Yan Liang duel must not defeat Zhang He or end Julu');
 const isolatedYuZe={...level.units.find(unit=>unit.id==='yuze'),x:8,y:16,hp:500,maxHp:500};
 const distantLiu={...level.units.find(unit=>unit.id==='liu'),x:14,y:10,hp:650,maxHp:650};
@@ -64,6 +65,10 @@ assert.ok(game.includes('全体存活我军获得经验${alternateExp}'),'altern
 assert.ok(game.includes("previewParams.has('areaEventPreview')"),'Julu central pursuit event must have a browser audit route');
 assert.ok(game.includes('Number.isInteger(update.aiTarget)'),'AI target zero must remain a valid original-script target');
 assert.ok(game.includes('const duelEndsBattle=script.endsBattle??(h.id===objectiveUnitId)'),'duel result must only end a battle when the defeated duelist is the objective');
+assert.ok(game.includes('const pair=(a.id===script.attackerId&&b.id===script.defenderId)||(a.id===script.defenderId&&b.id===script.attackerId)'),'the scripted duel pair must work no matter which side initiates combat');
+assert.ok(game.includes('if(scriptedDuelPair(a,t)){await startDuel();return}'),'Yan Liang attacking Zhang Fei must enter the duel instead of ordinary NPC combat');
+assert.ok(game.includes("if(script?.trigger==='combat')return false"),'combat-triggered duels must not fire merely from standing adjacent');
+assert.ok(game.includes('duelInProgress=true;const resumePhase=phase;g.acted=true'),'duel triggering must be locked and consume Zhang Fei\'s action');
 assert.ok(game.includes("status(`${h.name}败退，继续击退${units.find(u=>u.id===objectiveUnitId)?.name||'敌军主将'}`)"),'non-objective duel must return to the battle with the real objective still active');
 for(const id of ['zhanghe','yanliang','gaolan','shenpei','gongsunyue','guanchun','gengwu','yuze'])assert.ok(game.includes(`${id}:'assets/level-04-julu/portraits/`),`missing portrait binding ${id}`);
 

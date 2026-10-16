@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "capturedAt": "2026-10-13",
-  "sourceBuild": "20261013-chapter1-hd2d-v149",
+  "capturedAt": "2026-10-15",
+  "sourceBuild": "20261015-taishan-v176",
   "description": "Original authored story and battle dialogue before the Romance vernacular rewrite. Runtime source files remain unchanged; use ?dialogue=original to preview this version.",
   "sourceFiles": [
     "level-01.js",
@@ -14,3484 +14,3131 @@
     "level-06-beihai.js",
     "level-07-xuzhou.js",
     "level-08-xiaopei.js",
+    "level-09-taishan.js",
     "story-data.js",
     "game.js"
   ],
-  "count": 579,
+  "count": 624,
   "rows": [
     {
       "path": "LEVEL_01.marchDialogue.0.text",
       "speaker": "关羽",
-      "text": "敌人在汜水关，火速进军。",
-      "kind": "dialogue"
+      "text": "敌人在汜水关，火速进军。"
     },
     {
       "path": "LEVEL_01.intro.0.text",
       "speaker": "华雄",
-      "text": "吃一次亏也不长一智，联军还来自找麻烦，是谁的部队？",
-      "kind": "dialogue"
+      "text": "吃一次亏也不长一智，联军还来自找麻烦，是谁的部队？"
     },
     {
       "path": "LEVEL_01.intro.1.text",
       "speaker": "李肃",
-      "text": "主将好像是个叫刘备的人。",
-      "kind": "dialogue"
+      "text": "主将好像是个叫刘备的人。"
     },
     {
       "path": "LEVEL_01.intro.2.text",
       "speaker": "华雄",
-      "text": "刘备？这个名字没听说过，为何叫这种无名鼠辈来。看不起我吗？",
-      "kind": "dialogue"
+      "text": "刘备？这个名字没听说过，为何叫这种无名鼠辈来。看不起我吗？"
     },
     {
       "path": "LEVEL_01.intro.3.text",
       "speaker": "李肃",
-      "text": "大概是联军没人了。",
-      "kind": "dialogue"
+      "text": "大概是联军没人了。"
     },
     {
       "path": "LEVEL_01.intro.4.text",
       "speaker": "华雄",
-      "text": "管他是谁，杀了他祭旗，众将士，出征迎敌。",
-      "kind": "dialogue"
+      "text": "管他是谁，杀了他祭旗，众将士，出征迎敌。"
     },
     {
       "path": "LEVEL_01.intro.5.text",
       "speaker": "张飞",
-      "text": "大哥，我先活动一下身体吧。",
-      "kind": "dialogue"
+      "text": "大哥，我先活动一下身体吧。"
     },
     {
       "path": "LEVEL_01.intro.6.text",
       "speaker": "关羽",
-      "text": "大哥，这个交给我吧，我一定取华雄首级来见你。",
-      "kind": "dialogue"
+      "text": "大哥，这个交给我吧，我一定取华雄首级来见你。"
     },
     {
       "path": "LEVEL_01.events.duel.challenge.0.text",
       "speaker": "关羽",
-      "text": "对面的可是华雄，我要与你单挑！",
-      "kind": "dialogue"
+      "text": "对面的可是华雄，我要与你单挑！"
     },
     {
       "path": "LEVEL_01.events.duel.challenge.1.text",
       "speaker": "关羽",
-      "text": "接我一刀！",
-      "kind": "dialogue"
+      "text": "接我一刀！"
     },
     {
       "path": "LEVEL_01.events.duel.aftermath.0.text",
       "speaker": "华雄",
-      "text": "好厉害！",
-      "kind": "dialogue"
+      "text": "好厉害！"
     },
     {
       "path": "LEVEL_01.events.duel.aftermath.1.text",
       "speaker": "华雄",
-      "text": "呀！失手了！",
-      "kind": "dialogue"
+      "text": "呀！失手了！"
     },
     {
       "path": "LEVEL_01.events.duel.aftermath.2.text",
       "speaker": "关羽",
-      "text": "先割下华雄首级。",
-      "kind": "dialogue"
+      "text": "先割下华雄首级。"
     },
     {
       "path": "LEVEL_01.events.duel.levelUp.text",
       "speaker": "军报",
-      "text": "关羽的等级上升了！",
-      "kind": "dialogue"
+      "text": "关羽的等级上升了！"
     },
     {
       "path": "LEVEL_01.events.duel.report.text",
       "speaker": "张飞",
-      "text": "大哥，关羽好像斩了华雄。",
-      "kind": "dialogue"
+      "text": "大哥，关羽好像斩了华雄。"
     },
     {
       "path": "LEVEL_01.events.duel.confirmation.text",
       "speaker": "刘备",
-      "text": "嗯，我军胜利了。",
-      "kind": "dialogue"
+      "text": "嗯，我军胜利了。"
     },
     {
       "path": "LEVEL_01.events.duel.occupation.text",
       "speaker": "军报",
-      "text": "刘备军打败华雄军，占领汜水关。",
-      "kind": "dialogue"
+      "text": "刘备军打败华雄军，占领汜水关。"
     },
     {
       "path": "LEVEL_01.events.normalVictory.0.text",
       "speaker": "刘备",
-      "text": "我军胜利了。",
-      "kind": "dialogue"
+      "text": "我军胜利了。"
     },
     {
       "path": "LEVEL_01.events.normalVictory.1.text",
       "speaker": "军报",
-      "text": "刘备军打败华雄军，占领汜水关。",
-      "kind": "dialogue"
+      "text": "刘备军打败华雄军，占领汜水关。"
     },
     {
       "path": "LEVEL_01.units.0.defeatQuote",
       "speaker": "刘备",
-      "text": "汉室未兴……我怎能倒在这里……",
-      "kind": "defeatQuote"
+      "text": "汉室未兴……我怎能倒在这里……"
     },
     {
       "path": "LEVEL_01.units.1.defeatQuote",
       "speaker": "关羽",
-      "text": "大哥……云长不能再护你周全了。",
-      "kind": "defeatQuote"
+      "text": "大哥……云长不能再护你周全了。"
     },
     {
       "path": "LEVEL_01.units.2.defeatQuote",
       "speaker": "张飞",
-      "text": "可恨！俺还没杀尽这些逆贼……",
-      "kind": "defeatQuote"
+      "text": "可恨！俺还没杀尽这些逆贼……"
     },
     {
       "path": "LEVEL_01.units.3.defeatQuote",
       "speaker": "公孙瓒",
-      "text": "白马义从……随我奋战至此，已无憾了……",
-      "kind": "defeatQuote"
+      "text": "白马义从……随我奋战至此，已无憾了……"
     },
     {
       "path": "LEVEL_01.units.4.defeatQuote",
       "speaker": "陶谦",
-      "text": "徐州百姓……还望诸公多加照拂……",
-      "kind": "defeatQuote"
+      "text": "徐州百姓……还望诸公多加照拂……"
     },
     {
       "path": "LEVEL_01.units.5.defeatQuote",
       "speaker": "华雄",
-      "text": "呀！失手了！",
-      "kind": "defeatQuote"
+      "text": "呀！失手了！"
     },
     {
       "path": "LEVEL_01.units.6.defeatQuote",
       "speaker": "李肃",
-      "text": "大势已去……董相国，恕我不能复命……",
-      "kind": "defeatQuote"
+      "text": "大势已去……董相国，恕我不能复命……"
     },
     {
       "path": "LEVEL_01.units.7.defeatQuote",
       "speaker": "胡轸",
-      "text": "汜水关……竟守不住了……",
-      "kind": "defeatQuote"
+      "text": "汜水关……竟守不住了……"
     },
     {
       "path": "LEVEL_01.units.8.defeatQuote",
       "speaker": "赵岑",
-      "text": "华将军……末将先走一步……",
-      "kind": "defeatQuote"
+      "text": "华将军……末将先走一步……"
     },
     {
       "path": "LEVEL_02.marchDialogue.0.text",
       "speaker": "关羽",
-      "text": "敌人好像逃到了前面的虎牢关。大哥，该怎么办？",
-      "kind": "dialogue"
+      "text": "敌人好像逃到了前面的虎牢关。大哥，该怎么办？"
     },
     {
       "path": "LEVEL_02.marchDialogue.1.text",
       "speaker": "张飞",
-      "text": "说什么呀？现在当然是乘胜追击了，我去！",
-      "kind": "dialogue"
+      "text": "说什么呀？现在当然是乘胜追击了，我去！"
     },
     {
       "path": "LEVEL_02.marchDialogue.2.text",
       "speaker": "关羽",
-      "text": "唉！追上去了，还是那么鲁莽。",
-      "kind": "dialogue"
+      "text": "唉！追上去了，还是那么鲁莽。"
     },
     {
       "path": "LEVEL_02.marchDialogue.3.text",
       "speaker": "公孙瓒",
-      "text": "话不要这么说，我军士气也鼓舞起来了嘛。",
-      "kind": "dialogue"
+      "text": "话不要这么说，我军士气也鼓舞起来了嘛。"
     },
     {
       "path": "LEVEL_02.marchDialogue.4.text",
       "speaker": "陶谦",
-      "text": "现在应该乘势攻下虎牢关。",
-      "kind": "dialogue"
+      "text": "现在应该乘势攻下虎牢关。"
     },
     {
       "path": "LEVEL_02.marchDialogue.5.text",
       "speaker": "刘备",
-      "text": "没办法。好！跟上张飞，进军虎牢关！",
-      "kind": "dialogue"
+      "text": "没办法。好！跟上张飞，进军虎牢关！"
     },
     {
       "path": "LEVEL_02.intro.0.text",
       "speaker": "吕布",
-      "text": "什么？联军攻来了，还杀了华雄？好厉害，不过，他们的好运也就到此为止了。",
-      "kind": "dialogue"
+      "text": "什么？联军攻来了，还杀了华雄？好厉害，不过，他们的好运也就到此为止了。"
     },
     {
       "path": "LEVEL_02.intro.1.text",
       "speaker": "侯成",
-      "text": "吕布将军，现在让他们知道一下我军的厉害。",
-      "kind": "dialogue"
+      "text": "吕布将军，现在让他们知道一下我军的厉害。"
     },
     {
       "path": "LEVEL_02.intro.2.text",
       "speaker": "吕布",
-      "text": "好，全军出击！联军，好好看看我的厉害。",
-      "kind": "dialogue"
+      "text": "好，全军出击！联军，好好看看我的厉害。"
     },
     {
       "path": "LEVEL_02.intro.3.text",
       "speaker": "张飞",
-      "text": "主将何在？不能只让关羽逞雄风，我也要出风头。",
-      "kind": "dialogue"
+      "text": "主将何在？不能只让关羽逞雄风，我也要出风头。"
     },
     {
       "path": "LEVEL_02.intro.4.text",
       "speaker": "关羽",
-      "text": "这里好像是吕布把守。",
-      "kind": "dialogue"
+      "text": "这里好像是吕布把守。"
     },
     {
       "path": "LEVEL_02.intro.5.text",
       "speaker": "刘备",
-      "text": "是吕布，恐怕没有比他更可怕的敌人了。",
-      "kind": "dialogue"
+      "text": "是吕布，恐怕没有比他更可怕的敌人了。"
     },
     {
       "path": "LEVEL_02.intro.6.text",
       "speaker": "关羽",
-      "text": "吕布座下赤兔马，据说日行千里。",
-      "kind": "dialogue"
+      "text": "吕布座下赤兔马，据说日行千里。"
     },
     {
       "path": "LEVEL_02.intro.7.text",
       "speaker": "张飞",
-      "text": "吕布算什么？让他看看我的厉害。",
-      "kind": "dialogue"
+      "text": "吕布算什么？让他看看我的厉害。"
     },
     {
       "path": "LEVEL_02.timedEvents.0.dialogue.0.text",
       "speaker": "吕布",
-      "text": "哼！七拼八凑的部队还挺厉害，不过我可不会败给这些鼠辈，要让他们知道我的厉害。",
-      "kind": "dialogue"
+      "text": "哼！七拼八凑的部队还挺厉害，不过我可不会败给这些鼠辈，要让他们知道我的厉害。"
     },
     {
       "path": "LEVEL_02.events.duel.challenge.0.text",
       "speaker": "张飞",
-      "text": "三姓家奴休走！燕人张飞在此！",
-      "kind": "dialogue"
+      "text": "三姓家奴休走！燕人张飞在此！"
     },
     {
       "path": "LEVEL_02.events.duel.challenge.1.text",
       "speaker": "吕布",
-      "text": "无名之辈，也敢来送死？",
-      "kind": "dialogue"
+      "text": "无名之辈，也敢来送死？"
     },
     {
       "path": "LEVEL_02.events.duel.reinforcement.0.text",
       "speaker": "关羽",
-      "text": "三弟休要独斗，我来助你！",
-      "kind": "dialogue"
+      "text": "三弟休要独斗，我来助你！"
     },
     {
       "path": "LEVEL_02.events.duel.reinforcement.1.text",
       "speaker": "刘备",
-      "text": "二弟、三弟，我们合兵一处！",
-      "kind": "dialogue"
+      "text": "二弟、三弟，我们合兵一处！"
     },
     {
       "path": "LEVEL_02.events.duel.reinforcement.2.text",
       "speaker": "张飞",
-      "text": "好！今日便叫他识得我兄弟三人的厉害！",
-      "kind": "dialogue"
+      "text": "好！今日便叫他识得我兄弟三人的厉害！"
     },
     {
       "path": "LEVEL_02.events.duel.exchange.0.text",
       "speaker": "吕布",
-      "text": "好一个刘关张！今日且让你们一阵，改日再战！",
-      "kind": "dialogue"
+      "text": "好一个刘关张！今日且让你们一阵，改日再战！"
     },
     {
       "path": "LEVEL_02.events.duel.exchange.1.text",
       "speaker": "张飞",
-      "text": "吕布休走！再战三百回合！",
-      "kind": "dialogue"
+      "text": "吕布休走！再战三百回合！"
     },
     {
       "path": "LEVEL_02.events.duel.exchange.2.text",
       "speaker": "关羽",
-      "text": "三弟莫追，虎牢关已破。",
-      "kind": "dialogue"
+      "text": "三弟莫追，虎牢关已破。"
     },
     {
       "path": "LEVEL_02.events.duel.exchange.3.text",
       "speaker": "刘备",
-      "text": "我兄弟同心，方能退此强敌。",
-      "kind": "dialogue"
+      "text": "我兄弟同心，方能退此强敌。"
     },
     {
       "path": "LEVEL_02.events.duel.levelUp.text",
       "speaker": "军报",
-      "text": "张飞的等级上升了！",
-      "kind": "dialogue"
+      "text": "张飞的等级上升了！"
     },
     {
       "path": "LEVEL_02.events.duel.aftermath.0.text",
       "speaker": "军报",
-      "text": "吕布突围撤退，守关敌军阵脚大乱。",
-      "kind": "dialogue"
+      "text": "吕布突围撤退，守关敌军阵脚大乱。"
     },
     {
       "path": "LEVEL_02.events.duel.occupation.text",
       "speaker": "军报",
-      "text": "吕布军撤退，刘备军占领虎牢关。",
-      "kind": "dialogue"
+      "text": "吕布军撤退，刘备军占领虎牢关。"
     },
     {
       "path": "LEVEL_02.events.normalVictory.0.text",
       "speaker": "吕布",
-      "text": "可恶！没办法，全军撤退。",
-      "kind": "dialogue"
+      "text": "可恶！没办法，全军撤退。"
     },
     {
       "path": "LEVEL_02.events.normalVictory.1.text",
       "speaker": "刘备",
-      "text": "太好了！我们打败了吕布。",
-      "kind": "dialogue"
+      "text": "太好了！我们打败了吕布。"
     },
     {
       "path": "LEVEL_02.events.normalVictory.2.text",
       "speaker": "军报",
-      "text": "吕布军撤退，刘备军占领虎牢关。",
-      "kind": "dialogue"
+      "text": "吕布军撤退，刘备军占领虎牢关。"
     },
     {
       "path": "LEVEL_02.units.0.defeatQuote",
       "speaker": "刘备",
-      "text": "汉室未兴……我怎能倒在这里……",
-      "kind": "defeatQuote"
+      "text": "汉室未兴……我怎能倒在这里……"
     },
     {
       "path": "LEVEL_02.units.1.defeatQuote",
       "speaker": "关羽",
-      "text": "大哥……云长不能再护你周全了。",
-      "kind": "defeatQuote"
+      "text": "大哥……云长不能再护你周全了。"
     },
     {
       "path": "LEVEL_02.units.2.defeatQuote",
       "speaker": "张飞",
-      "text": "可恨！俺还没杀尽这些逆贼……",
-      "kind": "defeatQuote"
+      "text": "可恨！俺还没杀尽这些逆贼……"
     },
     {
       "path": "LEVEL_02.units.3.defeatQuote",
       "speaker": "公孙瓒",
-      "text": "白马义从……随我奋战至此，已无憾了……",
-      "kind": "defeatQuote"
+      "text": "白马义从……随我奋战至此，已无憾了……"
     },
     {
       "path": "LEVEL_02.units.4.defeatQuote",
       "speaker": "陶谦",
-      "text": "徐州百姓……还望诸公多加照拂……",
-      "kind": "defeatQuote"
+      "text": "徐州百姓……还望诸公多加照拂……"
     },
     {
       "path": "LEVEL_02.units.5.defeatQuote",
       "speaker": "吕布",
-      "text": "可恶！没办法，全军撤退。",
-      "kind": "defeatQuote"
+      "text": "可恶！没办法，全军撤退。"
     },
     {
       "path": "LEVEL_02.units.6.defeatQuote",
       "speaker": "张辽",
-      "text": "今日之败，来日定当奉还……",
-      "kind": "defeatQuote"
+      "text": "今日之败，来日定当奉还……"
     },
     {
       "path": "LEVEL_02.units.7.defeatQuote",
       "speaker": "侯成",
-      "text": "吕将军……末将先退了……",
-      "kind": "defeatQuote"
+      "text": "吕将军……末将先退了……"
     },
     {
       "path": "LEVEL_02.units.8.defeatQuote",
       "speaker": "宋宪",
-      "text": "虎牢关……竟也守不住吗……",
-      "kind": "defeatQuote"
+      "text": "虎牢关……竟也守不住吗……"
     },
     {
       "path": "LEVEL_02.units.9.defeatQuote",
       "speaker": "魏续",
-      "text": "可恨……联军竟有如此战力……",
-      "kind": "defeatQuote"
+      "text": "可恨……联军竟有如此战力……"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.intro.0.text",
       "speaker": "关羽",
-      "text": "那是？兄长，像是袁绍军。",
-      "kind": "dialogue"
+      "text": "那是？兄长，像是袁绍军。"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.intro.1.text",
       "speaker": "逢纪",
-      "text": "刘备军竟从广川而来。列阵，不能让他们赶到界桥！",
-      "kind": "dialogue"
+      "text": "刘备军竟从广川而来。列阵，不能让他们赶到界桥！"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.intro.2.text",
       "speaker": "刘备",
-      "text": "公孙瓒军情势危急。众人谨慎推进，先击退逢纪。",
-      "kind": "dialogue"
+      "text": "公孙瓒军情势危急。众人谨慎推进，先击退逢纪。"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.duel.challenge.0.text",
       "speaker": "关羽",
-      "text": "逢纪，可敢与关某一战！",
-      "kind": "dialogue"
+      "text": "逢纪，可敢与关某一战！"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.duel.challenge.1.text",
       "speaker": "逢纪",
-      "text": "你叫什么名字？",
-      "kind": "dialogue"
+      "text": "你叫什么名字？"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.duel.aftermath.0.text",
       "speaker": "逢纪",
-      "text": "原来是击退吕布军的关羽……我不是你的对手！",
-      "kind": "dialogue"
+      "text": "原来是击退吕布军的关羽……我不是你的对手！"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.duel.aftermath.1.text",
       "speaker": "关羽",
-      "text": "退兵吧，关某不追。",
-      "kind": "dialogue"
+      "text": "退兵吧，关某不追。"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.duel.levelUp.text",
       "speaker": "军报",
-      "text": "关羽的等级上升了！",
-      "kind": "dialogue"
+      "text": "关羽的等级上升了！"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.duel.confirmation.text",
       "speaker": "刘备",
-      "text": "云长取胜，逢纪军已经溃退。",
-      "kind": "dialogue"
+      "text": "云长取胜，逢纪军已经溃退。"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.duel.occupation.text",
       "speaker": "军报",
-      "text": "刘备军击退逢纪，占领广川。",
-      "kind": "dialogue"
+      "text": "刘备军击退逢纪，占领广川。"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.normalVictory.0.text",
       "speaker": "逢纪",
-      "text": "刘备军如此强悍，广川不能再守。全军撤退！",
-      "kind": "dialogue"
+      "text": "刘备军如此强悍，广川不能再守。全军撤退！"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.normalVictory.1.text",
       "speaker": "刘备",
-      "text": "不要追击，尽快整顿部队，赶往界桥。",
-      "kind": "dialogue"
+      "text": "不要追击，尽快整顿部队，赶往界桥。"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.normalVictory.2.text",
       "speaker": "军报",
-      "text": "刘备军击退逢纪，占领广川。",
-      "kind": "dialogue"
+      "text": "刘备军击退逢纪，占领广川。"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.postVictory.0.text",
       "speaker": "关羽",
-      "text": "敌人好像已经全部撤退。",
-      "kind": "dialogue"
+      "text": "敌人好像已经全部撤退。"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.postVictory.1.text",
       "speaker": "韩英",
-      "text": "刘使君，请留步。我是韩英，这位是郭适。愿随使君一同救援公孙将军。",
-      "kind": "dialogue"
+      "text": "刘使君，请留步。我是韩英，这位是郭适。愿随使君一同救援公孙将军。"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.postVictory.2.text",
       "speaker": "郭适",
-      "text": "我等愿效犬马之劳。",
-      "kind": "dialogue"
+      "text": "我等愿效犬马之劳。"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.postVictory.3.text",
       "speaker": "军报",
-      "text": "韩英、郭适加入刘备军！",
-      "kind": "dialogue"
+      "text": "韩英、郭适加入刘备军！"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.events.postVictory.4.text",
       "speaker": "简雍",
-      "text": "主公，我军力量更强了。事不宜迟，赶快去支援公孙瓒吧。",
-      "kind": "dialogue"
+      "text": "主公，我军力量更强了。事不宜迟，赶快去支援公孙瓒吧。"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.units.0.defeatQuote",
       "speaker": "刘备",
-      "text": "汉室未兴……我怎能倒在这里……",
-      "kind": "defeatQuote"
+      "text": "汉室未兴……我怎能倒在这里……"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.units.1.defeatQuote",
       "speaker": "关羽",
-      "text": "大哥……云长不能再护你周全了。",
-      "kind": "defeatQuote"
+      "text": "大哥……云长不能再护你周全了。"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.units.2.defeatQuote",
       "speaker": "张飞",
-      "text": "可恨！俺还没杀尽这些逆贼……",
-      "kind": "defeatQuote"
+      "text": "可恨！俺还没杀尽这些逆贼……"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.units.3.defeatQuote",
       "speaker": "简雍",
-      "text": "主公……简雍暂且退下……",
-      "kind": "defeatQuote"
+      "text": "主公……简雍暂且退下……"
     },
     {
       "path": "LEVEL_03_GUANGCHUAN.units.4.defeatQuote",
       "speaker": "逢纪",
-      "text": "刘备军如此强悍，广川不能再守。全军撤退！",
-      "kind": "defeatQuote"
+      "text": "刘备军如此强悍，广川不能再守。全军撤退！"
     },
     {
       "path": "LEVEL_03_XINDU.intro.0.text",
       "speaker": "藩宫",
-      "text": "就要守不住了……袁绍军怎么会在这儿出现。",
-      "kind": "dialogue"
+      "text": "就要守不住了……袁绍军怎么会在这儿出现。"
     },
     {
       "path": "LEVEL_03_XINDU.intro.1.text",
       "speaker": "淳于琼",
-      "text": "好。信都城快攻下来了，大家再加把劲。",
-      "kind": "dialogue"
+      "text": "好。信都城快攻下来了，大家再加把劲。"
     },
     {
       "path": "LEVEL_03_XINDU.intro.2.text",
       "speaker": "关羽",
-      "text": "兄长，好像是袁绍军。信都城遭到袁绍军的袭击。",
-      "kind": "dialogue"
+      "text": "兄长，好像是袁绍军。信都城遭到袁绍军的袭击。"
     },
     {
       "path": "LEVEL_03_XINDU.intro.3.text",
       "speaker": "简雍",
-      "text": "袁绍军怎么会打到这里来呢？公孙瓒怎么样了呢？",
-      "kind": "dialogue"
+      "text": "袁绍军怎么会打到这里来呢？公孙瓒怎么样了呢？"
     },
     {
       "path": "LEVEL_03_XINDU.intro.4.text",
       "speaker": "淳于琼",
-      "text": "那是平原刘备的部队！不管他，在此杀掉刘备！全军向刘备军出击！",
-      "kind": "dialogue"
+      "text": "那是平原刘备的部队！不管他，在此杀掉刘备！全军向刘备军出击！"
     },
     {
       "path": "LEVEL_03_XINDU.intro.5.text",
       "speaker": "张飞",
-      "text": "大哥，袁绍军杀过来了。",
-      "kind": "dialogue"
+      "text": "大哥，袁绍军杀过来了。"
     },
     {
       "path": "LEVEL_03_XINDU.intro.6.text",
       "speaker": "关羽",
-      "text": "兄长，救信都城吧。只要能守住信都城，袁绍军就得撤退。向城门打吧！",
-      "kind": "dialogue"
+      "text": "兄长，救信都城吧。只要能守住信都城，袁绍军就得撤退。向城门打吧！"
     },
     {
       "path": "LEVEL_03_XINDU.timedEvents.3.dialogue.0.text",
       "speaker": "淳于琼",
-      "text": "不能再拖了！全军压上，拿下信都！",
-      "kind": "dialogue"
+      "text": "不能再拖了！全军压上，拿下信都！"
     },
     {
       "path": "LEVEL_03_XINDU.events.duel.challenge.0.text",
       "speaker": "张飞",
-      "text": "哪个是主将？喂，我是张飞，哪个与我单挑较量！",
-      "kind": "dialogue"
+      "text": "哪个是主将？喂，我是张飞，哪个与我单挑较量！"
     },
     {
       "path": "LEVEL_03_XINDU.events.duel.challenge.1.text",
       "speaker": "淳于琼",
-      "text": "好，正中下怀。张飞！杀！",
-      "kind": "dialogue"
+      "text": "好，正中下怀。张飞！杀！"
     },
     {
       "path": "LEVEL_03_XINDU.events.duel.aftermath.0.text",
       "speaker": "淳于琼",
-      "text": "这……！这么厉害……",
-      "kind": "dialogue"
+      "text": "这……！这么厉害……"
     },
     {
       "path": "LEVEL_03_XINDU.events.duel.aftermath.1.text",
       "speaker": "张飞",
-      "text": "就这点儿能耐，赢不了我！",
-      "kind": "dialogue"
+      "text": "就这点儿能耐，赢不了我！"
     },
     {
       "path": "LEVEL_03_XINDU.events.duel.aftermath.2.text",
       "speaker": "淳于琼",
-      "text": "打不过他。妈的，没办法，走为上。",
-      "kind": "dialogue"
+      "text": "打不过他。妈的，没办法，走为上。"
     },
     {
       "path": "LEVEL_03_XINDU.events.duel.levelUp.text",
       "speaker": "军报",
-      "text": "张飞的等级上升了！",
-      "kind": "dialogue"
+      "text": "张飞的等级上升了！"
     },
     {
       "path": "LEVEL_03_XINDU.events.duel.confirmation.text",
       "speaker": "关羽",
-      "text": "兄长，袁绍军好像退兵了。",
-      "kind": "dialogue"
+      "text": "兄长，袁绍军好像退兵了。"
     },
     {
       "path": "LEVEL_03_XINDU.events.duel.occupation.text",
       "speaker": "军报",
-      "text": "淳于琼败退了，刘备军打败了袁绍军。",
-      "kind": "dialogue"
+      "text": "淳于琼败退了，刘备军打败了袁绍军。"
     },
     {
       "path": "LEVEL_03_XINDU.events.normalVictory.0.text",
       "speaker": "淳于琼",
-      "text": "他妈的，再加把劲就能攻下来，可是只好全军撤退！",
-      "kind": "dialogue"
+      "text": "他妈的，再加把劲就能攻下来，可是只好全军撤退！"
     },
     {
       "path": "LEVEL_03_XINDU.events.normalVictory.1.text",
       "speaker": "关羽",
-      "text": "兄长，袁绍军好像退兵了。",
-      "kind": "dialogue"
+      "text": "兄长，袁绍军好像退兵了。"
     },
     {
       "path": "LEVEL_03_XINDU.events.normalVictory.2.text",
       "speaker": "军报",
-      "text": "淳于琼败退了，刘备军打败了袁绍军。",
-      "kind": "dialogue"
+      "text": "淳于琼败退了，刘备军打败了袁绍军。"
     },
     {
       "path": "LEVEL_03_XINDU.events.alternateVictory.0.text",
       "speaker": "刘备",
-      "text": "城门已到。守住信都，袁绍军便不能继续进攻。",
-      "kind": "dialogue"
+      "text": "城门已到。守住信都，袁绍军便不能继续进攻。"
     },
     {
       "path": "LEVEL_03_XINDU.events.alternateVictory.1.text",
       "speaker": "淳于琼",
-      "text": "信都援军已经入城……全军撤退！",
-      "kind": "dialogue"
+      "text": "信都援军已经入城……全军撤退！"
     },
     {
       "path": "LEVEL_03_XINDU.events.alternateVictory.2.text",
       "speaker": "军报",
-      "text": "刘备进入信都，守城成功。全体存活部队获得经验50。",
-      "kind": "dialogue"
+      "text": "刘备进入信都，守城成功。全体存活部队获得经验50。"
     },
     {
       "path": "LEVEL_03_XINDU.events.postVictory.0.text",
       "speaker": "简雍",
-      "text": "好像不妙，先进信都城吧。",
-      "kind": "dialogue"
+      "text": "好像不妙，先进信都城吧。"
     },
     {
       "path": "LEVEL_03_XINDU.events.postVictory.1.text",
       "speaker": "藩宫",
-      "text": "刘备，您救了信都，太谢谢你了。",
-      "kind": "dialogue"
+      "text": "刘备，您救了信都，太谢谢你了。"
     },
     {
       "path": "LEVEL_03_XINDU.events.postVictory.2.text",
       "speaker": "刘备",
-      "text": "不用谢。还好，我们正好经过信都。",
-      "kind": "dialogue"
+      "text": "不用谢。还好，我们正好经过信都。"
     },
     {
       "path": "LEVEL_03_XINDU.events.postVictory.3.text",
       "speaker": "刘备",
-      "text": "我们这是去支援公孙瓒，刚才要从信都过去，发现你这里受到攻击。",
-      "kind": "dialogue"
+      "text": "我们这是去支援公孙瓒，刚才要从信都过去，发现你这里受到攻击。"
     },
     {
       "path": "LEVEL_03_XINDU.events.postVictory.4.text",
       "speaker": "藩宫",
-      "text": "刘备，请让我也加入援军，以报答您救信都之恩。",
-      "kind": "dialogue"
+      "text": "刘备，请让我也加入援军，以报答您救信都之恩。"
     },
     {
       "path": "LEVEL_03_XINDU.events.postVictory.5.text",
       "speaker": "军报",
-      "text": "藩宫加入了刘备军！",
-      "kind": "dialogue"
+      "text": "藩宫加入了刘备军！"
     },
     {
       "path": "LEVEL_03_XINDU.events.postVictory.6.text",
       "speaker": "关羽",
-      "text": "那么，兄长，我们快去支援吧。",
-      "kind": "dialogue"
+      "text": "那么，兄长，我们快去支援吧。"
     },
     {
       "path": "LEVEL_03_XINDU.events.postVictory.7.text",
       "speaker": "简雍",
-      "text": "主公，出发前要不要去打制兵器的道具屋看一看？",
-      "kind": "dialogue"
+      "text": "主公，出发前要不要去打制兵器的道具屋看一看？"
     },
     {
       "path": "LEVEL_03_XINDU.events.postVictory.8.text",
       "speaker": "张飞",
-      "text": "大哥，再不出发也许就来不及了。",
-      "kind": "dialogue"
+      "text": "大哥，再不出发也许就来不及了。"
     },
     {
       "path": "LEVEL_03_XINDU.events.postVictory.9.text",
       "speaker": "藩宫",
-      "text": "我也参加你们的援军。",
-      "kind": "dialogue"
+      "text": "我也参加你们的援军。"
     },
     {
       "path": "LEVEL_03_XINDU.units.0.defeatQuote",
       "speaker": "刘备",
-      "text": "汉室未兴……我怎能倒在这里……",
-      "kind": "defeatQuote"
+      "text": "汉室未兴……我怎能倒在这里……"
     },
     {
       "path": "LEVEL_03_XINDU.units.1.defeatQuote",
       "speaker": "关羽",
-      "text": "大哥……云长不能再护你周全了。",
-      "kind": "defeatQuote"
+      "text": "大哥……云长不能再护你周全了。"
     },
     {
       "path": "LEVEL_03_XINDU.units.2.defeatQuote",
       "speaker": "张飞",
-      "text": "可恨！俺还没杀尽这些逆贼……",
-      "kind": "defeatQuote"
+      "text": "可恨！俺还没杀尽这些逆贼……"
     },
     {
       "path": "LEVEL_03_XINDU.units.3.defeatQuote",
       "speaker": "简雍",
-      "text": "主公……简雍暂且退下……",
-      "kind": "defeatQuote"
+      "text": "主公……简雍暂且退下……"
     },
     {
       "path": "LEVEL_03_XINDU.units.4.defeatQuote",
       "speaker": "藩宫",
-      "text": "信都百姓……藩宫有负所托……",
-      "kind": "defeatQuote"
+      "text": "信都百姓……藩宫有负所托……"
     },
     {
       "path": "LEVEL_03_XINDU.units.5.defeatQuote",
       "speaker": "郭适",
-      "text": "信都……就交给你们了……",
-      "kind": "defeatQuote"
+      "text": "信都……就交给你们了……"
     },
     {
       "path": "LEVEL_03_XINDU.units.6.defeatQuote",
       "speaker": "韩英",
-      "text": "未能守住信都……惭愧……",
-      "kind": "defeatQuote"
+      "text": "未能守住信都……惭愧……"
     },
     {
       "path": "LEVEL_03_XINDU.units.7.defeatQuote",
       "speaker": "淳于琼",
-      "text": "他妈的，再加把劲就能攻下来，可是只好全军撤退！",
-      "kind": "defeatQuote"
+      "text": "他妈的，再加把劲就能攻下来，可是只好全军撤退！"
     },
     {
       "path": "LEVEL_04_JULU.areaEvents.0.dialogue.0.text",
       "speaker": "张郃",
-      "text": "不能让刘备突破巨鹿，全军阻挡刘备！",
-      "kind": "dialogue"
+      "text": "不能让刘备突破巨鹿，全军阻挡刘备！"
     },
     {
       "path": "LEVEL_04_JULU.timedEvents.0.dialogue.0.text",
       "speaker": "刘备",
-      "text": "唉！那是！？",
-      "kind": "dialogue"
+      "text": "唉！那是！？"
     },
     {
       "path": "LEVEL_04_JULU.timedEvents.0.dialogue.1.text",
       "speaker": "军报",
-      "text": "敌人的援军来了！",
-      "kind": "dialogue"
+      "text": "敌人的援军来了！"
     },
     {
       "path": "LEVEL_04_JULU.timedEvents.0.dialogue.2.text",
       "speaker": "刘备",
-      "text": "什么？从前面也来了吗！？",
-      "kind": "dialogue"
+      "text": "什么？从前面也来了吗！？"
     },
     {
       "path": "LEVEL_04_JULU.timedEvents.0.dialogue.3.text",
       "speaker": "关纯",
-      "text": "我是关纯，原是韩馥的部下。此番前来加入刘备军。",
-      "kind": "dialogue"
+      "text": "我是关纯，原是韩馥的部下。此番前来加入刘备军。"
     },
     {
       "path": "LEVEL_04_JULU.timedEvents.0.dialogue.4.text",
       "speaker": "军报",
-      "text": "耿武、关纯来支援！",
-      "kind": "dialogue"
+      "text": "耿武、关纯来支援！"
     },
     {
       "path": "LEVEL_04_JULU.intro.0.text",
       "speaker": "关羽",
-      "text": "好像是敌人，列队。",
-      "kind": "dialogue"
+      "text": "好像是敌人，列队。"
     },
     {
       "path": "LEVEL_04_JULU.intro.1.text",
       "speaker": "颜良",
-      "text": "张郃，快些收拾掉北平军，赶快和界桥的主力会合吧。",
-      "kind": "dialogue"
+      "text": "张郃，快些收拾掉北平军，赶快和界桥的主力会合吧。"
     },
     {
       "path": "LEVEL_04_JULU.intro.2.text",
       "speaker": "刘备",
-      "text": "公孙越，平原刘备前来助战。",
-      "kind": "dialogue"
+      "text": "公孙越，平原刘备前来助战。"
     },
     {
       "path": "LEVEL_04_JULU.intro.3.text",
       "speaker": "张郃",
-      "text": "来了，刘备！我张郃在此挡路，你去不了界桥。",
-      "kind": "dialogue"
+      "text": "来了，刘备！我张郃在此挡路，你去不了界桥。"
     },
     {
       "path": "LEVEL_04_JULU.events.duel.challenge.0.text",
       "speaker": "张飞",
-      "text": "噢，看样子是个很厉害的对手嘛。俺去对付他！",
-      "kind": "dialogue"
+      "text": "噢，看样子是个很厉害的对手嘛。俺去对付他！"
     },
     {
       "path": "LEVEL_04_JULU.events.duel.challenge.1.text",
       "speaker": "颜良",
-      "text": "来将通名！",
-      "kind": "dialogue"
+      "text": "来将通名！"
     },
     {
       "path": "LEVEL_04_JULU.events.duel.exchange.0.text",
       "speaker": "张飞",
-      "text": "好像还有两下子，碰上我算你倒霉。",
-      "kind": "dialogue"
+      "text": "好像还有两下子，碰上我算你倒霉。"
     },
     {
       "path": "LEVEL_04_JULU.events.duel.exchange.1.text",
       "speaker": "张飞",
-      "text": "你玩的什么武艺？这样还能赢我？",
-      "kind": "dialogue"
+      "text": "你玩的什么武艺？这样还能赢我？"
     },
     {
       "path": "LEVEL_04_JULU.events.duel.exchange.2.text",
       "speaker": "颜良",
-      "text": "噢噢！打不过他，撤！",
-      "kind": "dialogue"
+      "text": "噢噢！打不过他，撤！"
     },
     {
       "path": "LEVEL_04_JULU.events.duel.levelUp.text",
       "speaker": "军报",
-      "text": "张飞的等级上升了！",
-      "kind": "dialogue"
+      "text": "张飞的等级上升了！"
     },
     {
       "path": "LEVEL_04_JULU.events.duel.confirmation.text",
       "speaker": "刘备",
-      "text": "翼德取胜，袁绍军阵脚已乱。",
-      "kind": "dialogue"
+      "text": "翼德取胜，袁绍军阵脚已乱。"
     },
     {
       "path": "LEVEL_04_JULU.events.duel.occupation.text",
       "speaker": "军报",
-      "text": "张郃败退了，刘备军打败了袁绍军。",
-      "kind": "dialogue"
+      "text": "张郃败退了，刘备军打败了袁绍军。"
     },
     {
       "path": "LEVEL_04_JULU.events.normalVictory.0.text",
       "speaker": "张郃",
-      "text": "可恶！败给了刘备！撤退！",
-      "kind": "dialogue"
+      "text": "可恶！败给了刘备！撤退！"
     },
     {
       "path": "LEVEL_04_JULU.events.normalVictory.1.text",
       "speaker": "军报",
-      "text": "张郃败退了，刘备军打败了袁绍军。",
-      "kind": "dialogue"
+      "text": "张郃败退了，刘备军打败了袁绍军。"
     },
     {
       "path": "LEVEL_04_JULU.events.alternateVictory.0.text",
       "speaker": "张郃",
-      "text": "可恶！不能让刘备过去！",
-      "kind": "dialogue"
+      "text": "可恶！不能让刘备过去！"
     },
     {
       "path": "LEVEL_04_JULU.events.alternateVictory.1.text",
       "speaker": "军报",
-      "text": "刘备军突破巨鹿了。",
-      "kind": "dialogue"
+      "text": "刘备军突破巨鹿了。"
     },
     {
       "path": "LEVEL_04_JULU.events.postVictory.0.text",
       "speaker": "刘备",
-      "text": "巨鹿已经突破。整顿部队，立即赶往界桥。",
-      "kind": "dialogue"
+      "text": "巨鹿已经突破。整顿部队，立即赶往界桥。"
     },
     {
       "path": "LEVEL_04_JULU.units.0.defeatQuote",
       "speaker": "刘备",
-      "text": "汉室未兴……我怎能倒在这里……",
-      "kind": "defeatQuote"
+      "text": "汉室未兴……我怎能倒在这里……"
     },
     {
       "path": "LEVEL_04_JULU.units.1.defeatQuote",
       "speaker": "关羽",
-      "text": "大哥……云长不能再护你周全了。",
-      "kind": "defeatQuote"
+      "text": "大哥……云长不能再护你周全了。"
     },
     {
       "path": "LEVEL_04_JULU.units.2.defeatQuote",
       "speaker": "张飞",
-      "text": "可恨！俺还没杀尽这些逆贼……",
-      "kind": "defeatQuote"
+      "text": "可恨！俺还没杀尽这些逆贼……"
     },
     {
       "path": "LEVEL_04_JULU.units.3.defeatQuote",
       "speaker": "简雍",
-      "text": "主公……简雍暂且退下……",
-      "kind": "defeatQuote"
+      "text": "主公……简雍暂且退下……"
     },
     {
       "path": "LEVEL_04_JULU.units.4.defeatQuote",
       "speaker": "公孙越",
-      "text": "兄长……公孙越先退了……",
-      "kind": "defeatQuote"
+      "text": "兄长……公孙越先退了……"
     },
     {
       "path": "LEVEL_04_JULU.units.5.defeatQuote",
       "speaker": "羽则",
-      "text": "公孙将军……羽则先退了……",
-      "kind": "defeatQuote"
+      "text": "公孙将军……羽则先退了……"
     },
     {
       "path": "LEVEL_04_JULU.units.6.defeatQuote",
       "speaker": "关纯",
-      "text": "未能报效使君……关纯先退……",
-      "kind": "defeatQuote"
+      "text": "未能报效使君……关纯先退……"
     },
     {
       "path": "LEVEL_04_JULU.units.7.defeatQuote",
       "speaker": "耿武",
-      "text": "巨鹿未破……耿武不甘……",
-      "kind": "defeatQuote"
+      "text": "巨鹿未破……耿武不甘……"
     },
     {
       "path": "LEVEL_04_JULU.units.8.defeatQuote",
       "speaker": "张郃",
-      "text": "可恶！败给了刘备！撤退！",
-      "kind": "defeatQuote"
+      "text": "可恶！败给了刘备！撤退！"
     },
     {
       "path": "LEVEL_04_JULU.units.9.defeatQuote",
       "speaker": "颜良",
-      "text": "噢噢！打不过他，撤！",
-      "kind": "defeatQuote"
+      "text": "噢噢！打不过他，撤！"
     },
     {
       "path": "LEVEL_04_JULU.units.10.defeatQuote",
       "speaker": "高览",
-      "text": "刘备军势盛……高览暂且撤退！",
-      "kind": "defeatQuote"
+      "text": "刘备军势盛……高览暂且撤退！"
     },
     {
       "path": "LEVEL_04_JULU.units.11.defeatQuote",
       "speaker": "审配",
-      "text": "此战失算……回报袁公，再作计较。",
-      "kind": "defeatQuote"
+      "text": "此战失算……回报袁公，再作计较。"
     },
     {
       "path": "LEVEL_04_JULU.units.12.defeatQuote",
       "speaker": "逢纪",
-      "text": "巨鹿难守……先退回袁公军中！",
-      "kind": "defeatQuote"
+      "text": "巨鹿难守……先退回袁公军中！"
     },
     {
       "path": "LEVEL_04_QINGHE.openingDuel.challenge.0.text",
       "speaker": "严纲",
-      "text": "麴义！我严纲要和你单挑较量！",
-      "kind": "dialogue"
+      "text": "麴义！我严纲要和你单挑较量！"
     },
     {
       "path": "LEVEL_04_QINGHE.openingDuel.challenge.1.text",
       "speaker": "麴义",
-      "text": "有胆量，但你要倒霉啦！你还觉得能打赢我麴义？杀啊！",
-      "kind": "dialogue"
+      "text": "有胆量，但你要倒霉啦！你还觉得能打赢我麴义？杀啊！"
     },
     {
       "path": "LEVEL_04_QINGHE.openingDuel.exchange.0.text",
       "speaker": "麴义",
-      "text": "严纲，看刀！",
-      "kind": "dialogue"
+      "text": "严纲，看刀！"
     },
     {
       "path": "LEVEL_04_QINGHE.openingDuel.exchange.1.text",
       "speaker": "严纲",
-      "text": "哎呀！",
-      "kind": "dialogue"
+      "text": "哎呀！"
     },
     {
       "path": "LEVEL_04_QINGHE.openingDuel.exchange.2.text",
       "speaker": "麴义",
-      "text": "公孙瓒的大将严纲被斩了！",
-      "kind": "dialogue"
+      "text": "公孙瓒的大将严纲被斩了！"
     },
     {
       "path": "LEVEL_04_QINGHE.intro.0.text",
       "speaker": "关羽",
-      "text": "大哥，好像晚了一步。严纲被斩，清河北平军溃败了。",
-      "kind": "dialogue"
+      "text": "大哥，好像晚了一步。严纲被斩，清河北平军溃败了。"
     },
     {
       "path": "LEVEL_04_QINGHE.intro.1.text",
       "speaker": "刘备",
-      "text": "晚了一步啊……好！血债要用血来还！",
-      "kind": "dialogue"
+      "text": "晚了一步啊……好！血债要用血来还！"
     },
     {
       "path": "LEVEL_04_QINGHE.intro.2.text",
       "speaker": "麴义",
-      "text": "嗯？那不是刘备军吗？想去支援公孙瓒？我麴义不让你们过去！",
-      "kind": "dialogue"
+      "text": "嗯？那不是刘备军吗？想去支援公孙瓒？我麴义不让你们过去！"
     },
     {
       "path": "LEVEL_04_QINGHE.timedEvents.0.dialogue.0.text",
       "speaker": "刘备",
-      "text": "嗯！那是！？",
-      "kind": "dialogue"
+      "text": "嗯！那是！？"
     },
     {
       "path": "LEVEL_04_QINGHE.timedEvents.0.dialogue.1.text",
       "speaker": "军报",
-      "text": "敌人的援军出现了！",
-      "kind": "dialogue"
+      "text": "敌人的援军出现了！"
     },
     {
       "path": "LEVEL_04_QINGHE.events.duel.challenge.0.text",
       "speaker": "关羽",
-      "text": "这里的大将听着！我要和你单挑较量！",
-      "kind": "dialogue"
+      "text": "这里的大将听着！我要和你单挑较量！"
     },
     {
       "path": "LEVEL_04_QINGHE.events.duel.challenge.1.text",
       "speaker": "麴义",
-      "text": "什么？竟还有人敢向我挑战！好吧，就与你斗一斗！",
-      "kind": "dialogue"
+      "text": "什么？竟还有人敢向我挑战！好吧，就与你斗一斗！"
     },
     {
       "path": "LEVEL_04_QINGHE.events.duel.exchange.0.text",
       "speaker": "麴义",
-      "text": "让你也和刚才的严纲落个同样下场！",
-      "kind": "dialogue"
+      "text": "让你也和刚才的严纲落个同样下场！"
     },
     {
       "path": "LEVEL_04_QINGHE.events.duel.exchange.1.text",
       "speaker": "麴义",
-      "text": "好家伙！好厉害……",
-      "kind": "dialogue"
+      "text": "好家伙！好厉害……"
     },
     {
       "path": "LEVEL_04_QINGHE.events.duel.exchange.2.text",
       "speaker": "关羽",
-      "text": "我的武艺也不够娴熟，这么个小对手竟感到有点难对付……",
-      "kind": "dialogue"
+      "text": "我的武艺也不够娴熟，这么个小对手竟感到有点难对付……"
     },
     {
       "path": "LEVEL_04_QINGHE.events.duel.levelUp.text",
       "speaker": "军报",
-      "text": "关羽的等级上升了！",
-      "kind": "dialogue"
+      "text": "关羽的等级上升了！"
     },
     {
       "path": "LEVEL_04_QINGHE.events.duel.confirmation.text",
       "speaker": "关羽",
-      "text": "强中自有强中手。麴义已败，清河道路打通了。",
-      "kind": "dialogue"
+      "text": "强中自有强中手。麴义已败，清河道路打通了。"
     },
     {
       "path": "LEVEL_04_QINGHE.events.duel.occupation.text",
       "speaker": "军报",
-      "text": "关羽斩了麴义，刘备军突破了清河。",
-      "kind": "dialogue"
+      "text": "关羽斩了麴义，刘备军突破了清河。"
     },
     {
       "path": "LEVEL_04_QINGHE.events.normalVictory.0.text",
       "speaker": "麴义",
-      "text": "喂，刘备！休想从这里过去！",
-      "kind": "dialogue"
+      "text": "喂，刘备！休想从这里过去！"
     },
     {
       "path": "LEVEL_04_QINGHE.events.normalVictory.1.text",
       "speaker": "军报",
-      "text": "麴义败退，刘备军突破了清河。",
-      "kind": "dialogue"
+      "text": "麴义败退，刘备军突破了清河。"
     },
     {
       "path": "LEVEL_04_QINGHE.events.postVictory.0.text",
       "speaker": "刘备",
-      "text": "清河已经突破。整顿部队，立即赶往界桥。",
-      "kind": "dialogue"
+      "text": "清河已经突破。整顿部队，立即赶往界桥。"
     },
     {
       "path": "LEVEL_04_QINGHE.units.0.defeatQuote",
       "speaker": "刘备",
-      "text": "汉室未兴……我怎能倒在这里……",
-      "kind": "defeatQuote"
+      "text": "汉室未兴……我怎能倒在这里……"
     },
     {
       "path": "LEVEL_04_QINGHE.units.1.defeatQuote",
       "speaker": "关羽",
-      "text": "大哥……云长不能再护你周全了。",
-      "kind": "defeatQuote"
+      "text": "大哥……云长不能再护你周全了。"
     },
     {
       "path": "LEVEL_04_QINGHE.units.2.defeatQuote",
       "speaker": "张飞",
-      "text": "可恨！俺还没杀尽这些逆贼……",
-      "kind": "defeatQuote"
+      "text": "可恨！俺还没杀尽这些逆贼……"
     },
     {
       "path": "LEVEL_04_QINGHE.units.3.defeatQuote",
       "speaker": "简雍",
-      "text": "主公……简雍暂且退下……",
-      "kind": "defeatQuote"
+      "text": "主公……简雍暂且退下……"
     },
     {
       "path": "LEVEL_04_QINGHE.units.4.defeatQuote",
       "speaker": "严纲",
-      "text": "主公……严纲无能……",
-      "kind": "defeatQuote"
+      "text": "主公……严纲无能……"
     },
     {
       "path": "LEVEL_04_QINGHE.units.5.defeatQuote",
       "speaker": "麴义",
-      "text": "好家伙……好厉害！",
-      "kind": "defeatQuote"
+      "text": "好家伙……好厉害！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.0.challenge.0.text",
       "speaker": "袁绍",
-      "text": "敌军已经不堪一击。文丑！去取公孙瓒的首级！",
-      "kind": "dialogue"
+      "text": "敌军已经不堪一击。文丑！去取公孙瓒的首级！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.0.challenge.1.text",
       "speaker": "文丑",
-      "text": "我乃文丑，公孙瓒，明年的今天就是你的忌日。",
-      "kind": "dialogue"
+      "text": "我乃文丑，公孙瓒，明年的今天就是你的忌日。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.0.challenge.2.text",
       "speaker": "公孙瓒",
-      "text": "怎么搞的！援军还没有到啊。",
-      "kind": "dialogue"
+      "text": "怎么搞的！援军还没有到啊。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.0.challenge.3.text",
       "speaker": "陈蒋",
-      "text": "主公，这交给我吧。文丑来受死吧！",
-      "kind": "dialogue"
+      "text": "主公，这交给我吧。文丑来受死吧！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.0.challenge.4.text",
       "speaker": "文丑",
-      "text": "嘘，无名小卒，快滚回去吧。",
-      "kind": "dialogue"
+      "text": "嘘，无名小卒，快滚回去吧。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.0.exchange.0.text",
       "speaker": "文丑",
-      "text": "杀……",
-      "kind": "dialogue"
+      "text": "杀……"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.0.exchange.1.text",
       "speaker": "陈蒋",
-      "text": "啊……",
-      "kind": "dialogue"
+      "text": "啊……"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.0.exchange.2.text",
       "speaker": "陈蒋",
-      "text": "太、太厉害了。",
-      "kind": "dialogue"
+      "text": "太、太厉害了。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.0.exchange.3.text",
       "speaker": "文丑",
-      "text": "哈哈哈，怎么样！凭你这点儿本事想赢我！",
-      "kind": "dialogue"
+      "text": "哈哈哈，怎么样！凭你这点儿本事想赢我！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.1.challenge.0.text",
       "speaker": "文丑",
-      "text": "公孙瓒，哪里走！纳命来！",
-      "kind": "dialogue"
+      "text": "公孙瓒，哪里走！纳命来！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.1.challenge.1.text",
       "speaker": "公孙瓒",
-      "text": "看来我命到此休矣！",
-      "kind": "dialogue"
+      "text": "看来我命到此休矣！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.1.challenge.2.text",
       "speaker": "赵云",
-      "text": "等一下，这次我来战你。",
-      "kind": "dialogue"
+      "text": "等一下，这次我来战你。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.1.challenge.3.text",
       "speaker": "文丑",
-      "text": "你是何人？",
-      "kind": "dialogue"
+      "text": "你是何人？"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.1.challenge.4.text",
       "speaker": "文丑",
-      "text": "不知死活的家伙，和公孙瓒一起作我枪下之鬼吧。",
-      "kind": "dialogue"
+      "text": "不知死活的家伙，和公孙瓒一起作我枪下之鬼吧。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.1.exchange.0.text",
       "speaker": "赵云",
-      "text": "呸！！",
-      "kind": "dialogue"
+      "text": "呸！！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.1.exchange.1.text",
       "speaker": "文丑",
-      "text": "哦！杀啊！妈的，好厉害，先撤吧。",
-      "kind": "dialogue"
+      "text": "哦！杀啊！妈的，好厉害，先撤吧。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.1.exchange.2.text",
       "speaker": "公孙瓒",
-      "text": "刚才差一点没了命，真是太感谢你了。请问大名？",
-      "kind": "dialogue"
+      "text": "刚才差一点没了命，真是太感谢你了。请问大名？"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.1.exchange.3.text",
       "speaker": "赵云",
-      "text": "我叫赵云。以前曾跟随袁绍，看透了他既不忠君，也不爱惜百姓。",
-      "kind": "dialogue"
+      "text": "我叫赵云。以前曾跟随袁绍，看透了他既不忠君，也不爱惜百姓。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.1.exchange.4.text",
       "speaker": "公孙瓒",
-      "text": "你能不能帮助我？",
-      "kind": "dialogue"
+      "text": "你能不能帮助我？"
     },
     {
       "path": "LEVEL_05_JIEQIAO.openingDuelSequence.1.exchange.5.text",
       "speaker": "赵云",
-      "text": "好！",
-      "kind": "dialogue"
+      "text": "好！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.intro.0.text",
       "speaker": "赵云",
-      "text": "嗯？公孙瓒，那支军队是？",
-      "kind": "dialogue"
+      "text": "嗯？公孙瓒，那支军队是？"
     },
     {
       "path": "LEVEL_05_JIEQIAO.intro.1.text",
       "speaker": "公孙瓒",
-      "text": "噢，那是平原刘备的军队啊！诸位，刘备的援军到了！",
-      "kind": "dialogue"
+      "text": "噢，那是平原刘备的军队啊！诸位，刘备的援军到了！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.intro.2.text",
       "speaker": "张飞",
-      "text": "大哥，好像赶上了。",
-      "kind": "dialogue"
+      "text": "大哥，好像赶上了。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.intro.3.text",
       "speaker": "刘备",
-      "text": "听说公孙瓒正在打仗，我特地从平原赶来助战。",
-      "kind": "dialogue"
+      "text": "听说公孙瓒正在打仗，我特地从平原赶来助战。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.intro.4.text",
       "speaker": "关羽",
-      "text": "大哥，敌军强大，我们去袭击敌人的粮仓吧。",
-      "kind": "dialogue"
+      "text": "大哥，敌军强大，我们去袭击敌人的粮仓吧。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.intro.5.text",
       "speaker": "沮授",
-      "text": "主公，刘备军来了。",
-      "kind": "dialogue"
+      "text": "主公，刘备军来了。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.intro.6.text",
       "speaker": "袁绍",
-      "text": "哎呀，是那个刘备军吗？",
-      "kind": "dialogue"
+      "text": "哎呀，是那个刘备军吗？"
     },
     {
       "path": "LEVEL_05_JIEQIAO.intro.7.text",
       "speaker": "田丰",
-      "text": "主公，怕什么，不能放过这次机会。",
-      "kind": "dialogue"
+      "text": "主公，怕什么，不能放过这次机会。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.intro.8.text",
       "speaker": "袁绍",
-      "text": "……对了，好，一起杀死他们祭旗！",
-      "kind": "dialogue"
+      "text": "……对了，好，一起杀死他们祭旗！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.duel.challenge.0.text",
       "speaker": "文丑",
-      "text": "刚才因大意受挫，这次不会了，要让你们看看我的厉害。",
-      "kind": "dialogue"
+      "text": "刚才因大意受挫，这次不会了，要让你们看看我的厉害。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.duel.challenge.1.text",
       "speaker": "张飞",
-      "text": "喂，还有没有稍微有点骨气的？唉，我跟你玩玩吧。",
-      "kind": "dialogue"
+      "text": "喂，还有没有稍微有点骨气的？唉，我跟你玩玩吧。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.duel.exchange.0.text",
       "speaker": "张飞",
-      "text": "怎么如此不中用啊。没意思。",
-      "kind": "dialogue"
+      "text": "怎么如此不中用啊。没意思。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.duel.exchange.1.text",
       "speaker": "文丑",
-      "text": "不，不应该这么不争气。",
-      "kind": "dialogue"
+      "text": "不，不应该这么不争气。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.duel.exchange.2.text",
       "speaker": "张飞",
-      "text": "你回去好啦，懒得和你交手。",
-      "kind": "dialogue"
+      "text": "你回去好啦，懒得和你交手。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.duel.exchange.3.text",
       "speaker": "文丑",
-      "text": "你这个家伙！不要侮辱人！",
-      "kind": "dialogue"
+      "text": "你这个家伙！不要侮辱人！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.duel.exchange.4.text",
       "speaker": "文丑",
-      "text": "哈哈，怎、怎么样……",
-      "kind": "dialogue"
+      "text": "哈哈，怎、怎么样……"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.duel.exchange.5.text",
       "speaker": "张飞",
-      "text": "……你惹恼了我，别走！",
-      "kind": "dialogue"
+      "text": "……你惹恼了我，别走！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.duel.exchange.6.text",
       "speaker": "文丑",
-      "text": "噢噢！刚才败了，这次也败了。",
-      "kind": "dialogue"
+      "text": "噢噢！刚才败了，这次也败了。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.duel.levelUp.text",
       "speaker": "军报",
-      "text": "张飞等级上升了！",
-      "kind": "dialogue"
+      "text": "张飞等级上升了！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.duel.confirmation.text",
       "speaker": "刘备",
-      "text": "翼德取胜，继续向袁绍本阵推进。",
-      "kind": "dialogue"
+      "text": "翼德取胜，继续向袁绍本阵推进。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.duel.occupation.text",
       "speaker": "军报",
-      "text": "文丑败退，袁绍军前锋动摇。",
-      "kind": "dialogue"
+      "text": "文丑败退，袁绍军前锋动摇。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.normalVictory.0.text",
       "speaker": "袁绍",
-      "text": "唉，刘备这个混账，你再晚来一步我就可以杀死公孙瓒了……妈的，我不会善罢干休！公孙瓒啊，败军之恨，总有一天要报的。全军撤退！",
-      "kind": "dialogue"
+      "text": "唉，刘备这个混账，你再晚来一步我就可以杀死公孙瓒了……妈的，我不会善罢干休！公孙瓒啊，败军之恨，总有一天要报的。全军撤退！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.normalVictory.1.text",
       "speaker": "军报",
-      "text": "界桥之战，公孙瓒取得了胜利。",
-      "kind": "dialogue"
+      "text": "界桥之战，公孙瓒取得了胜利。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.alternateVictory.0.text",
       "speaker": "刘备",
-      "text": "好！我们夺取了袁绍的粮仓。",
-      "kind": "dialogue"
+      "text": "好！我们夺取了袁绍的粮仓。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.alternateVictory.1.text",
       "speaker": "关羽",
-      "text": "噢，兄长。太棒了。",
-      "kind": "dialogue"
+      "text": "噢，兄长。太棒了。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.alternateVictory.2.text",
       "speaker": "张飞",
-      "text": "这样袁绍军就没有粮食了。",
-      "kind": "dialogue"
+      "text": "这样袁绍军就没有粮食了。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.alternateVictory.3.text",
       "speaker": "简雍",
-      "text": "这仗我们赢定了。",
-      "kind": "dialogue"
+      "text": "这仗我们赢定了。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.postVictory.0.text",
       "speaker": "旁白",
-      "text": "刘备军和赵云的奋战，使公孙瓒在界桥取得了胜利。",
-      "kind": "dialogue"
+      "text": "刘备军和赵云的奋战，使公孙瓒在界桥取得了胜利。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.events.postVictory.1.text",
       "speaker": "旁白",
-      "text": "持续数月的交战使双方将士都已疲惫。董卓借天子之名出面调停，袁绍与公孙瓒各自罢兵，界桥之战就此结束。",
-      "kind": "dialogue"
+      "text": "持续数月的交战使双方将士都已疲惫。董卓借天子之名出面调停，袁绍与公孙瓒各自罢兵，界桥之战就此结束。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.0.defeatQuote",
       "speaker": "刘备",
-      "text": "汉室未兴……我怎能倒在这里……",
-      "kind": "defeatQuote"
+      "text": "汉室未兴……我怎能倒在这里……"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.1.defeatQuote",
       "speaker": "关羽",
-      "text": "大哥……云长不能再护你周全了。",
-      "kind": "defeatQuote"
+      "text": "大哥……云长不能再护你周全了。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.2.defeatQuote",
       "speaker": "张飞",
-      "text": "可恨！俺还没杀尽这些逆贼……",
-      "kind": "defeatQuote"
+      "text": "可恨！俺还没杀尽这些逆贼……"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.3.defeatQuote",
       "speaker": "简雍",
-      "text": "主公……简雍暂且退下……",
-      "kind": "defeatQuote"
+      "text": "主公……简雍暂且退下……"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.4.defeatQuote",
       "speaker": "公孙瓒",
-      "text": "北平将士……随我暂退！",
-      "kind": "defeatQuote"
+      "text": "北平将士……随我暂退！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.5.defeatQuote",
       "speaker": "周比",
-      "text": "周比力尽……先退！",
-      "kind": "defeatQuote"
+      "text": "周比力尽……先退！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.6.defeatQuote",
       "speaker": "陈蒋",
-      "text": "太、太厉害了……",
-      "kind": "defeatQuote"
+      "text": "太、太厉害了……"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.7.defeatQuote",
       "speaker": "赵云",
-      "text": "子龙尚能再战……暂退！",
-      "kind": "defeatQuote"
+      "text": "子龙尚能再战……暂退！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.8.defeatQuote",
       "speaker": "袁绍",
-      "text": "公孙瓒，我不会认输的！",
-      "kind": "defeatQuote"
+      "text": "公孙瓒，我不会认输的！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.9.defeatQuote",
       "speaker": "田丰",
-      "text": "主公，胜负已分……先撤吧。",
-      "kind": "defeatQuote"
+      "text": "主公，胜负已分……先撤吧。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.10.defeatQuote",
       "speaker": "文丑",
-      "text": "噢！这次也败了……",
-      "kind": "defeatQuote"
+      "text": "噢！这次也败了……"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.11.defeatQuote",
       "speaker": "陈琳",
-      "text": "军资难保……陈琳先退！",
-      "kind": "defeatQuote"
+      "text": "军资难保……陈琳先退！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.12.defeatQuote",
       "speaker": "郭图",
-      "text": "粮仓有失，战局不利……撤！",
-      "kind": "defeatQuote"
+      "text": "粮仓有失，战局不利……撤！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.17.defeatQuote",
       "speaker": "沮授",
-      "text": "界桥阵势已破……沮授无颜见主公。",
-      "kind": "defeatQuote"
+      "text": "界桥阵势已破……沮授无颜见主公。"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.18.defeatQuote",
       "speaker": "焦触",
-      "text": "敌势已近本阵……焦触先退！",
-      "kind": "defeatQuote"
+      "text": "敌势已近本阵……焦触先退！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.19.defeatQuote",
       "speaker": "张郃",
-      "text": "界桥再败……张郃惭愧！",
-      "kind": "defeatQuote"
+      "text": "界桥再败……张郃惭愧！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.20.defeatQuote",
       "speaker": "颜良",
-      "text": "可恶！颜良改日再战！",
-      "kind": "defeatQuote"
+      "text": "可恶！颜良改日再战！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.21.defeatQuote",
       "speaker": "审配",
-      "text": "此战失算……撤回袁公身边！",
-      "kind": "defeatQuote"
+      "text": "此战失算……撤回袁公身边！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.22.defeatQuote",
       "speaker": "逢纪",
-      "text": "又是刘备军……撤！",
-      "kind": "defeatQuote"
+      "text": "又是刘备军……撤！"
     },
     {
       "path": "LEVEL_05_JIEQIAO.units.23.defeatQuote",
       "speaker": "高览",
-      "text": "刘备军势盛……高览先退！",
-      "kind": "defeatQuote"
+      "text": "刘备军势盛……高览先退！"
     },
     {
       "path": "LEVEL_06_BEIHAI.intro.0.text",
       "speaker": "管亥",
-      "text": "哈哈哈．这个城就等于到手了．混蛋们，把城里的金银财宝统统给我拿来．",
-      "kind": "dialogue"
+      "text": "哈哈哈．这个城就等于到手了．混蛋们，把城里的金银财宝统统给我拿来．"
     },
     {
       "path": "LEVEL_06_BEIHAI.areaEvents.0.dialogue.0.text",
       "speaker": "太史慈",
-      "text": "主公，不知道来的是什么人，但我们现在应该杀出去配合他们．",
-      "kind": "dialogue"
+      "text": "主公，不知道来的是什么人，但我们现在应该杀出去配合他们．"
     },
     {
       "path": "LEVEL_06_BEIHAI.areaEvents.0.dialogue.1.text",
       "speaker": "军报",
-      "text": "城门打开，孔融军杀了出去！",
-      "kind": "dialogue"
+      "text": "城门打开，孔融军杀了出去！"
     },
     {
       "path": "LEVEL_06_BEIHAI.events.duel.challenge.0.text",
       "speaker": "赵云",
-      "text": "那是山贼的大将，在刘备面前也显示一下我的本领．",
-      "kind": "dialogue"
+      "text": "那是山贼的大将，在刘备面前也显示一下我的本领．"
     },
     {
       "path": "LEVEL_06_BEIHAI.events.duel.challenge.1.text",
       "speaker": "管亥",
-      "text": "我是管亥，让你去阴曹地府……",
-      "kind": "dialogue"
+      "text": "我是管亥，让你去阴曹地府……"
     },
     {
       "path": "LEVEL_06_BEIHAI.events.duel.exchange.0.text",
       "speaker": "管亥",
-      "text": "啊！",
-      "kind": "dialogue"
+      "text": "啊！"
     },
     {
       "path": "LEVEL_06_BEIHAI.events.duel.exchange.1.text",
       "speaker": "赵云",
-      "text": "岂能宽容你这坑害百姓的草寇．",
-      "kind": "dialogue"
+      "text": "岂能宽容你这坑害百姓的草寇．"
     },
     {
       "path": "LEVEL_06_BEIHAI.events.duel.levelUp.text",
       "speaker": "军报",
-      "text": "赵云等级上升了！",
-      "kind": "dialogue"
+      "text": "赵云等级上升了！"
     },
     {
       "path": "LEVEL_06_BEIHAI.events.duel.confirmation.text",
       "speaker": "军报",
-      "text": "赵云杀了管亥，刘备军打败了草寇．",
-      "kind": "dialogue"
+      "text": "赵云杀了管亥，刘备军打败了草寇．"
     },
     {
       "path": "LEVEL_06_BEIHAI.events.duel.occupation.text",
       "speaker": "军报",
-      "text": "北海之围已解。",
-      "kind": "dialogue"
+      "text": "北海之围已解。"
     },
     {
       "path": "LEVEL_06_BEIHAI.events.normalVictory.0.text",
       "speaker": "管亥",
-      "text": "倒霉！你们再晚一点来，这个城就成我的了．",
-      "kind": "dialogue"
+      "text": "倒霉！你们再晚一点来，这个城就成我的了．"
     },
     {
       "path": "LEVEL_06_BEIHAI.events.normalVictory.1.text",
       "speaker": "军报",
-      "text": "刘备军打败了草寇．",
-      "kind": "dialogue"
+      "text": "刘备军打败了草寇．"
     },
     {
       "path": "LEVEL_06_BEIHAI.events.postVictory.0.text",
       "speaker": "太史慈",
-      "text": "虽素不相识，但深感大德，能否请教尊姓大名．",
-      "kind": "dialogue"
+      "text": "虽素不相识，但深感大德，能否请教尊姓大名．"
     },
     {
       "path": "LEVEL_06_BEIHAI.events.postVictory.1.text",
       "speaker": "刘备",
-      "text": "在下平原刘备。北海百姓无恙，便是此战最大的收获。",
-      "kind": "dialogue"
+      "text": "在下平原刘备。北海百姓无恙，便是此战最大的收获。"
     },
     {
       "path": "LEVEL_06_BEIHAI.units.0.defeatQuote",
       "speaker": "刘备",
-      "text": "北海尚未解围……我岂能倒在这里……",
-      "kind": "defeatQuote"
+      "text": "北海尚未解围……我岂能倒在这里……"
     },
     {
       "path": "LEVEL_06_BEIHAI.units.1.defeatQuote",
       "speaker": "关羽",
-      "text": "兄长……云长暂且退下。",
-      "kind": "defeatQuote"
+      "text": "兄长……云长暂且退下。"
     },
     {
       "path": "LEVEL_06_BEIHAI.units.2.defeatQuote",
       "speaker": "张飞",
-      "text": "可恶！俺也去整顿兵马再来！",
-      "kind": "defeatQuote"
+      "text": "可恶！俺也去整顿兵马再来！"
     },
     {
       "path": "LEVEL_06_BEIHAI.units.3.defeatQuote",
       "speaker": "简雍",
-      "text": "主公，简雍先退一步……",
-      "kind": "defeatQuote"
+      "text": "主公，简雍先退一步……"
     },
     {
       "path": "LEVEL_06_BEIHAI.units.4.defeatQuote",
       "speaker": "赵云",
-      "text": "主公，子龙暂且退下！",
-      "kind": "defeatQuote"
+      "text": "主公，子龙暂且退下！"
     },
     {
       "path": "LEVEL_06_BEIHAI.units.5.defeatQuote",
       "speaker": "孔融",
-      "text": "北海百姓……孔融有负所托。",
-      "kind": "defeatQuote"
+      "text": "北海百姓……孔融有负所托。"
     },
     {
       "path": "LEVEL_06_BEIHAI.units.6.defeatQuote",
       "speaker": "太史慈",
-      "text": "未能保住北海……太史慈惭愧！",
-      "kind": "defeatQuote"
+      "text": "未能保住北海……太史慈惭愧！"
     },
     {
       "path": "LEVEL_06_BEIHAI.units.7.defeatQuote",
       "speaker": "孟肃",
-      "text": "主公，孟肃守不住了……",
-      "kind": "defeatQuote"
+      "text": "主公，孟肃守不住了……"
     },
     {
       "path": "LEVEL_06_BEIHAI.units.8.defeatQuote",
       "speaker": "管亥",
-      "text": "倒霉！你们再晚一点来，这个城就成我的了．",
-      "kind": "defeatQuote"
+      "text": "倒霉！你们再晚一点来，这个城就成我的了．"
     },
     {
       "path": "LEVEL_07_XUZHOU.intro.0.text",
       "speaker": "于禁",
-      "text": "说什么？刘备攻过来了？有多少兵？……不好。一定设法等夏侯渊的到来。",
-      "kind": "dialogue"
+      "text": "说什么？刘备攻过来了？有多少兵？……不好。一定设法等夏侯渊的到来。"
     },
     {
       "path": "LEVEL_07_XUZHOU.timedEvents.0.dialogue.0.text",
       "speaker": "太史慈",
-      "text": "刘备，遵孔融之命，太史慈前来助你。",
-      "kind": "dialogue"
+      "text": "刘备，遵孔融之命，太史慈前来助你。"
     },
     {
       "path": "LEVEL_07_XUZHOU.timedEvents.0.dialogue.1.text",
       "speaker": "军报",
-      "text": "太史慈前来支援！",
-      "kind": "dialogue"
+      "text": "太史慈前来支援！"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.duel.challenge.0.text",
       "speaker": "关羽",
-      "text": "我就是关羽关云长，有武将的话就出来。",
-      "kind": "dialogue"
+      "text": "我就是关羽关云长，有武将的话就出来。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.duel.challenge.1.text",
       "speaker": "于禁",
-      "text": "曹军于禁在此，休得猖狂！",
-      "kind": "dialogue"
+      "text": "曹军于禁在此，休得猖狂！"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.duel.exchange.0.text",
       "speaker": "关羽",
-      "text": "不愧是曹操的手下大将。只是凭你的武艺胜不了我。",
-      "kind": "dialogue"
+      "text": "不愧是曹操的手下大将。只是凭你的武艺胜不了我。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.duel.exchange.1.text",
       "speaker": "于禁",
-      "text": "关云长果然名不虚传……于禁暂且退兵！",
-      "kind": "dialogue"
+      "text": "关云长果然名不虚传……于禁暂且退兵！"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.duel.levelUp.text",
       "speaker": "军报",
-      "text": "关羽的等级上升了！",
-      "kind": "dialogue"
+      "text": "关羽的等级上升了！"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.duel.confirmation.text",
       "speaker": "军报",
-      "text": "于禁败退，战斗仍在继续。",
-      "kind": "dialogue"
+      "text": "于禁败退，战斗仍在继续。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.duel.occupation.text",
       "speaker": "军报",
-      "text": "刘备军进入徐州城。",
-      "kind": "dialogue"
+      "text": "刘备军进入徐州城。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.normalVictory.0.text",
       "speaker": "张飞",
-      "text": "太棒了，大哥。",
-      "kind": "dialogue"
+      "text": "太棒了，大哥。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.normalVictory.1.text",
       "speaker": "军报",
-      "text": "刘备军打败了曹操军，进了徐州城。",
-      "kind": "dialogue"
+      "text": "刘备军打败了曹操军，进了徐州城。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.alternateVictory.0.text",
       "speaker": "陶谦",
-      "text": "好，放他进徐州城。大家不要打硬仗，退进城去。",
-      "kind": "dialogue"
+      "text": "好，放他进徐州城。大家不要打硬仗，退进城去。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.alternateVictory.1.text",
       "speaker": "军报",
-      "text": "刘备军退进了徐州城内。",
-      "kind": "dialogue"
+      "text": "刘备军退进了徐州城内。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.postVictory.0.text",
       "speaker": "军报",
-      "text": "曹军仍在徐州境内集结。接下来必须决定迎战或议和。",
-      "kind": "dialogue"
+      "text": "曹军仍在徐州境内集结。接下来必须决定迎战或议和。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.postBattleStory.0.text",
       "speaker": "曹操",
-      "text": "刘备竟已赶到徐州。传令各军暂退整顿，再图进取。",
-      "kind": "dialogue"
+      "text": "刘备竟已赶到徐州。传令各军暂退整顿，再图进取。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.postBattleStory.1.text",
       "speaker": "郭嘉",
-      "text": "刘备得徐州人心，又有陶谦接应，此时强攻未必有利。",
-      "kind": "dialogue"
+      "text": "刘备得徐州人心，又有陶谦接应，此时强攻未必有利。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.postBattleStory.2.text",
       "speaker": "陶谦",
-      "text": "玄德公冒险来援，徐州上下感激不尽。",
-      "kind": "dialogue"
+      "text": "玄德公冒险来援，徐州上下感激不尽。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.postBattleStory.3.text",
       "speaker": "刘备",
-      "text": "曹军并未远去。应当早定方略，免使百姓再受兵灾。",
-      "kind": "dialogue"
+      "text": "曹军并未远去。应当早定方略，免使百姓再受兵灾。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.postBattleStory.4.text",
       "speaker": "关羽",
-      "text": "兄长若要迎战，云长愿为先锋。",
-      "kind": "dialogue"
+      "text": "兄长若要迎战，云长愿为先锋。"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.postBattleStory.5.text",
       "speaker": "张飞",
-      "text": "若要讲和，俺也去曹营走一遭！",
-      "kind": "dialogue"
+      "text": "若要讲和，俺也去曹营走一遭！"
     },
     {
       "path": "LEVEL_07_XUZHOU.events.postBattleStory.6.text",
       "speaker": "军报",
-      "text": "请选择下一步行动。",
-      "kind": "dialogue"
+      "text": "请选择下一步行动。"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.0.defeatQuote",
       "speaker": "刘备",
-      "text": "徐州百姓正等着我们……我不能倒下！",
-      "kind": "defeatQuote"
+      "text": "徐州百姓正等着我们……我不能倒下！"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.1.defeatQuote",
       "speaker": "关羽",
-      "text": "兄长，云长暂且退下。",
-      "kind": "defeatQuote"
+      "text": "兄长，云长暂且退下。"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.2.defeatQuote",
       "speaker": "张飞",
-      "text": "可恶！俺也去整顿兵马再来！",
-      "kind": "defeatQuote"
+      "text": "可恶！俺也去整顿兵马再来！"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.3.defeatQuote",
       "speaker": "简雍",
-      "text": "主公，简雍先退一步……",
-      "kind": "defeatQuote"
+      "text": "主公，简雍先退一步……"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.4.defeatQuote",
       "speaker": "赵云",
-      "text": "主公，子龙暂且退下！",
-      "kind": "defeatQuote"
+      "text": "主公，子龙暂且退下！"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.5.defeatQuote",
       "speaker": "陶谦",
-      "text": "徐州百姓……老夫有负所托。",
-      "kind": "defeatQuote"
+      "text": "徐州百姓……老夫有负所托。"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.6.defeatQuote",
       "speaker": "糜芳",
-      "text": "主公，糜芳守不住了！",
-      "kind": "defeatQuote"
+      "text": "主公，糜芳守不住了！"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.7.defeatQuote",
       "speaker": "孙乾",
-      "text": "徐州危急……孙乾先退一步。",
-      "kind": "defeatQuote"
+      "text": "徐州危急……孙乾先退一步。"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.8.defeatQuote",
       "speaker": "太史慈",
-      "text": "援军未至徐州……太史慈岂能倒下！",
-      "kind": "defeatQuote"
+      "text": "援军未至徐州……太史慈岂能倒下！"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.9.defeatQuote",
       "speaker": "于禁",
-      "text": "关云长果然名不虚传……于禁暂且退兵！",
-      "kind": "defeatQuote"
+      "text": "关云长果然名不虚传……于禁暂且退兵！"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.10.defeatQuote",
       "speaker": "乐进",
-      "text": "敌势正盛，乐进先退！",
-      "kind": "defeatQuote"
+      "text": "敌势正盛，乐进先退！"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.11.defeatQuote",
       "speaker": "李典",
-      "text": "徐州援军已至……李典暂退！",
-      "kind": "defeatQuote"
+      "text": "徐州援军已至……李典暂退！"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.12.defeatQuote",
       "speaker": "郭嘉",
-      "text": "此势不利，奉孝先退一步。",
-      "kind": "defeatQuote"
+      "text": "此势不利，奉孝先退一步。"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.13.defeatQuote",
       "speaker": "曹洪",
-      "text": "可恶，竟让刘备军闯了过去！",
-      "kind": "defeatQuote"
+      "text": "可恶，竟让刘备军闯了过去！"
     },
     {
       "path": "LEVEL_07_XUZHOU.units.14.defeatQuote",
       "speaker": "夏侯渊",
-      "text": "援兵未能合围……撤！",
-      "kind": "defeatQuote"
+      "text": "援兵未能合围……撤！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.intro.0.text",
       "speaker": "曹操",
-      "text": "刘备小儿，与我仇敌为友，我绝不宽恕你。杀尽刘备军！",
-      "kind": "dialogue"
+      "text": "刘备小儿，与我仇敌为友，我绝不宽恕你。杀尽刘备军！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.timedEvents.0.dialogue.0.text",
       "speaker": "曹操",
-      "text": "哼，这种战斗力还能打仗吗？再狠狠地给我杀！",
-      "kind": "dialogue"
+      "text": "哼，这种战斗力还能打仗吗？再狠狠地给我杀！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.timedEvents.1.dialogue.0.text",
       "speaker": "曹操",
-      "text": "不陪你们玩了，众将士，全面出击！",
-      "kind": "dialogue"
+      "text": "不陪你们玩了，众将士，全面出击！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.timedEvents.2.dialogue.0.text",
       "speaker": "曹操",
-      "text": "什么！陈留遭吕布偷袭！坏了，忘了吕布的事。唉，没办法，全军撤退！陶谦、刘备，暂且留着你们的命！",
-      "kind": "dialogue"
+      "text": "什么！陈留遭吕布偷袭！坏了，忘了吕布的事。唉，没办法，全军撤退！陶谦、刘备，暂且留着你们的命！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.duel.challenge.0.text",
       "speaker": "张飞",
-      "text": "出来一战吧！废话少说！有胆子的出来！",
-      "kind": "dialogue"
+      "text": "出来一战吧！废话少说！有胆子的出来！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.duel.challenge.1.text",
       "speaker": "夏侯渊",
-      "text": "夏侯渊在此，休得猖狂！",
-      "kind": "dialogue"
+      "text": "夏侯渊在此，休得猖狂！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.duel.exchange.0.text",
       "speaker": "张飞",
-      "text": "看枪！",
-      "kind": "dialogue"
+      "text": "看枪！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.duel.exchange.1.text",
       "speaker": "夏侯渊",
-      "text": "唉，好厉害，胜不了他。",
-      "kind": "dialogue"
+      "text": "唉，好厉害，胜不了他。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.duel.exchange.2.text",
       "speaker": "张飞",
-      "text": "要逃吗？太狡猾了，干脆认输吧！",
-      "kind": "dialogue"
+      "text": "要逃吗？太狡猾了，干脆认输吧！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.duel.levelUp.text",
       "speaker": "军报",
-      "text": "张飞的等级上升了！",
-      "kind": "dialogue"
+      "text": "张飞的等级上升了！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.duel.confirmation.text",
       "speaker": "军报",
-      "text": "夏侯渊败退，战斗仍在继续。",
-      "kind": "dialogue"
+      "text": "夏侯渊败退，战斗仍在继续。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.duel.occupation.text",
       "speaker": "军报",
-      "text": "曹操军撤退了。",
-      "kind": "dialogue"
+      "text": "曹操军撤退了。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.normalVictory.0.text",
       "speaker": "曹操",
-      "text": "混蛋！再组织进攻！什么，陈留遭吕布偷袭？全军撤退！",
-      "kind": "dialogue"
+      "text": "混蛋！再组织进攻！什么，陈留遭吕布偷袭？全军撤退！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.normalVictory.1.text",
       "speaker": "军报",
-      "text": "曹操军撤退了。",
-      "kind": "dialogue"
+      "text": "曹操军撤退了。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.withdrawalVictory.0.text",
       "speaker": "军报",
-      "text": "曹操军因陈留遇袭撤退了。",
-      "kind": "dialogue"
+      "text": "曹操军因陈留遇袭撤退了。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.postVictory.0.text",
       "speaker": "张飞",
-      "text": "咦？曹操怎么突然逃跑了？",
-      "kind": "dialogue"
+      "text": "咦？曹操怎么突然逃跑了？"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.postBattleStory.0.text",
       "speaker": "陶谦",
-      "text": "刘备，这次你实在帮了大忙。",
-      "kind": "dialogue"
+      "text": "刘备，这次你实在帮了大忙。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.postBattleStory.1.text",
       "speaker": "刘备",
-      "text": "不，我们什么忙也没帮，只是曹操折回去了。",
-      "kind": "dialogue"
+      "text": "不，我们什么忙也没帮，只是曹操折回去了。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.postBattleStory.2.text",
       "speaker": "陶谦",
-      "text": "谢谢，我想把小沛托给你治理。",
-      "kind": "dialogue"
+      "text": "谢谢，我想把小沛托给你治理。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.postBattleStory.3.text",
       "speaker": "孙乾",
-      "text": "在下愿随刘使君前往小沛。",
-      "kind": "dialogue"
+      "text": "在下愿随刘使君前往小沛。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.events.postBattleStory.4.text",
       "speaker": "军报",
-      "text": "孙乾正式加入刘备军。",
-      "kind": "dialogue"
+      "text": "孙乾正式加入刘备军。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.0.defeatQuote",
       "speaker": "刘备",
-      "text": "曹军未退，我岂能倒下！",
-      "kind": "defeatQuote"
+      "text": "曹军未退，我岂能倒下！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.1.defeatQuote",
       "speaker": "关羽",
-      "text": "兄长，云长暂退。",
-      "kind": "defeatQuote"
+      "text": "兄长，云长暂退。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.2.defeatQuote",
       "speaker": "张飞",
-      "text": "可恶！俺也去整顿兵马再来！",
-      "kind": "defeatQuote"
+      "text": "可恶！俺也去整顿兵马再来！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.3.defeatQuote",
       "speaker": "简雍",
-      "text": "主公，简雍先退一步……",
-      "kind": "defeatQuote"
+      "text": "主公，简雍先退一步……"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.4.defeatQuote",
       "speaker": "赵云",
-      "text": "主公，子龙暂且退下！",
-      "kind": "defeatQuote"
+      "text": "主公，子龙暂且退下！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.5.defeatQuote",
       "speaker": "陶谦",
-      "text": "徐州百姓……老夫有负所托。",
-      "kind": "defeatQuote"
+      "text": "徐州百姓……老夫有负所托。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.6.defeatQuote",
       "speaker": "孙乾",
-      "text": "小沛未定……孙乾先退一步。",
-      "kind": "defeatQuote"
+      "text": "小沛未定……孙乾先退一步。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.7.defeatQuote",
       "speaker": "糜芳",
-      "text": "主公，糜芳守不住了！",
-      "kind": "defeatQuote"
+      "text": "主公，糜芳守不住了！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.8.defeatQuote",
       "speaker": "曹操",
-      "text": "陈留危急……今日暂且放过刘备！",
-      "kind": "defeatQuote"
+      "text": "陈留危急……今日暂且放过刘备！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.9.defeatQuote",
       "speaker": "荀彧",
-      "text": "主公，此地不宜久留。",
-      "kind": "defeatQuote"
+      "text": "主公，此地不宜久留。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.10.defeatQuote",
       "speaker": "郭嘉",
-      "text": "此势不利，奉孝先退一步。",
-      "kind": "defeatQuote"
+      "text": "此势不利，奉孝先退一步。"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.11.defeatQuote",
       "speaker": "夏侯惇",
-      "text": "孟德，我先退下！",
-      "kind": "defeatQuote"
+      "text": "孟德，我先退下！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.12.defeatQuote",
       "speaker": "夏侯渊",
-      "text": "这张飞好生厉害……暂且退兵！",
-      "kind": "defeatQuote"
+      "text": "这张飞好生厉害……暂且退兵！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.13.defeatQuote",
       "speaker": "李典",
-      "text": "敌军顽强，李典暂退！",
-      "kind": "defeatQuote"
+      "text": "敌军顽强，李典暂退！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.14.defeatQuote",
       "speaker": "乐进",
-      "text": "乐进先退，来日再战！",
-      "kind": "defeatQuote"
+      "text": "乐进先退，来日再战！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.15.defeatQuote",
       "speaker": "于禁",
-      "text": "于禁暂退！",
-      "kind": "defeatQuote"
+      "text": "于禁暂退！"
     },
     {
       "path": "LEVEL_08_XIAOPEI.units.16.defeatQuote",
       "speaker": "曹洪",
-      "text": "可恶，竟被刘备军压住了！",
-      "kind": "defeatQuote"
+      "text": "可恶，竟被刘备军压住了！"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.intro.0.text",
+      "speaker": "关羽",
+      "text": "众军列队！泰山道路险峻，切莫各自冒进。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.intro.1.text",
+      "speaker": "李明",
+      "text": "来者可是平原相刘备？此人素有仁名……我等虽落草为寇，也不愿与百姓为敌。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.timedEvents.0.dialogue.0.text",
+      "speaker": "李明",
+      "text": "官军已经入谷。众兄弟守住山道，莫伤无辜百姓！"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.timedEvents.1.dialogue.0.text",
+      "speaker": "孙乾",
+      "text": "主公，据乡民所言，泰山贼首李明竟是一名女子。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.timedEvents.1.dialogue.1.text",
+      "speaker": "张飞",
+      "text": "女子又如何？若肯归顺大哥，俺便不与她为难！"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.areaEvents.0.dialogue.0.text",
+      "speaker": "刘备",
+      "text": "李首领，我军此来只为安民，并非滥杀。你若愿放下兵刃，我愿保全山中众人。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.areaEvents.0.dialogue.1.text",
+      "speaker": "李明",
+      "text": "久闻玄德公仁义，今日一见，果然不虚。李明愿率部归顺，只求使君善待众兄弟。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.areaEvents.0.dialogue.2.text",
+      "speaker": "刘备",
+      "text": "只要诚心归附，便都是我军袍泽。往日之事，不再追究。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.areaEvents.0.dialogue.3.text",
+      "speaker": "军报",
+      "text": "李明加入刘备军；刘备等级上升一级。战斗继续，尚须平定拒降贼众。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.events.normalVictory.0.text",
+      "speaker": "军报",
+      "text": "泰山贼众已经平定，山道重归安宁。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.events.normalOccupation.text",
+      "speaker": "刘备",
+      "text": "贼众既平，当速令军士安抚乡民，不可扰害一人。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.events.postBattleStory.0.text",
+      "speaker": "乡民",
+      "text": "多谢刘使君平定泰山！这是乡里凑出的五百金，请收下作军资。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.events.postBattleStory.1.text",
+      "speaker": "刘备",
+      "text": "百姓方经兵乱，本不该收。既是众人心意，便尽数用来赈济伤者。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.events.postBattleStory.2.text",
+      "speaker": "史官",
+      "text": "刘备回到小沛不久，陶谦病势转沉，将徐州托付于刘备，随后病逝。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.events.postBattleStory.3.text",
+      "speaker": "糜竺",
+      "text": "陶使君遗命在此。糜竺、糜芳愿随主公，共保徐州百姓。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.events.postBattleStory.4.text",
+      "speaker": "军报",
+      "text": "糜竺、糜芳加入刘备军。夏丘、彭城两路本次暂缓，剧情直接推进至淮南。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.events.postBattleStory.5.text",
+      "speaker": "吕布",
+      "text": "玄德公，吕布兵败无归，愿暂借小沛容身。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.events.postBattleStory.6.text",
+      "speaker": "刘备",
+      "text": "将军既来相投，便请安心驻扎。只是军民相处，务须秋毫无犯。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.events.postBattleStory.7.text",
+      "speaker": "使者",
+      "text": "天子诏命：袁术僭越不臣，着刘备会同诸军，进兵淮南。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.events.postBattleStory.8.text",
+      "speaker": "关羽",
+      "text": "兄长，诏命既到，当整顿军马，准备南下。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.units.0.defeatQuote",
+      "speaker": "刘备",
+      "text": "泰山未平，我岂能倒下！"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.units.1.defeatQuote",
+      "speaker": "关羽",
+      "text": "兄长，云长暂退。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.units.2.defeatQuote",
+      "speaker": "张飞",
+      "text": "山路难行，俺也去整顿兵马再来！"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.units.3.defeatQuote",
+      "speaker": "简雍",
+      "text": "主公，简雍先退一步……"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.units.4.defeatQuote",
+      "speaker": "赵云",
+      "text": "主公，子龙暂且退下！"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.units.5.defeatQuote",
+      "speaker": "孙乾",
+      "text": "泰山尚未平定……孙乾先退一步。"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.units.6.defeatQuote",
+      "speaker": "藩宫",
+      "text": "山贼势众，藩宫暂且退下！"
+    },
+    {
+      "path": "LEVEL_09_TAISHAN.units.7.defeatQuote",
+      "speaker": "李明",
+      "text": "众兄弟，是我李明连累了你们……"
     },
     {
       "path": "PRE_BATTLE_STORY.0.text",
       "speaker": "史官",
-      "text": "话说东汉末年，朝纲日坏，四方豪强各据一方，百姓流离，天下已现大乱之象。",
-      "kind": "dialogue"
+      "text": "话说东汉末年，朝纲日坏，四方豪强各据一方，百姓流离，天下已现大乱之象。"
     },
     {
       "path": "PRE_BATTLE_STORY.1.text",
       "speaker": "史官",
-      "text": "西凉刺史董卓乘乱引兵入洛阳，废少帝，立陈留王，独揽朝政。满朝文武虽恨其暴虐，却畏他兵强，无人敢与争锋。",
-      "kind": "dialogue"
+      "text": "西凉刺史董卓乘乱引兵入洛阳，废少帝，立陈留王，独揽朝政。满朝文武虽恨其暴虐，却畏他兵强，无人敢与争锋。"
     },
     {
       "path": "PRE_BATTLE_STORY.2.text",
       "speaker": "董卓",
-      "text": "陛下不必忧心，朝中诸事，尽管交与臣来料理。",
-      "kind": "dialogue"
+      "text": "陛下不必忧心，朝中诸事，尽管交与臣来料理。"
     },
     {
       "path": "PRE_BATTLE_STORY.3.text",
       "speaker": "献帝",
-      "text": "……",
-      "kind": "dialogue"
+      "text": "……"
     },
     {
       "path": "PRE_BATTLE_STORY.4.text",
       "speaker": "董卓",
-      "text": "若无他事，臣便告退。",
-      "kind": "dialogue"
+      "text": "若无他事，臣便告退。"
     },
     {
       "path": "PRE_BATTLE_STORY.5.text",
       "speaker": "董卓",
-      "text": "哼！天子不过是个摆设，这天下，终究由我说了算！哈哈哈哈！",
-      "kind": "dialogue"
+      "text": "哼！天子不过是个摆设，这天下，终究由我说了算！哈哈哈哈！"
     },
     {
       "path": "PRE_BATTLE_STORY.6.text",
       "speaker": "李儒",
-      "text": "陛下，董相国兵权在握。为社稷计，还请暂且忍耐，莫与他正面相争。",
-      "kind": "dialogue"
+      "text": "陛下，董相国兵权在握。为社稷计，还请暂且忍耐，莫与他正面相争。"
     },
     {
       "path": "PRE_BATTLE_STORY.7.text",
       "speaker": "献帝",
-      "text": "……董卓欺君罔上，朕岂能容他！奈何贼兵势大，满朝竟无人可制。莫非我大汉四百年基业，当真要断送在此贼手中？",
-      "kind": "dialogue"
+      "text": "……董卓欺君罔上，朕岂能容他！奈何贼兵势大，满朝竟无人可制。莫非我大汉四百年基业，当真要断送在此贼手中？"
     },
     {
       "path": "PRE_BATTLE_STORY.8.text",
       "speaker": "董承",
-      "text": "陛下之痛，臣感同身受。只是我等势单力薄，眼下唯有隐忍，以待天下义士共扶汉室。",
-      "kind": "dialogue"
+      "text": "陛下之痛，臣感同身受。只是我等势单力薄，眼下唯有隐忍，以待天下义士共扶汉室。"
     },
     {
       "path": "PRE_BATTLE_STORY.9.text",
       "speaker": "史官",
-      "text": "董卓倒行逆施，天下忠义之士无不切齿。其时骁骑校尉曹操，亦怀匡扶汉室之心。",
-      "kind": "dialogue"
+      "text": "董卓倒行逆施，天下忠义之士无不切齿。其时骁骑校尉曹操，亦怀匡扶汉室之心。"
     },
     {
       "path": "PRE_BATTLE_STORY.10.text",
       "speaker": "史官",
-      "text": "曹操行刺董卓不成，连夜逃出洛阳，随后矫诏传檄天下。各路诸侯闻檄而动，相继引兵会于陈留。",
-      "kind": "dialogue"
+      "text": "曹操行刺董卓不成，连夜逃出洛阳，随后矫诏传檄天下。各路诸侯闻檄而动，相继引兵会于陈留。"
     },
     {
       "path": "PRE_BATTLE_STORY.11.text",
       "speaker": "曹操",
-      "text": "本初、公路，二位肯应檄而来，实乃汉室之幸。曹某在此谢过。",
-      "kind": "dialogue"
+      "text": "本初、公路，二位肯应檄而来，实乃汉室之幸。曹某在此谢过。"
     },
     {
       "path": "PRE_BATTLE_STORY.12.text",
       "speaker": "袁绍",
-      "text": "董卓专横跋扈，天下共愤。此番我等当齐心讨贼，重振汉室声威！",
-      "kind": "dialogue"
+      "text": "董卓专横跋扈，天下共愤。此番我等当齐心讨贼，重振汉室声威！"
     },
     {
       "path": "PRE_BATTLE_STORY.13.text",
       "speaker": "袁术",
-      "text": "我袁氏四世三公，岂容那西凉匹夫把持朝政？此番定叫他知道我等的厉害！",
-      "kind": "dialogue"
+      "text": "我袁氏四世三公，岂容那西凉匹夫把持朝政？此番定叫他知道我等的厉害！"
     },
     {
       "path": "PRE_BATTLE_STORY.14.text",
       "speaker": "曹操",
-      "text": "陶使君、孔北海，二位也到了。曹某有失远迎。",
-      "kind": "dialogue"
+      "text": "陶使君、孔北海，二位也到了。曹某有失远迎。"
     },
     {
       "path": "PRE_BATTLE_STORY.15.text",
       "speaker": "陶谦",
-      "text": "老夫虽才力浅薄，亦知忠君报国。今自徐州星夜赶来，愿附义军，共讨国贼。",
-      "kind": "dialogue"
+      "text": "老夫虽才力浅薄，亦知忠君报国。今自徐州星夜赶来，愿附义军，共讨国贼。"
     },
     {
       "path": "PRE_BATTLE_STORY.16.text",
       "speaker": "孔融",
-      "text": "融自北海引军至此。董卓欺君乱政，凡汉臣者，皆当共诛之。",
-      "kind": "dialogue"
+      "text": "融自北海引军至此。董卓欺君乱政，凡汉臣者，皆当共诛之。"
     },
     {
       "path": "PRE_BATTLE_STORY.17.text",
       "speaker": "曹操",
-      "text": "伯圭也来了！千里赴义，一路辛苦。",
-      "kind": "dialogue"
+      "text": "伯圭也来了！千里赴义，一路辛苦。"
     },
     {
       "path": "PRE_BATTLE_STORY.18.text",
       "speaker": "公孙瓒",
-      "text": "孟德客气了。我此来还带着一位英雄，正要引见。",
-      "kind": "dialogue"
+      "text": "孟德客气了。我此来还带着一位英雄，正要引见。"
     },
     {
       "path": "PRE_BATTLE_STORY.19.text",
       "speaker": "曹操",
-      "text": "哦？不知是哪一位英雄？",
-      "kind": "dialogue"
+      "text": "哦？不知是哪一位英雄？"
     },
     {
       "path": "PRE_BATTLE_STORY.20.text",
       "speaker": "公孙瓒",
-      "text": "玄德，请进来吧。",
-      "kind": "dialogue"
+      "text": "玄德，请进来吧。"
     },
     {
       "path": "PRE_BATTLE_STORY.21.text",
       "speaker": "刘备",
-      "text": "在下刘备，字玄德。闻知诸公兴义兵讨伐董卓，特随公孙将军前来效力。",
-      "kind": "dialogue"
+      "text": "在下刘备，字玄德。闻知诸公兴义兵讨伐董卓，特随公孙将军前来效力。"
     },
     {
       "path": "PRE_BATTLE_STORY.22.text",
       "speaker": "史官",
-      "text": "此人姓刘名备，字玄德，乃中山靖王之后。少时家贫，曾以织席贩履为业，却素有匡扶天下之志。",
-      "kind": "dialogue"
+      "text": "此人姓刘名备，字玄德，乃中山靖王之后。少时家贫，曾以织席贩履为业，却素有匡扶天下之志。"
     },
     {
       "path": "PRE_BATTLE_STORY.23.text",
       "speaker": "史官",
-      "text": "黄巾乱起，刘备招募乡勇，投身沙场。身旁两位义弟，一人姓关名羽，字云长；一人姓张名飞，字翼德，皆有万夫不当之勇。",
-      "kind": "dialogue"
+      "text": "黄巾乱起，刘备招募乡勇，投身沙场。身旁两位义弟，一人姓关名羽，字云长；一人姓张名飞，字翼德，皆有万夫不当之勇。"
     },
     {
       "path": "PRE_BATTLE_STORY.24.text",
       "speaker": "史官",
-      "text": "三人意气相投，于桃园祭告天地，结为异姓兄弟，誓要同心协力，上报国家，下安黎庶。",
-      "kind": "dialogue"
+      "text": "三人意气相投，于桃园祭告天地，结为异姓兄弟，誓要同心协力，上报国家，下安黎庶。"
     },
     {
       "path": "PRE_BATTLE_STORY.25.text",
       "speaker": "曹操",
-      "text": "原来是玄德！昔日讨伐黄巾之时，你我曾有一面之缘。",
-      "kind": "dialogue"
+      "text": "原来是玄德！昔日讨伐黄巾之时，你我曾有一面之缘。"
     },
     {
       "path": "PRE_BATTLE_STORY.26.text",
       "speaker": "刘备",
-      "text": "正是。昔日一别，备至今仍记得曹将军破贼之威。",
-      "kind": "dialogue"
+      "text": "正是。昔日一别，备至今仍记得曹将军破贼之威。"
     },
     {
       "path": "PRE_BATTLE_STORY.27.text",
       "speaker": "曹操",
-      "text": "玄德临阵果敢，我亦记忆犹新。今日得你兄弟三人相助，讨董大业又添几分胜算。",
-      "kind": "dialogue"
+      "text": "玄德临阵果敢，我亦记忆犹新。今日得你兄弟三人相助，讨董大业又添几分胜算。"
     },
     {
       "path": "PRE_BATTLE_STORY.28.text",
       "speaker": "刘备",
-      "text": "备虽才薄，愿尽绵薄之力，与诸公共扶汉室。",
-      "kind": "dialogue"
+      "text": "备虽才薄，愿尽绵薄之力，与诸公共扶汉室。"
     },
     {
       "path": "PRE_BATTLE_STORY.29.text",
       "speaker": "袁术",
-      "text": "（刘备？一个无名小吏，也配在诸侯帐中立足？）",
-      "kind": "dialogue"
+      "text": "（刘备？一个无名小吏，也配在诸侯帐中立足？）"
     },
     {
       "path": "PRE_BATTLE_STORY.30.text",
       "speaker": "史官",
-      "text": "众诸侯歃血为盟，共推袁绍为盟主。十八路诸侯会兵一处，讨伐董卓之战由此拉开帷幕。",
-      "kind": "dialogue"
+      "text": "众诸侯歃血为盟，共推袁绍为盟主。十八路诸侯会兵一处，讨伐董卓之战由此拉开帷幕。"
     },
     {
       "path": "PRE_BATTLE_STORY.31.text",
       "speaker": "史官",
-      "text": "诸侯会盟的消息很快传入洛阳。董卓闻报大怒，当即召集华雄、吕布等将，商议迎敌。",
-      "kind": "dialogue"
+      "text": "诸侯会盟的消息很快传入洛阳。董卓闻报大怒，当即召集华雄、吕布等将，商议迎敌。"
     },
     {
       "path": "PRE_BATTLE_STORY.32.text",
       "speaker": "董卓",
-      "text": "华雄听令！命你引精兵五万，镇守汜水关。若诸侯来犯，务必迎头痛击！",
-      "kind": "dialogue"
+      "text": "华雄听令！命你引精兵五万，镇守汜水关。若诸侯来犯，务必迎头痛击！"
     },
     {
       "path": "PRE_BATTLE_STORY.33.text",
       "speaker": "华雄",
-      "text": "末将领命！关东鼠辈若敢来犯，定叫他们有来无回！",
-      "kind": "dialogue"
+      "text": "末将领命！关东鼠辈若敢来犯，定叫他们有来无回！"
     },
     {
       "path": "PRE_BATTLE_STORY.34.text",
       "speaker": "吕布",
-      "text": "义父，杀鸡焉用牛刀？何不令孩儿出战，顷刻便可踏平诸侯营寨！",
-      "kind": "dialogue"
+      "text": "义父，杀鸡焉用牛刀？何不令孩儿出战，顷刻便可踏平诸侯营寨！"
     },
     {
       "path": "PRE_BATTLE_STORY.35.text",
       "speaker": "董卓",
-      "text": "奉先莫急。你是我最倚重的大将，虎牢关乃洛阳门户，须由你亲自镇守。",
-      "kind": "dialogue"
+      "text": "奉先莫急。你是我最倚重的大将，虎牢关乃洛阳门户，须由你亲自镇守。"
     },
     {
       "path": "PRE_BATTLE_STORY.36.text",
       "speaker": "吕布",
-      "text": "孩儿明白。待诸侯到了虎牢关，定教他们片甲不留！",
-      "kind": "dialogue"
+      "text": "孩儿明白。待诸侯到了虎牢关，定教他们片甲不留！"
     },
     {
       "path": "PRE_BATTLE_STORY.37.text",
       "speaker": "华雄",
-      "text": "哼！义父只知倚重吕布。待我斩尽关东诸侯，看天下谁还敢小觑华雄！",
-      "kind": "dialogue"
+      "text": "哼！义父只知倚重吕布。待我斩尽关东诸侯，看天下谁还敢小觑华雄！"
     },
     {
       "path": "PRE_BATTLE_STORY.38.text",
       "speaker": "吕布",
-      "text": "想过虎牢关，先得胜过华雄。只怕那些关东诸侯，连站到我面前的本事都没有！哈哈哈哈！",
-      "kind": "dialogue"
+      "text": "想过虎牢关，先得胜过华雄。只怕那些关东诸侯，连站到我面前的本事都没有！哈哈哈哈！"
     },
     {
       "path": "PRE_BATTLE_STORY.39.text",
       "speaker": "史官",
-      "text": "华雄兵至汜水关，接连斩将破阵。联军先锋大败，各路诸侯一时军心震动。",
-      "kind": "dialogue"
+      "text": "华雄兵至汜水关，接连斩将破阵。联军先锋大败，各路诸侯一时军心震动。"
     },
     {
       "path": "PRE_BATTLE_STORY.40.text",
       "speaker": "武官",
-      "text": "报——！华雄率西凉军杀到汜水关前，我军先锋抵挡不住，请盟主速发援兵！",
-      "kind": "dialogue"
+      "text": "报——！华雄率西凉军杀到汜水关前，我军先锋抵挡不住，请盟主速发援兵！"
     },
     {
       "path": "PRE_BATTLE_STORY.41.text",
       "speaker": "袁绍",
-      "text": "知道了。我即刻遣将增援，你先退下。",
-      "kind": "dialogue"
+      "text": "知道了。我即刻遣将增援，你先退下。"
     },
     {
       "path": "PRE_BATTLE_STORY.42.text",
       "speaker": "武官",
-      "text": "得令！",
-      "kind": "dialogue"
+      "text": "得令！"
     },
     {
       "path": "PRE_BATTLE_STORY.43.text",
       "speaker": "袁绍",
-      "text": "华雄来势汹汹，只是……该遣何人出战才好？",
-      "kind": "dialogue"
+      "text": "华雄来势汹汹，只是……该遣何人出战才好？"
     },
     {
       "path": "PRE_BATTLE_STORY.44.text",
       "speaker": "曹操",
-      "text": "诸公之中，可有哪位将军愿往汜水关，迎战华雄？",
-      "kind": "dialogue"
+      "text": "诸公之中，可有哪位将军愿往汜水关，迎战华雄？"
     },
     {
       "path": "PRE_BATTLE_STORY.45.text",
       "speaker": "孔融",
-      "text": "惭愧。华雄勇悍，我北海兵马只怕难当其锋。",
-      "kind": "dialogue"
+      "text": "惭愧。华雄勇悍，我北海兵马只怕难当其锋。"
     },
     {
       "path": "PRE_BATTLE_STORY.46.text",
       "speaker": "袁术",
-      "text": "若在平日，我自当引兵前往。只是今日身体欠安，实在不便出阵。",
-      "kind": "dialogue"
+      "text": "若在平日，我自当引兵前往。只是今日身体欠安，实在不便出阵。"
     },
     {
       "path": "PRE_BATTLE_STORY.47.text",
       "speaker": "曹操",
-      "text": "堂堂关东联军，莫非竟无一人敢战华雄？",
-      "kind": "dialogue"
+      "text": "堂堂关东联军，莫非竟无一人敢战华雄？"
     },
     {
       "path": "PRE_BATTLE_STORY.48.text",
       "speaker": "刘备",
-      "text": "若诸公不弃，备愿与两位义弟领兵前往。",
-      "kind": "dialogue"
+      "text": "若诸公不弃，备愿与两位义弟领兵前往。"
     },
     {
       "path": "PRE_BATTLE_STORY.49.text",
       "speaker": "袁绍",
-      "text": "玄德，你身后这两位壮士是何人？",
-      "kind": "dialogue"
+      "text": "玄德，你身后这两位壮士是何人？"
     },
     {
       "path": "PRE_BATTLE_STORY.50.text",
       "speaker": "公孙瓒",
-      "text": "这二位是玄德的结义兄弟：关羽关云长、张飞张翼德，皆是当世豪杰。",
-      "kind": "dialogue"
+      "text": "这二位是玄德的结义兄弟：关羽关云长、张飞张翼德，皆是当世豪杰。"
     },
     {
       "path": "PRE_BATTLE_STORY.51.text",
       "speaker": "袁术",
-      "text": "且慢。刘备现居何职？军国大事，岂能交给几个无名之人？",
-      "kind": "dialogue"
+      "text": "且慢。刘备现居何职？军国大事，岂能交给几个无名之人？"
     },
     {
       "path": "PRE_BATTLE_STORY.52.text",
       "speaker": "公孙瓒",
-      "text": "玄德现任平原县令。官职虽小，志气与胆略却绝非常人可比。",
-      "kind": "dialogue"
+      "text": "玄德现任平原县令。官职虽小，志气与胆略却绝非常人可比。"
     },
     {
       "path": "PRE_BATTLE_STORY.53.text",
       "speaker": "袁术",
-      "text": "什么？区区一县令，也敢在诸侯面前请战？还不速速退下！",
-      "kind": "dialogue"
+      "text": "什么？区区一县令，也敢在诸侯面前请战？还不速速退下！"
     },
     {
       "path": "PRE_BATTLE_STORY.54.text",
       "speaker": "曹操",
-      "text": "公路且慢。国家用人之际，何必只论官职高低？玄德既敢请战，想必胸有成算。",
-      "kind": "dialogue"
+      "text": "公路且慢。国家用人之际，何必只论官职高低？玄德既敢请战，想必胸有成算。"
     },
     {
       "path": "PRE_BATTLE_STORY.55.text",
       "speaker": "袁术",
-      "text": "哼！既然孟德执意如此，便随你安排。",
-      "kind": "dialogue"
+      "text": "哼！既然孟德执意如此，便随你安排。"
     },
     {
       "path": "PRE_BATTLE_STORY.56.text",
       "speaker": "曹操",
-      "text": "好！玄德，你兄弟三人即刻整军出发。营中军械粮草，任你调取。来人，请道具屋掌柜前来！",
-      "kind": "dialogue"
+      "text": "好！玄德，你兄弟三人即刻整军出发。营中军械粮草，任你调取。来人，请道具屋掌柜前来！"
     },
     {
       "path": "PRE_BATTLE_STORY.57.text",
       "speaker": "公孙瓒",
-      "text": "玄德，这位便是营中的道具屋掌柜。出征所需的军资，可向他购置。",
-      "kind": "dialogue"
+      "text": "玄德，这位便是营中的道具屋掌柜。出征所需的军资，可向他购置。"
     },
     {
       "path": "PRE_BATTLE_STORY.58.text",
       "speaker": "公孙瓒",
-      "text": "临行之前，也可与帐中诸公谈谈。知己知彼，总好过仓促上阵。",
-      "kind": "dialogue"
+      "text": "临行之前，也可与帐中诸公谈谈。知己知彼，总好过仓促上阵。"
     },
     {
       "path": "PRE_BATTLE_STORY.59.text",
       "speaker": "提示",
-      "text": "现在可以操纵刘备在营帐中走动。点击人物与其交谈；也可用方向键移动，靠近后按回车。与关羽交谈即可准备出征。",
-      "kind": "dialogue"
+      "text": "现在可以操纵刘备在营帐中走动。点击人物与其交谈；也可用方向键移动，靠近后按回车。与关羽交谈即可准备出征。"
     },
     {
       "path": "PRE_BATTLE_NPC_DIALOGUE.袁绍.0",
       "speaker": "袁绍",
-      "text": "华雄连胜数阵，绝非庸手。玄德此去，务必谨慎。",
-      "kind": "npc"
+      "text": "华雄连胜数阵，绝非庸手。玄德此去，务必谨慎。"
     },
     {
       "path": "PRE_BATTLE_NPC_DIALOGUE.曹操.0",
       "speaker": "曹操",
-      "text": "玄德，此战关乎联军士气。愿你兄弟三人旗开得胜。",
-      "kind": "npc"
+      "text": "玄德，此战关乎联军士气。愿你兄弟三人旗开得胜。"
     },
     {
       "path": "PRE_BATTLE_NPC_DIALOGUE.袁术.0",
       "speaker": "袁术",
-      "text": "哼，凭几个无名小卒也想胜过华雄？现在反悔，还来得及。",
-      "kind": "npc"
+      "text": "哼，凭几个无名小卒也想胜过华雄？现在反悔，还来得及。"
     },
     {
       "path": "PRE_BATTLE_NPC_DIALOGUE.孔融.0",
       "speaker": "孔融",
-      "text": "华雄麾下多是西凉骑兵，来去迅疾。你军以步卒为主，交锋时须善用地形，切莫在旷野硬拼。",
-      "kind": "npc"
+      "text": "华雄麾下多是西凉骑兵，来去迅疾。你军以步卒为主，交锋时须善用地形，切莫在旷野硬拼。"
     },
     {
       "path": "PRE_BATTLE_NPC_DIALOGUE.公孙瓒.0",
       "speaker": "公孙瓒",
-      "text": "玄德，我亦会引军参战。你我彼此照应，共破西凉兵马。",
-      "kind": "npc"
+      "text": "玄德，我亦会引军参战。你我彼此照应，共破西凉兵马。"
     },
     {
       "path": "PRE_BATTLE_NPC_DIALOGUE.陶谦.0",
       "speaker": "陶谦",
-      "text": "老夫也会遣兵相助。愿我等同心协力，早日扫除国贼。",
-      "kind": "npc"
+      "text": "老夫也会遣兵相助。愿我等同心协力，早日扫除国贼。"
     },
     {
       "path": "PRE_BATTLE_NPC_DIALOGUE.张飞.0",
       "speaker": "张飞",
-      "text": "大哥，俺的蛇矛早就等得不耐烦了！准备妥当，便去告诉二哥，咱们这就出征！",
-      "kind": "npc"
+      "text": "大哥，俺的蛇矛早就等得不耐烦了！准备妥当，便去告诉二哥，咱们这就出征！"
     },
     {
       "path": "PRE_BATTLE_NPC_DIALOGUE.道具屋.0",
       "speaker": "道具屋",
-      "text": "将军，豆、酒与焦热书皆已备齐。刀枪无眼，出征前不妨多备些军需。",
-      "kind": "npc"
+      "text": "将军，豆、酒与焦热书皆已备齐。刀枪无眼，出征前不妨多备些军需。"
     },
     {
       "path": "PRE_BATTLE_NPC_DIALOGUE.关羽.0",
       "speaker": "关羽",
-      "text": "大哥，可都准备妥当了？",
-      "kind": "npc"
+      "text": "大哥，可都准备妥当了？"
     },
     {
       "path": "PRE_BATTLE_NPC_DIALOGUE.关羽.1",
       "speaker": "关羽",
-      "text": "华雄纵有些勇力，在关某看来，也不过插标卖首之徒。出征！",
-      "kind": "npc"
+      "text": "华雄纵有些勇力，在关某看来，也不过插标卖首之徒。出征！"
     },
     {
       "path": "HULAO_PRE_BATTLE_STORY.0.text",
       "speaker": "军报",
-      "text": "缴获了黄金100！",
-      "kind": "dialogue"
+      "text": "缴获了黄金100！"
     },
     {
       "path": "HULAO_PRE_BATTLE_STORY.1.text",
       "speaker": "关羽",
-      "text": "敌人好像逃到了前面的虎牢关。大哥，该怎么办？",
-      "kind": "dialogue"
+      "text": "敌人好像逃到了前面的虎牢关。大哥，该怎么办？"
     },
     {
       "path": "HULAO_PRE_BATTLE_STORY.2.text",
       "speaker": "张飞",
-      "text": "说什么呀？现在当然是乘胜追击了，我去！",
-      "kind": "dialogue"
+      "text": "说什么呀？现在当然是乘胜追击了，我去！"
     },
     {
       "path": "HULAO_PRE_BATTLE_STORY.3.text",
       "speaker": "关羽",
-      "text": "唉！追上去了，还是那么鲁莽。",
-      "kind": "dialogue"
+      "text": "唉！追上去了，还是那么鲁莽。"
     },
     {
       "path": "HULAO_PRE_BATTLE_STORY.4.text",
       "speaker": "公孙瓒",
-      "text": "话不要这么说，我军士气也鼓舞起来了嘛。",
-      "kind": "dialogue"
+      "text": "话不要这么说，我军士气也鼓舞起来了嘛。"
     },
     {
       "path": "HULAO_PRE_BATTLE_STORY.5.text",
       "speaker": "陶谦",
-      "text": "现在应该乘势攻下虎牢关。",
-      "kind": "dialogue"
+      "text": "现在应该乘势攻下虎牢关。"
     },
     {
       "path": "HULAO_PRE_BATTLE_STORY.6.text",
       "speaker": "刘备",
-      "text": "没办法。好！跟上张飞，进军虎牢关！",
-      "kind": "dialogue"
+      "text": "没办法。好！跟上张飞，进军虎牢关！"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.0.text",
       "speaker": "史官",
-      "text": "董卓败亡后，袁绍与公孙瓒为争夺冀州相持不下。袁绍决定分兵两路，张郃经巨鹿进攻，麴义经清河进攻。",
-      "kind": "dialogue"
+      "text": "董卓败亡后，袁绍与公孙瓒为争夺冀州相持不下。袁绍决定分兵两路，张郃经巨鹿进攻，麴义经清河进攻。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.1.text",
       "speaker": "袁绍",
-      "text": "好，打垮公孙瓒！拿下北平，北面的半壁江山就是我的了。分兵两路进攻北平，张郃经巨鹿进攻，麴义经清河进攻。",
-      "kind": "dialogue"
+      "text": "好，打垮公孙瓒！拿下北平，北面的半壁江山就是我的了。分兵两路进攻北平，张郃经巨鹿进攻，麴义经清河进攻。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.2.text",
       "speaker": "公孙瓒",
-      "text": "袁绍军已经逼近。严纲去清河迎敌，我率主力去巨鹿；若战况不利，就在界桥会合。",
-      "kind": "dialogue"
+      "text": "袁绍军已经逼近。严纲去清河迎敌，我率主力去巨鹿；若战况不利，就在界桥会合。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.3.text",
       "speaker": "关羽",
-      "text": "兄长，公孙瓒军和袁绍军已经对峙了很长时间了。",
-      "kind": "dialogue"
+      "text": "兄长，公孙瓒军和袁绍军已经对峙了很长时间了。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.4.text",
       "speaker": "简雍",
-      "text": "刘备，我叫简雍。久仰您的大名，此次特地前来投靠，请您收下我。",
-      "kind": "dialogue"
+      "text": "刘备，我叫简雍。久仰您的大名，此次特地前来投靠，请您收下我。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.5.text",
       "speaker": "刘备",
-      "text": "能得宪和相助，实在太好了。",
-      "kind": "dialogue"
+      "text": "能得宪和相助，实在太好了。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.6.text",
       "speaker": "军报",
-      "text": "简雍成为刘备部下！",
-      "kind": "dialogue"
+      "text": "简雍成为刘备部下！"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.7.text",
       "speaker": "使者",
-      "text": "刘备大人，我是公孙瓒派来的使者，请求您派兵支援。",
-      "kind": "dialogue"
+      "text": "刘备大人，我是公孙瓒派来的使者，请求您派兵支援。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.8.text",
       "speaker": "使者",
-      "text": "袁绍已经夺去大片土地。公孙将军主力在界桥，公孙越在巨鹿，严纲在清河，情势十分危急。",
-      "kind": "dialogue"
+      "text": "袁绍已经夺去大片土地。公孙将军主力在界桥，公孙越在巨鹿，严纲在清河，情势十分危急。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.9.text",
       "speaker": "张飞",
-      "text": "大哥，既然伯圭兄有难，我们马上去支援！",
-      "kind": "dialogue"
+      "text": "大哥，既然伯圭兄有难，我们马上去支援！"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.10.text",
       "speaker": "刘备",
-      "text": "好。我们即刻整军，赶往界桥。",
-      "kind": "dialogue"
+      "text": "好。我们即刻整军，赶往界桥。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.11.text",
       "speaker": "简雍",
-      "text": "主公，去界桥从平原有两条路：一条经过广川，一条经过信都城。信都路远些，但途中有道具屋。",
-      "kind": "dialogue"
+      "text": "主公，去界桥从平原有两条路：一条经过广川，一条经过信都城。信都路远些，但途中有道具屋。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.12.text",
       "speaker": "提示",
-      "text": "出征前可以在议事厅交谈。点击人物，或用方向键移动、回车交谈；准备好后与关羽交谈。",
-      "kind": "dialogue"
+      "text": "出征前可以在议事厅交谈。点击人物，或用方向键移动、回车交谈；准备好后与关羽交谈。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.13.text",
       "speaker": "关羽",
-      "text": "兄长，你要走广川这条路，还是走信都城这条路？",
-      "kind": "dialogue"
+      "text": "兄长，你要走广川这条路，还是走信都城这条路？"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.14.text",
       "speaker": "刘备",
-      "text": "走广川。路程较短，公孙将军等不起。",
-      "kind": "dialogue"
+      "text": "走广川。路程较短，公孙将军等不起。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.15.text",
       "speaker": "关羽",
-      "text": "那么走广川吧，列队。",
-      "kind": "dialogue"
+      "text": "那么走广川吧，列队。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.16.text",
       "speaker": "袁绍",
-      "text": "逢纪，你去广川，扰乱公孙瓒的背后。",
-      "kind": "dialogue"
+      "text": "逢纪，你去广川，扰乱公孙瓒的背后。"
     },
     {
       "path": "GUANGCHUAN_PRE_BATTLE_STORY.17.text",
       "speaker": "关羽",
-      "text": "向广川进军吧！",
-      "kind": "dialogue"
+      "text": "向广川进军吧！"
     },
     {
       "path": "XINDU_PRE_BATTLE_STORY.14.text",
       "speaker": "关羽",
-      "text": "走信都城吧，列队！",
-      "kind": "dialogue"
+      "text": "走信都城吧，列队！"
     },
     {
       "path": "XINDU_PRE_BATTLE_STORY.15.text",
       "speaker": "袁绍",
-      "text": "淳于琼，你去信都城，扰乱公孙瓒的背后。",
-      "kind": "dialogue"
+      "text": "淳于琼，你去信都城，扰乱公孙瓒的背后。"
     },
     {
       "path": "XINDU_PRE_BATTLE_STORY.16.text",
       "speaker": "淳于琼",
-      "text": "将士们！我们绕到公孙瓒的背后去攻打信都城！跟上！",
-      "kind": "dialogue"
+      "text": "将士们！我们绕到公孙瓒的背后去攻打信都城！跟上！"
     },
     {
       "path": "XINDU_PRE_BATTLE_STORY.17.text",
       "speaker": "公孙瓒",
-      "text": "什么！袁绍军要袭击我们的背后？坏了！如果这样的话，我们就进攻袁绍的大本营！进攻界桥！",
-      "kind": "dialogue"
+      "text": "什么！袁绍军要袭击我们的背后？坏了！如果这样的话，我们就进攻袁绍的大本营！进攻界桥！"
     },
     {
       "path": "XINDU_PRE_BATTLE_STORY.18.text",
       "speaker": "关羽",
-      "text": "向信都城进军吧！",
-      "kind": "dialogue"
+      "text": "向信都城进军吧！"
     },
     {
       "path": "JULU_PRE_BATTLE_STORY.0.text",
       "speaker": "军报",
-      "text": "袁绍军的前锋已经败退。刘备军继续向界桥推进。",
-      "kind": "dialogue"
+      "text": "袁绍军的前锋已经败退。刘备军继续向界桥推进。"
     },
     {
       "path": "JULU_PRE_BATTLE_STORY.1.text",
       "speaker": "公孙瓒",
-      "text": "主公率领的主力部队在界桥作战，公孙越军和严纲军分别在巨鹿和清河作战，但形势都不太好。刘备，请你支援我们。",
-      "kind": "dialogue"
+      "text": "主公率领的主力部队在界桥作战，公孙越军和严纲军分别在巨鹿和清河作战，但形势都不太好。刘备，请你支援我们。"
     },
     {
       "path": "JULU_PRE_BATTLE_STORY.2.text",
       "speaker": "关羽",
-      "text": "兄长，从这里去界桥有两条路，一条经过清河，另一条经过巨鹿。",
-      "kind": "dialogue"
+      "text": "兄长，从这里去界桥有两条路，一条经过清河，另一条经过巨鹿。"
     },
     {
       "path": "JULU_PRE_BATTLE_STORY.3.text",
       "speaker": "刘备",
-      "text": "清河和巨鹿，走哪条路都通往界桥吗？",
-      "kind": "dialogue"
+      "text": "清河和巨鹿，走哪条路都通往界桥吗？"
     },
     {
       "path": "JULU_PRE_BATTLE_STORY.4.text",
       "speaker": "张飞",
-      "text": "大哥，清河和巨鹿去哪儿？快决定吧。",
-      "kind": "dialogue"
+      "text": "大哥，清河和巨鹿去哪儿？快决定吧。"
     },
     {
       "path": "JULU_PRE_BATTLE_STORY.5.text",
       "speaker": "提示",
-      "text": "决定路线前，可以在军营中走动并和众人交谈。点击人物，或用方向键移动、回车交谈；准备好后与关羽交谈。",
-      "kind": "dialogue"
+      "text": "决定路线前，可以在军营中走动并和众人交谈。点击人物，或用方向键移动、回车交谈；准备好后与关羽交谈。"
     },
     {
       "path": "JULU_PRE_BATTLE_STORY.6.text",
       "speaker": "关羽",
-      "text": "明白了，那么去巨鹿吧。",
-      "kind": "dialogue"
+      "text": "明白了，那么去巨鹿吧。"
     },
     {
       "path": "JULU_PRE_BATTLE_STORY.7.text",
       "speaker": "颜良",
-      "text": "张郃，快些收拾掉北平军，赶快和界桥的主力会合吧。",
-      "kind": "dialogue"
+      "text": "张郃，快些收拾掉北平军，赶快和界桥的主力会合吧。"
     },
     {
       "path": "JULU_PRE_BATTLE_STORY.8.text",
       "speaker": "张郃",
-      "text": "可是我听说，公孙瓒的盟友刘备军正向巨鹿赶来。一定得设法，不让公孙瓒和刘备会合。",
-      "kind": "dialogue"
+      "text": "可是我听说，公孙瓒的盟友刘备军正向巨鹿赶来。一定得设法，不让公孙瓒和刘备会合。"
     },
     {
       "path": "JULU_PRE_BATTLE_STORY.9.text",
       "speaker": "关羽",
-      "text": "兄长，好像是敌人。列队！",
-      "kind": "dialogue"
+      "text": "兄长，好像是敌人。列队！"
     },
     {
       "path": "QINGHE_PRE_BATTLE_STORY.6.text",
       "speaker": "关羽",
-      "text": "明白了，那么去清河吧。",
-      "kind": "dialogue"
+      "text": "明白了，那么去清河吧。"
     },
     {
       "path": "QINGHE_PRE_BATTLE_STORY.7.text",
       "speaker": "关羽",
-      "text": "好像是敌人，列队。",
-      "kind": "dialogue"
+      "text": "好像是敌人，列队。"
     },
     {
       "path": "JIEQIAO_PRE_BATTLE_STORY.0.text",
       "speaker": "张郃",
-      "text": "什么！清河的麴义被公孙瓒军突破了，没办法。撤回主公坐镇的界桥！",
-      "kind": "dialogue"
+      "text": "什么！清河的麴义被公孙瓒军突破了，没办法。撤回主公坐镇的界桥！"
     },
     {
       "path": "JIEQIAO_PRE_BATTLE_STORY.1.text",
       "speaker": "公孙越",
-      "text": "可恶，我的兵力再强大一点，就能捉住张郃。",
-      "kind": "dialogue"
+      "text": "可恶，我的兵力再强大一点，就能捉住张郃。"
     },
     {
       "path": "JIEQIAO_PRE_BATTLE_STORY.2.text",
       "speaker": "关羽",
-      "text": "前面就是袁绍主力所在的界桥！",
-      "kind": "dialogue"
+      "text": "前面就是袁绍主力所在的界桥！"
     },
     {
       "path": "JIEQIAO_PRE_BATTLE_STORY.3.text",
       "speaker": "张飞",
-      "text": "大哥，快去界桥吧！",
-      "kind": "dialogue"
+      "text": "大哥，快去界桥吧！"
     },
     {
       "path": "JIEQIAO_PRE_BATTLE_STORY.4.text",
       "speaker": "提示",
-      "text": "决战前可以和众人交谈。点击人物，或用方向键移动、回车交谈；准备好后与关羽交谈。",
-      "kind": "dialogue"
+      "text": "决战前可以和众人交谈。点击人物，或用方向键移动、回车交谈；准备好后与关羽交谈。"
     },
     {
       "path": "JIEQIAO_PRE_BATTLE_STORY.5.text",
       "speaker": "关羽",
-      "text": "大哥，到界桥了，请列队。",
-      "kind": "dialogue"
+      "text": "大哥，到界桥了，请列队。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.0.text",
       "speaker": "史官",
-      "text": "界桥之战在刘备军与赵云的奋战下结束。袁绍与公孙瓒此后又交战数月，双方将士都已疲惫。",
-      "kind": "dialogue"
+      "text": "界桥之战在刘备军与赵云的奋战下结束。袁绍与公孙瓒此后又交战数月，双方将士都已疲惫。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.1.text",
       "speaker": "史官",
-      "text": "董卓借天子之名出面调停，两军终于罢兵。不久，王允利用貂蝉离间董卓与吕布，董卓被吕布所杀。",
-      "kind": "dialogue"
+      "text": "董卓借天子之名出面调停，两军终于罢兵。不久，王允利用貂蝉离间董卓与吕布，董卓被吕布所杀。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.2.text",
       "speaker": "史官",
-      "text": "吕布又败给董卓旧部，只得离开长安。中原战火没有平息，新的危机已逼近徐州。",
-      "kind": "dialogue"
+      "text": "吕布又败给董卓旧部，只得离开长安。中原战火没有平息，新的危机已逼近徐州。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.3.text",
       "speaker": "武官",
-      "text": "主公，大事不好！徐州方面传来了噩耗。",
-      "kind": "dialogue"
+      "text": "主公，大事不好！徐州方面传来了噩耗。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.4.text",
       "speaker": "曹操",
-      "text": "父仇不能不报。于禁，立即整顿兵马，向徐州进军！",
-      "kind": "dialogue"
+      "text": "父仇不能不报。于禁，立即整顿兵马，向徐州进军！"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.5.text",
       "speaker": "于禁",
-      "text": "遵命！",
-      "kind": "dialogue"
+      "text": "遵命！"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.6.text",
       "speaker": "糜竺",
-      "text": "刘使君，曹操大军压境，徐州危在旦夕。陶谦大人命我前来求援。",
-      "kind": "dialogue"
+      "text": "刘使君，曹操大军压境，徐州危在旦夕。陶谦大人命我前来求援。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.7.text",
       "speaker": "刘备",
-      "text": "陶谦大人有难，我岂能坐视不理。只是平原兵力不足，须先去北平请公孙瓒相助。",
-      "kind": "dialogue"
+      "text": "陶谦大人有难，我岂能坐视不理。只是平原兵力不足，须先去北平请公孙瓒相助。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.8.text",
       "speaker": "关羽",
-      "text": "兄长所言极是。事不宜迟，我们立刻动身。",
-      "kind": "dialogue"
+      "text": "兄长所言极是。事不宜迟，我们立刻动身。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.9.text",
       "speaker": "公孙瓒",
-      "text": "刘备，好久不见。你亲自赶来，可是徐州出了大事？",
-      "kind": "dialogue"
+      "text": "刘备，好久不见。你亲自赶来，可是徐州出了大事？"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.10.text",
       "speaker": "刘备",
-      "text": "曹操正进攻徐州，陶谦派糜竺求援。我军势单，特来向兄长借兵。",
-      "kind": "dialogue"
+      "text": "曹操正进攻徐州，陶谦派糜竺求援。我军势单，特来向兄长借兵。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.11.text",
       "speaker": "公孙瓒",
-      "text": "我会助你。赵云，你进来吧。",
-      "kind": "dialogue"
+      "text": "我会助你。赵云，你进来吧。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.12.text",
       "speaker": "赵云",
-      "text": "您叫我吗？",
-      "kind": "dialogue"
+      "text": "您叫我吗？"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.13.text",
       "speaker": "军报",
-      "text": "赵云加入刘备军！",
-      "kind": "dialogue"
+      "text": "赵云加入刘备军！"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.14.text",
       "speaker": "公孙瓒",
-      "text": "那么，赵云让你辛苦一趟。刘备，祝你成功。",
-      "kind": "dialogue"
+      "text": "那么，赵云让你辛苦一趟。刘备，祝你成功。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.15.text",
       "speaker": "糜竺",
-      "text": "刘备，我一直在等你。请你准备出兵。",
-      "kind": "dialogue"
+      "text": "刘备，我一直在等你。请你准备出兵。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.16.text",
       "speaker": "赵云",
-      "text": "主公，听你吩咐。",
-      "kind": "dialogue"
+      "text": "主公，听你吩咐。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.17.text",
       "speaker": "糜竺",
-      "text": "准备好了吗？",
-      "kind": "dialogue"
+      "text": "准备好了吗？"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.18.text",
       "speaker": "糜竺",
-      "text": "那么快往徐州吧。",
-      "kind": "dialogue"
+      "text": "那么快往徐州吧。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.19.text",
       "speaker": "糜竺",
-      "text": "徐州在这个平原的南面，快速行军吧。",
-      "kind": "dialogue"
+      "text": "徐州在这个平原的南面，快速行军吧。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.20.text",
       "speaker": "张飞",
-      "text": "嗯？好像情况不对啊，怎么回事？",
-      "kind": "dialogue"
+      "text": "嗯？好像情况不对啊，怎么回事？"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.21.text",
       "speaker": "管亥",
-      "text": "哈哈哈，进攻进攻！再攻一会儿城池就归我了。",
-      "kind": "dialogue"
+      "text": "哈哈哈，进攻进攻！再攻一会儿城池就归我了。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.22.text",
       "speaker": "关羽",
-      "text": "看来好像是草寇作乱。",
-      "kind": "dialogue"
+      "text": "看来好像是草寇作乱。"
     },
     {
       "path": "BEIHAI_PRE_BATTLE_STORY.23.text",
       "speaker": "刘备",
-      "text": "先解北海之围，再赴徐州。诸位，列阵迎敌！",
-      "kind": "dialogue"
+      "text": "先解北海之围，再赴徐州。诸位，列阵迎敌！"
     },
     {
       "path": "XUZHOU_PRE_BATTLE_STORY.0.text",
       "speaker": "太史慈",
-      "text": "主公，我把刘备请出来了。",
-      "kind": "dialogue"
+      "text": "主公，我把刘备请出来了。"
     },
     {
       "path": "XUZHOU_PRE_BATTLE_STORY.1.text",
       "speaker": "孔融",
-      "text": "刘备，多亏你解了北海之围。此番大恩，北海百姓不会忘记。",
-      "kind": "dialogue"
+      "text": "刘备，多亏你解了北海之围。此番大恩，北海百姓不会忘记。"
     },
     {
       "path": "XUZHOU_PRE_BATTLE_STORY.2.text",
       "speaker": "军报",
-      "text": "孔融赠予刘备军黄金500。",
-      "kind": "dialogue"
+      "text": "孔融赠予刘备军黄金500。"
     },
     {
       "path": "XUZHOU_PRE_BATTLE_STORY.3.text",
       "speaker": "张飞",
-      "text": "大哥，再不赶路就要误事啦。",
-      "kind": "dialogue"
+      "text": "大哥，再不赶路就要误事啦。"
     },
     {
       "path": "XUZHOU_PRE_BATTLE_STORY.4.text",
       "speaker": "提示",
-      "text": "请选择交谈对象；也可以直接找关羽确认出征。",
-      "kind": "dialogue"
+      "text": "现在可以操纵刘备在议事厅中走动。点击人物与其交谈；也可用方向键移动，靠近后按回车。准备妥当后与关羽交谈出征。"
     },
     {
       "path": "XUZHOU_PRE_BATTLE_STORY.5.text",
-      "speaker": "孔融",
-      "text": "努力啊。徐州百姓也正盼着援军。",
-      "kind": "dialogue"
+      "speaker": "刘备",
+      "text": "军需已经整备妥当。即刻南下徐州。"
     },
     {
       "path": "XUZHOU_PRE_BATTLE_STORY.6.text",
-      "speaker": "太史慈",
-      "text": "谢谢你，有刘备支援，徐州就万无一失了。",
-      "kind": "dialogue"
+      "speaker": "糜竺",
+      "text": "快去徐州吧。"
     },
     {
       "path": "XUZHOU_PRE_BATTLE_STORY.7.text",
-      "speaker": "关羽",
-      "text": "准备好了吗？",
-      "kind": "dialogue"
+      "speaker": "糜竺",
+      "text": "刘备，徐州在北海的南面，快去吧。"
     },
     {
       "path": "XUZHOU_PRE_BATTLE_STORY.8.text",
-      "speaker": "刘备",
-      "text": "军需已经整备妥当。即刻南下徐州。",
-      "kind": "dialogue"
+      "speaker": "史官",
+      "text": "刘备军昼夜兼程，终于在曹操军合围之前抵达徐州外围。"
     },
     {
       "path": "XUZHOU_PRE_BATTLE_STORY.9.text",
-      "speaker": "糜竺",
-      "text": "快去徐州吧。",
-      "kind": "dialogue"
+      "speaker": "关羽",
+      "text": "兄长，曹军已分布在城外各处。我们可击退敌军，也可设法直接进入徐州城。"
     },
     {
       "path": "XUZHOU_PRE_BATTLE_STORY.10.text",
-      "speaker": "糜竺",
-      "text": "刘备，徐州在北海的南面，快去吧。",
-      "kind": "dialogue"
-    },
-    {
-      "path": "XUZHOU_PRE_BATTLE_STORY.11.text",
-      "speaker": "史官",
-      "text": "刘备军昼夜兼程，终于在曹操军合围之前抵达徐州外围。",
-      "kind": "dialogue"
-    },
-    {
-      "path": "XUZHOU_PRE_BATTLE_STORY.12.text",
-      "speaker": "关羽",
-      "text": "兄长，曹军已分布在城外各处。我们可击退敌军，也可设法直接进入徐州城。",
-      "kind": "dialogue"
-    },
-    {
-      "path": "XUZHOU_PRE_BATTLE_STORY.13.text",
       "speaker": "刘备",
-      "text": "先与陶谦大人会合。全军列阵，进军！",
-      "kind": "dialogue"
+      "text": "先与陶谦大人会合。全军列阵，进军！"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.0.text",
       "speaker": "曹操",
-      "text": "刘备竟然赶到徐州，坏了我的大事。于禁，你先退下整顿。",
-      "kind": "dialogue"
+      "text": "刘备竟然赶到徐州，坏了我的大事。于禁，你先退下整顿。"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.1.text",
       "speaker": "于禁",
-      "text": "末将先锋失利，请主公责罚。",
-      "kind": "dialogue"
+      "text": "末将先锋失利，请主公责罚。"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.2.text",
       "speaker": "郭嘉",
-      "text": "刘备已经入城，徐州军心稍定，但我军仍可在小沛截住他们。",
-      "kind": "dialogue"
+      "text": "刘备已经入城，徐州军心稍定，但我军仍可在小沛截住他们。"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.3.text",
       "speaker": "陶谦",
-      "text": "玄德公来得及时，徐州百姓总算躲过一劫。",
-      "kind": "dialogue"
+      "text": "玄德公来得及时，徐州百姓总算躲过一劫。"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.4.text",
       "speaker": "糜竺",
-      "text": "我已经回来了。幸亏使君及时赶到。",
-      "kind": "dialogue"
+      "text": "我已经回来了。幸亏使君及时赶到。"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.5.text",
       "speaker": "陈登",
-      "text": "曹操军尚未远去，必定还会卷土重来。",
-      "kind": "dialogue"
+      "text": "曹操军尚未远去，必定还会卷土重来。"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.6.text",
       "speaker": "孙乾",
-      "text": "依我之见，应当趁其立足未稳，出城迎战。",
-      "kind": "dialogue"
+      "text": "依我之见，应当趁其立足未稳，出城迎战。"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.7.text",
       "speaker": "糜竺",
-      "text": "曹军势大，若能议和，也可免百姓再受刀兵。",
-      "kind": "dialogue"
+      "text": "曹军势大，若能议和，也可免百姓再受刀兵。"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.8.text",
       "speaker": "陶谦",
-      "text": "玄德公意下如何？",
-      "kind": "dialogue"
+      "text": "玄德公意下如何？"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.9.text",
       "speaker": "关羽",
-      "text": "兄长，决定出征了吗？",
-      "kind": "dialogue"
+      "text": "兄长，决定出征了吗？"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.10.text",
       "speaker": "刘备",
-      "text": "既然曹军驻扎小沛，我军便前往迎战。",
-      "kind": "dialogue"
+      "text": "既然曹军驻扎小沛，我军便前往迎战。"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.11.text",
       "speaker": "关羽",
-      "text": "快做出征准备吧。",
-      "kind": "dialogue"
+      "text": "快做出征准备吧。"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.12.text",
       "speaker": "陶谦",
-      "text": "既然你们决定了，我们也出征。听说敌人现在在小沛。",
-      "kind": "dialogue"
+      "text": "既然你们决定了，我们也出征。听说敌人现在在小沛。"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.13.text",
       "speaker": "陶谦",
-      "text": "从这里向西南，有个地方叫小沛。曹操军就在那里扎营。",
-      "kind": "dialogue"
+      "text": "从这里向西南，有个地方叫小沛。曹操军就在那里扎营。"
     },
     {
       "path": "XIAOPEI_PRE_BATTLE_STORY.14.text",
       "speaker": "关羽",
-      "text": "曹操军有什么了不起？兄长，快进军小沛吧。",
-      "kind": "dialogue"
+      "text": "曹操军有什么了不起？兄长，快进军小沛吧。"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.0.text",
       "speaker": "陶谦",
-      "text": "曹操军仍在小沛集结。若再交战，徐州百姓恐怕又要遭殃。",
-      "kind": "dialogue"
+      "text": "曹操军仍在小沛集结。若再交战，徐州百姓恐怕又要遭殃。"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.1.text",
       "speaker": "糜竺",
-      "text": "不如先派人前往曹营，探明曹操的意思。",
-      "kind": "dialogue"
+      "text": "不如先派人前往曹营，探明曹操的意思。"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.2.text",
       "speaker": "陈登",
-      "text": "议和虽然凶险，却可以争取时间。",
-      "kind": "dialogue"
+      "text": "议和虽然凶险，却可以争取时间。"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.3.text",
       "speaker": "张飞",
-      "text": "大哥，派我去向曹操军求和吗？",
-      "kind": "dialogue"
+      "text": "大哥，派我去向曹操军求和吗？"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.4.text",
       "speaker": "刘备",
-      "text": "三弟，此行切勿冲动。徐州百姓的安危就托付给你了。",
-      "kind": "dialogue"
+      "text": "三弟，此行切勿冲动。徐州百姓的安危就托付给你了。"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.5.text",
       "speaker": "张飞",
-      "text": "这样决定了的话就简单了。好，我马上就去。",
-      "kind": "dialogue"
+      "text": "这样决定了的话就简单了。好，我马上就去。"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.6.text",
       "speaker": "武官",
-      "text": "主公，不得了啦！吕布进攻陈留了。",
-      "kind": "dialogue"
+      "text": "主公，不得了啦！吕布进攻陈留了。"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.7.text",
       "speaker": "文官",
-      "text": "一个叫张飞的人前来请求停战，怎么办？",
-      "kind": "dialogue"
+      "text": "一个叫张飞的人前来请求停战，怎么办？"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.8.text",
       "speaker": "曹操",
-      "text": "不能让吕布把陈留夺去。全军马上折回，保住陈留！快！",
-      "kind": "dialogue"
+      "text": "不能让吕布把陈留夺去。全军马上折回，保住陈留！快！"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.9.text",
       "speaker": "张飞",
-      "text": "不过，曹操为什么撤退了？要是俺的话就绝对进攻啦。",
-      "kind": "dialogue"
+      "text": "不过，曹操为什么撤退了？要是俺的话就绝对进攻啦。"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.10.text",
       "speaker": "陶谦",
-      "text": "刘备，这次你实在帮了大忙。",
-      "kind": "dialogue"
+      "text": "刘备，这次你实在帮了大忙。"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.11.text",
       "speaker": "刘备",
-      "text": "不，我们什么忙也没帮，只是曹操折回去了。",
-      "kind": "dialogue"
+      "text": "不，我们什么忙也没帮，只是曹操折回去了。"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.12.text",
       "speaker": "陶谦",
-      "text": "谢谢，我想把小沛托给你治理。",
-      "kind": "dialogue"
+      "text": "谢谢，我想把小沛托给你治理。"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.13.text",
       "speaker": "孙乾",
-      "text": "请让我跟随刘使君前往小沛。",
-      "kind": "dialogue"
+      "text": "请让我跟随刘使君前往小沛。"
     },
     {
       "path": "XIAOPEI_NEGOTIATE_STORY.14.text",
       "speaker": "军报",
-      "text": "孙乾正式加入刘备军。",
-      "kind": "dialogue"
+      "text": "孙乾正式加入刘备军。"
+    },
+    {
+      "path": "TAISHAN_PRE_BATTLE_STORY.0.text",
+      "speaker": "史官",
+      "text": "曹操因吕布袭取陈留，匆匆撤兵。陶谦遂将小沛托付刘备驻守，孙乾也自此随军效力。"
+    },
+    {
+      "path": "TAISHAN_PRE_BATTLE_STORY.1.text",
+      "speaker": "孙乾",
+      "text": "主公，泰山一带贼众盘踞山路，乡民来报，商旅已不敢通行。"
+    },
+    {
+      "path": "TAISHAN_PRE_BATTLE_STORY.2.text",
+      "speaker": "简雍",
+      "text": "泰山山势险恶，若放任贼众坐大，徐州北面的道路便要断了。"
+    },
+    {
+      "path": "TAISHAN_PRE_BATTLE_STORY.3.text",
+      "speaker": "张飞",
+      "text": "不过一伙山贼！大哥给俺一支兵，俺也去把他们赶下山来。"
+    },
+    {
+      "path": "TAISHAN_PRE_BATTLE_STORY.4.text",
+      "speaker": "刘备",
+      "text": "贼众之中未必尽是恶人。此行以安民为先，若其首领肯降，不可滥杀。"
+    },
+    {
+      "path": "TAISHAN_PRE_BATTLE_STORY.5.text",
+      "speaker": "提示",
+      "text": "现在可以操纵刘备在议事厅中走动。点击人物与其交谈；准备妥当后与关羽交谈出征泰山。"
+    },
+    {
+      "path": "TAISHAN_PRE_BATTLE_STORY.6.text",
+      "speaker": "关羽",
+      "text": "兄长，七军已经整备妥当。"
+    },
+    {
+      "path": "TAISHAN_PRE_BATTLE_STORY.7.text",
+      "speaker": "刘备",
+      "text": "传令诸军：进兵泰山，以安民为先，愿降者一概不杀。"
+    },
+    {
+      "path": "TAISHAN_PRE_BATTLE_STORY.8.text",
+      "speaker": "史官",
+      "text": "刘备率军离开小沛，沿山道北上。数日之后，泰山贼寨已在眼前。"
+    },
+    {
+      "path": "TAISHAN_PRE_BATTLE_STORY.9.text",
+      "speaker": "关羽",
+      "text": "山路分作数条，贼兵必会由两翼来攻。众军结阵，不可散乱。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.guangchuan.张飞.0",
       "speaker": "张飞",
-      "text": "大哥，快点出兵吧！伯圭兄还等着我们。",
-      "kind": "npc"
+      "text": "大哥，快点出兵吧！伯圭兄还等着我们。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.guangchuan.简雍.0",
       "speaker": "简雍",
-      "text": "广川路近，但沿途林地很多，骑兵行动要格外小心。",
-      "kind": "npc"
+      "text": "广川路近，但沿途林地很多，骑兵行动要格外小心。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.guangchuan.使者.0",
       "speaker": "使者",
-      "text": "公孙将军正在界桥等候援军，请刘使君尽快动身。",
-      "kind": "npc"
+      "text": "公孙将军正在界桥等候援军，请刘使君尽快动身。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.guangchuan.关羽.0",
       "speaker": "关羽",
-      "text": "兄长，军队已经准备妥当。",
-      "kind": "npc"
+      "text": "兄长，军队已经准备妥当。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.guangchuan.关羽.1",
       "speaker": "关羽",
-      "text": "走广川，出发！",
-      "kind": "npc"
+      "text": "走广川，出发！"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xindu.张飞.0",
       "speaker": "张飞",
-      "text": "大哥，信都虽远，俺也去把挡路的袁绍军杀散！",
-      "kind": "npc"
+      "text": "大哥，信都虽远，俺也去把挡路的袁绍军杀散！"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xindu.简雍.0",
       "speaker": "简雍",
-      "text": "信都路稍远，不过途中有道具屋，可以补充兵器和军需。",
-      "kind": "npc"
+      "text": "信都路稍远，不过途中有道具屋，可以补充兵器和军需。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xindu.使者.0",
       "speaker": "使者",
-      "text": "信都若失，界桥后路便会受威胁，请刘使君尽快动身。",
-      "kind": "npc"
+      "text": "信都若失，界桥后路便会受威胁，请刘使君尽快动身。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xindu.关羽.0",
       "speaker": "关羽",
-      "text": "兄长，军队已经准备妥当。",
-      "kind": "npc"
+      "text": "兄长，军队已经准备妥当。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xindu.关羽.1",
       "speaker": "关羽",
-      "text": "走信都城，出发！",
-      "kind": "npc"
+      "text": "走信都城，出发！"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.julu.公孙瓒.0",
       "speaker": "公孙瓒",
-      "text": "巨鹿的公孙越正在苦战。玄德，此行务必小心。",
-      "kind": "npc"
+      "text": "巨鹿的公孙越正在苦战。玄德，此行务必小心。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.julu.张飞.0",
       "speaker": "张飞",
-      "text": "大哥，俺也去巨鹿会会张郃和颜良！",
-      "kind": "npc"
+      "text": "大哥，俺也去巨鹿会会张郃和颜良！"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.julu.简雍.0",
       "speaker": "简雍",
-      "text": "巨鹿道路多荒地和山崖，行军时要先看清可通行的路线。",
-      "kind": "npc"
+      "text": "巨鹿道路多荒地和山崖，行军时要先看清可通行的路线。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.julu.关羽.0",
       "speaker": "关羽",
-      "text": "兄长，巨鹿方向已经探明。",
-      "kind": "npc"
+      "text": "兄长，巨鹿方向已经探明。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.julu.关羽.1",
       "speaker": "关羽",
-      "text": "走巨鹿，出发！",
-      "kind": "npc"
+      "text": "走巨鹿，出发！"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.qinghe.公孙瓒.0",
       "speaker": "公孙瓒",
-      "text": "严纲正在清河抵挡麴义。玄德，请尽快赶去。",
-      "kind": "npc"
+      "text": "严纲正在清河抵挡麴义。玄德，请尽快赶去。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.qinghe.张飞.0",
       "speaker": "张飞",
-      "text": "清河也好，巨鹿也罢，有俺在就不怕袁绍军！",
-      "kind": "npc"
+      "text": "清河也好，巨鹿也罢，有俺在就不怕袁绍军！"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.qinghe.简雍.0",
       "speaker": "简雍",
-      "text": "清河沿途水道与林地交错，过河必须寻找桥梁。",
-      "kind": "npc"
+      "text": "清河沿途水道与林地交错，过河必须寻找桥梁。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.qinghe.关羽.0",
       "speaker": "关羽",
-      "text": "兄长，清河方向已经探明。",
-      "kind": "npc"
+      "text": "兄长，清河方向已经探明。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.qinghe.关羽.1",
       "speaker": "关羽",
-      "text": "走清河，出发！",
-      "kind": "npc"
+      "text": "走清河，出发！"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.jieqiao.张飞.0",
       "speaker": "张飞",
-      "text": "大哥，袁绍主力就在前面，这一仗俺也去打头阵！",
-      "kind": "npc"
+      "text": "大哥，袁绍主力就在前面，这一仗俺也去打头阵！"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.jieqiao.简雍.0",
       "speaker": "简雍",
-      "text": "界桥敌军众多，先确认粮仓和宝物库的位置再进军。",
-      "kind": "npc"
+      "text": "界桥敌军众多，先确认粮仓和宝物库的位置再进军。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.jieqiao.关羽.0",
       "speaker": "关羽",
-      "text": "兄长，全军已经集结。",
-      "kind": "npc"
+      "text": "兄长，全军已经集结。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.jieqiao.关羽.1",
       "speaker": "关羽",
-      "text": "进军界桥！",
-      "kind": "npc"
+      "text": "进军界桥！"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xuzhou.孔融.0",
       "speaker": "孔融",
-      "text": "努力啊。徐州百姓也正盼着援军。",
-      "kind": "npc"
+      "text": "玄德此去徐州，路远敌众，万望珍重。徐州百姓正盼着援军。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xuzhou.太史慈.0",
       "speaker": "太史慈",
-      "text": "谢谢你，有刘备支援，徐州就万无一失了。",
-      "kind": "npc"
+      "text": "北海之围虽解，我仍须留下守护百姓。玄德公一路保重。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.xuzhou.张飞.0",
+      "speaker": "张飞",
+      "text": "大哥，军马早已齐备，俺只等你一声令下！"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.xuzhou.赵云.0",
+      "speaker": "赵云",
+      "text": "主公放心，云愿执枪护卫左右，直抵徐州。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.xuzhou.糜竺.0",
+      "speaker": "糜竺",
+      "text": "徐州军情紧急，沿途路线已探明，请刘使君尽快启程。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xuzhou.关羽.0",
       "speaker": "关羽",
-      "text": "准备好了吗？",
-      "kind": "npc"
+      "text": "兄长，军需已经整备妥当。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xuzhou.关羽.1",
       "speaker": "关羽",
-      "text": "进军徐州！",
-      "kind": "npc"
+      "text": "事不宜迟，即刻南下徐州！"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xiaopei.陶谦.0",
       "speaker": "陶谦",
-      "text": "小沛在徐州西南，曹操军正在那里扎营。",
-      "kind": "npc"
+      "text": "小沛在徐州西南，曹操军正在那里扎营。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xiaopei.孙乾.0",
       "speaker": "孙乾",
-      "text": "在下愿随刘使君一同出征。",
-      "kind": "npc"
+      "text": "在下愿随刘使君一同出征。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xiaopei.关羽.0",
       "speaker": "关羽",
-      "text": "兄长，军队已经准备妥当。",
-      "kind": "npc"
+      "text": "兄长，军队已经准备妥当。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.xiaopei.关羽.1",
       "speaker": "关羽",
-      "text": "进军小沛！",
-      "kind": "npc"
+      "text": "进军小沛！"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.taishan.张飞.0",
+      "speaker": "张飞",
+      "text": "听说贼首还是个女子。只要她肯降，俺也去不为难她。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.taishan.赵云.0",
+      "speaker": "赵云",
+      "text": "泰山道路狭窄，左右山谷都可能藏有伏兵。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.taishan.简雍.0",
+      "speaker": "简雍",
+      "text": "山贼多半也是乱世流民。主公若能劝降首领，胜过一味厮杀。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.taishan.孙乾.0",
+      "speaker": "孙乾",
+      "text": "乡民已把两处宝物库的位置标在图上，行军时可以顺路查看。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.taishan.藩宫.0",
+      "speaker": "藩宫",
+      "text": "信都一路随主公至此，今日正好在山地间施展拳脚。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.taishan.关羽.0",
+      "speaker": "关羽",
+      "text": "兄长，七军已经整备妥当。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.taishan.关羽.1",
+      "speaker": "关羽",
+      "text": "进兵泰山！"
     }
   ]
 }

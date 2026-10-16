@@ -71,7 +71,10 @@
       {x:25,y:4,type:'plain'},{x:25,y:5,type:'plain'},
       {x:27,y:3,type:'bridge'},{x:28,y:3,type:'bridge'},
       {x:27,y:4,type:'bridge'},{x:28,y:4,type:'bridge'},
-      {x:20,y:8,type:'bridge'},{x:21,y:8,type:'bridge'}
+      {x:20,y:8,type:'bridge'},{x:21,y:8,type:'bridge'},
+      // The source tile sat one row above the village painted on this
+      // remastered map. Move the interactive village onto its courtyard.
+      {x:19,y:5,type:'plain'},{x:19,y:6,type:'village'}
     ],
     alternateVictory:{unitId:'liu',rect:{x1:28,y1:10,x2:29,y2:14},exp:50,goldReward:0,label:'刘备进入徐州城',log:'刘备进入徐州城，全体残存部队获得经验50'},
     intro:[{speaker:'于禁',text:'说什么？刘备攻过来了？有多少兵？……不好。一定设法等夏侯渊的到来。'}],

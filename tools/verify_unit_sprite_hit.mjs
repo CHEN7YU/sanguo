@@ -39,5 +39,7 @@ function runMoveAction({ground,unitId='guan',reachableX=10,reachableY=6,clickX=5
 
 assert.equal(JSON.stringify(runMoveAction({ground:{x:10,y:7}})),JSON.stringify({x:10,y:6}),'the visibly highlighted cell above Guan Yu must win even when coarse coordinate rounding resolves to Guan Yu');
 assert.equal(JSON.stringify(runMoveAction({ground:{x:10,y:7},unitId:'zhang',clickX:535,clickY:365})),JSON.stringify({x:10,y:6}),'Zhang Fei upper-body overlap must recover the nearest highlighted empty cell above him');
+assert.equal(JSON.stringify(runMoveAction({ground:{x:10,y:7},unitId:'infantry',reachableX:11,reachableY:6,clickX:570,clickY:390})),JSON.stringify({x:11,y:6}),'a generic unit must not swallow a diagonally adjacent highlighted cell');
+assert.equal(JSON.stringify(runMoveAction({ground:{x:10,y:7},unitId:'cavalry',reachableY:5,clickY:340})),JSON.stringify({x:10,y:5}),'a tall unit must pass clicks through to a highlighted cell two rows above');
 assert.equal(JSON.stringify(runMoveAction({ground:{x:10,y:7},reachableY:7,clickY:490})),JSON.stringify({x:10,y:7}),'an occupied unit cell must remain selectable');
-console.log('Unit sprite hit passed: attack targets remain easy to click, while Guan Yu and Zhang Fei upper-body overlaps remain click-through to highlighted empty movement cells.');
+console.log('Unit sprite hit passed: attack targets and unit feet remain selectable, while every unit upper body passes clicks through to highlighted movement cells.');
