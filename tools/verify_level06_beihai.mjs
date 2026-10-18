@@ -82,10 +82,12 @@ for(const relative of [
   level.battlefieldArt,'assets/level-06-beihai/portraits/guan-hai-v1.webp','assets/level-06-beihai/portraits/kong-rong-v1.webp',
   'assets/level-06-beihai/portraits/taishi-ci-v1.webp','assets/level-06-beihai/portraits/meng-su-v1.webp',
   'assets/level-06-beihai/animation/guan-hai/guan-hai-walk-v2.webp','assets/level-06-beihai/animation/taishi-ci/taishi-ci-attack-v2.webp',
-  'assets/level-06-beihai/animation/beast/beast-death-v1.webp'
+  'assets/level-06-beihai/animation/beast/beast-attack-v3.webp','assets/level-06-beihai/animation/beast/beast-death-v1.webp'
 ])check(fs.existsSync(path.join(root,relative)),`Missing Beihai asset: ${relative}`);
 
 const game=fs.readFileSync(path.join(root,'game.js'),'utf8');
+check(game.includes("beast:'assets/level-06-beihai/animation/beast/beast-attack-v3.webp'"),'Beast trainers must use the tiger pounce-and-bite attack strip');
+check(!game.includes("beast:'assets/level-06-beihai/animation/beast/beast-attack-v2.webp'"),'Obsolete spear-thrust beast attack must not remain wired');
 const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const leaderboard=fs.readFileSync(path.join(root,'leaderboard.js'),'utf8');
 check(game.includes("levelIndex==='8' ? window.LEVEL_06_BEIHAI"),'Level 8 loader is missing');

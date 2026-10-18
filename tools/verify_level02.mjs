@@ -119,7 +119,7 @@ for (const unit of ['lvbu','zhangliao','houcheng','songxian','weixu']) {
   check(game.includes(`${unit}:'assets/${unit}-death-v1.webp'`), `${unit} death sheet is not wired`);
 }
 const level02Portraits = {
-  lvbu:'assets/story-portraits/remaster-v4/lv-bu-v4.webp',
+  lvbu:'assets/story-portraits/remaster-v5/lv-bu-v5.webp',
   zhangliao:'assets/zhang-liao-portrait-v1.webp',
   houcheng:'assets/hou-cheng-portrait-v1.webp',
   songxian:'assets/song-xian-portrait-v1.webp',

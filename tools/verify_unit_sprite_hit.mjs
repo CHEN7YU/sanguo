@@ -20,17 +20,26 @@ function run({phase,attackable,click}){
   return context.result;
 }
 
+function runTransportHit(click){
+  const unit={id:'sunqian',originalId:63,troop:'transport',side:'ally',hp:720,x:10,y:7};
+  const context={phase:'move',attackable:[],units:[unit],bgRect:{scale:1},isMountedUnit:()=>false,iso:()=>({x:500,y:490})};
+  vm.runInNewContext(helper+';result=unitSpriteTileAt('+click.x+','+click.y+');',context);
+  return context.result;
+}
+
+assert.equal(JSON.stringify(runTransportHit({x:542,y:430})),JSON.stringify({x:10,y:7}),'Sun Qian transport art must use its full cart width for click-through');
+
 assert.equal(JSON.stringify(run({phase:'attack',attackable:[{x:10,y:6}],click:{x:500,y:360}})),JSON.stringify({x:10,y:6}));
 assert.equal(JSON.stringify(run({phase:'attack',attackable:[{x:10,y:6}],click:{x:500,y:420}})),JSON.stringify({x:10,y:6}));
 assert.equal(run({phase:'attack',attackable:[],click:{x:500,y:360}}),null);
 
-function runMoveAction({ground,unitId='guan',reachableX=10,reachableY=6,clickX=500,clickY=410}){
+function runMoveAction({ground,unitId='guan',reachableX=10,reachableY=6,clickX=500,clickY=410,structureCore=null,structureFull=null}){
   const unit={id:unitId,originalId:unitId==='zhang'?2:1,troop:'cavalry',side:'ally',hp:560,x:10,y:7};
   const context={
     phase:'move',reachable:new Map([[`${reachableX},${reachableY}`,0]]),keyOf:(x,y)=>`${x},${y}`,
     screenToTile:()=>ground,unitSpriteTileAt:()=>({x:unit.x,y:unit.y}),
     unitAt:(x,y)=>x===unit.x&&y===unit.y?unit:null,
-    structureTileAt:()=>null,map:Array.from({length:10},()=>Array(14).fill('plain')),
+    structureTileAt:(_x,_y,coreOnly=false)=>coreOnly?structureCore:structureFull,map:Array.from({length:10},()=>Array(14).fill('plain')),
     ROWS:10,COLS:14,bgRect:{cell:80,w:1120,h:800},iso:(x,y)=>({x:500+(x-10)*80,y:490+(y-7)*80})
   };
   vm.runInNewContext(actionHelper+`;result=actionTileAt(${clickX},${clickY});`,context);
@@ -42,4 +51,5 @@ assert.equal(JSON.stringify(runMoveAction({ground:{x:10,y:7},unitId:'zhang',clic
 assert.equal(JSON.stringify(runMoveAction({ground:{x:10,y:7},unitId:'infantry',reachableX:11,reachableY:6,clickX:570,clickY:390})),JSON.stringify({x:11,y:6}),'a generic unit must not swallow a diagonally adjacent highlighted cell');
 assert.equal(JSON.stringify(runMoveAction({ground:{x:10,y:7},unitId:'cavalry',reachableY:5,clickY:340})),JSON.stringify({x:10,y:5}),'a tall unit must pass clicks through to a highlighted cell two rows above');
 assert.equal(JSON.stringify(runMoveAction({ground:{x:10,y:7},reachableY:7,clickY:490})),JSON.stringify({x:10,y:7}),'an occupied unit cell must remain selectable');
-console.log('Unit sprite hit passed: attack targets and unit feet remain selectable, while every unit upper body passes clicks through to highlighted movement cells.');
+assert.equal(JSON.stringify(runMoveAction({ground:{x:10,y:7},reachableX:9,reachableY:6,structureFull:{x:9,y:6},clickX:455,clickY:410})),JSON.stringify({x:9,y:6}),'the visible edge of a reachable village must select its own cell before overlapping unit art');
+console.log('Unit sprite hit passed: attack targets and unit feet remain selectable, while unit and structure art passes clicks through to highlighted movement cells.');

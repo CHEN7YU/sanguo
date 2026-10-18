@@ -79,6 +79,11 @@ const BattleRules=(()=>{
     return gain
   }
 
+  function transportHealingExperience(actualHealing){
+    const amount=Math.max(0,Math.floor(Number(actualHealing)||0));
+    return amount>0?Math.min(10,Math.ceil(amount/25)):0
+  }
+
   function terrainRecovery({hp,maxHp,morale=100,tongyu=0,recoverHp=false,recoverMorale=false,hpRoll=0,moraleRoll=0}){
     let nextHp=hp,nextMorale=morale,hpGain=0,moraleGain=0;
     if(recoverHp&&nextHp<maxHp){
@@ -134,7 +139,7 @@ const BattleRules=(()=>{
     return local[0]?.unit.id||null
   }
 
-  return{TROOP_BASE,ORIGINAL_STRATEGY_LEARNING,derivedStats,affinityPercent,physicalDamage,physicalMoraleDamage,applyMoraleLoss,confusionRecoveryChance,hitRate,experienceGain,terrainRecovery,strategyAbility,militaryBandStrategyRecovery,adjacentMilitaryBandRecovery,fireScrollDamage,aiStrategyDecision,learnedStrategies,retaliationTargetId}
+  return{TROOP_BASE,ORIGINAL_STRATEGY_LEARNING,derivedStats,affinityPercent,physicalDamage,physicalMoraleDamage,applyMoraleLoss,confusionRecoveryChance,hitRate,experienceGain,transportHealingExperience,terrainRecovery,strategyAbility,militaryBandStrategyRecovery,adjacentMilitaryBandRecovery,fireScrollDamage,aiStrategyDecision,learnedStrategies,retaliationTargetId}
 })();
 
 if(typeof module!=='undefined'&&module.exports)module.exports=BattleRules;

@@ -14,6 +14,8 @@ function check(condition,message){if(!condition)throw new Error(message)}
 check(api&&Object.isFrozen(api),'BattleSfx must expose a frozen reusable API');
 for(const name of ['weaponType','movementType','charge','attack','block','impact','heal','hoofStep','footStep','movementStep','fall'])check(typeof api[name]==='function',`missing ${name} sound`);
 check(api.weaponType({troop:'archer',weapon:'角弓'})==='bow','archer weapon mapping');
+check(api.weaponType({troop:'beast',weapon:'驭兽鞭'})==='beast','beast attack mapping');
+check((sfxSource.match(/if\(kind==='beast'\)/g)||[]).length===2,'beast attack and bite-impact sounds must both be authored');
 check(api.weaponType({troop:'cavalry',weapon:'蛇矛'})==='spear','spear weapon mapping');
 check(api.weaponType({troop:'infantry',weapon:'佩剑'})==='sword','sword weapon mapping');
 check(api.weaponType({troop:'infantry',weapon:'环首刀'})==='saber','saber weapon mapping');

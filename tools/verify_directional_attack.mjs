@@ -7,6 +7,10 @@ const required = [
   "return dy>=0?'south':'north'",
   'function combatTargetFacesRight(attacker,target)',
   'function shouldMirrorCombatSheet(u,target)',
+  'function combatAttackFrame(u,p,ranged=false)',
+  "if(u?.id==='guan')return p<.16?0:p<.34?1:p<.5?2:p<.72?3:4",
+  "strikeDuration=(ranged?920:attacker.id==='guan'?1040:860)/motionSpeed",
+  'mountedCombatAttackIds.includes(key)',
   'authoredDirectionalAttack',
   'drawAuthoredDirectionalAttackFrame(u,directionalSheet,targetH,attackFx)',
   "previewParams.has('directionalAttackPreview')"
@@ -20,5 +24,5 @@ if (missing.length || game.includes('fallbackDirectionalSheet') || game.includes
   if (game.includes('drawAuthoredWalkFrame(u,directionalSheet')) console.error('- a directional attack still renders walk frames');
   process.exitCode = 1;
 } else {
-  console.log('Directional attack verified: real directional atlases are used when present; every other direction keeps the weapon-specific attack strip.');
+  console.log('Directional attack verified: Guan Yu keeps a readable full blade swing, mounted duel frames use authored bounds, and directional atlases are preserved.');
 }

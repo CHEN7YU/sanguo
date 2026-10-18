@@ -11,7 +11,8 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message)};
 assert(level?.id==='xiaopei','missing Xiaopei level');
 assert(level.width===24&&level.height===16,'original map must be 24x16');
 assert(level.terrain.length===16&&level.terrain.every(row=>row.length===24),'terrain dimensions invalid');
-for(const tile of ['22,4','15,9'])assert(level.structureOverlayTiles?.includes(tile),`missing village art overlay must be restored at (${tile})`);
+for(const tile of ['20,4','15,9'])assert(level.structureOverlayTiles?.includes(tile),`missing village art overlay must be restored at (${tile})`);
+for(const tile of level.structureOverlayTiles||[]){const [x,y]=tile.split(',').map(Number);assert(level.terrain[y]?.[x]==='village',`structure overlay at (${tile}) must point to a village tile`);}
 const runtime=level.terrain.map(row=>[...row]);
 for(const override of level.paintedTerrainOverrides||[])runtime[override.y][override.x]=override.type;
 const paintedAlignment=[

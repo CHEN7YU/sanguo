@@ -43,6 +43,7 @@
   function weaponType(unit={}){
     const weapon=String(unit.weapon||''),troop=String(unit.troop||'');
     if(troop==='support')return 'gong';
+    if(troop==='beast')return 'beast';
     if(troop==='archer'||/[弓弩]/.test(weapon))return 'bow';
     if(/[枪矛槊戟]/.test(weapon))return 'spear';
     if(/剑/.test(weapon))return 'sword';
@@ -65,6 +66,13 @@
   function attack(ctx,destination,{kind='saber',pan=0,critical=false}={}){
     if(!ctx||!destination)return;
     const power=critical?1.22:1,out=outputNode(ctx,destination,pan,power);
+    if(kind==='beast'){
+      // A whip crack cues the command, followed by the tiger's low snarl and rush.
+      noise(ctx,out,{duration:.055,gain:.078,frequency:3600,to:780,q:1.1,type:'bandpass'});
+      tone(ctx,out,{at:.025,frequency:154,to:58,duration:.28,gain:.078,type:'sawtooth'});
+      noise(ctx,out,{at:.045,duration:.24,gain:.06,frequency:820,to:135,q:.55,type:'bandpass'});
+      return;
+    }
     if(kind==='bow'){
       tone(ctx,out,{frequency:630,to:118,duration:.16,gain:.075,type:'triangle'});
       tone(ctx,out,{at:.012,frequency:1180,to:390,duration:.075,gain:.025,type:'square'});
@@ -120,6 +128,13 @@
   function impact(ctx,destination,{kind='saber',pan=0,critical=false,fatal=false}={}){
     if(!ctx||!destination)return;
     const power=(critical?1.22:1)*(fatal?1.08:1),out=outputNode(ctx,destination,pan,power);
+    if(kind==='beast'){
+      // Close, weighty jaw impact with a short animal growl; no metal-on-metal ring.
+      noise(ctx,out,{duration:.13,gain:.105,frequency:680,to:72,q:.4,type:'lowpass'});
+      tone(ctx,out,{frequency:132,to:38,duration:.23,gain:.11,type:'sawtooth'});
+      noise(ctx,out,{at:.025,duration:.09,gain:.052,frequency:980,to:120,q:.62,type:'bandpass'});
+      return;
+    }
     if(kind==='bow'){
       tone(ctx,out,{frequency:920,to:190,duration:.085,gain:.04,type:'square'});
       noise(ctx,out,{duration:.12,gain:.054,frequency:1450,to:280,q:.9,type:'bandpass'});

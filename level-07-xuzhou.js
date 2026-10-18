@@ -63,7 +63,7 @@
     id:'xuzhou',chapter:'第一章 · 支援北海、徐州',name:'徐州之战',width,height,terrain,terrainCodes,
     source:'用户原游戏 HEXZMAP.R3 section 8 / SNR1D.R3 page 1 paragraph 5 / BAKDATA.R3',maxTurns:30,
     objective:'全歼曹操军，或令刘备进入徐州城',defeat:'刘备撤退或超过30回合',objectiveUnitId:'enemy-force',victoryCondition:'eliminateAllEnemies',originalRules:true,squareGrid:true,structuresBakedIntoArt:true,
-    viewProjection:{x:1/60,y:1/36,dx:1/30,dy:1/18,rowShift:Array(18).fill(0)},battlefieldArt:'assets/level-07-xuzhou/xuzhou-map-v1.webp',nextBattle:'徐州战后抉择',
+    viewProjection:{x:1/60,y:1/36,dx:1/30,dy:1/18,rowShift:Array(18).fill(0)},battlefieldArt:'assets/level-07-xuzhou/xuzhou-map-v1.webp',structureOverlayTiles:['1,16'],nextBattle:'徐州战后抉择',
     paintedTerrainOverrides:[
       // The remastered painting moved the northern crossing and added the
       // clearly visible central bridge. Keep the extracted source grid above

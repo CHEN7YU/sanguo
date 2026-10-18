@@ -37,6 +37,12 @@ assert.equal(rules.physicalDamage({attack:266,defense:354,attackerTroop:'infantr
 
 assert.equal(rules.experienceGain(1,1,false,false),6);
 assert.equal(rules.experienceGain(1,5,true,true),62);
+assert.equal(rules.transportHealingExperience(0),0);
+assert.equal(rules.transportHealingExperience(1),1);
+assert.equal(rules.transportHealingExperience(25),1);
+assert.equal(rules.transportHealingExperience(26),2);
+assert.equal(rules.transportHealingExperience(115),5);
+assert.equal(rules.transportHealingExperience(999),10);
 assert.deepEqual(rules.terrainRecovery({hp:301,maxHp:500,morale:82,tongyu:91,recoverHp:true,recoverMorale:true,hpRoll:4,moraleRoll:2}),{hp:500,morale:100,hpGain:199,moraleGain:18});
 assert.deepEqual(rules.terrainRecovery({hp:495,maxHp:500,morale:91,tongyu:42,recoverHp:true,recoverMorale:true,hpRoll:0,moraleRoll:0}),{hp:500,morale:100,hpGain:5,moraleGain:9});
 assert.equal(rules.strategyAbility(30,2),31);
