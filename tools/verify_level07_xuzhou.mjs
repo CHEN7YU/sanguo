@@ -15,6 +15,32 @@ check(level.terrain.length===18&&level.terrain.every(row=>row.length===30),'Xuzh
 const counts=level.terrain.flat().reduce((out,type)=>(out[type]=(out[type]||0)+1,out),{});
 const expected={plain:236,forest:41,water:49,bridge:6,wall:12,city:5,grass:47,village:2,cliff:126,rough:16};
 for(const [type,count] of Object.entries(expected))check(counts[type]===count,`${type} count differs from HEXZMAP: ${counts[type]} != ${count}`);
+const runtimeTerrain=level.terrain.map(row=>[...row]);
+for(const override of level.paintedTerrainOverrides||[])runtimeTerrain[override.y][override.x]=override.type;
+const paintedBridgeKeys=new Set((level.paintedTerrainOverrides||[]).filter(tile=>tile.type==='bridge').map(tile=>`${tile.x},${tile.y}`));
+for(const key of ['27,3','28,3','27,4','28,4','20,8','21,8'])check(paintedBridgeKeys.has(key),`Painted Xuzhou bridge collision is missing at ${key}`);
+check(runtimeTerrain[5][19]==='plain'&&runtimeTerrain[6][19]==='village','Painted Xuzhou village must be anchored to its visible courtyard at (19,6)');
+const blocked=new Set(['water','cliff','wall','gate','fence','house','fire','muddyWater']);
+function route(start,target){
+  const key=([x,y])=>`${x},${y}`,queue=[start],previous=new Map([[key(start),null]]);
+  while(queue.length){
+    const point=queue.shift(),pointKey=key(point);
+    if(pointKey===key(target)){
+      const path=[];let cursor=pointKey;
+      while(cursor){const [x,y]=cursor.split(',').map(Number);path.push([x,y]);cursor=previous.get(cursor)}
+      return path.reverse();
+    }
+    for(const next of [[point[0]+1,point[1]],[point[0]-1,point[1]],[point[0],point[1]+1],[point[0],point[1]-1]]){
+      const [x,y]=next,nextKey=key(next);
+      if(x<0||y<0||x>=level.width||y>=level.height||blocked.has(runtimeTerrain[y][x])||previous.has(nextKey))continue;
+      previous.set(nextKey,pointKey);queue.push(next);
+    }
+  }
+  return[];
+}
+for(const [label,start,target] of [['northern painted bridge',[26,3],[29,4]],['central painted bridge',[19,8],[22,8]],['southern original bridge',[9,15],[12,15]],['Liu Bei route to bridge',[3,16],[12,15]]]){
+  const path=route(start,target);check(path.length,`${label} has no legal route`);check(path.every(([x,y])=>!blocked.has(runtimeTerrain[y][x])),`${label} enters blocked terrain`);
+}
 check(level.maxTurns===30&&level.victoryCondition==='eliminateAllEnemies','Turn limit or elimination victory is wrong');
 check(level.alternateVictory.rect.x1===28&&level.alternateVictory.rect.x2===29&&level.alternateVictory.rect.y1===10&&level.alternateVictory.rect.y2===14,'Xuzhou city victory rectangle must use corrected tactical axes');
 
@@ -33,9 +59,13 @@ check(level.events.battleReward===300&&level.alternateVictory.exp===50,'Original
 const storyContext={window:{}};
 loadScript('story-data.js',storyContext);
 const story=storyContext.window.STORY_BY_LEVEL.xuzhou;
-check(Array.isArray(story)&&story.length>=12,'Xuzhou prebattle story is incomplete');
+check(Array.isArray(story)&&story.length>=11,'Xuzhou prebattle story is incomplete');
 for(const required of ['孔融','太史慈','张飞','关羽','糜竺'])check(story.some(line=>line.speaker===required),`Story is missing ${required}`);
-check(story.some(line=>Array.isArray(line.conversationChoices)&&line.conversationChoices.length===3),'Xuzhou conversation choice scene is missing');
+const councilRoam=story.find(line=>line.freeRoam&&line.location.includes('北海议事厅'));
+check(councilRoam?.setup?.some(actor=>actor.name==='刘备')&&councilRoam.setup.some(actor=>actor.name==='关羽'),'Beihai council must use Liu Bei free-roam with Guan Yu departure');
+for(const name of ['孔融','太史慈','张飞','赵云','糜竺'])check(councilRoam.setup.some(actor=>actor.name===name),`Beihai council free-roam is missing ${name}`);
+check(!story.some(line=>Array.isArray(line.conversationChoices)),'Beihai council must not use bottom conversation-choice cards');
+for(const name of ['孔融','太史慈','张飞','赵云','糜竺','关羽'])check(storyContext.window.NPC_DIALOGUE_BY_LEVEL.xuzhou?.[name]?.length,`Xuzhou free-roam dialogue is missing ${name}`);
 
 for(const relative of [level.battlefieldArt,'assets/audio/original-music-9.opus','docs/original-audit/level-07-xuzhou-audit.md','docs/original-audit/level-07-xuzhou-map.json'])check(fs.existsSync(path.join(root,relative)),`Missing Xuzhou resource: ${relative}`);
 for(const id of ['yu-jin','yue-jin','li-dian','guo-jia','cao-hong','xiahou-yuan','mi-fang','sun-qian'])check(fs.existsSync(path.join(root,`assets/level-07-xuzhou/portraits/${id}-v1.webp`)),`Missing Xuzhou portrait: ${id}`);
@@ -52,10 +82,20 @@ check(game.includes("level.nextLevelId==='xuzhou'?'9'"),'Beihai-to-Xuzhou campai
 check(game.includes('alternateVictoryContains'),'Rectangular city victory runtime is missing');
 check(game.includes("level.victoryCondition==='eliminateAllEnemies'"),'Elimination victory runtime is missing');
 check(game.includes('recoverFromTransports')&&game.includes('bestSupportMove'),'Transport recovery or support AI is missing');
+check(game.includes("passiveName.textContent='兵种特性 · 运输补给'")&&game.includes('70＋等级×5')&&game.includes('上下左右相邻的所有受伤友军'),'Transport function must be explained in the unit panel');
 check(game.includes('xuzhouAuthoredCombatIds')&&game.includes("xuzhouCombatFrame(u,'attack'"),'Xuzhou authored animation remapping is missing');
+check(game.includes("walkArt[u.id]&&walkFrameBounds[u.id]")&&game.includes("walkArt[genericKey]&&walkFrameBounds[genericKey]"),'Every Xuzhou unit must resolve to a dedicated or troop-family authored walk atlas');
+check(!game.includes("function walkKeyFor(u){if(walkArt[u.id])return u.id;if(art[u.id])return null;return genericVisualKeyFor(u)}"),'Named Xuzhou units must not fall back to the old bouncing placeholder');
+check(!game.includes('stepLift=')&&!game.includes('banditGait=')&&!game.includes('if(walking&&!authoredWalk){ctx.rotate'),'Xuzhou movement must not add synthetic hopping over authored frames');
+check(game.includes('function attackSheetFacesLeft(u)')&&game.includes('xuzhouAuthoredCombatIds.has(u.id)'),'Xuzhou left-facing action atlas orientation is not registered');
+check(game.includes('shouldMirrorCombatSheet(u,combatFx.target)'),'Xuzhou combat poses are not turned toward their targets');
+check(!game.includes('fallbackDirectionalSheet')&&!game.includes('drawAuthoredWalkFrame(u,directionalSheet'),'North/south attacks must never substitute walk poses for attack poses');
+for(const troop of ['infantry','archer','cavalry','martial','bandit','support','transport'])check(game.includes(`u.troop==='${troop}'`)||troop==='infantry',`Missing runtime visual routing for ${troop}`);
 check(game.includes("toLevelId:'xuzhou-postbattle'")&&game.includes('postBattleChoice:branch'),'Xuzhou postbattle branch save is missing');
 check(game.includes("fillText('入城'"),'Xuzhou city objective highlight is missing');
-check(index.includes('data-select-level="9"')&&index.includes('level-07-xuzhou.js'),'Xuzhou menu or script include is missing');
+check(index.includes('data-select-level="9"')&&index.includes('level-07-xuzhou.js?build='),'Xuzhou menu or cache-busted level script include is missing');
+const runtimeBuild=game.match(/const RUNTIME_BUILD='([^']+)'/)?.[1];
+check(runtimeBuild&&index.includes(`game.js?build=${runtimeBuild}`),'Xuzhou runtime build token is not synchronized');
 check(index.includes('data-xuzhou-branch="fight"')&&index.includes('data-xuzhou-branch="negotiate"'),'Xuzhou postbattle choices are missing');
 check(leaderboard.includes("xuzhou: { name: '徐州之战'"),'Xuzhou leaderboard rule is missing');
 

@@ -27,7 +27,9 @@ for(const key of ['attack','critical','block','hurt','death'])assert.equal(bound
 const game=fs.readFileSync(path.join(root,'game.js'),'utf8');
 for(const token of [
   "zhaoyun:'assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-walk-v2.webp'",
-  "zhaoyun:'assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-attack-v2.webp'",
+  "mountedCombatAttackIds=['guan'",
+  "attackPaths[id]=`assets/mounted-combat-v1/${id}-attack.webp`",
+  "zhaoyun:'assets/mounted-combat-v1/zhaoyun-directional-attack.webp'",
   "zhaoyun:'assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-death-v2.webp'",
   'function drawAuthoredDirectionalAttackFrame',
   'function drawAuthoredBlockFrame',

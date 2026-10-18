@@ -1,0 +1,11 @@
+{
+  "source": "D:/baiduyundownload/三国英杰传/三国英杰传/SGYJ",
+  "mappingRule": "BAKDATA.R3 offset 0x1100 + personId * 21 + 14 -> FACEDAT.R3 faceId",
+  "characters": [
+    { "name": "曹操", "personId": 8, "faceId": 27, "reference": "face-27.png", "runtimePortrait": "assets/story-portraits/remaster-v4/cao-cao-v4.webp" },
+    { "name": "夏侯惇", "personId": 16, "faceId": 28, "reference": "face-28.png", "runtimePortrait": "assets/level-08-xiaopei/portraits/xiahou-dun-v1.webp" },
+    { "name": "夏侯渊", "personId": 17, "faceId": 29, "reference": "face-29.png", "runtimePortrait": "assets/level-07-xuzhou/portraits/xiahou-yuan-v1.webp" },
+    { "name": "荀彧", "personId": 68, "faceId": 32, "reference": "face-32.png", "runtimePortrait": "assets/level-08-xiaopei/portraits/xun-yu-v1.webp" },
+    { "name": "郭嘉", "personId": 61, "faceId": 34, "reference": "face-34.png", "runtimePortrait": "assets/level-07-xuzhou/portraits/guo-jia-v1.webp" }
+  ]
+}

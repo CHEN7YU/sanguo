@@ -1,7 +1,11 @@
+param(
+  [string]$SiteRoot = 'C:\Users\Duanyang Home\Documents\ChatGPT\sanguo\game-site-publish'
+)
+
 $ErrorActionPreference = 'Stop'
 
 $sourceRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$siteRoot = [System.IO.Path]::GetFullPath('C:\Users\Duanyang Home\Documents\ChatGPT\sanguo\site-publish-v78')
+$siteRoot = [System.IO.Path]::GetFullPath($SiteRoot)
 $targetRoot = [System.IO.Path]::GetFullPath((Join-Path $siteRoot 'dist'))
 
 if (-not $targetRoot.StartsWith($siteRoot + [System.IO.Path]::DirectorySeparatorChar, [System.StringComparison]::OrdinalIgnoreCase)) {
@@ -51,6 +55,19 @@ foreach ($reference in $assetReferences) {
   $destinationDirectory = Split-Path -Parent $destination
   New-Item -ItemType Directory -Path $destinationDirectory -Force | Out-Null
   Copy-Item -LiteralPath $source -Destination $destination
+}
+
+# Xuzhou action-sheet paths are assembled from unit IDs at runtime. Include
+# this small chapter directory as a unit so the static scanner cannot omit a
+# walk, attack, hurt, or portrait sheet that does not appear as one literal.
+foreach ($tree in @('assets/level-07-xuzhou')) {
+  $source = Join-Path $sourceRoot $tree
+  $destination = Join-Path $targetRoot $tree
+  if (Test-Path -LiteralPath $destination) {
+    Remove-Item -LiteralPath $destination -Recurse -Force
+  }
+  New-Item -ItemType Directory -Path (Split-Path -Parent $destination) -Force | Out-Null
+  Copy-Item -LiteralPath $source -Destination $destination -Recurse -Force
 }
 
 $files = Get-ChildItem -LiteralPath $targetRoot -File -Recurse

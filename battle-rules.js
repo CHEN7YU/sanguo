@@ -125,7 +125,16 @@ const BattleRules=(()=>{
     return(ORIGINAL_STRATEGY_LEARNING[troop]||[]).filter(entry=>level>=entry.level).map(entry=>entry.id)
   }
 
-  return{TROOP_BASE,ORIGINAL_STRATEGY_LEARNING,derivedStats,affinityPercent,physicalDamage,physicalMoraleDamage,applyMoraleLoss,confusionRecoveryChance,hitRate,experienceGain,terrainRecovery,strategyAbility,militaryBandStrategyRecovery,adjacentMilitaryBandRecovery,fireScrollDamage,aiStrategyDecision,learnedStrategies}
+  function retaliationTargetId({aiType,provokedBy,provokedTurn,currentTurn,actorX,actorY,detectionRange=3,candidates=[]}){
+    if(aiType!==0)return null;
+    const provoker=provokedTurn===currentTurn&&provokedBy?candidates.find(unit=>unit?.id===provokedBy&&unit.hp>0):null;
+    if(provoker)return provoker.id;
+    if(!Number.isFinite(actorX)||!Number.isFinite(actorY))return null;
+    const local=candidates.filter(unit=>unit?.hp>0&&Number.isFinite(unit.x)&&Number.isFinite(unit.y)).map(unit=>({unit,distance:Math.abs(unit.x-actorX)+Math.abs(unit.y-actorY)})).filter(entry=>entry.distance<=detectionRange).sort((a,b)=>a.distance-b.distance||(a.unit.hp/a.unit.maxHp)-(b.unit.hp/b.unit.maxHp)||(a.unit.spawnOrder??0)-(b.unit.spawnOrder??0));
+    return local[0]?.unit.id||null
+  }
+
+  return{TROOP_BASE,ORIGINAL_STRATEGY_LEARNING,derivedStats,affinityPercent,physicalDamage,physicalMoraleDamage,applyMoraleLoss,confusionRecoveryChance,hitRate,experienceGain,terrainRecovery,strategyAbility,militaryBandStrategyRecovery,adjacentMilitaryBandRecovery,fireScrollDamage,aiStrategyDecision,learnedStrategies,retaliationTargetId}
 })();
 
 if(typeof module!=='undefined'&&module.exports)module.exports=BattleRules;

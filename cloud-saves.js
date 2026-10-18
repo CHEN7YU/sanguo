@@ -18,13 +18,28 @@
   const guestButton = document.getElementById('cloudGuestBtn');
   const guestImport = document.getElementById('cloudImportGuestBtn');
   const historyList = document.getElementById('cloudHistoryList');
+  const progress = document.getElementById('cloudSaveProgress');
+  const conflictPanel = document.getElementById('cloudConflictPanel');
+  const moreOptions = document.getElementById('cloudMoreOptions');
+  const accountOptions = document.getElementById('cloudAccountOptions');
   const key = () => `zhaolie-account-save-v1:${userId}`;
   const hasData = payload => !!payload?.campaignTransfer || [payload?.saveStore?.auto, ...(payload?.saveStore?.manual || [])].some(Boolean);
 
   function show(message) {
-    info.textContent = message;
+    const text = message.startsWith('已同步 ·') ? '进度已保存到云端'
+      : message.startsWith('已读取云端版本 ') ? '已从云端恢复进度' : message;
+    info.textContent = text;
+    progress.textContent = record ? describe(record.payload, false) : '';
     const summary = document.getElementById('cloudSaveSummary');
-    if (summary) summary.textContent = message;
+    if (summary) summary.textContent = text;
+    syncButton.hidden = !userId || !!conflict;
+    syncButton.disabled = !initialized || inFlight || stale || blocked;
+    remoteButton.disabled = localButton.disabled = inFlight || stale || blocked;
+    conflictPanel.hidden = !conflict;
+    accountOptions.hidden = !userId && !blocked;
+    guestImport.hidden = !userId || hasData(record?.payload) || !!conflict || !!record?.pending || stale || blocked;
+    document.getElementById('cloudHistoryBtn').disabled = !userId || inFlight || stale || blocked;
+    document.getElementById('cloudExportBackupBtn').disabled = !record;
   }
   async function lockAccount() {
     if (!navigator.locks) throw new Error('此浏览器不支持账号存档写入锁，请更新浏览器或切换游客');
@@ -103,17 +118,23 @@
     if (path.startsWith('/api/saves') && data.userId !== userId) throw new Error('账号发生变化，请刷新');
     return data;
   }
-  function describe(payload) {
+  function describe(payload, detailed = true) {
     const saves = [payload?.saveStore?.auto, ...(payload?.saveStore?.manual || [])].filter(Boolean).sort((a, b) => b.savedAt - a.savedAt);
     const save = saves[0];
     if (!save) return payload?.campaignTransfer ? '有跨关继承进度，无可读取档位' : '暂无存档';
-    return `${save.levelName || save.levelId} · ${save.phaseType === 'story' ? `剧情第${save.storyIndex + 1}句` : save.phaseType === 'prep' ? '战前整备' : `第${save.turn}回合`} · ${save.levelSelectBalanced ? '选关试玩' : '主线'} · ${new Date(save.savedAt).toLocaleString()}`;
+    const label = `${save.levelName || save.levelId} · ${save.phaseType === 'story' ? `剧情第${save.storyIndex + 1}句` : save.phaseType === 'prep' ? '战前整备' : save.phaseType === 'postbattle' ? '战后结算' : `第${save.turn}回合`}`;
+    return detailed ? `${label} · ${save.levelSelectBalanced ? '选关试玩' : '主线'} · ${new Date(save.savedAt).toLocaleString()}` : label;
   }
   function showConflict(remote) {
     if (remote.payload) validate(remote.payload);
     conflict = remote;
-    show('云端与本机进度冲突 · 自动同步暂停，请在主菜单管理云存档');
-    notice.textContent = `本机：${describe(record.payload)}。云端：${describe(remote.payload)}（版本 ${remote.revision}）。选择会替换整套档位及跨关进度，被替换内容会先备份。`;
+    show(remote.history ? '请选择是否恢复这份旧存档' : '进度冲突：请选择要保留的一份');
+    document.getElementById('cloudLocalProgress').textContent = describe(record.payload);
+    document.getElementById('cloudRemoteProgress').textContent = describe(remote.payload);
+    document.getElementById('cloudRemoteLabel').textContent = remote.history ? '你选择的旧存档' : '云端的进度';
+    remoteButton.textContent = remote.history ? '确认恢复这份存档' : '使用云端进度';
+    localButton.textContent = remote.history ? '不恢复，保留当前进度' : '保留这台设备的进度';
+    notice.textContent = '选择会替换所有存档和跨关进度，原进度会先备份。';
     remoteButton.hidden = localButton.hidden = false;
   }
   function adopt(remote) {
@@ -170,6 +191,7 @@
       else show(`本机进度保留，未同步：${error.message}`);
     } finally {
       inFlight = false;
+      show(info.textContent);
       if (record?.dirty && retryable && !conflict && !stale && !blocked) timer = setTimeout(() => synchronize(), 60000);
     }
   }
@@ -180,7 +202,7 @@
     changed();
   }
   async function initialize() {
-    ({ validatePayload: validateFormat } = await import('./save-format.mjs?build=20261011-cloud-saves-v1'));
+    ({ validatePayload: validateFormat } = await import('./save-format.mjs?build=20261018-cloud-saves-v2'));
     try {
       session = await api('/api/auth/session');
       userId = session.user?.id || null;
@@ -206,7 +228,6 @@
       } catch (error) { blocked = true; show(error.message); }
     }
     initialized = true;
-    syncButton.hidden = guestImport.hidden = !userId;
     guestButton.hidden = !userId;
     if (!userId) { show('游客模式 · 存档仅保存在当前浏览器'); return session; }
     if (blocked || !session?.user) return session;
@@ -236,6 +257,13 @@
   });
   localButton.addEventListener('click', async () => {
     if (inFlight || !conflict || stale || blocked) return;
+    if (conflict.history) {
+      conflict = null;
+      remoteButton.hidden = localButton.hidden = true;
+      show('已取消恢复，当前进度未改变');
+      notice.textContent = '游戏先保存在本机，再自动同步。换设备前请确认已保存到云端。';
+      return;
+    }
     try {
       ensureCurrentRecord();
       persist({ ...record, revision: conflict.revision, pending: null, dirty: true,
@@ -246,7 +274,14 @@
       notice.textContent = conflict ? notice.textContent : info.textContent;
     } catch (error) { notice.textContent = error.message; }
   });
-  document.getElementById('cloudManageBtn').addEventListener('click', event => { event.stopPropagation(); dialog.showModal(); });
+  document.getElementById('cloudManageBtn').addEventListener('click', event => {
+    event.stopPropagation();
+    moreOptions.open = blocked;
+    if (!conflict) notice.textContent = userId
+      ? '游戏先保存在本机，再自动同步。换设备前请确认已保存到云端。'
+      : '游客进度只保存在这台设备。登录后才能使用云存档。';
+    dialog.showModal();
+  });
   document.getElementById('cloudCloseBtn').addEventListener('click', () => dialog.close());
   dialog.addEventListener('keydown', event => event.stopPropagation());
   dialog.addEventListener('click', event => event.stopPropagation());
@@ -287,7 +322,7 @@
             ensureCurrentRecord();
             const remote = await api('/api/saves');
             showConflict({ ...remote, payload: validate(entry.payload), history: true });
-            notice.textContent = `历史版本 ${entry.revision}：${describe(entry.payload)}。点击“采用云端/历史版本”确认恢复，原本机进度将备份，并保存为新的云版本。`;
+            notice.textContent = '确认后将恢复这份旧存档，替换所有当前档位和跨关进度；当前进度会先备份。';
           } catch (error) { notice.textContent = error.message; }
         });
         historyList.appendChild(button);
@@ -326,6 +361,7 @@
     console.error('Save initialization failed', error);
     show(`存档初始化失败，原数据未改动：${error.message}。请刷新或切换游客`);
     guestButton.hidden = false;
+    moreOptions.open = true;
     return null;
   });
   window.ZhaolieCloud = { ready, flush: () => synchronize(), replacePayload,

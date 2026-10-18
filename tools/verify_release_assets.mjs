@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {collectReleaseAssets} from './release-assets.mjs';
 
 const projectRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const releaseRoot=path.resolve(process.argv[2]||path.join(projectRoot,'site-test','dist'));
+const releaseRoot=path.resolve(process.argv[2]||path.join(projectRoot,'dist'));
 const sourceFiles=fs.readdirSync(releaseRoot,{withFileTypes:true})
   .filter(entry=>entry.isFile()&&/\.(?:html|css|m?js)$/i.test(entry.name))
   .map(entry=>path.join(releaseRoot,entry.name));

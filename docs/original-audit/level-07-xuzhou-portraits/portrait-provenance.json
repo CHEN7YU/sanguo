@@ -71,6 +71,15 @@
       "faceId": 85,
       "slug": "taishi-ci",
       "reference": "docs/original-audit/level-07-xuzhou-portraits/taishi-ci-face-085.png"
+    },
+    {
+      "name": "陈登",
+      "characterId": 65,
+      "faceId": 17,
+      "slug": "chen-deng",
+      "reference": "docs/original-audit/level-07-xuzhou-portraits/chen-deng-face-017.png",
+      "runtimePortrait": "assets/level-07-xuzhou/portraits/chen-deng-v1.webp",
+      "master": "assets-master/level-07-xuzhou/portraits/chen-deng-v1.png"
     }
   ]
 }

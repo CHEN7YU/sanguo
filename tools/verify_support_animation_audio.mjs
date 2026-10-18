@@ -19,8 +19,9 @@ for(const token of [
   "support:[[[85,0,193,293]",
   "support:[[15,102,419,552]",
   "'martial','bandit','support','zhaoyun','wenchou','yanliang','zhanghe','quyi'",
-  "!['martial','bandit','support'].includes(u.troop)",
+  "support:'assets/troops/military-band-attack-v1.webp'",
 ])if(!game.includes(token))fail(`missing military-band renderer token: ${token}`);
+if(game.includes('fallbackDirectionalSheet')||game.includes('drawAuthoredWalkFrame(u,directionalSheet'))fail('military-band or another unit can still substitute a walk cycle for an attack');
 
 if(!/<audio id="titleMusic"[^>]*\bautoplay\b/.test(html))fail('title music does not request immediate autoplay');
 if(html.includes('titleIntroSoundBtn')||game.includes("getElementById('titleIntroSoundBtn')"))fail('obsolete sound-unlock button still present');

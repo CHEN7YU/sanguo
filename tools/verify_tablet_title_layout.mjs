@@ -16,6 +16,10 @@ for(const token of [
   '.title-save-note{display:none}',
 ])if(!css.includes(token))fail(`missing tablet title layout rule: ${token}`);
 
+const settingsZ=Number(css.match(/[.]settings-panel[{][^}]*z-index:([0-9]+)/)?.[1]);
+const shopZ=Number(css.match(/[.]shop-overlay[{][^}]*z-index:([0-9]+)/)?.[1]);
+if(!Number.isFinite(settingsZ)||!Number.isFinite(shopZ)||settingsZ<=shopZ)fail('settings panel must render above the shop overlay');
+
 if(!html.includes('id="titleSettingsBtn">游戏设置</button>'))fail('settings button missing from title menu');
 if(!/style\.css\?build=20\d{6}-[^"']+/.test(html))fail('versioned stylesheet cache key is missing');
 

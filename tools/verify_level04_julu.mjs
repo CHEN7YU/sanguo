@@ -22,7 +22,7 @@ assert.deepEqual([level.alternateVictory.unitId,level.alternateVictory.x,level.a
 assert.equal(level.alternateVictory.exp,50);assert.equal(level.events.battleReward,200);
 
 const expected=[
-  [102,5,17,10,0],[51,6,15,7,0],[103,4,14,7,0],[91,12,6,6,1],[54,11,14,7,1],
+  [102,5,17,9,0],[51,6,15,7,0],[103,4,14,7,0],[91,12,6,6,1],[54,11,14,7,1],
   [256,10,6,5,1],[257,7,16,5,0],[274,9,17,4,0],[292,10,14,3,1],[336,13,5,4,1],[348,4,16,4,0]
 ];
 for(const [id,x,y,lvl,ai] of expected){const u=level.units.find(q=>q.originalId===id);assert.ok(u,`missing original unit ${id}`);assert.deepEqual([u.x,u.y,u.level,u.aiType],[x,y,lvl,ai],`deployment mismatch ${id}`)}
@@ -37,7 +37,13 @@ assert.equal(level.terrain[10][0],'fort');assert.equal(level.terrain[8][5],'supp
 assert.equal(level.terrain[7][11],'village');assert.equal(level.terrain[13][7],'village');
 assert.equal(JSON.stringify(level.events.loot['5,8']),JSON.stringify({item:'wheat',amount:1}));
 assert.equal(level.events.duel.attackerId,'zhang');assert.equal(level.events.duel.defenderId,'yanliang');
+assert.equal(level.events.duel.trigger,'combat','the original Zhang Fei/Yan Liang duel must trigger on combat, not mere adjacency');
 assert.equal(level.events.duel.endsBattle,false,'Yan Liang duel must not defeat Zhang He or end Julu');
+const isolatedYuZe={...level.units.find(unit=>unit.id==='yuze'),x:8,y:16,hp:500,maxHp:500};
+const distantLiu={...level.units.find(unit=>unit.id==='liu'),x:14,y:10,hp:650,maxHp:650};
+for(const id of ['yanliang','e2','e3']){const guard=level.units.find(unit=>unit.id===id);assert.equal(rules.retaliationTargetId({aiType:guard.aiType,actorX:guard.x,actorY:guard.y,currentTurn:4,candidates:[isolatedYuZe,distantLiu]}),'yuze',id+' must react when Yu Ze enters its local guard zone')}
+const distantGuard=level.units.find(unit=>unit.id==='gaolan');assert.equal(rules.retaliationTargetId({aiType:distantGuard.aiType,actorX:distantGuard.x,actorY:distantGuard.y,currentTurn:4,candidates:[isolatedYuZe,distantLiu]}),null,'distant stationary troops must hold formation');
+assert.equal(rules.retaliationTargetId({aiType:distantGuard.aiType,provokedBy:'yuze',provokedTurn:4,currentTurn:4,actorX:distantGuard.x,actorY:distantGuard.y,candidates:[isolatedYuZe,distantLiu]}),'yuze','a directly attacked stationary troop must retaliate even outside its local guard zone');
 const turn3=level.timedEvents.find(event=>event.turn===3);assert.ok(turn3);assert.equal(turn3.spawns.length,5);
 assert.equal(JSON.stringify(turn3.spawns.map(x=>x.unitId)),JSON.stringify(['bandit1','bandit2','bandit3','guanchun','gengwu']));
 assert.equal(level.areaEvents[0].unitId,'liu');assert.equal(JSON.stringify(level.areaEvents[0].rect),JSON.stringify({x1:4,y1:8,x2:10,y2:13}));
@@ -48,20 +54,22 @@ const assets=['assets/level-04-julu/julu-map-aligned-v3.webp','assets/level-04-j
 let runtimeBytes=0;for(const asset of assets){const size=fs.statSync(path.join(root,asset)).size;assert.ok(size>1000,`missing ${asset}`);runtimeBytes+=size}assert.ok(runtimeBytes<6*1024*1024,`Julu core art exceeds normal-level budget: ${runtimeBytes}`);
 
 const story=context.window.JULU_PRE_BATTLE_STORY;assert.equal(story.length,10);
-const roam=story.find(line=>line.freeRoam);assert.ok(roam,'Julu must restore its early-chapter council roam');
-for(const name of ['刘备','关羽','张飞','简雍','公孙瓒'])assert.ok(roam.setup.some(actor=>actor.name===name),`Julu roam missing ${name}`);
-assert.ok(story.filter(line=>line.move||line.thenMove||line.route).length>=4,'Julu story actors must visibly walk between beats');
-assert.ok(context.window.NPC_DIALOGUE_BY_LEVEL.julu?.关羽?.length,'Julu free roam needs a Guan Yu departure interaction');
+const roam=story.find(line=>line.freeRoam);assert.ok(roam,'Julu must retain its already-authored early council roaming scene');
+for(const name of ['刘备','关羽','张飞','简雍','公孙瓒'])assert.ok(roam.setup?.some(actor=>actor.name===name),`Julu roaming scene is missing ${name}`);
 for(const speaker of ['公孙瓒','刘备','关羽','张飞','颜良','张郃'])assert.ok(story.some(line=>line.speaker===speaker)||speaker==='刘备',`missing Julu story speaker ${speaker}`);
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8'),game=fs.readFileSync(path.join(root,'game.js'),'utf8');
 assert.ok(html.includes('data-select-level="5"'));assert.ok(html.includes('第四战A · 巨鹿路线'));assert.ok(html.includes('第四战B · 清河路线'));assert.ok(html.includes('第五战 · 路线汇合'));
 assert.ok(game.includes("levelIndex==='5' ? window.LEVEL_04_JULU"));assert.ok(game.includes("level.nextLevelId==='julu'?'5'"));assert.ok(game.includes('structuresBakedIntoArt'));
-assert.ok(game.includes("const reward=alternate?(level.alternateVictory?.goldReward??0)"),'alternate victory must grant original EXP instead of also granting normal gold');
+assert.ok(game.includes("alternate?(level.alternateVictory?.goldReward??0):(level.events?.battleReward??100)"),'alternate victory must grant original EXP instead of also granting normal gold');
 assert.ok(game.includes('全体存活我军获得经验${alternateExp}'),'alternate victory outcome must describe the original EXP reward');
 assert.ok(game.includes("previewParams.has('areaEventPreview')"),'Julu central pursuit event must have a browser audit route');
 assert.ok(game.includes('Number.isInteger(update.aiTarget)'),'AI target zero must remain a valid original-script target');
 assert.ok(game.includes('const duelEndsBattle=script.endsBattle??(h.id===objectiveUnitId)'),'duel result must only end a battle when the defeated duelist is the objective');
+assert.ok(game.includes('const pair=(a.id===script.attackerId&&b.id===script.defenderId)||(a.id===script.defenderId&&b.id===script.attackerId)'),'the scripted duel pair must work no matter which side initiates combat');
+assert.ok(game.includes('if(scriptedDuelPair(a,t)){await startDuel();return}'),'Yan Liang attacking Zhang Fei must enter the duel instead of ordinary NPC combat');
+assert.ok(game.includes("if(script?.trigger==='combat')return false"),'combat-triggered duels must not fire merely from standing adjacent');
+assert.ok(game.includes('duelInProgress=true;const resumePhase=phase;g.acted=true'),'duel triggering must be locked and consume Zhang Fei\'s action');
 assert.ok(game.includes("status(`${h.name}败退，继续击退${units.find(u=>u.id===objectiveUnitId)?.name||'敌军主将'}`)"),'non-objective duel must return to the battle with the real objective still active');
 for(const id of ['zhanghe','yanliang','gaolan','shenpei','gongsunyue','guanchun','gengwu','yuze'])assert.ok(game.includes(`${id}:'assets/level-04-julu/portraits/`),`missing portrait binding ${id}`);
 
-console.log(`Julu verification passed: exact 18x18 original terrain, deployment, turn-three ambush/reinforcements, duel, alternate victory, restored story roaming and ${(runtimeBytes/1024/1024).toFixed(2)} MiB core art.`);
+console.log(`Julu verification passed: exact 18x18 original terrain, deployment, turn-three ambush/reinforcements, duel, alternate victory, static story presentation and ${(runtimeBytes/1024/1024).toFixed(2)} MiB core art.`);

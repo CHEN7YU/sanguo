@@ -98,6 +98,7 @@ for(const asset of [
 
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const game=fs.readFileSync(path.join(root,'game.js'),'utf8');
+const style=fs.readFileSync(path.join(root,'style.css'),'utf8');
 const story=fs.readFileSync(path.join(root,'story-data.js'),'utf8');
 assert.ok(html.includes('level-03-xindu.js'));
 assert.ok(html.includes('data-select-level="4"'));
@@ -107,6 +108,8 @@ assert.ok(game.includes('function isSpecialPassable'));
 assert.ok(game.includes('const loadedMap=applyPaintedTerrainOverrides(save.map.map'), 'old saves must receive the corrected painted collision layer');
 assert.ok(game.includes('applyPaintedDeploymentOverride({...u,spawnOrder:u.spawnOrder??i'), 'old saves must move original water spawns onto dry painted cells');
 assert.ok(game.includes("victory(false,'alternate')"));
+assert.ok(game.includes("portrait.dataset.speaker=speaker"),'Story portrait must expose its speaker for portrait-specific framing');
+assert.ok(style.includes('#storyPortrait[data-speaker="藩宫"] img')&&style.includes('scaleX(1.09)'),'Fan Gong portrait aspect correction is missing');
 assert.ok(story.includes("'xindu': window.XINDU_PRE_BATTLE_STORY"));
 assert.ok(story.includes('淳于琼，你去信都城'));
 assert.ok(story.includes('向信都城进军吧'));

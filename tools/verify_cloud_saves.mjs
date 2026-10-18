@@ -103,6 +103,29 @@ try {
   terminal.campaignTransfer.postBattleChoice = 'negotiate';
   assert.equal((await put('alice', 3, terminal)).status, 200);
   assert.equal((await (await call('alice')).json()).payload.campaignTransfer.postBattleChoice, 'negotiate');
+  let chapterRevision = 4;
+  for (const [fromLevelId, toLevelId] of [
+    ['xuzhou', 'xiaopei'], ['xiaopei', 'xiaopei-postbattle'], ['xiaopei', 'taishan'],
+    ['xiaopei-negotiate', 'taishan'], ['taishan', 'huainan']
+  ]) {
+    const chapter = payload();
+    chapter.saveStore.auto.levelId = fromLevelId === 'xuzhou' ? 'xuzhou' : fromLevelId === 'taishan' ? 'taishan' : 'xiaopei';
+    chapter.saveStore.auto.phaseType = 'postbattle';
+    chapter.campaignTransfer = { schema: 1, fromLevelId, toLevelId, units: [{ id: 'liu' }],
+      gold: 2100, sunQianJoined: true, taishanCleared: fromLevelId === 'taishan' };
+    assert.equal((await put('alice', chapterRevision, chapter)).status, 200, `${fromLevelId} -> ${toLevelId}`);
+    chapterRevision++;
+    assert.deepEqual((await (await call('alice')).json()).payload, chapter);
+    assert.equal((await (await call('bob')).json()).payload, null, 'new chapter progress remains account-isolated');
+  }
+  const invalidDestination = payload();
+  invalidDestination.campaignTransfer = { schema: 1, fromLevelId: 'sishui-pass', toLevelId: 'huainan', units: [] };
+  assert.throws(() => validatePayload(invalidDestination), /关卡继承/);
+  const runtime = fs.readFileSync(new URL('../game.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(runtime, /localStorage\.(?:getItem|setItem|removeItem)\((?:CAMPAIGN_KEY|SAVE_KEY|IMPORT_BACKUP_KEY|'sanguozhi-zhaolie-campaign-v1')/,
+    'all new chapter paths must use the account storage adapter');
+  assert.ok(runtime.indexOf('await window.ZhaolieCloud.ready') < runtime.indexOf('const pendingCampaignAtBoot='),
+    'pending chapter routing must read the authenticated account, not guest progress');
   const large = payload(); large.saveStore.manual[0] = { ...snapshot(), extra: 'a'.repeat(85000) };
   large.saveStore.manual[1] = structuredClone(large.saveStore.manual[0]);
   for (let revision = 0; revision < 7; revision++) {
@@ -129,7 +152,9 @@ try {
   async function client(user, { local = store(), cloud = empty(), revision = 0, offline = false, lock = true } = {}) {
     const ids = ['cloudSaveStatus', 'cloudSaveSummary', 'cloudSaveDialog', 'cloudSaveNotice', 'cloudUseRemoteBtn',
       'cloudUseLocalBtn', 'cloudSyncBtn', 'cloudGuestBtn', 'cloudImportGuestBtn', 'cloudHistoryList',
-      'cloudManageBtn', 'cloudCloseBtn', 'cloudHistoryBtn', 'cloudExportBackupBtn'];
+      'cloudManageBtn', 'cloudCloseBtn', 'cloudHistoryBtn', 'cloudExportBackupBtn',
+      'cloudSaveProgress', 'cloudConflictPanel', 'cloudMoreOptions', 'cloudAccountOptions',
+      'cloudLocalProgress', 'cloudRemoteProgress', 'cloudRemoteLabel'];
     function element() {
       return { hidden: false, textContent: '', handlers: {}, children: [], addEventListener(name, fn) { this.handlers[name] = fn; },
         replaceChildren() { this.children = []; }, appendChild(value) { this.children.push(value); },
@@ -176,6 +201,11 @@ try {
   let c = await client(null, { local });
   assert.equal(JSON.parse(c.context.ZhaolieStorage.getItem(SAVE)).auto.turn, 6);
   assert.equal(c.puts(), 0);
+  assert.equal(c.elements.cloudSyncBtn.hidden, true);
+  assert.equal(c.elements.cloudAccountOptions.hidden, true);
+  c.elements.cloudManageBtn.handlers.click({ stopPropagation() {} });
+  assert.equal(c.elements.cloudMoreOptions.open, false, 'advanced tools must be collapsed on open');
+  assert.match(c.elements.cloudSaveNotice.textContent, /游客进度只保存在这台设备/);
   c = await client('alice', { local });
   assert.equal(JSON.parse(c.context.ZhaolieStorage.getItem(SAVE)).auto, null, 'must not silently migrate guest saves');
   c.context.ZhaolieStorage.setItem(SAVE, JSON.stringify(payload(12).saveStore));
@@ -183,6 +213,13 @@ try {
   assert.equal(JSON.parse(local.getItem(SAVE)).auto.turn, 6);
   await c.context.ZhaolieCloud.flush();
   assert.equal(c.remote().payload.saveStore.auto.turn, 12);
+  assert.equal(c.elements.cloudSaveStatus.textContent, '进度已保存到云端');
+  assert.equal(c.elements.cloudConflictPanel.hidden, true);
+  assert.equal(c.elements.cloudSyncBtn.hidden, false);
+  assert.equal(c.elements.cloudSyncBtn.disabled, false);
+  assert.equal(c.elements.cloudImportGuestBtn.hidden, true, 'nonempty accounts must not advertise guest migration');
+  assert.doesNotMatch(c.elements.cloudSaveStatus.textContent, /第12回合|版本/);
+  assert.match(c.elements.cloudSaveProgress.textContent, /第12回合/);
   const bob = await client('bob', { local });
   assert.equal(JSON.parse(bob.context.ZhaolieStorage.getItem(SAVE)).auto, null);
   assert.equal(JSON.parse(local.getItem(accountKey('alice'))).payload.saveStore.auto.turn, 12);
@@ -203,9 +240,15 @@ try {
   c.setRemote({ payload: payload(99), revision: 4 });
   await c.context.ZhaolieCloud.flush();
   assert.match(c.elements.cloudSaveStatus.textContent, /冲突/);
+  assert.equal(c.elements.cloudConflictPanel.hidden, false);
+  assert.equal(c.elements.cloudSyncBtn.hidden, true, 'sync must not compete with conflict choices');
+  assert.match(c.elements.cloudLocalProgress.textContent, /第16回合/);
+  assert.match(c.elements.cloudRemoteProgress.textContent, /第99回合/);
   assert.equal(c.remote().payload.saveStore.auto.turn, 99);
   await c.elements.cloudUseLocalBtn.handlers.click();
   assert.equal(c.remote().payload.saveStore.auto.turn, 16);
+  assert.equal(c.elements.cloudConflictPanel.hidden, true);
+  assert.equal(c.elements.cloudSyncBtn.hidden, false);
   assert.equal(JSON.parse(c.context.ZhaolieStorage.getItem(BACKUP)).payload.saveStore.auto.turn, 99);
   c.expire();
   c.context.ZhaolieStorage.setItem(SAVE, JSON.stringify(payload(17).saveStore));
@@ -243,10 +286,18 @@ try {
   c = await client('alice', { lock: false });
   assert.throws(() => c.context.ZhaolieStorage.setItem(SAVE, JSON.stringify(empty().saveStore)), /刷新/);
   assert.equal(c.puts(), 0);
+  assert.equal(c.elements.cloudSyncBtn.disabled, true, 'readonly account must not offer writable actions');
   c = await client('alice', { cloud: payload(3), revision: 3 });
   await c.elements.cloudHistoryBtn.handlers.click();
   await c.elements.cloudHistoryList.children[0].handlers.click();
   assert.equal(JSON.parse(c.context.ZhaolieStorage.getItem(SAVE)).auto.turn, 3, 'history click only selects, does not immediately overwrite');
+  assert.equal(c.elements.cloudRemoteLabel.textContent, '你选择的旧存档');
+  const beforeCancel = c.puts();
+  await c.elements.cloudUseLocalBtn.handlers.click();
+  assert.equal(c.puts(), beforeCancel, 'canceling restore must not write a new cloud version');
+  assert.equal(c.elements.cloudConflictPanel.hidden, true);
+  assert.equal(c.remote().payload.saveStore.auto.turn, 3);
+  await c.elements.cloudHistoryList.children[0].handlers.click();
   await c.elements.cloudUseRemoteBtn.handlers.click();
   assert.equal(c.remote().revision, 4);
   assert.equal(c.remote().payload.saveStore.auto.turn, 77);
@@ -264,6 +315,10 @@ try {
   const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   assert.ok(html.indexOf('cloud-saves.js') < html.indexOf('level-01.js'));
   assert.match(html, /save-format\.mjs/);
+  const advanced = html.slice(html.indexOf('<details id="cloudMoreOptions">'), html.indexOf('</details>', html.indexOf('<details id="cloudMoreOptions">')));
+  assert.match(advanced, /id="cloudHistoryBtn"/);
+  assert.match(advanced, /id="cloudExportBackupBtn"/);
+  assert.doesNotMatch(advanced, /id="cloudSyncBtn"|id="cloudUseRemoteBtn"/);
   assert.equal(validatePayload(phases).campaignTransfer.gold, 1700);
   const references = collectReleaseAssets([game]);
   const cliReferences = JSON.parse(execFileSync(process.execPath, [

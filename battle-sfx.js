@@ -3,10 +3,13 @@
 
   const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
   const safePan=value=>clamp(Number(value)||0,-.85,.85);
+  // Lift all procedural effects together so weapons, impacts and movement
+  // remain audible beside mastered music tracks.
+  const MASTER_OUTPUT_GAIN=1.75;
 
   function outputNode(ctx,destination,pan=0,gain=.9){
     const level=ctx.createGain();
-    level.gain.value=gain;
+    level.gain.value=clamp(gain*MASTER_OUTPUT_GAIN,0,2.4);
     if(typeof ctx.createStereoPanner==='function'){
       const panner=ctx.createStereoPanner();
       panner.pan.value=safePan(pan);
@@ -92,6 +95,28 @@
     for(const [frequency,to,duration,gain] of partials)tone(ctx,out,{frequency,to,duration,gain,type:'triangle'});
   }
 
+  function duelClash(ctx,destination,{pan=0,heavy=false}={}){
+    if(!ctx||!destination)return;
+    const out=outputNode(ctx,destination,pan,heavy?1.12:.98);
+    // A hard transient followed by several inharmonic metallic partials makes
+    // ordinary duel contacts read as blade-on-blade rather than body impacts.
+    noise(ctx,out,{duration:.055,gain:.085,frequency:5200,to:1350,q:1.35,type:'bandpass'});
+    tone(ctx,out,{frequency:1120,to:760,duration:.34,gain:.072,type:'triangle'});
+    tone(ctx,out,{frequency:1780,to:1260,duration:.28,gain:.054,type:'triangle'});
+    tone(ctx,out,{frequency:2860,to:1940,duration:.22,gain:.034,type:'sine'});
+    noise(ctx,out,{at:.026,duration:.16,gain:.024,frequency:3300,to:920,q:2.1,type:'bandpass'});
+  }
+
+  function duelFinish(ctx,destination,{pan=0,critical=true}={}){
+    if(!ctx||!destination)return;
+    const out=outputNode(ctx,destination,pan,critical?1.08:.96);
+    // The decisive blow is deliberately soft and low: a short flesh hit with
+    // no metallic ring, followed by a restrained body thump.
+    noise(ctx,out,{duration:.12,gain:.096,frequency:620,to:82,q:.42,type:'lowpass'});
+    tone(ctx,out,{frequency:104,to:34,duration:.2,gain:.105,type:'sine'});
+    noise(ctx,out,{at:.018,duration:.075,gain:.036,frequency:360,to:68,q:.5,type:'bandpass'});
+  }
+
   function impact(ctx,destination,{kind='saber',pan=0,critical=false,fatal=false}={}){
     if(!ctx||!destination)return;
     const power=(critical?1.22:1)*(fatal?1.08:1),out=outputNode(ctx,destination,pan,power);
@@ -143,6 +168,14 @@
     return options.mounted?hoofStep(ctx,destination,options):footStep(ctx,destination,options);
   }
 
+  function heal(ctx,destination,{pan=0,strong=false}={}){
+    if(!ctx||!destination)return;
+    const out=outputNode(ctx,destination,pan,strong?.82:.66),boost=strong?1.08:1;
+    tone(ctx,out,{frequency:392,to:523,duration:.24,gain:.034*boost,type:'sine'});
+    tone(ctx,out,{at:.09,frequency:523,to:659,duration:.28,gain:.031*boost,type:'triangle'});
+    tone(ctx,out,{at:.19,frequency:659,to:784,duration:.32,gain:.027*boost,type:'sine'});
+    noise(ctx,out,{at:.03,duration:.42,gain:.011*boost,frequency:2400,to:760,q:1.25,type:'bandpass'});
+  }
   function fall(ctx,destination,{pan=0,mounted=false}={}){
     if(!ctx||!destination)return;
     const out=outputNode(ctx,destination,pan,mounted?1.06:.86);
@@ -151,5 +184,5 @@
     if(mounted)tone(ctx,out,{at:.075,frequency:148,to:44,duration:.24,gain:.055,type:'triangle'});
   }
 
-  global.BattleSfx=Object.freeze({weaponType,movementType,charge,attack,block,impact,hoofStep,footStep,movementStep,fall});
+  global.BattleSfx=Object.freeze({weaponType,movementType,charge,attack,block,duelClash,duelFinish,impact,heal,hoofStep,footStep,movementStep,fall});
 })(window);

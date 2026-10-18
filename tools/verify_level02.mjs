@@ -158,7 +158,7 @@ check(html.includes('data-select-level="1"') && html.includes('data-select-level
 check(game.includes("params.set('storySelect','1')"), 'level selector must route to the selected battle story');
 check(game.includes("previewParams.has('storySelect')"), 'selected-level story boot route is not wired');
 check(game.includes("previewParams.has('battleSelect')"), 'battle-only audit route must remain available');
-check(game.includes("let plan=e.aiType===6?bestAiAction(e,allies,false):bestAiAction(e,allies,mobile&&!supportUnit)"), 'enemy AI must let AI6 attack in place before following its scripted waypoint');
+check(game.includes("e.aiType===6?bestAiAction(e,allies,false):bestAiAction(e,allies,mobile&&!supportUnit)"), 'enemy AI must let AI6 attack in place before following its scripted waypoint');
 check(game.includes("if(plan.target&&plan.target.hp>0&&inAttackRange(e,plan.target))await attackNpc(e,plan.target)"), 'waypoint AI must still use an available adjacent basic attack');
 check(game.includes("const mobile=e.aiType===1||e.aiType===3||e.aiType===4,cells=mobile?calcReach(e)"), 'danger preview must respect stationary and move-only AI modes');
 check(game.includes('function capturePrepBaseline()'), 'battle-entry preparation baseline is not captured');
@@ -168,7 +168,8 @@ check(game.includes('已恢复进入本关时的军需与宝物'), 'shop reset m
 check(game.includes('levelId:level.id'), 'save snapshots must record their battle id');
 check(game.includes("params.set('loadSlot',token)"), 'loading another battle must route to its saved slot');
 check(game.includes("previewParams.has('loadSlot')"), 'cross-battle saved-slot boot route is missing');
-check(game.includes("if(level.id==='sishui-pass')playOpeningMovie"), 'new game on battle two must not replay battle-one prologue');
+check(game.includes("const mustReloadFirstChapter=level.id!=='sishui-pass'"), 'new game from a later battle must route back to the first chapter');
+check(game.includes("if(previewParams.has('newGame'))setTimeout(launchFirstChapterNewGame,120)"), 'first-chapter new-game boot route is missing');
 check(!game.includes('hp:u.hp,strategy:u.strategy,morale:u.morale??100'), 'campaign transfer must not persist tactical troop, strategy or morale');
 check(game.includes('u.hp=u.maxHp')&&game.includes('u.strategy=u.maxStrategy')&&game.includes('u.morale=100'), 'battle two must replenish troop, strategy and morale from original battle-entry rules');
 check(level.marchDialogue.length===6&&level.marchDialogue[1].speaker==='张飞'&&level.marchDialogue[1].text.includes('乘胜追击'), 'the omitted Zhang Fei pursuit line must be restored');

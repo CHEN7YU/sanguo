@@ -28,3 +28,19 @@
 .account-dialog h2{margin:0 0 14px;font-size:24px}
 .account-dialog input{width:100%;min-height:44px;padding:8px;font:inherit;color:var(--ink);background:#102b49;border:1px solid var(--gold2)}
 .account-dialog .account-warning{color:var(--muted);margin:0}
+#cloudSaveDialog{width:min(520px,94vw)}
+#cloudSaveDialog h2{margin:0 0 16px;font-size:24px}
+#cloudSaveStatus{font-size:17px;font-weight:700;color:#9ddbb7}
+#cloudSaveProgress{font-size:14px}
+#cloudSaveNotice,.cloud-help{color:var(--muted)}
+#cloudSaveDialog .cloud-primary{background:#0d493b;border-color:#5cae80}
+.cloud-save-dialog button:disabled{opacity:.55;cursor:default}
+#cloudMoreOptions{margin-top:18px;border-top:1px solid var(--gold2);padding-top:12px}
+#cloudMoreOptions summary{cursor:pointer;padding:6px 0;color:var(--muted)}
+#cloudAccountOptions{margin-top:10px}
+.cloud-conflict{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.cloud-conflict[hidden],#cloudAccountOptions[hidden]{display:none}
+.cloud-conflict-card{min-width:0;padding:12px;background:#102b49;border:1px solid var(--gold2);overflow-wrap:anywhere}
+.cloud-conflict-card p{margin-bottom:0}
+.cloud-conflict .cloud-save-actions{grid-column:1/-1}
+@media(max-width:480px){.cloud-conflict{grid-template-columns:1fr}}

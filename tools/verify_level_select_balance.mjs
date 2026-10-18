@@ -7,7 +7,7 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const context={window:{},location:{search:''},localStorage:{getItem:()=>null},URLSearchParams};
 vm.createContext(context);
-for(const file of ['level-01.js','level-02.js','level-03-guangchuan.js','level-03-xindu.js','level-04-julu.js','level-04-qinghe.js','level-05-jieqiao.js','level-06-beihai.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context);
+for(const file of ['level-01.js','level-02.js','level-03-guangchuan.js','level-03-xindu.js','level-04-julu.js','level-04-qinghe.js','level-05-jieqiao.js','level-06-beihai.js','level-07-xuzhou.js','level-08-xiaopei.js','level-09-taishan.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context);
 
 function recommendation(level){
   const enemies=level.units.filter(u=>u.side==='enemy');
@@ -24,7 +24,10 @@ const cases=[
   [context.window.LEVEL_04_JULU,7],
   [context.window.LEVEL_04_QINGHE,6],
   [context.window.LEVEL_05_JIEQIAO,9],
-  [context.window.LEVEL_06_BEIHAI,7]
+  [context.window.LEVEL_06_BEIHAI,7],
+  [context.window.LEVEL_07_XUZHOU,11],
+  [context.window.LEVEL_08_XIAOPEI,17],
+  [context.window.LEVEL_09_TAISHAN,10]
 ];
 for(const [level,expected] of cases){
   assert.equal(recommendation(level),expected,`${level.name} recommendation`);
@@ -44,6 +47,6 @@ assert.ok(game.includes("params.set('levelSelect','1')"),'level choices must mar
 assert.ok(game.includes('if(levelSelectActive)return applyLevelSelectBalance(runtimeUnits)'),'standalone selection must bypass campaign transfer');
 assert.ok(game.includes('levelSelectBalanced:levelSelectActive'),'save files must remember the balance mode');
 assert.ok(!game.match(/function nextLevelUrl\(\)[\s\S]{0,260}levelSelect/),'continuous campaign must not enable standalone balance mode');
-for(const level of [3,4,4,5,7,6,9,7])assert.ok(html.includes(`选关均衡：前排 Lv.${level}`));
+for(const level of [3,4,4,5,7,6,9,7,11,17,10])assert.ok(html.includes(`选关均衡：前排 Lv.${level}`));
 
-console.log('Level-select balance verification passed through Beihai: lower backline level, no level-down, save persistence, and campaign isolation.');
+console.log('Level-select balance verification passed through Taishan: lower backline level, no level-down, save persistence, and campaign isolation.');

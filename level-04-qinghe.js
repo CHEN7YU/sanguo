@@ -61,7 +61,7 @@
       dialogue:[{speaker:'刘备',text:'嗯！那是！？'},{speaker:'军报',text:'敌人的援军出现了！'}]
     }],
     events:{
-      loot:{'9,1':{item:'wine',amount:1},'12,12':{gold:100}},
+      loot:{'1,9':{item:'wine',amount:1},'12,12':{gold:100}},
       supply:{item:'wine'},treasure:{gold:100},
       duel:{
         attackerId:'guan',defenderId:'quyi',endsBattle:true,title:'关羽　VS　麴义',kicker:'清河 · 阵前单挑',caption:'青龙偃月刀斩破清河敌阵',

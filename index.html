@@ -7,11 +7,21 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
-  <link rel="stylesheet" href="style.css?build=20261011-cloud-saves-v113" />
-  <link rel="modulepreload" href="save-format.mjs?build=20261011-cloud-saves-v1" />
-  <link rel="stylesheet" href="auth.css?build=20261011-password-login-v2" />
+  <link rel="stylesheet" href="style.css?build=20261018-walk-animation-v206" />
+  <link rel="modulepreload" href="save-format.mjs?build=20261018-cloud-saves-v2" />
+  <link rel="stylesheet" href="auth.css?build=20261018-cloud-ui-v3" />
 </head>
 <body>
+  <aside id="directFileNotice" style="position:fixed;inset:0;z-index:100000;display:none;place-items:center;padding:24px;background:#06182d;color:#f4d58a;font-family:'Microsoft YaHei',sans-serif;text-align:center">
+    <div style="max-width:720px;padding:36px;border:1px solid #bd842d;background:#0a2746;box-shadow:0 16px 60px #0008">
+      <h1 style="margin:0 0 18px;font-size:30px">启动方式不正确</h1>
+      <p style="margin:0 0 12px;color:#fff;line-height:1.8">游戏不能直接双击 <b>index.html</b> 运行。浏览器会阻止脚本、音频和存档资源加载，所以画面会停在空白背景。</p>
+      <p style="margin:0;color:#fff;line-height:1.8">请关闭本页，双击正式游戏目录中的 <b>启动试玩.bat</b>，然后使用 <b>http://127.0.0.1:4173/</b>。</p>
+    </div>
+  </aside>
+  <script>
+    if(location.protocol==='file:')document.getElementById('directFileNotice').style.display='grid';
+  </script>
   <section id="titleScreen" class="title-screen intro-playing" aria-label="游戏开始画面">
     <div id="titleIntro" class="title-intro" aria-label="启动动画">
       <video id="titleIntroVideo" src="assets/video/title-intro.mp4" poster="assets/title-cover.webp" preload="auto" muted playsinline></video>
@@ -44,7 +54,7 @@
         <button id="accountLogoutBtn" type="button" hidden>退出登录</button>
       </div>
       <small id="accountStatus" role="status" aria-live="polite">游客可直接试玩 · 正在检查登录服务</small>
-      <button id="cloudManageBtn" type="button">管理云存档</button>
+      <button id="cloudManageBtn" type="button">云存档</button>
       <small id="cloudSaveSummary" role="status" aria-live="polite">正在读取存档</small>
     </aside>
     <dialog id="accountDialog" class="cloud-save-dialog account-dialog" aria-labelledby="accountDialogTitle">
@@ -66,21 +76,34 @@
         </div>
       </form>
     </dialog>
-    <dialog id="cloudSaveDialog" class="cloud-save-dialog">
-      <h2>账号与云存档</h2>
+    <dialog id="cloudSaveDialog" class="cloud-save-dialog" aria-labelledby="cloudSaveTitle">
+      <h2 id="cloudSaveTitle">云存档</h2>
       <p id="cloudSaveStatus" role="status" aria-live="polite">正在读取存档</p>
-      <p id="cloudSaveNotice">同步保存整套自动档、六个手动档与跨关进度。游客存档不会自动迁入账号。</p>
+      <p id="cloudSaveProgress"></p>
+      <p id="cloudSaveNotice">游戏先保存在本机，再自动同步。换设备前请确认已保存到云端。</p>
+      <div id="cloudConflictPanel" class="cloud-conflict" hidden>
+        <div class="cloud-conflict-card"><b>这台设备的进度</b><p id="cloudLocalProgress"></p></div>
+        <div class="cloud-conflict-card"><b id="cloudRemoteLabel">云端的进度</b><p id="cloudRemoteProgress"></p></div>
+        <div class="cloud-save-actions">
+          <button id="cloudUseLocalBtn" type="button" hidden>保留这台设备的进度</button>
+          <button id="cloudUseRemoteBtn" type="button" hidden>使用云端进度</button>
+        </div>
+      </div>
       <div class="cloud-save-actions">
-        <button id="cloudSyncBtn" type="button" hidden>立即同步本机进度</button>
-        <button id="cloudUseRemoteBtn" type="button" hidden>采用云端/历史版本（备份本机）</button>
-        <button id="cloudUseLocalBtn" type="button" hidden>保留本机版本（备份云端）</button>
-        <button id="cloudImportGuestBtn" type="button" hidden>迁入游客存档（仅空账号）</button>
-        <button id="cloudHistoryBtn" type="button">查看云端历史版本</button>
-        <button id="cloudExportBackupBtn" type="button">备份账号本机原始记录</button>
-        <button id="cloudGuestBtn" type="button" hidden>切换游客（保留账号进度）</button>
+        <button id="cloudSyncBtn" class="cloud-primary" type="button" hidden>保存到云端</button>
         <button id="cloudCloseBtn" type="button">返回游戏</button>
       </div>
-      <div id="cloudHistoryList"></div>
+      <details id="cloudMoreOptions">
+        <summary>更多选项</summary>
+        <div id="cloudAccountOptions" class="cloud-save-actions" hidden>
+          <button id="cloudHistoryBtn" type="button">恢复以前的存档</button>
+          <button id="cloudImportGuestBtn" type="button" hidden>转入这台设备的游客进度</button>
+          <button id="cloudGuestBtn" type="button" hidden>切换游客（保留账号进度）</button>
+          <button id="cloudExportBackupBtn" type="button" title="仅用于故障排查；日常备份请用主菜单的“导出存档”">导出故障恢复文件</button>
+        </div>
+        <p class="cloud-help">日常备份和导入请使用主菜单的“导出存档 / 导入存档”。</p>
+        <div id="cloudHistoryList"></div>
+      </details>
     </dialog>
     <input id="saveImportInput" type="file" accept=".json,.zhaolie-save,application/json" hidden>
     <section id="titleChampionTicker" class="title-champion-ticker hidden" aria-label="各关最高战绩">
@@ -97,18 +120,25 @@
     <button id="openingSkipBtn" type="button">点击或按任意键跳过</button>
   </section>
   <section id="storyOverlay" class="story-overlay hidden" aria-label="序章剧情">
-    <div id="storyBackdrop" class="story-backdrop"></div>
-    <div class="story-atmosphere"><i></i><i></i><i></i></div>
-    <header class="story-chapter"><small id="storyChapter">序章</small><b id="storyLocation">群雄起兵讨伐董卓</b><span id="storyProgress">1 / 1</span></header>
-    <div id="storyCast" class="story-cast story-actors" aria-label="剧情场景人物">
-      <div id="storyForeground" class="story-foreground" aria-hidden="true">
-        <i class="story-prop tent-table"></i>
-        <i class="story-prop tent-chair"></i>
-        <i class="story-prop tent-armory"></i>
-        <i class="story-prop tent-stool-left"></i>
-        <i class="story-prop tent-stool-center"></i>
+    <div id="storyStage" class="story-stage">
+      <div id="storyBackdrop" class="story-backdrop"></div>
+      <div class="story-lighting" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="story-atmosphere" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div id="storyCast" class="story-cast story-actors" aria-label="剧情场景人物">
+        <div id="storyForeground" class="story-foreground" aria-hidden="true">
+          <i class="story-depth-copy depth-palace"></i>
+          <i class="story-depth-copy depth-tent"></i>
+          <i class="story-depth-copy depth-luoyang"></i>
+          <i class="story-depth-copy depth-world"></i>
+          <i class="story-prop tent-table"></i>
+          <i class="story-prop tent-chair"></i>
+          <i class="story-prop tent-armory"></i>
+          <i class="story-prop tent-stool-left"></i>
+          <i class="story-prop tent-stool-center"></i>
+        </div>
       </div>
     </div>
+    <header class="story-chapter"><small id="storyChapter">序章</small><b id="storyLocation">群雄起兵讨伐董卓</b><span id="storyProgress">1 / 1</span></header>
     <div id="storyObjective" class="story-objective hidden">自由行动 · 点击人物交谈 · 与关羽交谈出征</div>
     <div class="story-dialogue">
       <figure id="storyPortrait"><img id="storyPortraitImage" alt=""><span id="storyPortraitMark">史</span></figure>
@@ -143,7 +173,7 @@
       <header><b>战斗设置</b><button id="settingsCloseBtn">×</button></header>
       <label>动画速度<select id="animationSpeed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label>
       <label>重复战斗动画<span><input id="compactAnimations" type="checkbox" checked> 自动加速</span></label>
-      <label>音效音量<input id="sfxVolume" type="range" min="0" max="100" value="70"></label>
+      <label>音效音量<input id="sfxVolume" type="range" min="0" max="100" value="85"></label>
       <label>界面比例<select id="uiScale"><option value="0.9">90%</option><option value="1" selected>100%</option><option value="1.1">110%</option></select></label>
       <button id="fullscreenBtn" class="fullscreen-btn">切换全屏</button>
     </div>
@@ -223,7 +253,7 @@
           <div class="exp-row"><span>经验</span><div><i id="expBar"></i></div><b id="expText">0 / 100</b></div>
           <div class="sp-row"><span>策略</span><div><i id="spBar"></i></div><b id="spText">0 / 0</b></div>
           <div class="equipment-row"><span>装备／宝物</span><b id="equipmentText">无装备</b><em id="fundsText">金 500</em></div>
-          <div id="passiveSkill" class="passive-skill hidden"><b id="passiveSkillName">被动 · 仁德号令</b><span id="passiveSkillText">相邻友方单位所有属性增加10%</span></div>
+          <div id="passiveSkill" class="passive-skill hidden"><b id="passiveSkillName">被动 · 仁德号令 · 桃园护援</b><span id="passiveSkillText">周围一圈8格内友方单位战斗属性提高10%；濒死兄弟相邻时可由另一名兄弟承受物理攻击</span></div>
           <div class="stats">
             <div><span>攻击</span><b id="atkStat">32</b></div>
             <div><span>防御</span><b id="defStat">28</b></div>
@@ -253,6 +283,8 @@
             <button data-item="premiumWine"><b>醇</b><span>特级酒 · 恢复100士气</span><em id="premiumWineCount">×0</em></button>
             <button data-item="moraleScroll"><b>气</b><span>平气书 · 恢复25士气</span><em id="moraleScrollCount">×0</em></button>
             <button data-item="fireScroll"><b>火</b><span>焦热书 · 必中单体火攻</span><em id="fireScrollCount">×0</em></button>
+            <button data-item="rockScroll"><b>石</b><span>落石书 · 必中单体落石</span><em id="rockScrollCount">×0</em></button>
+            <button data-item="bomb"><b>爆</b><span>炸弹 · 削减目标25%最大兵力</span><em id="bombCount">×0</em></button>
           </div>
           <div id="strategyMenu" class="item-menu strategy-menu hidden">
             <button data-strategy="fire"><b>焦</b><span>焦热 · 射程3 · 命中70%</span><em>SP 4</em></button>
@@ -290,14 +322,14 @@
         <button id="menuExportSaveBtn">导出存档</button>
         <button id="menuImportSaveBtn">导入存档</button>
         <button id="resumeGameBtn" class="primary">返回游戏</button>
-        <button id="battlePrepBtn">战前整备</button>
+        <button id="battlePrepBtn">重新整备本关</button>
         <button id="returnTitleBtn">返回开始画面</button>
       </footer>
     </section>
   </div>
   <div id="levelSelectOverlay" class="level-select-overlay hidden" role="dialog" aria-modal="true" aria-label="选择关卡">
     <section class="level-select-card">
-      <header><div><small>序章 · 讨董联军</small><b>选择关卡</b></div><button id="levelSelectCloseBtn" aria-label="关闭关卡选择">×</button></header>
+      <header><div><b>选择关卡</b></div><button id="levelSelectCloseBtn" aria-label="关闭关卡选择">×</button></header>
       <div class="level-select-list">
         <button class="level-choice sishui" data-select-level="1" type="button"><span>第一战</span><strong>汜水关之战</strong><em>击败华雄 · 关羽阵前单挑</em><small>选关均衡：前排 Lv.3</small></button>
         <button class="level-choice hulao" data-select-level="2" type="button"><span>第二战</span><strong>虎牢关之战</strong><em>击退吕布 · 张飞阵前单挑</em><small>选关均衡：前排 Lv.4</small></button>
@@ -308,6 +340,8 @@
         <button class="level-choice jieqiao" data-select-level="7" type="button"><span>第五战 · 路线汇合</span><strong>界桥之战</strong><em>救援公孙瓒 · 张飞阵前单挑</em><small>选关均衡：前排 Lv.9</small></button>
         <button class="level-choice beihai" data-select-level="8" type="button"><span>第六战</span><strong>北海之战</strong><em>解北海之围 · 赵云阵斩管亥</em><small>选关均衡：前排 Lv.7</small></button>
         <button class="level-choice xuzhou" data-select-level="9" type="button"><span>第七战</span><strong>徐州之战</strong><em>驰援徐州 · 关羽阵前单挑于禁</em><small>选关均衡：前排 Lv.11</small></button>
+        <button class="level-choice xiaopei" data-select-level="10" type="button"><span>第八战 · 可跳过分支</span><strong>小沛之战</strong><em>迎战曹操 · 张飞阵前单挑夏侯渊</em><small>选关均衡：前排 Lv.17</small></button>
+        <button class="level-choice taishan" data-select-level="11" type="button"><span>第九战</span><strong>泰山之战</strong><em>平定泰山 · 刘备可劝降李明</em><small>选关均衡：前排 Lv.10</small></button>
       </div>
       <p>选择后从该关剧情起点开始，并使用适合该关、能够取胜但不会碾压的均衡等级；远程与辅助通常比前排低1级。连续通关和读档仍继承实际等级，不套用选关等级。第三战与第四战分别为A/B平行路线，第五战在界桥汇合。</p>
     </section>
@@ -325,6 +359,8 @@
         <button type="button" data-leaderboard-level="jieqiao">界桥</button>
         <button type="button" data-leaderboard-level="beihai">北海</button>
         <button type="button" data-leaderboard-level="xuzhou">徐州</button>
+        <button type="button" data-leaderboard-level="xiaopei">小沛</button>
+        <button type="button" data-leaderboard-level="taishan">泰山</button>
       </nav>
       <div class="leaderboard-head"><span>名次</span><span>玩家</span><span>评分</span><span>评级</span><span>时间</span><span>回合</span><span>损失</span></div>
       <div id="leaderboardRows" class="leaderboard-rows"></div>
@@ -340,31 +376,37 @@
     <button id="portraitContinueBtn" class="subtle" type="button">暂用竖屏</button>
   </div>
   <audio id="titleMusic" src="assets/audio/title-theme.mp3" preload="auto" autoplay loop hidden></audio>
-  <audio id="storyMusic" src="assets/audio/original-music-2.wav" preload="auto" loop hidden></audio>
+  <audio id="storyMusic" src="assets/audio/original-music-2.opus" preload="auto" loop hidden></audio>
   <audio id="battleMusic" src="assets/audio/knights-errant.mp3" preload="auto" loop hidden></audio>
-  <script src="cloud-saves.js?build=20261011-cloud-saves-v1"></script>
-  <script src="audio-config.js?build=20261010-jieqiao-music-v99"></script>
-  <script src="battle-sfx.js?build=20261009-movement-sfx-v96"></script>
-  <script src="battle-rules.js?build=20261003-military-band-v55"></script>
-  <script src="level-01.js?build=20260927-campaign-link"></script>
-  <script src="level-02.js?build=20261003-hulao-route-v54"></script>
-  <script src="level-02-animation-bounds.js?build=20260927-songxian-clean-v44"></script>
-  <script src="zhao-yun-animation-bounds.js?build=20261010-zhaoyun-v98"></script>
-  <script src="wen-chou-animation-bounds.js?build=20261011-wenchou-v105"></script>
-  <script src="jieqiao-core-animation-bounds.js?build=20261011-jieqiao-core-v105"></script>
-  <script src="level-03-guangchuan.js?build=20261003-thousand-suns-v51"></script>
-  <script src="level-03-xindu.js?build=20261009-xindu-dry-spawn-v95"></script>
-  <script src="level-04-julu.js?build=20261004-julu-duel-continuation-v72"></script>
-  <script src="level-04-qinghe.js?build=20261007-named-general-style-v90"></script>
-  <script src="level-05-jieqiao.js?build=20261011-cloud-saves-v1"></script>
-  <script src="level-06-beihai.js?build=20261011-beihai-v108"></script>
-  <script src="level-07-xuzhou.js?build=20261011-xuzhou-complete-v112"></script>
-  <script src="beihai-animation-bounds.js?build=20261011-beihai-v108"></script>
-  <script src="level-07-xuzhou-animation-bounds.js?build=20261011-xuzhou-complete-v112"></script>
-  <script src="story-data.js?build=20261011-xuzhou-complete-v112"></script>
-  <script src="battle-view.js?build=20261003-hulao-grid-fix-v53"></script>
-  <script src="leaderboard.js?build=20261011-xuzhou-complete-v112"></script>
-  <script src="game.js?build=20261011-cloud-saves-v113"></script>
+  <script src="cloud-saves.js?build=20261018-cloud-ui-v3"></script>
+  <script src="audio-config.js?build=20261018-walk-animation-v206"></script>
+  <script src="battle-sfx.js?build=20261018-walk-animation-v206"></script>
+  <script src="battle-rules.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-01.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-02.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-02-animation-bounds.js?build=20261018-walk-animation-v206"></script>
+  <script src="zhao-yun-animation-bounds.js?build=20261018-walk-animation-v206"></script>
+  <script src="wen-chou-animation-bounds.js?build=20261018-walk-animation-v206"></script>
+  <script src="jieqiao-core-animation-bounds.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-03-guangchuan.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-03-xindu.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-04-julu.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-04-qinghe.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-05-jieqiao.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-06-beihai.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-07-xuzhou.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-08-xiaopei.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-08-xiaopei-animation-bounds.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-09-taishan.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-09-taishan-animation-bounds.js?build=20261018-walk-animation-v206"></script>
+  <script src="beihai-animation-bounds.js?build=20261018-walk-animation-v206"></script>
+  <script src="level-07-xuzhou-animation-bounds.js?build=20261018-walk-animation-v206"></script>
+  <script src="story-data.js?build=20261018-walk-animation-v206"></script>
+  <script src="dialogue-style.js?build=20261018-walk-animation-v206"></script>
+  <script src="battle-view.js?build=20261018-walk-animation-v206"></script>
+  <script src="leaderboard.js?build=20261018-walk-animation-v206"></script>
+  <script src="mounted-combat-bounds-v1.js?build=20261018-walk-animation-v206"></script>
+  <script src="game.js?build=20261018-walk-animation-v206"></script>
   <script src="auth.js?build=20261011-password-login-v2"></script>
 </body>
 </html>

@@ -53,7 +53,7 @@ assert.ok(game.includes('attackProgress!==null&&attackNative!==staticNative?-fli
 assert.ok(game.includes('function portraitForUnit(u)'),'named portrait fallback is not wired');
 assert.ok(game.includes("previewParams.has('zhaoyunDuelPreview')"),'Zhao Yun duel QA route is missing');
 assert.ok(game.includes("previewParams.has('portraitPreview')"),'Jieqiao portrait QA route is missing');
-assert.ok(game.includes('function structureTileAt(sx,sy)'),'painted structures do not map clicks back to their logical tile');
+assert.ok(game.includes('function structureTileAt(sx,sy,coreOnly=false)'),'painted structures do not map clicks back to their logical tile');
 assert.ok(game.includes('function actionTileAt(sx,sy)'),'battle input does not use structure-aware tile picking');
 assert.ok(game.includes("previewParams.has('granaryAccessPreview')"),'Jieqiao granary interaction QA route is missing');
 assert.ok(html.includes('id="treasureItemList"'),'battle item menu has no equipment/treasure section');

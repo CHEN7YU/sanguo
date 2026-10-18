@@ -26,6 +26,13 @@
       forestZones:[[.06,.08,.26,.18,.3],[.30,.04,.28,.16,1.7],[.48,.34,.20,.20,3.1],[.82,.18,.16,.15,4.9],[.05,.54,.18,.30,6.2],[.83,.71,.17,.22,7.6]],
       waterBands:[{from:[.34,.92],to:[.98,.45],bend:.075,width:.085,speed:.04,gaps:[]}]
     },
+    // The remastered painting exposes open ground immediately west of the
+    // eastern approach. The original source cell is forest, which made the
+    // visibly clear square beside Guan Yu impassable to cavalry.
+    paintedTerrainOverrides:[
+      {x:13,y:5,type:'plain'},
+      {x:9,y:7,type:'plain'}
+    ],
     intro:[
       {speaker:'关羽',text:'那是？兄长，像是袁绍军。'},
       {speaker:'逢纪',text:'刘备军竟从广川而来。列阵，不能让他们赶到界桥！'},
