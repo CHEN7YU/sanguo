@@ -86,7 +86,7 @@
       withdrawalVictory:[{speaker:'军报',text:'曹操军因陈留遇袭撤退了。'}],
       postVictory:[{speaker:'张飞',text:'咦？曹操怎么突然逃跑了？'}],
       postBattleStory:[{speaker:'陶谦',text:'刘备，这次你实在帮了大忙。'},{speaker:'刘备',text:'不，我们什么忙也没帮，只是曹操折回去了。'},{speaker:'陶谦',text:'谢谢，我想把小沛托给你治理。'},{speaker:'孙乾',text:'在下愿随刘使君前往小沛。'},{speaker:'军报',text:'孙乾正式加入刘备军。'}],
-      victoryMusicId:7,battleReward:300,withdrawalReward:0
+      victoryMusicId:16,battleReward:300,withdrawalReward:0
     },
     ai:{strategyCooldown:6},units:[...allies,...guests,...enemies]
   };

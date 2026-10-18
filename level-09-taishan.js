@@ -143,7 +143,7 @@
         {speaker:'使者',text:'天子诏命：袁术僭越不臣，着刘备会同诸军，进兵淮南。'},
         {speaker:'关羽',text:'兄长，诏命既到，当整顿军马，准备南下。'}
       ],
-      victoryMusicId:7,battleReward:400,postBattleReward:500
+      victoryMusicId:16,battleReward:400,postBattleReward:500
     },
     ai:{strategyCooldown:6},units:[...allies,...enemies]
   };
