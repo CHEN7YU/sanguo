@@ -11,6 +11,8 @@ const checks=[
   [css.includes('html.touch-capable,html.touch-capable body{position:fixed'),'touch pages must be fixed against browser overscroll'],
   [css.includes('.touch-capable .battlefield-wrap{touch-action:none'),'the battlefield must own touch gestures'],
   [css.includes('.touch-controls.collapsed>button:not(.touch-tools-toggle)'),'collapsed tools must hide the obstructing buttons'],
+  [css.includes('.shop-card{width:min(690px,88%);max-height:calc(100% - 18px);overflow:auto'),'prep card must stay inside short desktop viewports'],
+  [css.includes('.shop-card footer{position:sticky;bottom:0'),'prep action buttons must remain reachable while the card scrolls'],
   [game.includes("if(!touchPoints.size){updateBgRect()"),'adding a second finger must not recalculate and jump the camera'],
   [game.includes("wrap.addEventListener('touchmove'"),'native page dragging must be cancelled over the battlefield'],
   [game.includes("e.pointerType==='mouse'"),'touch and pen gestures must share the tablet path']

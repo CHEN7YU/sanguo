@@ -18,7 +18,7 @@ let total=0,frames=0;
 for(const name of fs.readdirSync(dir).filter(name=>name.endsWith('.webp')).sort()){
  const file=path.join(dir,name),decoded=await sharp(file).ensureAlpha().raw().toBuffer({resolveWithObject:true}),{width,height}=decoded.info,rows=name==='zhaoyun-directional-attack.webp'?4:1,cols=5;
  assert.equal(width%cols,0,`${name}: width must divide into five isolated frames`);assert.equal(height%rows,0,`${name}: height must divide into ${rows} rows`);const cellW=width/cols,cellH=height/rows;
- for(let row=0;row<rows;row++)for(let col=0;col<cols;col++){const alpha=new Uint8Array(cellW*cellH);for(let y=0;y<cellH;y++)for(let x=0;x<cellW;x++)alpha[y*cellW+x]=decoded.data[((row*cellH+y)*width+col*cellW+x)*4+3];const components=significantComponents(alpha,cellW,cellH);assert.equal(components.length,1,`${name} row ${row} frame ${col}: detached cross-frame fragment remains (${components.join(',')})`);frames++}
+ for(let row=0;row<rows;row++)for(let col=0;col<cols;col++){const alpha=new Uint8Array(cellW*cellH);for(let y=0;y<cellH;y++)for(let x=0;x<cellW;x++)alpha[y*cellW+x]=decoded.data[((row*cellH+y)*width+col*cellW+x)*4+3];for(let edge=0;edge<2;edge++){for(let x=0;x<cellW;x++){assert.ok(alpha[edge*cellW+x]<=2,`${name} row ${row} frame ${col}: top gutter is not transparent`);assert.ok(alpha[(cellH-1-edge)*cellW+x]<=2,`${name} row ${row} frame ${col}: bottom gutter is not transparent`)}for(let y=0;y<cellH;y++){assert.ok(alpha[y*cellW+edge]<=2,`${name} row ${row} frame ${col}: left gutter is not transparent`);assert.ok(alpha[y*cellW+cellW-1-edge]<=2,`${name} row ${row} frame ${col}: right gutter is not transparent`)}}const components=significantComponents(alpha,cellW,cellH);assert.equal(components.length,1,`${name} row ${row} frame ${col}: detached cross-frame fragment remains (${components.join(',')})`);frames++}
  total+=fs.statSync(file).size;
 }
 const game=fs.readFileSync(path.join(root,'game.js'),'utf8'),html=fs.readFileSync(path.join(root,'index.html'),'utf8'),mountedIds=game.match(/const mountedCombatAttackIds=\[([^\]]+)\]/)?.[1]||'';
@@ -28,5 +28,6 @@ for(const id of expectedCritical)assert.ok(game.includes(`assets/mounted-combat-
 assert.ok(game.includes("hua:'assets/mounted-combat-v1/hua-attack-friendly.webp'"),'friendly generic cavalry must use cleaned attack sheet');
 assert.ok(game.includes("zhaoyun:'assets/mounted-combat-v1/zhaoyun-directional-attack.webp'"),'Zhao Yun directional attack must use cleaned sheet');
 assert.ok(game.includes('Object.assign(attackFrameBounds,mountedCombatCleanBounds.attack||{})'),'clean attack bounds must replace source-sheet bounds');
+assert.ok(fs.readFileSync(path.join(root,'tools','build_mounted_combat_v1.mjs'),'utf8').includes('const GUTTER=2'),'mounted frames need transparent gutters to prevent canvas interpolation bleed');
 assert.ok(html.indexOf('mounted-combat-bounds-v1.js')<html.indexOf('game.js?build='),'clean bounds must load before the game runtime');
 console.log(`Mounted combat wrap verified: ${frames} isolated frames across ${total} compressed bytes.`);

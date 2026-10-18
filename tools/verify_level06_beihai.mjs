@@ -48,7 +48,7 @@ check(runtimeTerrain[16][13]==='treasure','Painted southern North Sea treasure d
 check(level.movementCostOverrides?.['13,16']===1,'Southern North Sea treasure depot must cost one movement point so Zhao Yun can enter it from six painted cells away');
 check(runtimeTerrain[17][13]==='plain','Stale treasure trigger below the painted building must be removed from (13,17)');
 check(runtimeTerrain[5][11]==='treasure','Northern North Sea treasure depot must remain aligned at (11,5)');
-for(const [x,y] of [[0,2],[14,3],[19,5],[20,8],[21,11],[23,14]])check(runtimeTerrain[y][x]==='water',`Painted river cell ${x},${y} must be impassable`);
+for(const [x,y] of [[0,2],[14,3],[13,4],[16,4],[17,4],[18,4],[19,4],[19,5],[20,8],[21,11],[23,14]])check(runtimeTerrain[y][x]==='water',`Painted river cell ${x},${y} must be impassable`);
 for(const [x,y] of [[2,3],[20,9],[21,9],[20,10],[21,10]])check(runtimeTerrain[y][x]==='bridge',`Painted bridge cell ${x},${y} must remain passable`);
 for(const [x,y] of [[13,6],[16,7],[18,9],[23,10]])check(runtimeTerrain[y][x]!=='water',`Painted land cell ${x},${y} must not retain stale river collision`);
 

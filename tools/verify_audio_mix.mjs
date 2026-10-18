@@ -12,7 +12,7 @@ for(const token of [
   'function mixedMusicVolume(multiplier=musicSceneMultiplier)',
   'function applySfxMix()',
   'if(!musicEnabled)return',
-  "const movement=['movementStep','hoofStep','footStep'].includes(name),heavy=['block','impact','fall'].includes(name),strike=['attack','charge'].includes(name)",
+  "const movement=['movementStep','hoofStep','footStep'].includes(name),heavy=['block','duelClash','duelFinish','impact','fall'].includes(name),strike=['attack','charge'].includes(name)",
   'musicSceneMultiplier*(heavy?.32:strike?.44:movement?.62:.5)',
   'musicSceneMultiplier=previousMusicSceneMultiplier;applyMusicMix()',
   'duckMusicForSfx(name);fn(a,sfxBus',

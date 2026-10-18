@@ -1,0 +1,10 @@
+{
+  "name": "sanguozhi-zhaolie-remaster",
+  "private": true,
+  "scripts": {
+    "verify:mounted": "node tools/verify_mounted_combat_wrap.mjs"
+  },
+  "devDependencies": {
+    "sharp": "0.35.5"
+  }
+}

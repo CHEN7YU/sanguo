@@ -84,13 +84,16 @@ check(game.includes("level.victoryCondition==='eliminateAllEnemies'"),'Eliminati
 check(game.includes('recoverFromTransports')&&game.includes('bestSupportMove'),'Transport recovery or support AI is missing');
 check(game.includes("passiveName.textContent='兵种特性 · 运输补给'")&&game.includes('70＋等级×5')&&game.includes('上下左右相邻的所有受伤友军'),'Transport function must be explained in the unit panel');
 check(game.includes('xuzhouAuthoredCombatIds')&&game.includes("xuzhouCombatFrame(u,'attack'"),'Xuzhou authored animation remapping is missing');
+check(game.includes("walkArt[u.id]&&walkFrameBounds[u.id]")&&game.includes("walkArt[genericKey]&&walkFrameBounds[genericKey]"),'Every Xuzhou unit must resolve to a dedicated or troop-family authored walk atlas');
+check(!game.includes("function walkKeyFor(u){if(walkArt[u.id])return u.id;if(art[u.id])return null;return genericVisualKeyFor(u)}"),'Named Xuzhou units must not fall back to the old bouncing placeholder');
+check(!game.includes('stepLift=')&&!game.includes('banditGait=')&&!game.includes('if(walking&&!authoredWalk){ctx.rotate'),'Xuzhou movement must not add synthetic hopping over authored frames');
 check(game.includes('function attackSheetFacesLeft(u)')&&game.includes('xuzhouAuthoredCombatIds.has(u.id)'),'Xuzhou left-facing action atlas orientation is not registered');
 check(game.includes('shouldMirrorCombatSheet(u,combatFx.target)'),'Xuzhou combat poses are not turned toward their targets');
 check(!game.includes('fallbackDirectionalSheet')&&!game.includes('drawAuthoredWalkFrame(u,directionalSheet'),'North/south attacks must never substitute walk poses for attack poses');
 for(const troop of ['infantry','archer','cavalry','martial','bandit','support','transport'])check(game.includes(`u.troop==='${troop}'`)||troop==='infantry',`Missing runtime visual routing for ${troop}`);
 check(game.includes("toLevelId:'xuzhou-postbattle'")&&game.includes('postBattleChoice:branch'),'Xuzhou postbattle branch save is missing');
 check(game.includes("fillText('入城'"),'Xuzhou city objective highlight is missing');
-check(index.includes('data-select-level="9"')&&index.includes('level-07-xuzhou.js?build=20261016-xuzhou-village-anchor-v188'),'Xuzhou menu or cache-busted level script include is missing');
+check(index.includes('data-select-level="9"')&&index.includes('level-07-xuzhou.js?build='),'Xuzhou menu or cache-busted level script include is missing');
 const runtimeBuild=game.match(/const RUNTIME_BUILD='([^']+)'/)?.[1];
 check(runtimeBuild&&index.includes(`game.js?build=${runtimeBuild}`),'Xuzhou runtime build token is not synchronized');
 check(index.includes('data-xuzhou-branch="fight"')&&index.includes('data-xuzhou-branch="negotiate"'),'Xuzhou postbattle choices are missing');

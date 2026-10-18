@@ -211,3 +211,5 @@ assert.equal(levels.get('xuzhou').level.events.duel?.endsBattle, false, 'Xuzhou 
 assert.equal(levels.get('xiaopei').level.events.duel?.endsBattle, false, 'Xiaopei duel must not end the battle');
 
 console.log(`Campaign audit passed: ${levels.size} battles through Taishan, both route forks, all deployments/objectives/reward tiles, story entry points, save routing and non-ending duels.`);
+
+assert.ok(game.includes("previewParams.has('loadSlot')&&previewParams.has('victoryPreview')"), 'loaded victory browser regression path missing');
