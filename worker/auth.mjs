@@ -1,7 +1,9 @@
+import { consumeLimit, hex, keyedHash } from './security.mjs';
+import { analyticsEnabled, analyticsStatement } from './analytics.mjs';
+
 const SESSION_COOKIE = '__Host-zhaolie-session';
 const SESSION_SECONDS = 7 * 24 * 60 * 60;
 const encoder = new TextEncoder();
-const hex = bytes => [...new Uint8Array(bytes)].map(byte => byte.toString(16).padStart(2, '0')).join('');
 
 function cookie(value, seconds = SESSION_SECONDS) {
   return `${SESSION_COOKIE}=${value}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${seconds}`;
@@ -18,11 +20,6 @@ function json(data, status = 200, extra = {}) {
 
 async function hash(value) {
   return hex(await crypto.subtle.digest('SHA-256', encoder.encode(value)));
-}
-
-async function keyedHash(secret, value) {
-  const key = await crypto.subtle.importKey('raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
-  return crypto.subtle.sign('HMAC', key, encoder.encode(value));
 }
 
 async function passwordHash(secret, username, password, salt) {
@@ -53,19 +50,6 @@ export async function sessionUser(request, env) {
      LEFT JOIN password_credentials ON password_credentials.user_id = users.id
      WHERE token_hash = ? AND expires_at > ?`
   ).bind(await hash(token), Date.now()).first();
-}
-
-async function consumeLimit(env, bucket, limit, windowMs) {
-  const now = Date.now();
-  const key = hex(await keyedHash(env.AUTH_PASSWORD_PEPPER, `limit:${bucket}`));
-  const result = await env.AUTH_DB.prepare(
-    `INSERT INTO auth_attempts (bucket, attempts, expires_at) VALUES (?, 1, ?)
-     ON CONFLICT(bucket) DO UPDATE SET
-       attempts = CASE WHEN auth_attempts.expires_at <= ? THEN 1 ELSE auth_attempts.attempts + 1 END,
-       expires_at = CASE WHEN auth_attempts.expires_at <= ? THEN excluded.expires_at ELSE auth_attempts.expires_at END
-     RETURNING attempts, expires_at`
-  ).bind(key, now + windowMs, now, now).first();
-  return result.attempts > limit ? Math.max(1, Math.ceil((result.expires_at - now) / 1000)) : 0;
 }
 
 async function credentialsBody(request) {
@@ -105,7 +89,7 @@ async function createSession(request, env, userId) {
   const token = hex(crypto.getRandomValues(new Uint8Array(32)));
   const tokenHash = await hash(token);
   const now = Date.now();
-  await env.AUTH_DB.batch([
+  const statements = [
     env.AUTH_DB.prepare('DELETE FROM auth_sessions WHERE expires_at <= ? OR token_hash = ?').bind(now, await hash(sessionToken(request))),
     env.AUTH_DB.prepare('INSERT INTO auth_sessions (token_hash, user_id, expires_at) VALUES (?, ?, ?)')
       .bind(tokenHash, userId, now + SESSION_SECONDS * 1000),
@@ -114,7 +98,10 @@ async function createSession(request, env, userId) {
          SELECT token_hash FROM auth_sessions WHERE user_id = ? AND token_hash <> ? ORDER BY expires_at DESC, token_hash LIMIT 4
        )`
     ).bind(userId, tokenHash, userId, tokenHash)
-  ]);
+  ];
+  const analytics = await analyticsStatement(request, env, 'login', userId, tokenHash, now);
+  if (analytics) statements.push(analytics);
+  await env.AUTH_DB.batch(statements);
   return cookie(token);
 }
 
@@ -129,7 +116,8 @@ export async function handleAuth(request, env) {
     return json({ error: '登录服务域名配置不匹配' }, 503);
   }
   if (path === '/api/auth/session') {
-    return json({ user: await sessionUser(request, env), providers: { password: configured(env) }, cloudSaves: !!env.AUTH_DB });
+    return json({ user: await sessionUser(request, env), providers: { password: configured(env) }, cloudSaves: !!env.AUTH_DB,
+      ...(analyticsEnabled(env) ? { analytics: true } : {}) });
   }
   if (request.headers.get('origin') !== url.origin) return json({ error: '请求来源无效' }, 403);
   if (path === '/api/auth/logout') {
