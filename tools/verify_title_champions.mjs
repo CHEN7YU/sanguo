@@ -45,6 +45,7 @@ const context = {
 };
 vm.createContext(context);
 vm.runInContext(source, context);
+await new Promise(resolve => setImmediate(resolve));
 
 const winners = context.window.ZhaolieLeaderboard.championEntries([
   { levelId: 'sishui-pass', nickname: '甲', score: 8000, elapsedMs: 500000, turns: 12 },
@@ -57,5 +58,51 @@ const winners = context.window.ZhaolieLeaderboard.championEntries([
 assert.equal(winners.length, 2, '每关只能保留一个冠军，未知关卡必须忽略');
 assert.equal(winners[0].nickname, '丙', '同分时应优先耗时较短者');
 assert.equal(winners[1].levelId, 'qinghe', '冠军应按关卡流程顺序输出');
+
+function element() {
+  return {
+    children: [], dataset: {}, attributes: {}, textContent: '',
+    classList: { add() {}, remove() {} }, style: { setProperty() {} },
+    setAttribute(name, value) { this.attributes[name] = value; },
+    addEventListener() {},
+    append(...children) { this.children.push(...children); },
+    appendChild(child) { this.children.push(child); },
+    replaceChildren(...children) { this.children = children; }
+  };
+}
+const ticker = element(), track = element(), label = element();
+context.document.getElementById = id => ({ titleChampionTicker: ticker, titleChampionTrack: track })[id] || null;
+context.document.querySelector = () => label;
+context.document.createElement = element;
+context.document.createTextNode = text => ({ textContent: text });
+const text = node => node.textContent + (node.children?.map(text).join('') || '');
+storage.set('zhaolie-leaderboard-local-v1', JSON.stringify([
+  { levelId: 'sishui-pass', nickname: '本机独有冠军', score: 99999, elapsedMs: 1, turns: 1 }
+]));
+const warnings = [];
+context.console = { ...console, warn: (...args) => warnings.push(args) };
+await context.window.ZhaolieLeaderboard.loadTitleChampions(true);
+assert.equal(ticker.dataset.mode, 'unavailable');
+assert.equal(ticker.attributes['aria-label'], '全服各关最高战绩');
+assert.match(text(label), /天下战报/);
+assert.match(text(track), /天下战报暂不可用/);
+assert.doesNotMatch(text(track), /本机独有冠军|99999|本机战报/);
+assert.equal(warnings.length, 1);
+context.fetch = async () => ({ ok: true, json: async () => ({ entries: [
+  { levelId: 'sishui-pass', nickname: '全服冠军', score: 9000, elapsedMs: 1000, turns: 2 }
+] }) });
+await context.window.ZhaolieLeaderboard.loadTitleChampions(true);
+assert.equal(ticker.dataset.mode, 'online');
+assert.match(text(track), /全服冠军/);
+assert.doesNotMatch(text(track), /暂不可用|本机独有冠军/);
+context.fetch = async () => ({ ok: true, json: async () => ({ entries: [] }) });
+await context.window.ZhaolieLeaderboard.loadTitleChampions(true);
+assert.match(text(track), /全服尚无战绩/);
+assert.doesNotMatch(text(track), /本机独有冠军/);
+context.fetch = async () => ({ ok: false, status: 503 });
+await context.window.ZhaolieLeaderboard.loadTitleChampions(true);
+assert.equal(ticker.dataset.mode, 'unavailable');
+assert.match(text(track), /天下战报暂不可用/);
+assert.doesNotMatch(text(track), /全服冠军|本机独有冠军/);
 
 console.log('title champion ticker verification passed');

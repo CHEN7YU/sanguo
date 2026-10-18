@@ -200,8 +200,8 @@
     track.replaceChildren();
     ticker.classList.remove('hidden');
     ticker.dataset.mode = mode;
-    ticker.setAttribute('aria-label', mode === 'local' ? '本机各关最高战绩' : '全服各关最高战绩');
-    setChampionLabel(mode === 'local' ? '本机战报' : '天下战报');
+    ticker.setAttribute('aria-label', '全服各关最高战绩');
+    setChampionLabel('天下战报');
 
     if (!champions.length) {
       track.classList.add('static');
@@ -209,7 +209,7 @@
       empty.className = 'title-champion-set';
       const message = document.createElement('span');
       message.className = 'title-champion-item title-champion-empty';
-      message.textContent = mode === 'local' ? '网络暂不可用 · 本机尚无通关纪录' : '全服尚无战绩 · 首位通关者将登上战报';
+      message.textContent = mode === 'unavailable' ? '天下战报暂不可用 · 请稍后重试' : '全服尚无战绩 · 首位通关者将登上战报';
       empty.appendChild(message);
       track.appendChild(empty);
       return;
@@ -244,8 +244,9 @@
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       renderChampionTicker(data.entries || [], 'online');
-    } catch {
-      renderChampionTicker(localEntries(), 'local');
+    } catch (error) {
+      console.warn('天下战报读取失败', error);
+      renderChampionTicker([], 'unavailable');
     }
   }
 
