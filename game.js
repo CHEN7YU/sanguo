@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261018-world-prologue-v221';
+  const RUNTIME_BUILD='20261019-level-thumbnails-v230';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -238,7 +238,7 @@
     tao:'assets/tao-qian-remaster-v2.webp', hua:'assets/hua-xiong-remaster-v2.webp',
     hu:'assets/hu-zhen-remaster-v2.webp', zhao:'assets/zhao-cen-remaster-v2.webp',
     li:'assets/li-su-remaster-v2.webp',
-    lvbu:'assets/story-portraits/remaster-v5/lv-bu-v5.webp',
+    lvbu:'assets/story-portraits/remaster-v6/lv-bu-v6.webp',
     zhangliao:'assets/zhang-liao-portrait-v1.webp',
     houcheng:'assets/hou-cheng-portrait-v1.webp',
     songxian:'assets/song-xian-portrait-v1.webp',
@@ -248,8 +248,8 @@
     hanying:'assets/level-03/portraits/han-ying-v1.webp',guoshi:'assets/level-03/portraits/guo-shi-v1.webp',
     zhanghe:'assets/level-04-julu/portraits/zhang-he-v1.webp',yanliang:'assets/level-04-julu/portraits/yan-liang-v1.webp',
     quyi:'assets/level-04-qinghe/qu-yi-portrait-v1.webp',yangang:'assets/level-04-qinghe/yan-gang-portrait-v1.webp',
-    zhaoyun:'assets/level-05-jieqiao/zhao-yun-portrait-v2.webp',wenchou:'assets/level-05-jieqiao/wen-chou-portrait-v2.webp',
-    yuanshao:'assets/story-portraits/remaster-v4/yuan-shao-v4.webp',tianfeng:'assets/level-05-jieqiao/portraits/tian-feng-v1.webp',
+    zhaoyun:'assets/story-portraits/remaster-v6/zhao-yun-v6.webp',wenchou:'assets/level-05-jieqiao/wen-chou-portrait-v2.webp',
+    yuanshao:'assets/story-portraits/remaster-v6/yuan-shao-v6.webp',tianfeng:'assets/level-05-jieqiao/portraits/tian-feng-v1.webp',
     chenlin:'assets/level-05-jieqiao/portraits/chen-lin-v1.webp',guotu:'assets/level-05-jieqiao/portraits/guo-tu-v1.webp',
     jushou:'assets/level-05-jieqiao/portraits/ju-shou-v1.webp',jiaochu:'assets/level-05-jieqiao/portraits/jiao-chu-v1.webp',
     zhangnan:'assets/level-05-jieqiao/portraits/zhang-nan-v1.webp',chenzhen:'assets/level-05-jieqiao/portraits/chen-zhen-v1.webp',
@@ -269,13 +269,13 @@
   const storyPortraitRoot='assets/story-portraits/remaster-v4/';
   const storyPortraits={
     刘备:portraitPaths.liu,关羽:portraitPaths.guan,张飞:portraitPaths.zhang,
-    曹操:'assets/story-portraits/remaster-v5/cao-cao-v5.webp',袁绍:storyPortraitRoot+'yuan-shao-v4.webp',袁术:storyPortraitRoot+'yuan-shu-v4.webp',
+    曹操:'assets/story-portraits/remaster-v6/cao-cao-v6.webp',袁绍:'assets/story-portraits/remaster-v6/yuan-shao-v6.webp',袁术:'assets/story-portraits/remaster-v6/yuan-shu-v6.webp',
     公孙瓒:portraitPaths.gongsun,陶谦:portraitPaths.tao,孔融:portraitPaths.kongrong,
-    董卓:storyPortraitRoot+'dong-zhuo-v4.webp',吕布:portraitPaths.lvbu,华雄:portraitPaths.hua,
+    董卓:'assets/story-portraits/remaster-v6/dong-zhuo-v6.webp',吕布:portraitPaths.lvbu,华雄:portraitPaths.hua,
     李儒:storyPortraitRoot+'li-ru-v4.webp',李傕:storyPortraitRoot+'li-jue-v4.webp',郭汜:storyPortraitRoot+'guo-si-v4.webp',
     李肃:portraitPaths.li,胡轸:portraitPaths.hu,赵岑:portraitPaths.zhao,
     董承:storyPortraitRoot+'dong-cheng-v4.webp',献帝:storyPortraitRoot+'emperor-v4.webp',
-    武官:storyPortraitRoot+'officer-v4.webp',道具屋:storyPortraitRoot+'shopkeeper-v4.webp',使者:storyPortraitRoot+'officer-v4.webp',
+    武官:storyPortraitRoot+'officer-v4.webp',道具屋:'assets/story-portraits/remaster-v6/shopkeeper-v6.webp',使者:storyPortraitRoot+'officer-v4.webp',
     简雍:'assets/level-03/portraits/jian-yong-v1.webp',逢纪:'assets/level-03/portraits/feng-ji-v1.webp',韩英:'assets/level-03/portraits/han-ying-v1.webp',郭适:'assets/level-03/portraits/guo-shi-v1.webp',李明:portraitPaths.liming,
     淳于琼:'assets/level-03-xindu/portraits/chunyu-qiong-v1.webp',藩宫:'assets/level-03-xindu/portraits/fan-gong-v1.webp',
     张郃:'assets/level-04-julu/portraits/zhang-he-v1.webp',颜良:'assets/level-04-julu/portraits/yan-liang-v1.webp',
@@ -283,7 +283,7 @@
     麴义:'assets/level-04-qinghe/qu-yi-portrait-v1.webp',严纲:'assets/level-04-qinghe/yan-gang-portrait-v1.webp',
     公孙越:'assets/level-04-julu/portraits/gongsun-yue-v1.webp',关纯:'assets/level-04-julu/portraits/guan-chun-v1.webp',
     耿武:'assets/level-04-julu/portraits/geng-wu-v1.webp',羽则:'assets/level-04-julu/portraits/yu-ze-v1.webp',
-    赵云:'assets/level-05-jieqiao/zhao-yun-portrait-v2.webp',文丑:'assets/level-05-jieqiao/wen-chou-portrait-v2.webp',
+    赵云:'assets/story-portraits/remaster-v6/zhao-yun-v6.webp',文丑:'assets/level-05-jieqiao/wen-chou-portrait-v2.webp',
     田丰:'assets/level-05-jieqiao/portraits/tian-feng-v1.webp',陈琳:'assets/level-05-jieqiao/portraits/chen-lin-v1.webp',
     郭图:'assets/level-05-jieqiao/portraits/guo-tu-v1.webp',沮授:'assets/level-05-jieqiao/portraits/ju-shou-v1.webp',
     焦触:'assets/level-05-jieqiao/portraits/jiao-chu-v1.webp',张南:'assets/level-05-jieqiao/portraits/zhang-nan-v1.webp',
@@ -303,7 +303,7 @@
   const storyActorAssets={
     刘备:storyActorRoot+'liu-bei-walk-sheet-v4.webp',关羽:storyActorRoot+'guan-yu-walk-sheet-v4.webp',张飞:storyActorRoot+'zhang-fei-walk-sheet-v4.webp',
     曹操:storyActorRoot+'cao-cao-walk-sheet-v4.webp',袁绍:storyActorRoot+'yuan-shao-walk-sheet-v4.webp',袁术:storyActorRoot+'yuan-shu-walk-sheet-v4.webp',
-    公孙瓒:storyActorRoot+'gongsun-zan-walk-sheet-v4.webp',陶谦:storyActorRoot+'tao-qian-walk-sheet-v4.webp',孔融:storyActorRoot+'kong-rong-walk-sheet-v4.webp',
+    公孙瓒:storyActorRoot+'gongsun-zan-walk-sheet-v4.webp',陶谦:storyActorRoot+'tao-qian-walk-sheet-v5.webp',孔融:storyActorRoot+'kong-rong-walk-sheet-v4.webp',
     董卓:storyActorRoot+'dong-zhuo-walk-sheet-v4.webp',吕布:storyActorRoot+'lv-bu-walk-sheet-v4.webp',华雄:storyActorRoot+'hua-xiong-walk-sheet-v4.webp',
     李儒:storyActorRoot+'li-ru-walk-sheet-v4.webp',李傕:storyActorRoot+'li-jue-walk-sheet-v4.webp',郭汜:storyActorRoot+'guo-si-walk-sheet-v4.webp',
     李肃:storyActorRoot+'li-su-walk-sheet-v4.webp',胡轸:storyActorRoot+'hu-zhen-walk-sheet-v4.webp',赵岑:storyActorRoot+'zhao-cen-walk-sheet-v4.webp',
@@ -440,7 +440,7 @@
   let tileW=72,tileH=36,originX=0,originY=90,zoom=1,panX=0,panY=0,drag=false,lastMouse=null,anim=null,combatFx=null,audioCtx=null,sfxBus=null,sfxLimiter=null,bgRect={x:0,y:0,w:1,h:1,scale:1};
   const touchPoints=new Map();let touchGesture=null,ignoreClickUntil=0;
   let battleOverview=false,battleFocus={x:units.find(u=>u.id==='liu')?.x??Math.floor(COLS/2),y:units.find(u=>u.id==='liu')?.y??Math.floor(ROWS/2)};
-  const MUSIC_MIX_GAIN=.44,SFX_MIX_GAIN=2.1,SHOP_MUSIC_VOLUME_MULTIPLIER=1.3;
+  const MUSIC_MIX_GAIN=.44,SFX_MIX_GAIN=2.1,SHOP_MUSIC_VOLUME_MULTIPLIER=1.3,TENT_MUSIC_VOLUME_MULTIPLIER=2.2,LUOYANG_MUSIC_VOLUME_MULTIPLIER=2,WORLD_MUSIC_VOLUME_MULTIPLIER=1.5;
   const GLOBAL_MOVEMENT_SPEED=1.5;
   let musicEnabled=true,musicStarted=false,musicVolume=.34,sfxVolume=.85,musicSceneMultiplier=1,musicDuckTimer=null,animationSpeed=1,compactRepeatedAnimations=true;
   const seenCombatMotions=new Set();
@@ -469,7 +469,7 @@
   const storyMusicAssets={2:'assets/audio/original-music-2.opus',3:'assets/audio/original-music-3.opus',10:'assets/audio/original-music-10.opus',11:'assets/audio/original-music-11.opus',12:'assets/audio/original-music-12.opus',13:'assets/audio/romance-of-the-three-kingdoms-11-eternity.opus',14:'assets/audio/romance-of-the-three-kingdoms-11-spring-buds.opus',15:window.GAME_AUDIO_CONFIG?.events?.['xuzhou-taishici-turn5']||'assets/audio/langrisser-ii-ones-side.opus',16:window.GAME_AUDIO_CONFIG?.victory||'assets/audio/romance-of-the-three-kingdoms-13-emperors-theme-taoyuan-oath.opus',17:window.GAME_AUDIO_CONFIG?.stories?.world||'assets/audio/romance-of-the-three-kingdoms-11-prologue.opus'};
   const DEFAULT_CAMPAIGN_VICTORY_MUSIC_ID=16;
   function mixedMusicVolume(multiplier=musicSceneMultiplier){return Math.max(0,Math.min(1,musicVolume*MUSIC_MIX_GAIN*multiplier))}
-  function storyMusicVolume(multiplier=musicSceneMultiplier){return mixedMusicVolume(multiplier*(storyMusicMode==='shop'?SHOP_MUSIC_VOLUME_MULTIPLIER:1))}
+  function storyMusicVolume(multiplier=musicSceneMultiplier){const sceneGain=storyMusicMode==='shop'?SHOP_MUSIC_VOLUME_MULTIPLIER:storyMusicId===14?TENT_MUSIC_VOLUME_MULTIPLIER:storyMusicId===13?LUOYANG_MUSIC_VOLUME_MULTIPLIER:storyMusicId===17?WORLD_MUSIC_VOLUME_MULTIPLIER:1;return mixedMusicVolume(multiplier*sceneGain)}
   function applyMusicMix(multiplier=musicSceneMultiplier){const volume=mixedMusicVolume(multiplier);titleMusic.volume=volume;storyMusic.volume=storyMusicVolume(multiplier);battleMusic.volume=volume}
   function applySfxMix(){if(sfxBus)sfxBus.gain.value=Math.max(0,Math.min(2.4,sfxVolume*SFX_MIX_GAIN))}
   function duckMusicForSfx(name){

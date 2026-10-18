@@ -161,6 +161,7 @@ for (const [id, { level }] of levels) {
 
 const game = fs.readFileSync(path.join(root, 'game.js'), 'utf8');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const styles = fs.readFileSync(path.join(root, 'style.css'), 'utf8');
 const storySource = fs.readFileSync(path.join(root, 'story-data.js'), 'utf8');
 const storyContext = {
   window: {}, location: { search: '' }, URLSearchParams,
@@ -179,6 +180,15 @@ for (const id of expectedGraph.keys()) {
 for (const [index, file] of levelFiles) {
   assert.ok(html.includes(file), `index.html does not load ${file}`);
   assert.ok(html.includes(`data-select-level="${index}"`), `level selector is missing level ${index}`);
+}
+const levelThumbnails = [
+  ['qinghe', 'assets/level-04-qinghe/qinghe-map-remaster-v2.webp'],
+  ['xiaopei', 'assets/level-08-xiaopei/xiaopei-map-v2.webp'],
+  ['taishan', 'assets/level-09-taishan/taishan-map-v2.webp']
+];
+for (const [className, asset] of levelThumbnails) {
+  assert.ok(styles.includes(".level-choice."+className+"{background-image:url('"+asset+"')}"), 'level selector thumbnail mapping is missing for '+className);
+  assert.ok(fs.existsSync(path.join(root, asset)), 'level selector thumbnail asset is missing: '+asset);
 }
 for (const token of [
   "params.set('level',nextIndex);params.set('storySelect','1');params.set('build',RUNTIME_BUILD)",

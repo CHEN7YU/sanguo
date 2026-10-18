@@ -91,7 +91,10 @@ if(!game.includes("battleSfx('duelFinish',lvbu,{critical:true})")||!game.include
 for(const token of [
   'const configuredShopTrack=window.GAME_AUDIO_CONFIG?.shop',
   'SHOP_MUSIC_VOLUME_MULTIPLIER=1.3',
-  "storyMusicMode==='shop'?SHOP_MUSIC_VOLUME_MULTIPLIER:1",
+  'TENT_MUSIC_VOLUME_MULTIPLIER=2.2',
+  'LUOYANG_MUSIC_VOLUME_MULTIPLIER=2',
+  'WORLD_MUSIC_VOLUME_MULTIPLIER=1.5',
+  "storyMusicMode==='shop'?SHOP_MUSIC_VOLUME_MULTIPLIER:storyMusicId===14?TENT_MUSIC_VOLUME_MULTIPLIER:storyMusicId===13?LUOYANG_MUSIC_VOLUME_MULTIPLIER:storyMusicId===17?WORLD_MUSIC_VOLUME_MULTIPLIER:1",
   'function startShopMusic()',
   "storyMusicMode='shop'",
   "classList.remove('hidden');startShopMusic();syncShop()",

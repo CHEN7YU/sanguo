@@ -9,6 +9,10 @@ const fail=message=>{throw new Error(message)};
 
 for(const token of [
   'const MUSIC_MIX_GAIN=.44,SFX_MIX_GAIN=2.1',
+  'TENT_MUSIC_VOLUME_MULTIPLIER=2.2',
+  'LUOYANG_MUSIC_VOLUME_MULTIPLIER=2',
+  'WORLD_MUSIC_VOLUME_MULTIPLIER=1.5',
+  "storyMusicId===14?TENT_MUSIC_VOLUME_MULTIPLIER:storyMusicId===13?LUOYANG_MUSIC_VOLUME_MULTIPLIER:storyMusicId===17?WORLD_MUSIC_VOLUME_MULTIPLIER:1",
   'function mixedMusicVolume(multiplier=musicSceneMultiplier)',
   'function applySfxMix()',
   'if(!musicEnabled)return',

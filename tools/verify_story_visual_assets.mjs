@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import sharp from 'sharp';
 import {fileURLToPath} from 'node:url';
 
 const root=fileURLToPath(new URL('..',import.meta.url));
@@ -23,6 +24,16 @@ for(const [name,id] of canonicalStoryPortraits){
 const zhaoyunStorySheet="赵云:storyActorRoot+'zhao-yun-walk-sheet-v1.webp'";
 if((game.match(new RegExp(zhaoyunStorySheet.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'))||[]).length<2)fail('赵云室内与行军剧情必须统一使用专属步行小人');
 if(game.includes("赵云:storyActorRoot+'gongsun-zan-walk-sheet-v4.webp'")||game.includes("赵云:'assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-walk-v2.webp'"))fail('赵云剧情仍在复用公孙瓒或战斗骑兵素材');
+const taoStorySheet="assets/story-actors/remaster-v3/tao-qian-walk-sheet-v5.webp";
+if(!game.includes("陶谦:storyActorRoot+'tao-qian-walk-sheet-v5.webp'"))fail('陶谦剧情必须使用真实迈步图集');
+if(game.includes("陶谦:storyActorRoot+'tao-qian-walk-sheet-v4.webp'"))fail('陶谦剧情仍在使用四帧站姿资源');
+const taoMeta=await sharp(path.join(root,taoStorySheet)).metadata();
+if(taoMeta.width!==1024||taoMeta.height!==1024)fail('陶谦剧情迈步图集必须保持4×4的1024方形布局');
+const taoFrameA=await sharp(path.join(root,taoStorySheet)).extract({left:0,top:0,width:256,height:256}).raw().toBuffer();
+const taoFrameB=await sharp(path.join(root,taoStorySheet)).extract({left:256,top:0,width:256,height:256}).raw().toBuffer();
+let taoChanged=0;
+for(let i=0;i<taoFrameA.length;i+=4)if(Math.abs(taoFrameA[i]-taoFrameB[i])+Math.abs(taoFrameA[i+1]-taoFrameB[i+1])+Math.abs(taoFrameA[i+2]-taoFrameB[i+2])+Math.abs(taoFrameA[i+3]-taoFrameB[i+3])>48)taoChanged++;
+if(taoChanged<2500)fail('陶谦剧情迈步图集前两帧没有足够的腿部与衣摆变化');
 
 let checked=0;
 for(const [symbol,directory] of groups){
