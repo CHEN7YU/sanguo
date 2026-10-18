@@ -109,7 +109,7 @@ assert.ok(game.includes('const loadedMap=applyPaintedTerrainOverrides(save.map.m
 assert.ok(game.includes('applyPaintedDeploymentOverride({...u,spawnOrder:u.spawnOrder??i'), 'old saves must move original water spawns onto dry painted cells');
 assert.ok(game.includes("victory(false,'alternate')"));
 assert.ok(game.includes("portrait.dataset.speaker=speaker"),'Story portrait must expose its speaker for portrait-specific framing');
-assert.ok(style.includes('#storyPortrait[data-speaker="藩宫"] img')&&style.includes('scaleX(1.09)'),'Fan Gong portrait aspect correction is missing');
+assert.ok(style.includes('#storyPortrait[data-speaker="藩宫"],.dialog-portrait[data-speaker="藩宫"]{height:auto;aspect-ratio:1')&&style.includes('#storyPortrait[data-speaker="藩宫"] img,.dialog-portrait[data-speaker="藩宫"] img{object-fit:contain;object-position:center;transform:none}'),'Fan Gong portrait must preserve its square source aspect ratio');
 assert.ok(story.includes("'xindu': window.XINDU_PRE_BATTLE_STORY"));
 assert.ok(story.includes('淳于琼，你去信都城'));
 assert.ok(story.includes('向信都城进军吧'));

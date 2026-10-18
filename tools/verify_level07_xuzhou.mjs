@@ -20,6 +20,7 @@ for(const override of level.paintedTerrainOverrides||[])runtimeTerrain[override.
 const paintedBridgeKeys=new Set((level.paintedTerrainOverrides||[]).filter(tile=>tile.type==='bridge').map(tile=>`${tile.x},${tile.y}`));
 for(const key of ['27,3','28,3','27,4','28,4','20,8','21,8'])check(paintedBridgeKeys.has(key),`Painted Xuzhou bridge collision is missing at ${key}`);
 check(runtimeTerrain[5][19]==='plain'&&runtimeTerrain[6][19]==='village','Painted Xuzhou village must be anchored to its visible courtyard at (19,6)');
+check(level.structureOverlayTiles?.includes('1,16'),'The missing southwest village at (1,16) must be drawn above the baked battlefield art');
 const blocked=new Set(['water','cliff','wall','gate','fence','house','fire','muddyWater']);
 function route(start,target){
   const key=([x,y])=>`${x},${y}`,queue=[start],previous=new Map([[key(start),null]]);
