@@ -78,7 +78,7 @@
     ],
     alternateVictory:{unitId:'liu',rect:{x1:28,y1:10,x2:29,y2:14},exp:50,goldReward:0,label:'刘备进入徐州城',log:'刘备进入徐州城，全体残存部队获得经验50'},
     intro:[{speaker:'于禁',text:'说什么？刘备攻过来了？有多少兵？……不好。一定设法等夏侯渊的到来。'}],
-    timedEvents:[{turn:5,once:'xuzhou-taishici-turn5',unitId:'taishici',musicId:12,spawns:[{unitId:'taishici',side:'guest',x:6,y:17,aiType:4}],dialogue:[{speaker:'太史慈',text:'刘备，遵孔融之命，太史慈前来助你。'},{speaker:'军报',text:'太史慈前来支援！'}]}],
+    timedEvents:[{turn:5,once:'xuzhou-taishici-turn5',unitId:'taishici',musicId:15,spawns:[{unitId:'taishici',side:'guest',x:6,y:17,aiType:4}],dialogue:[{speaker:'太史慈',text:'刘备，遵孔融之命，太史慈前来助你。'},{speaker:'军报',text:'太史慈前来支援！'}]}],
     environmentFx:{forestZones:[[.68,.05,.18,.23,.6],[.67,.48,.22,.42,1.8]],waterBands:[{from:[.99,.05],to:[.34,.98],bend:.12,width:.08,speed:.035,gaps:[[.09,.13],[.48,.54],[.82,.87]]}]},
     events:{
       duel:{attackerId:'guan',defenderId:'yujin',endsBattle:false,musicId:12,title:'关羽　VS　于禁',kicker:'徐州 · 青龙叫阵',caption:'青龙偃月刀压制于禁',challenge:[{speaker:'关羽',text:'我就是关羽关云长，有武将的话就出来。'},{speaker:'于禁',text:'曹军于禁在此，休得猖狂！'}],exchange:[{speaker:'关羽',text:'不愧是曹操的手下大将。只是凭你的武艺胜不了我。'},{speaker:'于禁',text:'关云长果然名不虚传……于禁暂且退兵！'}],levelUp:{speaker:'军报',text:'关羽的等级上升了！'},confirmation:{speaker:'军报',text:'于禁败退，战斗仍在继续。'},occupation:{speaker:'军报',text:'刘备军进入徐州城。'}},
@@ -93,7 +93,7 @@
         {speaker:'关羽',text:'兄长若要迎战，云长愿为先锋。'},
         {speaker:'张飞',text:'若要讲和，俺也去曹营走一遭！'},
         {speaker:'军报',text:'请选择下一步行动。'}
-      ],victoryMusicId:2,battleReward:300
+      ],victoryMusicId:16,battleReward:300
     },
     ai:{strategyCooldown:6},units:[...heroes,...guests,...enemies]
   };

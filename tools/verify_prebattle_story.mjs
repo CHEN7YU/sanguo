@@ -17,7 +17,7 @@ const march=story.find(x=>x.scene==='world'&&x.route);if(!march||!Array.isArray(
 for(const name of ['袁绍','曹操','袁术','孔融','公孙瓒','陶谦','张飞','道具屋','关羽'])if(!npcs[name]?.length)fail(`missing NPC conversation: ${name}`);
 const root=fileURLToPath(new URL('..',import.meta.url));
 const game=fs.readFileSync(new URL('../game.js',import.meta.url),'utf8');
-for(const [scene,track] of Object.entries({prologue:2,palace:2,tent:12,luoyang:11,world:3})){
+for(const [scene,track] of Object.entries({prologue:2,palace:2,tent:14,luoyang:13,world:17})){
   if(!game.includes(`${scene}:${track}`))fail(`missing original music mapping ${scene} -> ${track}`);
 }
 if(!game.includes('routeStoryActor')||!game.includes('Object.entries(line.route||{})'))fail('story engine does not execute world-map routes');

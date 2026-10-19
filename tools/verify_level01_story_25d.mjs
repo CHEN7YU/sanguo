@@ -61,7 +61,7 @@ for (const asset of assets) assert(css.includes(asset), `${asset} is wired into 
 assert(css.includes('--story-camera-zoom') && css.includes('storyFireGlow'), 'camera and dynamic lighting rules are present');
 assert(game.includes('function setStoryCamera') && game.includes("setStoryCamera(speaker)"), 'dialogue camera follows the active speaker');
 assert(game.includes("key:'chenliu-coalition'") && game.includes("farScale:.76,nearScale:1.18"), 'Chenliu tent has scene-specific walk bounds and depth scaling');
-assert(game.includes("storyMusicAssets={2:") && game.includes("original-music-12.opus"), 'all first-stage scene music resolves to packaged Opus assets');
+assert(game.includes("storyMusicAssets={2:") && game.includes("original-music-12.opus") && game.includes("luoyang:13") && game.includes("romance-of-the-three-kingdoms-11-eternity.opus") && game.includes("tent:14") && game.includes("romance-of-the-three-kingdoms-11-spring-buds.opus") && game.includes("world:17") && game.includes("romance-of-the-three-kingdoms-11-prologue.opus"), 'all first-stage scenes resolve to their assigned packaged Opus music');
 assert(game.includes("u.id==='caocao'?1.05:1"), 'Cao Cao battle unit is consistently scaled to 105%');
 const runtimeBuild=game.match(/const RUNTIME_BUILD='([^']+)'/)?.[1];
 assert(runtimeBuild&&html.includes('game.js?build='+runtimeBuild)&&html.includes('style.css?build='+runtimeBuild), 'cache-busting build id is synchronized');

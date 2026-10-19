@@ -12,8 +12,8 @@
       "character_id": 53,
       "face_id": 3,
       "original_reference": "docs/original-audit/level-05-jieqiao-portraits/zhao-yun-face-003.png",
-      "master": "assets-master/level-05-jieqiao/zhao-yun-portrait-v2.png",
-      "release": "assets/level-05-jieqiao/zhao-yun-portrait-v2.webp"
+      "master": "assets-master/story-portraits/zhao-yun-remaster-v6.png",
+      "release": "assets/story-portraits/remaster-v6/zhao-yun-v6.webp"
     },
     {
       "name": "文丑",

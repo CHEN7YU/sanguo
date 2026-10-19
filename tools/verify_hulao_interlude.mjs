@@ -26,8 +26,8 @@ check(level.marchDialogue.length===6,'battle data must include all six original 
 check(story[2].speaker==='张飞'&&story[2].text.includes('乘胜追击'),'Zhang Fei pursuit line is missing');
 check(story.some(line=>line.route?.['李肃'])&&story.some(line=>line.route?.['张飞']),'Li Su retreat and Zhang Fei pursuit routes are required');
 check(level.marchHandledByStory===true&&game.includes('!level.marchHandledByStory'),'march dialogue would replay at battle start');
-check(game.includes('world:3'),'world map must use original music ID 3');
-check(fs.statSync(new URL('assets/audio/original-music-3.wav',root)).size>100000,'original music ID 3 render is missing');
+check(game.includes('world:17'),'world map must use the assigned Prologue music ID 17');
+check(fs.statSync(new URL('assets/audio/romance-of-the-three-kingdoms-11-prologue.opus',root)).size>1000000,'world-map Prologue music asset is missing');
 check(game.includes('u.hp=u.maxHp')&&game.includes('u.strategy=u.maxStrategy')&&game.includes('u.morale=100'),'new battle replenishment is not enforced');
 check(!game.includes('hp:u.hp,strategy:u.strategy,morale:u.morale??100'),'tactical values must not be persisted between battles');
 check(game.includes('victoryType:victoryType')&&game.includes("campaignVictoryType=duel?'duel':variant"),'normal/duel outcome branch is not recorded');

@@ -52,9 +52,9 @@ for(const [id,x,y] of [['liu',3,16],['guan',1,15],['zhang',2,15],['jian',2,16],[
 check(byId.taishici.side==='reserve'&&byId.taishici.x===-1,'Taishi Ci must begin off-map');
 check(level.units.filter(unit=>unit.side==='enemy').length===17,'Original enemy deployment must contain 17 active units');
 const reinforcement=level.timedEvents.find(event=>event.once==='xuzhou-taishici-turn5');
-check(reinforcement?.turn===5&&reinforcement.spawns?.[0]?.x===6&&reinforcement.spawns?.[0]?.y===17,'Turn-five Taishi Ci reinforcement is wrong');
+check(reinforcement?.turn===5&&reinforcement.musicId===15&&reinforcement.spawns?.[0]?.x===6&&reinforcement.spawns?.[0]?.y===17,'Turn-five Taishi Ci reinforcement or music is wrong');
 check(level.events.duel.attackerId==='guan'&&level.events.duel.defenderId==='yujin'&&level.events.duel.endsBattle===false,'Guan Yu vs Yu Jin duel is wrong');
-check(level.events.duel.musicId===12&&level.events.victoryMusicId===2,'Xuzhou duel or victory music transition is missing');
+check(level.events.duel.musicId===12&&level.events.victoryMusicId===16,'Xuzhou duel or victory music transition is missing');
 check(level.events.battleReward===300&&level.alternateVictory.exp===50,'Original victory rewards are wrong');
 
 const storyContext={window:{}};
@@ -68,7 +68,7 @@ for(const name of ['孔融','太史慈','张飞','赵云','糜竺'])check(counci
 check(!story.some(line=>Array.isArray(line.conversationChoices)),'Beihai council must not use bottom conversation-choice cards');
 for(const name of ['孔融','太史慈','张飞','赵云','糜竺','关羽'])check(storyContext.window.NPC_DIALOGUE_BY_LEVEL.xuzhou?.[name]?.length,`Xuzhou free-roam dialogue is missing ${name}`);
 
-for(const relative of [level.battlefieldArt,'assets/audio/original-music-9.opus','docs/original-audit/level-07-xuzhou-audit.md','docs/original-audit/level-07-xuzhou-map.json'])check(fs.existsSync(path.join(root,relative)),`Missing Xuzhou resource: ${relative}`);
+for(const relative of [level.battlefieldArt,'assets/audio/original-music-9.opus','assets/audio/langrisser-ii-ones-side.opus','docs/original-audit/level-07-xuzhou-audit.md','docs/original-audit/level-07-xuzhou-map.json'])check(fs.existsSync(path.join(root,relative)),`Missing Xuzhou resource: ${relative}`);
 for(const id of ['yu-jin','yue-jin','li-dian','guo-jia','cao-hong','xiahou-yuan','mi-fang','sun-qian'])check(fs.existsSync(path.join(root,`assets/level-07-xuzhou/portraits/${id}-v1.webp`)),`Missing Xuzhou portrait: ${id}`);
 for(const id of ['yujin','yuejin','lidian','guojia','caohong','xiahouyuan','mifang','sunqian','tao','transport']){
   for(const suffix of ['unit','action','walk'])check(fs.existsSync(path.join(root,`assets/level-07-xuzhou/units/${id}-${suffix}-v1.webp`)),`Missing Xuzhou unit asset: ${id}-${suffix}`);
@@ -81,6 +81,7 @@ check(game.includes("levelIndex==='9' ? window.LEVEL_07_XUZHOU"),'Level 9 loader
 check(game.includes("targetId==='xuzhou'?'9'"),'Xuzhou save routing is missing');
 check(game.includes("level.nextLevelId==='xuzhou'?'9'"),'Beihai-to-Xuzhou campaign routing is missing');
 check(game.includes('alternateVictoryContains'),'Rectangular city victory runtime is missing');
+check(game.includes("15:window.GAME_AUDIO_CONFIG?.events?.['xuzhou-taishici-turn5']||'assets/audio/langrisser-ii-ones-side.opus'"),'Taishi Ci reinforcement music runtime mapping is missing');
 check(game.includes("level.victoryCondition==='eliminateAllEnemies'"),'Elimination victory runtime is missing');
 check(game.includes('recoverFromTransports')&&game.includes('bestSupportMove'),'Transport recovery or support AI is missing');
 check(game.includes("passiveName.textContent='兵种特性 · 运输补给'")&&game.includes('70＋等级×5')&&game.includes('上下左右相邻的所有受伤友军'),'Transport function must be explained in the unit panel');
