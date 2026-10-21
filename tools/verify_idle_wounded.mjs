@@ -22,9 +22,9 @@ assert(/function woundedKeyFor/.test(game) && /return'infantry'/.test(game), 'wh
 assert(/woundedPreview/.test(game), 'wounded visual audit route missing');
 assert(!/idle\.legLift/.test(game), 'old sliced horse-leg idle deformation is still active');
 assert(game.includes("songxian:'assets/songxian-walk-v2.webp'"), 'clean Song Xian walk sheet is not wired');
-assert(/function genericVisualKeyFor\(u\)\{if\(u\.troop==='cavalry'\)return'hua'/.test(game), 'unnamed cavalry must use mounted art');
-assert(/if\(u\.troop==='cavalry'\)return'hua';/.test(game), 'mounted wounded fallback missing');
-assert(/function deathKeyFor\(u\).*u\.troop==='cavalry'\?'hua'/.test(game), 'mounted death fallback missing');
+assert(/function genericVisualKeyFor\(u\)\{if\(u\.troop==='cavalry'\|\|u\.troop==='heavyCavalry'\)return'hua'/.test(game), 'unnamed cavalry and heavy cavalry must use mounted art');
+assert(/u\.troop==='cavalry'\|\|u\.troop==='heavyCavalry'/.test(game), 'mounted wounded fallback missing');
+assert(/function deathKeyFor\(u\).*\(u\.troop==='cavalry'\|\|u\.troop==='heavyCavalry'\)\?'hua'/.test(game), 'mounted death fallback missing');
 assert(html.includes('game.js?build='), 'cache-busted game script missing');
 
 console.log('idle and wounded animation verification passed');

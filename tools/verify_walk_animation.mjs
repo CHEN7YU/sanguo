@@ -24,7 +24,7 @@ function loadLevels(){
   return Object.entries(context.window).filter(([key,value])=>key.startsWith('LEVEL_')&&Array.isArray(value?.units));
 }
 
-const genericKey=unit=>unit.troop==='cavalry'?'hua':unit.troop==='archer'?'archer':unit.troop==='martial'?'martial':unit.troop==='bandit'?'bandit':unit.troop==='beast'?'beast':unit.troop==='support'?'support':unit.troop==='transport'?'transport':unit.role!=='前锋'?'officer':'infantry';
+const genericKey=unit=>unit.troop==='cavalry'||unit.troop==='heavyCavalry'?'hua':unit.troop==='archer'?'archer':unit.troop==='martial'?'martial':unit.troop==='bandit'?'bandit':unit.troop==='beast'?'beast':unit.troop==='support'?'support':unit.troop==='transport'?'transport':unit.role!=='前锋'?'officer':'infantry';
 const walkPaths=evaluateWalkPaths(),levels=loadLevels(),resolvedAssets=new Map(),troopTypes=new Set();
 
 for(const [levelKey,level] of levels){
@@ -59,6 +59,7 @@ for(const token of ["function walkingMotionFor(u,phase,direction='west'","walkPh
   check(game.includes(token),`walking renderer loses authored direction, phase or facing: ${token}`);
 }
 check(game.includes("function walkKeyFor(u){if(walkArt[u.id]&&walkFrameBounds[u.id])return u.id;const genericKey=genericVisualKeyFor(u);return walkArt[genericKey]&&walkFrameBounds[genericKey]?genericKey:null}"),'named units must fall back to their troop-family authored walk sheet');
+check(game.includes("u.troop==='cavalry'||u.troop==='heavyCavalry'"),'heavy cavalry must use the authored cavalry walk family');
 check(!game.includes("function walkKeyFor(u){if(walkArt[u.id])return u.id;if(art[u.id])return null;return genericVisualKeyFor(u)}"),'static named art must never disable the troop-family walk fallback');
 check(!game.includes('stepLift=')&&!game.includes('banditGait=')&&!game.includes('if(walking&&!authoredWalk){ctx.rotate'),'synthetic hopping/rotation must not substitute for authored walking frames');
 check(game.includes('const GLOBAL_MOVEMENT_SPEED=1.5'),'global battlefield movement must be 50% faster');

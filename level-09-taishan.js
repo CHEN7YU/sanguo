@@ -109,7 +109,7 @@
       {fromX:10,fromY:0,x:19,y:7,type:'treasure'},
       {fromX:8,fromY:8,x:8,y:11,type:'treasure'}
     ],
-    nextBattle:'淮南之战',
+    nextBattle:'淮南之战',nextLevelId:'huainan',
     intro:[
       {speaker:'关羽',text:'众军列队！泰山道路险峻，切莫各自冒进。'},
       {speaker:'李明',text:'来者可是平原相刘备？此人素有仁名……我等虽落草为寇，也不愿与百姓为敌。'}

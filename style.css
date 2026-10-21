@@ -171,6 +171,7 @@ html:not(.touch-capable) .touch-controls{display:none!important}
 
 /* Chapter-one branch labels and locked future stages. */
 .level-choice.guangchuan{background-image:url('assets/level-03/guangchuan-map-v1.webp')}
+.level-choice.huainan{background-image:url('assets/level-10-huainan/huainan-map-v1.webp')}
 .level-choice.xindu{background-image:url('assets/level-03-xindu/xindu-map-v1.webp')}
 .level-choice.julu{background-image:url('assets/level-04-julu/julu-map-aligned-v3.webp')}
 .level-choice.qinghe{background-image:url('assets/level-04-qinghe/qinghe-map-remaster-v2.webp')}
@@ -326,3 +327,5 @@ html:not(.touch-capable) .touch-controls{display:none!important}
   .title-heading{top:3%;left:42%}.title-heading>img{width:42px;height:42px}.title-heading small{display:none}.title-heading h1{font-size:30px}.title-menu{top:20%;right:8%;gap:4px}.title-menu button{min-height:34px;font-size:12px}.title-save-note{display:none}.title-notice{bottom:2%}.title-champion-ticker{left:2%;right:52%;bottom:2%;height:32px}.title-champion-label{padding:0 8px;font-size:10px;letter-spacing:1px}.title-champion-label span{display:none}.title-champion-item{min-height:30px;padding:0 10px;font-size:10px}.title-champion-item small{display:none}.game-menu-card{width:min(760px,98vw)}.save-slots{grid-template-columns:1fr 1fr}.save-slot{min-height:45px}.save-slot time{display:none}.save-menu-hint{display:none}.story-actor.remastered,.story-actor.remastered i{width:88px;height:88px}.story-actor b{font-size:9px}.story-dialogue{min-height:86px;grid-template-columns:68px 1fr}.story-dialogue figure{width:62px;height:74px}.story-dialogue b{font-size:15px}.story-dialogue p{font-size:12px;line-height:1.4}.story-controls{right:2%;transform:translateY(-102px);gap:5px}.story-controls button{min-height:38px;padding:7px 12px;font-size:12px;touch-action:manipulation}
 }
 
+
+.shop-empty{margin:0;padding:14px 16px;background:#071d38;border:1px solid #a8742c66;color:#c4d0d3;line-height:1.7}

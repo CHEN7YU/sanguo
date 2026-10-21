@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "capturedAt": "2026-10-15",
-  "sourceBuild": "20261015-taishan-v176",
+  "capturedAt": "2026-10-20",
+  "sourceBuild": "20261020-huainan-v231",
   "description": "Original authored story and battle dialogue before the Romance vernacular rewrite. Runtime source files remain unchanged; use ?dialogue=original to preview this version.",
   "sourceFiles": [
     "level-01.js",
@@ -15,10 +15,11 @@
     "level-07-xuzhou.js",
     "level-08-xiaopei.js",
     "level-09-taishan.js",
+    "level-10-huainan.js",
     "story-data.js",
     "game.js"
   ],
-  "count": 624,
+  "count": 674,
   "rows": [
     {
       "path": "LEVEL_01.marchDialogue.0.text",
@@ -1966,6 +1967,186 @@
       "text": "众兄弟，是我李明连累了你们……"
     },
     {
+      "path": "LEVEL_10_HUAINAN.intro.0.text",
+      "speaker": "纪灵",
+      "text": "我家主公岂能被刘备轻视！让他看看袁术军的厉害。"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.intro.1.text",
+      "speaker": "刘备",
+      "text": "奉诏讨伐袁术，各军谨慎推进，不可扰害沿途百姓。"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.timedEvents.0.dialogue.0.text",
+      "speaker": "糜竺",
+      "text": "主公，徐州急报！吕布趁我军出征，已经夺取徐州。"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.timedEvents.0.dialogue.1.text",
+      "speaker": "陈宫",
+      "text": "此战关系主公一生。众将听令，向刘备军发动总攻！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.timedEvents.0.dialogue.2.text",
+      "speaker": "军报",
+      "text": "吕布军自北面出现。战斗目标增加：刘备可撤往西北鹿砦。"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.areaEvents.0.dialogue.0.text",
+      "speaker": "刘备",
+      "text": "简雍所说的鹿砦就在前面。再坚持一程，便能脱离战场。"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.areaEvents.0.dialogue.1.text",
+      "speaker": "军报",
+      "text": "敌军发现刘备撤退意图，开始全力追击刘备。"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.events.duel.challenge.0.text",
+      "speaker": "关羽",
+      "text": "张辽，吕布背信夺取徐州，你还要追随他吗？"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.events.duel.challenge.1.text",
+      "speaker": "张辽",
+      "text": "各为其主，关将军，请赐教！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.events.duel.exchange.0.text",
+      "speaker": "关羽",
+      "text": "不愧是张辽，但此招你躲得过吗？"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.events.duel.exchange.1.text",
+      "speaker": "张辽",
+      "text": "关云长果然厉害，今日我认输。"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.events.duel.exchange.2.text",
+      "speaker": "张辽",
+      "text": "撤退！我不愿再与关羽交战。"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.events.duel.levelUp.text",
+      "speaker": "军报",
+      "text": "关羽的等级上升了！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.events.duel.confirmation.text",
+      "speaker": "军报",
+      "text": "张辽败退，战斗仍在继续。"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.events.duel.occupation.text",
+      "speaker": "军报",
+      "text": "张辽已经撤离战场。"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.events.normalVictory.0.text",
+      "speaker": "军报",
+      "text": "刘备军击破纪灵率领的袁术军，并击退来袭的吕布军。"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.events.normalOccupation.text",
+      "speaker": "刘备",
+      "text": "徐州已落入吕布之手。全军立即回师，不可延误！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.events.alternateVictory.0.text",
+      "speaker": "军报",
+      "text": "刘备军成功撤离淮南战场。"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.events.alternateVictory.1.text",
+      "speaker": "张飞",
+      "text": "吕布这个畜生！大哥、二哥，俺也去徐州杀他！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.0.defeatQuote",
+      "speaker": "刘备",
+      "text": "徐州已失，我岂能再倒在这里！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.1.defeatQuote",
+      "speaker": "关羽",
+      "text": "关羽暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.2.defeatQuote",
+      "speaker": "张飞",
+      "text": "张飞暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.3.defeatQuote",
+      "speaker": "简雍",
+      "text": "简雍暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.4.defeatQuote",
+      "speaker": "赵云",
+      "text": "赵云暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.5.defeatQuote",
+      "speaker": "孙乾",
+      "text": "孙乾暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.6.defeatQuote",
+      "speaker": "藩宫",
+      "text": "藩宫暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.7.defeatQuote",
+      "speaker": "糜竺",
+      "text": "糜竺暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.8.defeatQuote",
+      "speaker": "糜芳",
+      "text": "糜芳暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.9.defeatQuote",
+      "speaker": "李明",
+      "text": "李明暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.10.defeatQuote",
+      "speaker": "纪灵",
+      "text": "纪灵暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.11.defeatQuote",
+      "speaker": "乐就",
+      "text": "乐就暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.12.defeatQuote",
+      "speaker": "陈纪",
+      "text": "陈纪暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.22.defeatQuote",
+      "speaker": "陈宫",
+      "text": "陈宫暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.23.defeatQuote",
+      "speaker": "张辽",
+      "text": "张辽暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.24.defeatQuote",
+      "speaker": "魏续",
+      "text": "魏续暂且退下！"
+    },
+    {
+      "path": "LEVEL_10_HUAINAN.units.25.defeatQuote",
+      "speaker": "宋宪",
+      "text": "宋宪暂且退下！"
+    },
+    {
       "path": "PRE_BATTLE_STORY.0.text",
       "speaker": "史官",
       "text": "话说东汉末年，朝纲日坏，四方豪强各据一方，百姓流离，天下已现大乱之象。"
@@ -2912,8 +3093,8 @@
     },
     {
       "path": "TAISHAN_PRE_BATTLE_STORY.6.text",
-      "speaker": "关羽",
-      "text": "兄长，七军已经整备妥当。"
+      "speaker": "史官",
+      "text": "诸将依令归队，厅外号角齐鸣。"
     },
     {
       "path": "TAISHAN_PRE_BATTLE_STORY.7.text",
@@ -2929,6 +3110,51 @@
       "path": "TAISHAN_PRE_BATTLE_STORY.9.text",
       "speaker": "关羽",
       "text": "山路分作数条，贼兵必会由两翼来攻。众军结阵，不可散乱。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.0.text",
+      "speaker": "史官",
+      "text": "刘备奉诏整军南下。大军离开徐州，向袁术盘踞的淮南进发。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.1.text",
+      "speaker": "史官",
+      "text": "袁术得传国玉玺后僭称皇帝，在淮南大兴宫室，生活奢靡。天子因此下诏讨伐。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.2.text",
+      "speaker": "纪灵",
+      "text": "刘备军已经杀到淮南。主公，请命末将领兵迎敌！"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.3.text",
+      "speaker": "袁术",
+      "text": "区区织席贩履之徒，也敢轻视朕？纪灵，给朕击破刘备！"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.4.text",
+      "speaker": "袁胤",
+      "text": "刘备军远道而来，粮道必长。只须扼守河桥，再伺机合围。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.5.text",
+      "speaker": "纪灵",
+      "text": "末将领命！定叫刘备有来无回。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.6.text",
+      "speaker": "刘备",
+      "text": "淮南水道纵横，敌军又在南面结营。全军沿道路推进，先察明河桥与营寨。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.7.text",
+      "speaker": "关羽",
+      "text": "兄长，西北有一处鹿砦，可作退路；南面敌营才是纪灵本阵。"
+    },
+    {
+      "path": "HUAINAN_LEVEL_SELECT_STORY.0.text",
+      "speaker": "史官",
+      "text": "陶谦病逝后，刘备领徐州牧。袁术僭称皇帝，天子下诏命刘备进军淮南；吕布则趁徐州空虚暗中图谋。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.guangchuan.张飞.0",
@@ -3133,12 +3359,37 @@
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.taishan.关羽.0",
       "speaker": "关羽",
-      "text": "兄长，七军已经整备妥当。"
+      "text": "兄长，各军已经整备妥当。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.taishan.关羽.1",
       "speaker": "关羽",
-      "text": "进兵泰山！"
+      "text": "只候兄长一声号令。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.huainan.张飞.0",
+      "speaker": "张飞",
+      "text": "纪灵就在南面营寨，俺也去先打头阵！"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.huainan.简雍.0",
+      "speaker": "简雍",
+      "text": "若战局有变，西北鹿砦可作退路；宝物库在西南营地。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.huainan.孙乾.0",
+      "speaker": "孙乾",
+      "text": "袁术军沿河列阵，桥梁是两岸往来的关键。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.huainan.关羽.0",
+      "speaker": "关羽",
+      "text": "兄长，淮南地形已经探明。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.huainan.关羽.1",
+      "speaker": "关羽",
+      "text": "传令各军，准备出战。"
     }
   ]
 }

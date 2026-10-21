@@ -5,7 +5,7 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
 const sourceFiles = [
   'level-01.js','level-02.js','level-03-guangchuan.js','level-03-xindu.js',
   'level-04-julu.js','level-04-qinghe.js','level-05-jieqiao.js','level-06-beihai.js',
-  'level-07-xuzhou.js','level-08-xiaopei.js','level-09-taishan.js','story-data.js'
+  'level-07-xuzhou.js','level-08-xiaopei.js','level-09-taishan.js','level-10-huainan.js','story-data.js'
 ];
 
 function runtime(search = '') {

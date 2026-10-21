@@ -240,6 +240,17 @@ node tools/verify_level06_beihai.mjs
 - 高清 PNG 母版在 `assets-master/level-09-taishan/`，运行 WebP 在 `assets/level-09-taishan/`；战场底图采用整幅无缝绘制，禁止重复裁片或按格描深色边；当前本关运行资源约 1.65 MiB，低于普通关卡 3～6 MiB 预算。
 - 验收命令：`node tools/verify_level09_taishan.mjs`，同时运行 `node tools/verify_early_access_campaign.mjs` 检查从既有路线到泰山的连续衔接。
 
+## 2026-10-20：第十战淮南之战
+
+- 泰山之后正式进入淮南；关卡索引 `12`，配置为 `level-10-huainan.js`，原作审计见 `docs/original-audit/level-10-huainan-audit.md`。
+- 原作 24×24 地形、30 回合、袁术军初始部署与第 6 回合吕布军援兵已复刻。第 6 回合后刘备可以撤至西北鹿砦，撤退时存活部队各得 50 经验；全灭胜利得 400 金。
+- 原事件的据点坐标以行列顺序保存，运行时已换算为西北鹿砦 `(0,2)`、宝物库 `(2,22)` 和接近鹿砦区域 `x=3..9,y=10..13`，避免目标落入河流。
+- 关羽对张辽单挑会使关羽升 1 级、张辽撤退，战斗继续。宝物库取得原作猛火书，对应项目现有“焦热书”。
+- 连续通关使用精简接续剧情，不重复播放泰山战后的陶谦、吕布和诏命段落；从选关进入会先补前情。泰山战后自动档动作已从“待制作”改为可直接进入下一关。
+- 李明仅在泰山已经劝降的连续存档中出阵；独立选关保留完整试玩阵容。其余等级、经验、装备、金钱和道具沿用现有跨关继承。
+- 战场底图、纪灵/乐就/陈纪小人和九名淮南剧情人物头像均保留高清母版与运行 WebP；头像编号来源链记录在 `docs/original-audit/level-10-huainan-portraits/portrait-provenance.json`。
+- 验收入口：`node tools/verify_level10_huainan.mjs`，并继续运行战役、选关均衡、行走图集、音频和发布资源回归。
+
 Cloudflare 的 `wrangler.jsonc` 已声明自动构建命令，执行 `npx wrangler deploy` 会先生成并校验 `dist`，不再依赖控制台填写独立构建步骤。在线部署结果仍需单独确认。
 
 以 [TODO.md](../TODO.md) 为具体待办：仓库/素材清理；每玩家独立进度与云存档；大陆网页托管验证；其他玩家成绩滚动展示；Web/PWA/封装 App 的路线比较。先保证已有内容稳定，不因重构丢剧情、关卡或存档兼容。

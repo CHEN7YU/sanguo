@@ -1,0 +1,105 @@
+{
+  "source": "BAKDATA.R3 character record byte +14 -> FACEDAT.R3 portrait record",
+  "formula": "0x1100 + characterId * 21; face id at record offset +14",
+  "portraits": [
+    {
+      "name": "袁术",
+      "characterId": 11,
+      "faceId": 144,
+      "slug": "yuan-shu",
+      "referenceRgba": "docs/original-audit/level-10-huainan-portraits/yuan-shu-face-144.rgba",
+      "referencePng": "docs/original-audit/level-10-huainan-portraits/yuan-shu-face-144.png",
+      "masterPng": "assets-master/level-10-huainan/portraits/yuan-shu-portrait-master-v1.png",
+      "runtimeWebp": "assets/level-10-huainan/portraits/yuan-shu-remaster-v1.webp",
+      "redrawMethod": "OpenAI built-in ImageGen; original face controls identity, project remaster style controls finish"
+    },
+    {
+      "name": "袁胤",
+      "characterId": 42,
+      "faceId": 145,
+      "slug": "yuan-yin",
+      "referenceRgba": "docs/original-audit/level-10-huainan-portraits/yuan-yin-face-145.rgba",
+      "referencePng": "docs/original-audit/level-10-huainan-portraits/yuan-yin-face-145.png",
+      "masterPng": "assets-master/level-10-huainan/portraits/yuan-yin-portrait-master-v1.png",
+      "runtimeWebp": "assets/level-10-huainan/portraits/yuan-yin-remaster-v1.webp",
+      "redrawMethod": "OpenAI built-in ImageGen; original face controls identity, project remaster style controls finish"
+    },
+    {
+      "name": "纪灵",
+      "characterId": 69,
+      "faceId": 146,
+      "slug": "ji-ling",
+      "referenceRgba": "docs/original-audit/level-10-huainan-portraits/ji-ling-face-146.rgba",
+      "referencePng": "docs/original-audit/level-10-huainan-portraits/ji-ling-face-146.png",
+      "masterPng": "assets-master/level-10-huainan/portraits/ji-ling-portrait-master-v2.png",
+      "runtimeWebp": "assets/level-10-huainan/portraits/ji-ling-remaster-v2.webp",
+      "redrawMethod": "OpenAI built-in ImageGen; original face controls identity, Liu Bei remaster controls portrait scale, and Ji Ling's three-pronged blade plus red-gold armor provide his unique named-general silhouette"
+    },
+    {
+      "name": "乐就",
+      "characterId": 66,
+      "faceId": 165,
+      "slug": "le-jiu",
+      "referenceRgba": "docs/original-audit/level-10-huainan-portraits/le-jiu-face-165.rgba",
+      "referencePng": "docs/original-audit/level-10-huainan-portraits/le-jiu-face-165.png",
+      "masterPng": "assets-master/level-10-huainan/portraits/le-jiu-portrait-master-v1.png",
+      "runtimeWebp": "assets/level-10-huainan/portraits/le-jiu-remaster-v1.webp",
+      "redrawMethod": "OpenAI built-in ImageGen; original face controls identity, project remaster style controls finish"
+    },
+    {
+      "name": "陈纪",
+      "characterId": 71,
+      "faceId": 156,
+      "slug": "chen-ji",
+      "referenceRgba": "docs/original-audit/level-10-huainan-portraits/chen-ji-face-156.rgba",
+      "referencePng": "docs/original-audit/level-10-huainan-portraits/chen-ji-face-156.png",
+      "masterPng": "assets-master/level-10-huainan/portraits/chen-ji-portrait-master-v1.png",
+      "runtimeWebp": "assets/level-10-huainan/portraits/chen-ji-remaster-v1.webp",
+      "redrawMethod": "OpenAI built-in ImageGen; original face controls identity, project remaster style controls finish"
+    },
+    {
+      "name": "曹豹",
+      "characterId": 26,
+      "faceId": 190,
+      "slug": "cao-bao",
+      "referenceRgba": "docs/original-audit/level-10-huainan-portraits/cao-bao-face-190.rgba",
+      "referencePng": "docs/original-audit/level-10-huainan-portraits/cao-bao-face-190.png",
+      "masterPng": "assets-master/level-10-huainan/portraits/cao-bao-portrait-master-v1.png",
+      "runtimeWebp": "assets/level-10-huainan/portraits/cao-bao-remaster-v1.webp",
+      "redrawMethod": "OpenAI built-in ImageGen; original face controls identity, project remaster style controls finish"
+    },
+    {
+      "name": "董昭",
+      "characterId": 70,
+      "faceId": 157,
+      "slug": "dong-zhao",
+      "referenceRgba": "docs/original-audit/level-10-huainan-portraits/dong-zhao-face-157.rgba",
+      "referencePng": "docs/original-audit/level-10-huainan-portraits/dong-zhao-face-157.png",
+      "masterPng": "assets-master/level-10-huainan/portraits/dong-zhao-portrait-master-v1.png",
+      "runtimeWebp": "assets/level-10-huainan/portraits/dong-zhao-remaster-v1.webp",
+      "redrawMethod": "OpenAI built-in ImageGen; original face controls identity, project remaster style controls finish"
+    },
+    {
+      "name": "张绣",
+      "characterId": 101,
+      "faceId": 155,
+      "slug": "zhang-xiu",
+      "referenceRgba": "docs/original-audit/level-10-huainan-portraits/zhang-xiu-face-155.rgba",
+      "referencePng": "docs/original-audit/level-10-huainan-portraits/zhang-xiu-face-155.png",
+      "masterPng": "assets-master/level-10-huainan/portraits/zhang-xiu-portrait-master-v1.png",
+      "runtimeWebp": "assets/level-10-huainan/portraits/zhang-xiu-remaster-v1.webp",
+      "redrawMethod": "OpenAI built-in ImageGen; original face controls identity, project remaster style controls finish"
+    },
+    {
+      "name": "陈宫",
+      "characterId": 75,
+      "faceId": 149,
+      "slug": "chen-gong",
+      "referenceRgba": "docs/original-audit/level-10-huainan-portraits/chen-gong-face-149.rgba",
+      "referencePng": "docs/original-audit/level-10-huainan-portraits/chen-gong-face-149.png",
+      "masterPng": "assets-master/level-10-huainan/portraits/chen-gong-portrait-master-v1.png",
+      "runtimeWebp": "assets/level-10-huainan/portraits/chen-gong-remaster-v1.webp",
+      "redrawMethod": "OpenAI built-in ImageGen; original face controls identity, project remaster style controls finish"
+    }
+  ]
+}

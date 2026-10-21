@@ -59,7 +59,7 @@ for(const name of ['刘备','关羽','张飞','简雍','公孙瓒'])assert.ok(ro
 for(const speaker of ['公孙瓒','刘备','关羽','张飞','颜良','张郃'])assert.ok(story.some(line=>line.speaker===speaker)||speaker==='刘备',`missing Julu story speaker ${speaker}`);
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8'),game=fs.readFileSync(path.join(root,'game.js'),'utf8');
 assert.ok(html.includes('data-select-level="5"'));assert.ok(html.includes('第四战A · 巨鹿路线'));assert.ok(html.includes('第四战B · 清河路线'));assert.ok(html.includes('第五战 · 路线汇合'));
-assert.ok(game.includes("levelIndex==='5' ? window.LEVEL_04_JULU"));assert.ok(game.includes("level.nextLevelId==='julu'?'5'"));assert.ok(game.includes('structuresBakedIntoArt'));
+assert.ok(game.includes("levelIndex==='5' ? window.LEVEL_04_JULU"));assert.ok(game.includes("nextLevelId==='julu'?'5'"));assert.ok(game.includes('structuresBakedIntoArt'));
 assert.ok(game.includes("alternate?(level.alternateVictory?.goldReward??0):(level.events?.battleReward??100)"),'alternate victory must grant original EXP instead of also granting normal gold');
 assert.ok(game.includes('全体存活我军获得经验${alternateExp}'),'alternate victory outcome must describe the original EXP reward');
 assert.ok(game.includes("previewParams.has('areaEventPreview')"),'Julu central pursuit event must have a browser audit route');

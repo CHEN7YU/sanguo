@@ -30,5 +30,5 @@ for(const asset of ['assets/level-03/guangchuan-map-v1.webp','assets/level-03/th
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8'),game=fs.readFileSync(path.join(root,'game.js'),'utf8'),story=fs.readFileSync(path.join(root,'story-data.js'),'utf8');
 assert.ok(html.includes('level-03-guangchuan.js'));assert.ok(html.includes('data-select-level="3"'));assert.ok(game.includes("levelIndex==='3' ? window.LEVEL_03_GUANGCHUAN"));
 assert.ok(story.includes("'guangchuan': window.GUANGCHUAN_PRE_BATTLE_STORY"));assert.ok(story.includes('简雍成为刘备部下'));assert.ok(story.includes('一条经过广川，一条经过信都城'));
-assert.ok(game.includes('function leaveStoryFreeRoam()'));assert.ok(game.includes("level.nextLevelId==='guangchuan'?'3'"));assert.ok(game.includes('level.events?.loot?.[`${u.x},${u.y}`]'));
+assert.ok(game.includes('function leaveStoryFreeRoam()'));assert.ok(game.includes("nextLevelId==='guangchuan'?'3'"));assert.ok(game.includes('level.events?.loot?.[`${u.x},${u.y}`]'));
 console.log('Guangchuan verification passed: original 20x11 terrain, 4 allied and 9 enemy deployment, story, duel, loot, postbattle and compressed assets.');

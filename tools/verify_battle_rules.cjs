@@ -21,7 +21,7 @@ assert.deepEqual(rules.derivedStats({troop:'infantry',level:1,wuli:75,zhili:64,t
 });
 assert.equal(rules.derivedStats({troop:'infantry',level:2,wuli:75,zhili:64,tongyu:91}).maxStrategy,19);
 assert.equal(rules.derivedStats({troop:'cavalry',level:1,wuli:98,zhili:80,tongyu:100,attackBonus:12}).attack,387);
-for(const troop of ['bandit','support','martial']){
+for(const troop of ['bandit','support','martial','heavyCavalry']){
   const stats=rules.derivedStats({troop,level:3,wuli:50,zhili:40,tongyu:40});
   assert.ok(Number.isFinite(stats.attack)&&Number.isFinite(stats.defense)&&Number.isFinite(stats.move),`${troop} must support a complete NPC turn`);
 }
@@ -30,6 +30,8 @@ assert.deepEqual(rules.derivedStats({troop:'infantry',level:1,wuli:75,zhili:64,t
 });
 assert.equal(rules.affinityPercent('cavalry','infantry'),75);
 assert.equal(rules.affinityPercent('infantry','cavalry'),125);
+assert.equal(rules.affinityPercent('heavyCavalry','infantry'),75);
+assert.equal(rules.affinityPercent('infantry','heavyCavalry'),125);
 assert.equal(rules.physicalDamage({attack:387,defense:246,attackerTroop:'cavalry',targetTroop:'infantry',terrainDefense:30,targetHp:500}),206);
 assert.equal(rules.physicalDamage({attack:265,defense:354,attackerTroop:'infantry',targetTroop:'cavalry',terrainDefense:0,targetHp:740}),44);
 assert.equal(rules.physicalDamage({attack:265,defense:354,attackerTroop:'infantry',targetTroop:'cavalry',terrainDefense:0,targetHp:740,counter:true}),22);
@@ -65,6 +67,18 @@ assert.deepEqual(rules.learnedStrategies({troop:'archer',level:6}),['vortex']);
 assert.deepEqual(rules.learnedStrategies({troop:'support',level:1}),[]);
 assert.deepEqual(rules.learnedStrategies({troop:'cavalry',level:1,override:['fire']}),['fire']);
 
+const bandAuraUnits=[
+  {id:'band',troop:'support',side:'ally',hp:500,x:5,y:5},
+  {id:'ally',troop:'infantry',side:'ally',hp:500,x:6,y:6},
+  {id:'guest',troop:'cavalry',side:'guest',hp:500,x:4,y:4},
+  {id:'enemyBand',troop:'support',side:'enemy',hp:500,x:8,y:8}
+];
+assert.equal(rules.militaryBandAttackAura({x:6,y:6,id:'ally',side:'ally',units:bandAuraUnits}),true);
+assert.equal(rules.militaryBandAttackAura({x:4,y:4,id:'guest',side:'guest',units:bandAuraUnits}),true);
+assert.equal(rules.militaryBandAttackAura({x:5,y:5,id:'band',side:'ally',units:bandAuraUnits}),false);
+assert.equal(rules.militaryBandAttackAura({x:7,y:7,id:'ally',side:'ally',units:bandAuraUnits}),false);
+assert.equal(rules.militaryBandAttackAura({x:7,y:7,id:'enemy',side:'enemy',units:bandAuraUnits}),true);
+
 const nearbyForces=[{id:'yuze',hp:500,maxHp:500,x:8,y:16,spawnOrder:2},{id:'liu',hp:650,maxHp:650,x:12,y:12,spawnOrder:0}];
 assert.equal(rules.retaliationTargetId({aiType:0,provokedBy:'yuze',provokedTurn:4,currentTurn:4,actorX:7,actorY:16,candidates:nearbyForces}),'yuze');
 assert.equal(rules.retaliationTargetId({aiType:0,provokedBy:'yuze',provokedTurn:3,currentTurn:4,actorX:7,actorY:16,candidates:nearbyForces}),'yuze');
@@ -73,4 +87,4 @@ assert.equal(rules.retaliationTargetId({aiType:0,actorX:2,actorY:2,detectionRang
 assert.equal(rules.retaliationTargetId({aiType:1,provokedBy:'yuze',provokedTurn:4,currentTurn:4,actorX:7,actorY:16,candidates:nearbyForces}),null);
 assert.equal(rules.retaliationTargetId({aiType:0,provokedBy:'yuze',provokedTurn:4,currentTurn:4,actorX:7,actorY:16,candidates:[{id:'yuze',hp:0,maxHp:500,x:8,y:16}]}),null);
 
-console.log('Battle rules verified: original stats, damage, experience, terrain recovery, fire scroll, morale, rout, confusion, hit-rate bounds and restrained AI tactic priority and stationary-unit retaliation.');
+console.log('Battle rules verified: original stats, damage, experience, terrain recovery, fire scroll, morale, rout, confusion, hit-rate bounds, military-band aura and restrained AI tactic priority and stationary-unit retaliation.');

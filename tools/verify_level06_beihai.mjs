@@ -92,7 +92,7 @@ const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const leaderboard=fs.readFileSync(path.join(root,'leaderboard.js'),'utf8');
 check(game.includes("levelIndex==='8' ? window.LEVEL_06_BEIHAI"),'Level 8 loader is missing');
 check(game.includes("targetId==='beihai'?'8'"),'Beihai save routing is missing');
-check(game.includes("level.nextLevelId==='beihai'?'8'"),'Jieqiao-to-Beihai campaign routing is missing');
+check(game.includes("nextLevelId==='beihai'?'8'"),'Jieqiao-to-Beihai campaign routing is missing');
 check(game.includes("level.alliedAiAvoidsObjective?allEnemies.filter(u=>u.id!==objectiveUnitId):allEnemies"),'Allied AI objective-avoidance support is missing');
 check(game.includes("level.objectiveAiTargetsPlayerOnly&&e.id===objectiveUnitId?allAllies.filter(u=>u.side==='ally'):allAllies"),'Objective commander player-only targeting support is missing');
 check(game.includes("caster.side==='guest'&&level.alliedAiAvoidsObjective&&target.id===objectiveUnitId"),'Allied strategies must also avoid the objective commander');

@@ -19,7 +19,8 @@ const levelFiles = [
   ['8', 'level-06-beihai.js', 'LEVEL_06_BEIHAI'],
   ['9', 'level-07-xuzhou.js', 'LEVEL_07_XUZHOU'],
   ['10', 'level-08-xiaopei.js', 'LEVEL_08_XIAOPEI'],
-  ['11', 'level-09-taishan.js', 'LEVEL_09_TAISHAN']
+  ['11', 'level-09-taishan.js', 'LEVEL_09_TAISHAN'],
+  ['12', 'level-10-huainan.js', 'LEVEL_10_HUAINAN']
 ];
 
 function loadLevel(file, globalName) {
@@ -51,7 +52,8 @@ const expectedGraph = new Map([
   ['beihai', ['xuzhou']],
   ['xuzhou', ['xiaopei']],
   ['xiaopei', ['taishan']],
-  ['taishan', []]
+  ['taishan', ['huainan']],
+  ['huainan', []]
 ]);
 
 const impassable = new Set(['water', 'cliff', 'wall', 'fence', 'void', 'mountain']);
@@ -185,6 +187,7 @@ const levelThumbnails = [
   ['qinghe', 'assets/level-04-qinghe/qinghe-map-remaster-v2.webp'],
   ['xiaopei', 'assets/level-08-xiaopei/xiaopei-map-v2.webp'],
   ['taishan', 'assets/level-09-taishan/taishan-map-v2.webp']
+  ,['huainan', 'assets/level-10-huainan/huainan-map-v1.webp']
 ];
 for (const [className, asset] of levelThumbnails) {
   assert.ok(styles.includes(".level-choice."+className+"{background-image:url('"+asset+"')}"), 'level selector thumbnail mapping is missing for '+className);
@@ -196,6 +199,7 @@ for (const token of [
   "if(alternate&&alternateExp)units.filter(u=>u.side==='ally'&&u.hp>0)",
   "if(level.id==='hulao-pass')params.set('routeChoice','1')",
   "if(['guangchuan','xindu'].includes(level.id))params.set('secondRouteChoice','1')",
+  "targetId==='huainan'?'12'",
   "targetId==='taishan'?'11'",
   "targetId==='xiaopei'?'10'",
   "if(save.phaseType==='postbattle')",
@@ -220,6 +224,6 @@ assert.equal(levels.get('jieqiao').level.events.duel?.endsBattle, false, 'Jieqia
 assert.equal(levels.get('xuzhou').level.events.duel?.endsBattle, false, 'Xuzhou duel must not end the battle');
 assert.equal(levels.get('xiaopei').level.events.duel?.endsBattle, false, 'Xiaopei duel must not end the battle');
 
-console.log(`Campaign audit passed: ${levels.size} battles through Taishan, both route forks, all deployments/objectives/reward tiles, story entry points, save routing and non-ending duels.`);
+console.log(`Campaign audit passed: ${levels.size} battles through Huainan, both route forks, all deployments/objectives/reward tiles, story entry points, save routing and non-ending duels.`);
 
 assert.ok(game.includes("previewParams.has('loadSlot')&&previewParams.has('victoryPreview')"), 'loaded victory browser regression path missing');

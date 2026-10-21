@@ -4,6 +4,10 @@ const BattleRules=(()=>{
     infantry:{attack:40,defense:40,hp:500,hpGrowth:50,move:4},
     archer:{attack:30,defense:40,hp:500,hpGrowth:40,move:4},
     cavalry:{attack:60,defense:30,hp:500,hpGrowth:60,move:6},
+    // 淮南纪灵使用独立的重骑兵兵种。它仍属于骑兵相克体系，但
+    // 基础兵力与攻防高于轻骑兵，必须进入统一属性表，避免 AI
+    // 计算移动范围时因未知兵种抛错并锁死整个敌军阶段。
+    heavyCavalry:{attack:70,defense:40,hp:600,hpGrowth:70,move:6},
     // Other base classes already present in chapter-one deployments. Keeping
     // them in the same authoritative table prevents an NPC turn from aborting
     // when a bandit/support/martial unit reaches the stat calculator.
@@ -18,8 +22,13 @@ const BattleRules=(()=>{
     // when the corresponding promotion system is implemented.
     infantry:[{id:'fire',level:6},{id:'falseReport',level:10},{id:'encourage',level:15}],
     cavalry:[{id:'whirlwind',level:10},{id:'falseReport',level:20}],
+    heavyCavalry:[{id:'whirlwind',level:10},{id:'falseReport',level:20}],
     archer:[{id:'vortex',level:6},{id:'fortify',level:10},{id:'recover',level:15}],
-    bandit:[],support:[],transport:[],martial:[],beast:[]
+    bandit:[],support:[],transport:[],
+    // 武术家在原作中并非无策略兵种：6级习得焦热，10级习得援助。
+    // 藩宫在泰山登场时已经达到10级，因此两项都应出现在指令菜单中。
+    martial:[{id:'fire',level:6},{id:'recover',level:10}],
+    beast:[]
   };
 
   function troopBase(troop){const base=TROOP_BASE[troop];if(!base)throw new Error(`Unsupported original troop type: ${troop}`);return base}
@@ -40,6 +49,8 @@ const BattleRules=(()=>{
   }
 
   function affinityPercent(attackerTroop,targetTroop){
+    if(attackerTroop==='heavyCavalry')attackerTroop='cavalry';
+    if(targetTroop==='heavyCavalry')targetTroop='cavalry';
     if((attackerTroop==='infantry'&&targetTroop==='archer')||(attackerTroop==='archer'&&targetTroop==='cavalry')||(attackerTroop==='cavalry'&&targetTroop==='infantry'))return 75;
     if((targetTroop==='infantry'&&attackerTroop==='archer')||(targetTroop==='archer'&&attackerTroop==='cavalry')||(targetTroop==='cavalry'&&attackerTroop==='infantry'))return 125;
     return 100
@@ -109,6 +120,12 @@ const BattleRules=(()=>{
       .reduce((sum,band)=>sum+militaryBandStrategyRecovery(band.level),0)
   }
 
+  // Military bands inspire every friendly unit in the surrounding eight
+  // squares. Multiple bands deliberately do not stack this attack aura.
+  function militaryBandAttackAura({x,y,id,side,units=[]}){
+    return units.some(band=>band&&band.id!==id&&band.hp>0&&band.side!=='reserve'&&band.troop==='support'&&(band.side==='enemy')===(side==='enemy')&&Math.max(Math.abs(band.x-x),Math.abs(band.y-y))===1)
+  }
+
   function fireScrollDamage({targetZhili,targetLevel,targetTroop,targetInForest=false,randomRoll=0,targetHp=Infinity}){
     let base=Math.max(1,200-strategyAbility(targetZhili,targetLevel));
     if(['support','transport','sorcerer'].includes(targetTroop))base=Math.floor(base/2);
@@ -139,7 +156,7 @@ const BattleRules=(()=>{
     return local[0]?.unit.id||null
   }
 
-  return{TROOP_BASE,ORIGINAL_STRATEGY_LEARNING,derivedStats,affinityPercent,physicalDamage,physicalMoraleDamage,applyMoraleLoss,confusionRecoveryChance,hitRate,experienceGain,transportHealingExperience,terrainRecovery,strategyAbility,militaryBandStrategyRecovery,adjacentMilitaryBandRecovery,fireScrollDamage,aiStrategyDecision,learnedStrategies,retaliationTargetId}
+  return{TROOP_BASE,ORIGINAL_STRATEGY_LEARNING,derivedStats,affinityPercent,physicalDamage,physicalMoraleDamage,applyMoraleLoss,confusionRecoveryChance,hitRate,experienceGain,transportHealingExperience,terrainRecovery,strategyAbility,militaryBandStrategyRecovery,adjacentMilitaryBandRecovery,militaryBandAttackAura,fireScrollDamage,aiStrategyDecision,learnedStrategies,retaliationTargetId}
 })();
 
 if(typeof module!=='undefined'&&module.exports)module.exports=BattleRules;

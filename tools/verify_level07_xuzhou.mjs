@@ -79,7 +79,7 @@ const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const leaderboard=fs.readFileSync(path.join(root,'leaderboard.js'),'utf8');
 check(game.includes("levelIndex==='9' ? window.LEVEL_07_XUZHOU"),'Level 9 loader is missing');
 check(game.includes("targetId==='xuzhou'?'9'"),'Xuzhou save routing is missing');
-check(game.includes("level.nextLevelId==='xuzhou'?'9'"),'Beihai-to-Xuzhou campaign routing is missing');
+check(game.includes("nextLevelId==='xuzhou'?'9'"),'Beihai-to-Xuzhou campaign routing is missing');
 check(game.includes('alternateVictoryContains'),'Rectangular city victory runtime is missing');
 check(game.includes("15:window.GAME_AUDIO_CONFIG?.events?.['xuzhou-taishici-turn5']||'assets/audio/langrisser-ii-ones-side.opus'"),'Taishi Ci reinforcement music runtime mapping is missing');
 check(game.includes("level.victoryCondition==='eliminateAllEnemies'"),'Elimination victory runtime is missing');

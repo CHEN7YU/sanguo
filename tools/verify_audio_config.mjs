@@ -40,6 +40,10 @@ if(battles?.taishan!==onesSide.asset)fail('泰山之战 battle music is not mapp
 if(events?.['xuzhou-taishici-turn5']!==onesSide.asset)fail('徐州第5回合太史慈援军 music is not mapped to One\'s Side');
 const onesSidePath=path.join(root,onesSide.asset);
 if(!fs.existsSync(onesSidePath)||fs.statSync(onesSidePath).size<1000000)fail("One's Side compressed audio is missing or invalid");
+const huainanTheme=library?.['dynasty-warriors-7-thousand-suns-dw7th-mix'];
+if(huainanTheme?.title!=='Thousand Suns -DW 7TH MIX-'||huainanTheme?.usage!=='guangchuan,xindu,jieqiao,huainan'||battles?.huainan!==huainanTheme.asset)fail('淮南之战 music mapping is wrong');
+const huainanThemeFile=fs.readFileSync(path.join(root,...huainanTheme.asset.split('/')));
+if(huainanThemeFile.length<100000||huainanThemeFile.subarray(0,4).toString()!=='OggS')fail('淮南之战 compressed Opus asset is missing or invalid');
 const shopTheme=library?.['langrisser-ii-theme'];
 if(shopTheme?.title!=='Theme of Langrisser'||shopTheme?.source!=='Langrisser II'||shopTheme?.usage!=='shop')fail('Theme of Langrisser library metadata is missing');
 if(shopTheme?.asset!=='assets/audio/langrisser-ii-theme-of-langrisser.opus')fail('Theme of Langrisser library asset is wrong');
@@ -81,7 +85,7 @@ const arenaMaster=path.join(root,'assets-master','audio','dynasty-warriors-2-are
 if(!fs.existsSync(arenaMaster)||fs.statSync(arenaMaster).size<2000000)fail('ARENA master MP3 is missing');
 const game=fs.readFileSync(path.join(root,'game.js'),'utf8');
 if(!game.includes("16:window.GAME_AUDIO_CONFIG?.victory||'assets/audio/romance-of-the-three-kingdoms-13-emperors-theme-taoyuan-oath.opus'")||!game.includes('Number(levelIndex)>=9?DEFAULT_CAMPAIGN_VICTORY_MUSIC_ID:null'))fail('统一胜利曲 runtime fallback is missing');
-for(const file of ['level-07-xuzhou.js','level-08-xiaopei.js','level-09-taishan.js'])if(!fs.readFileSync(path.join(root,file),'utf8').includes('victoryMusicId:16'))fail(file+' is not assigned to the unified victory theme');
+for(const file of ['level-07-xuzhou.js','level-08-xiaopei.js','level-09-taishan.js','level-10-huainan.js'])if(!fs.readFileSync(path.join(root,file),'utf8').includes('victoryMusicId:16'))fail(file+' is not assigned to the unified victory theme');
 const sfxSandbox={window:{}};
 vm.runInNewContext(fs.readFileSync(path.join(root,'battle-sfx.js'),'utf8'),sfxSandbox);
 if(typeof sfxSandbox.window.BattleSfx?.duelClash!=='function')fail('Duel weapon-clash sound is missing');
@@ -110,7 +114,7 @@ const jieqiaoTrack='assets/level-03/thousand-suns-dw7th-mix.opus';
 if(battles?.jieqiao!==jieqiaoTrack)fail('wrong battle music for jieqiao');
 const jieqiaoFile=fs.readFileSync(path.join(root,...jieqiaoTrack.split('/')));
 if(jieqiaoFile.length<100000||jieqiaoFile.subarray(0,4).toString()!=='OggS')fail('invalid Opus asset for jieqiao');
-console.log("Audio config verified: 清河与小沛使用 ARENA；汜水关与徐州使用 WELCOME TO CHINA；其余已开放关卡曲目均已正确映射。");
+console.log("Audio config verified: 淮南使用 Thousand Suns -DW 7TH MIX-；清河与小沛使用 ARENA；汜水关与徐州使用 WELCOME TO CHINA；其余已开放关卡曲目均已正确映射。");
 
 for(const levelFile of ['level-03-guangchuan.js','level-03-xindu.js']){
   const levelSandbox={window:{}};

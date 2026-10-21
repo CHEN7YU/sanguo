@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const sourceFiles=['level-01.js','level-02.js','level-03-guangchuan.js','level-03-xindu.js','level-04-julu.js','level-04-qinghe.js','level-05-jieqiao.js','level-06-beihai.js','level-07-xuzhou.js','level-08-xiaopei.js','level-09-taishan.js','story-data.js'];
+const sourceFiles=['level-01.js','level-02.js','level-03-guangchuan.js','level-03-xindu.js','level-04-julu.js','level-04-qinghe.js','level-05-jieqiao.js','level-06-beihai.js','level-07-xuzhou.js','level-08-xiaopei.js','level-09-taishan.js','level-10-huainan.js','story-data.js'];
 const context={window:{},URLSearchParams,location:{search:'?dialogue=original'},localStorage:{getItem(){return null}}};
 vm.createContext(context);
 for(const file of sourceFiles)vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context,{filename:file});
@@ -25,7 +25,7 @@ function walk(value,trail,speaker=''){
   }
 }
 for(const[name,value]of Object.entries(context.window))walk(value,[name]);
-const out={schema:1,capturedAt:'2026-10-15',sourceBuild:'20261015-taishan-v176',description:'Original authored story and battle dialogue before the Romance vernacular rewrite. Runtime source files remain unchanged; use ?dialogue=original to preview this version.',sourceFiles:[...sourceFiles,'game.js'],count:rows.length,rows};
+const out={schema:1,capturedAt:'2026-10-20',sourceBuild:'20261020-huainan-v231',description:'Original authored story and battle dialogue before the Romance vernacular rewrite. Runtime source files remain unchanged; use ?dialogue=original to preview this version.',sourceFiles:[...sourceFiles,'game.js'],count:rows.length,rows};
 const target=path.join(root,'docs','dialogue','original-dialogue-snapshot-20261013.json');
 fs.writeFileSync(target,`${JSON.stringify(out,null,2)}\n`,'utf8');
 console.log(`Dialogue snapshot updated: ${rows.length} original lines.`);

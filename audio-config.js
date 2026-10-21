@@ -31,6 +31,13 @@ window.GAME_AUDIO_CONFIG = Object.freeze({
       asset: 'assets/audio/original-music-10.opus',
       usage: 'unassigned'
     }),
+    'dynasty-warriors-7-thousand-suns-dw7th-mix': Object.freeze({
+      title: 'Thousand Suns -DW 7TH MIX-',
+      source: 'Dynasty Warriors 7',
+      version: 'DW 7TH MIX',
+      asset: 'assets/level-03/thousand-suns-dw7th-mix.opus',
+      usage: 'guangchuan,xindu,jieqiao,huainan'
+    }),
     'dynasty-warriors-2-arena': Object.freeze({
       title: 'ARENA〈行军〉',
       source: 'Dynasty Warriors 2',
@@ -99,6 +106,7 @@ window.GAME_AUDIO_CONFIG = Object.freeze({
     'beihai': 'assets/audio/hulao-lubu-theme.mp3',
     'xuzhou': 'assets/audio/dynasty-warriors-6-welcome-to-china.opus',
     'xiaopei': 'assets/audio/dynasty-warriors-2-arena.opus',
-    'taishan': 'assets/audio/langrisser-ii-ones-side.opus'
+    'taishan': 'assets/audio/langrisser-ii-ones-side.opus',
+    'huainan': 'assets/level-03/thousand-suns-dw7th-mix.opus'
   })
 });

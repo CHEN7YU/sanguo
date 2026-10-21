@@ -102,7 +102,7 @@ assert.ok(!sandbox.window.STORY_BY_LEVEL.taishan.some(line=>line.speaker==='关�
 assert.ok(sandbox.window.STORY_BY_LEVEL.taishan.some(line=>line.speaker==='史官'&&line.text==='诸将依令归队，厅外号角齐鸣。'),'Taishan departure transition is missing');
 assert.ok(!JSON.stringify(sandbox.window.STORY_BY_LEVEL.taishan).includes('七军')&&!JSON.stringify(sandbox.window.NPC_DIALOGUE_BY_LEVEL.taishan).includes('七军'),'Taishan dialogue must say 各军, not 七军');
 const game=read('game.js'),html=read('index.html'),audio=read('audio-config.js'),board=read('leaderboard.js'),xiaopei=read('level-08-xiaopei.js');
-for(const token of ["level.id==='taishan'","saveTaishanPostBattle()","xiaqiuSkipped:true","pengchengSkipped:true","targetId==='taishan'?'11'","level.nextLevelId==='taishan'?'11'"])assert.ok(game.includes(token),`game runtime missing ${token}`);
+for(const token of ["level.id==='taishan'","saveTaishanPostBattle()","xiaqiuSkipped:true","pengchengSkipped:true","targetId==='taishan'?'11'","nextLevelId==='taishan'?'11'"])assert.ok(game.includes(token),`game runtime missing ${token}`);
 assert.ok(xiaopei.includes("nextLevelId:'taishan'"));
 for(const token of ['level-09-taishan.js','level-09-taishan-animation-bounds.js','data-select-level="11"','data-leaderboard-level="taishan"'])assert.ok(html.includes(token),`index missing ${token}`);
 assert.ok(audio.includes("'taishan': 'assets/audio/langrisser-ii-ones-side.opus'"));

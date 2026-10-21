@@ -10,6 +10,9 @@ check(game.includes("if(dialogue||phase==='animating'){if(fromQueue)retryQueuedE
 check(game.includes('function recoverStalledBattleFlow()'),'Stalled animation recovery watchdog is missing');
 check(game.includes("!document.getElementById('duelOverlay').classList.contains('hidden')"),'Active duel cinematics must suppress the stalled-animation watchdog');
 check(game.includes('setInterval(recoverStalledBattleFlow,400)'),'Stalled animation recovery watchdog is not armed');
+check(game.includes('function recoverAiUnitAction(unit,error)'),'Per-unit AI error recovery is missing');
+check(game.includes('try{await runEnemyUnitTurn(e)}catch(error){recoverAiUnitAction(e,error)}'),'One broken enemy unit can still abort the whole enemy phase');
+check(game.includes("console.error('AI phase recovered after an unexpected error',error)"),'Whole-phase recovery is missing from end-turn processing');
 check(game.includes("phase=resumeQueuedTurn?'turnEnding':'select'"),'Recovery does not restore a legal phase');
 check(game.includes("setTimeout(()=>endPlayerTurn(true),0)"),'Recovered queued turn does not resume its transition');
 check(game.includes("previewParams.has('turnRecoveryPreview')"),'Turn-lock browser regression preview is missing');

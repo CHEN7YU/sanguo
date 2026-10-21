@@ -86,7 +86,7 @@ check(game.includes("levelIndex==='2' ? window.LEVEL_02"), 'level 02 query selec
 check(game.includes("const squareBattlefield=level.squareGrid===true||level.id==='hulao-pass'"), 'Tiger Gate needs a cache-safe square-grid fallback');
 check(game.includes("level.battlefieldArt||'assets/sishui-remaster-v3.webp'"), 'level-specific battlefield art is not wired');
 check(game.includes('function buildRuntimeMap()'), 'painted collision grid is not applied at runtime');
-check(game.includes("function isMountedUnit(u){return u.troop==='cavalry'||u.mountedVisual===true}"), 'mounted visual override is not wired');
+check(game.includes("function isMountedUnit(u){return u.troop==='cavalry'||u.troop==='heavyCavalry'||u.mountedVisual===true}"), 'mounted visual override and heavy cavalry support are not wired');
 check(game.includes('if(environmentFx.waterBands?.length)'), 'level-specific river animation paths are not wired');
 check(game.includes('function updateTerrainInfo(q)'), 'unit-specific terrain information is not wired');
 check(game.includes("movementCostLabel(tileCost(actor,q.x,q.y))"), 'terrain information must use the selected unit movement class');
@@ -150,7 +150,7 @@ check(game.includes("passiveName.textContent='事件 · 三英战吕布'"), 'Thr
 check(game.includes('function playThreeHeroesDuel(zhang,lvbu)'), 'Three Heroes duel cinematic is missing');
 check(game.includes("if(level.id==='hulao-pass')return playThreeHeroesDuel(g,h)"), 'Hulao duel does not use the Three Heroes cinematic');
 check(game.includes("duelFacingScale(lvbu,ms>=8400?'right':'left')"), 'Lu Bu facing and retreat direction are not explicit');
-check(game.includes("level.nextLevelId?'next':level.nextBattle?'pending':'replay'"), 'second-battle victory outcome routing is not explicit');
+check(game.includes("resolvedNextLevelId()?'next':level.nextBattle?'pending':'replay'"), 'second-battle victory outcome routing is not explicit');
 check(game.includes("button.textContent='返回开始画面'"), 'unfinished next chapter must return to title instead of replaying silently');
 check(html.includes('id="titleLevelSelectBtn">选择关卡</button>'), 'main menu level-select option is missing');
 check(!html.includes('id="titleHelpBtn"'), 'obsolete main-menu help option still exists');

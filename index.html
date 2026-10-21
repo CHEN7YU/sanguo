@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
-  <link rel="stylesheet" href="style.css?build=20261019-level-thumbnails-v230" />
+  <link rel="stylesheet" href="style.css?build=20261021-ai-phase-recovery-v245" />
   <link rel="modulepreload" href="save-format.mjs?build=20261018-cloud-saves-v2" />
   <link rel="stylesheet" href="auth.css?build=20261018-cloud-ui-v3" />
 </head>
@@ -115,7 +115,7 @@
     <div id="titleNotice" class="title-notice" aria-live="polite"></div>
   </section>
   <section id="openingOverlay" class="opening-overlay hidden" aria-label="开篇动画">
-    <video id="openingVideo" src="assets/video/opening.mp4?build=20261019-level-thumbnails-v230" poster="assets/title-cover.webp" preload="metadata" playsinline></video>
+    <video id="openingVideo" src="assets/video/opening.mp4?build=20261021-ai-phase-recovery-v245" poster="assets/title-cover.webp" preload="metadata" playsinline></video>
     <button id="openingSkipBtn" type="button">点击或按任意键跳过</button>
   </section>
   <section id="storyOverlay" class="story-overlay hidden" aria-label="序章剧情">
@@ -196,13 +196,9 @@
         </div>
         <div id="shopOverlay" class="shop-overlay">
           <div class="shop-card">
-            <header><div><small>陈留幕舍 · 战前军需</small><h2>道具屋</h2></div><div class="shop-gold">军资金 <b id="shopGold">500</b></div></header>
+            <header><div><small id="shopLocation">陈留幕舍 · 战前军需</small><h2 id="shopTitle">道具屋</h2></div><div class="shop-gold">军资金 <b id="shopGold">500</b></div></header>
             <p id="shopFundingHint">本关可用军资金500。宝物和消耗品均占携带栏，可在我军间转交，每人最多8件。</p>
-            <section class="shop-list">
-              <article data-shop-item="bean"><b>豆</b><span>恢复单体200兵力</span><em>金100</em><select aria-label="豆携带者"></select><button>购买</button></article>
-              <article data-shop-item="wine"><b>酒</b><span>恢复单体50士气</span><em>金50</em><select aria-label="酒携带者"></select><button>购买</button></article>
-              <article data-shop-item="fireScroll"><b>焦热书</b><span>必中单体火攻，树林伤害增加25%</span><em>金50</em><select aria-label="焦热书携带者"></select><button>购买</button></article>
-            </section>
+            <section id="shopList" class="shop-list"></section>
             <div id="shopInventory" class="shop-inventory"></div>
             <section class="transfer-row"><b>物品转交</b><select id="transferFrom" aria-label="转交人"></select><select id="transferItem" aria-label="转交物品"></select><span>→</span><select id="transferTo" aria-label="接收人"></select><button id="transferBtn">转交</button></section>
             <footer><button id="shopResetBtn">恢复初始整备</button><button id="shopStartBtn" class="primary">整备完毕 · 出征</button></footer>
@@ -281,8 +277,12 @@
             <button data-item="wine"><b>酒</b><span>恢复50士气</span><em id="wineCount">×0</em></button>
             <button data-item="premiumWine"><b>醇</b><span>特级酒 · 恢复100士气</span><em id="premiumWineCount">×0</em></button>
             <button data-item="moraleScroll"><b>气</b><span>平气书 · 恢复25士气</span><em id="moraleScrollCount">×0</em></button>
+            <button data-item="injuryMedicine"><b>伤</b><span>伤药 · 恢复30策略</span><em id="injuryMedicineCount">×0</em></button>
+            <button data-item="supportScroll"><b>援</b><span>援队书 · 恢复300兵力</span><em id="supportScrollCount">×0</em></button>
             <button data-item="fireScroll"><b>火</b><span>焦热书 · 必中单体火攻</span><em id="fireScrollCount">×0</em></button>
+            <button data-item="vortexScroll"><b>涡</b><span>漩涡书 · 必中单体水攻</span><em id="vortexScrollCount">×0</em></button>
             <button data-item="rockScroll"><b>石</b><span>落石书 · 必中单体落石</span><em id="rockScrollCount">×0</em></button>
+            <button data-item="fogScroll"><b>雾</b><span>浓雾书 · 降低30士气</span><em id="fogScrollCount">×0</em></button>
             <button data-item="bomb"><b>爆</b><span>炸弹 · 削减目标25%最大兵力</span><em id="bombCount">×0</em></button>
           </div>
           <div id="strategyMenu" class="item-menu strategy-menu hidden">
@@ -341,6 +341,7 @@
         <button class="level-choice xuzhou" data-select-level="9" type="button"><span>第七战</span><strong>徐州之战</strong><em>驰援徐州 · 关羽阵前单挑于禁</em><small>选关均衡：前排 Lv.11</small></button>
         <button class="level-choice xiaopei" data-select-level="10" type="button"><span>第八战 · 可跳过分支</span><strong>小沛之战</strong><em>迎战曹操 · 张飞阵前单挑夏侯渊</em><small>选关均衡：前排 Lv.17</small></button>
         <button class="level-choice taishan" data-select-level="11" type="button"><span>第九战</span><strong>泰山之战</strong><em>平定泰山 · 刘备可劝降李明</em><small>选关均衡：前排 Lv.10</small></button>
+        <button class="level-choice huainan" data-select-level="12" type="button"><span>第十战</span><strong>淮南之战</strong><em>讨伐袁术 · 第6回合吕布军来袭</em><small>选关均衡：前排 Lv.15</small></button>
       </div>
       <p>选择后从该关剧情起点开始，并使用适合该关、能够取胜但不会碾压的均衡等级；远程与辅助通常比前排低1级。连续通关和读档仍继承实际等级，不套用选关等级。第三战与第四战分别为A/B平行路线，第五战在界桥汇合。</p>
     </section>
@@ -360,6 +361,7 @@
         <button type="button" data-leaderboard-level="xuzhou">徐州</button>
         <button type="button" data-leaderboard-level="xiaopei">小沛</button>
         <button type="button" data-leaderboard-level="taishan">泰山</button>
+        <button type="button" data-leaderboard-level="huainan">淮南</button>
       </nav>
       <div class="leaderboard-head"><span>名次</span><span>玩家</span><span>评分</span><span>评级</span><span>时间</span><span>回合</span><span>损失</span></div>
       <div id="leaderboardRows" class="leaderboard-rows"></div>
@@ -379,35 +381,38 @@
   <audio id="battleMusic" src="assets/audio/knights-errant.mp3" preload="auto" loop hidden></audio>
   <script src="cloud-saves.js?build=20261018-cloud-ui-v3"></script>
   <script src="analytics.js?build=20261018-analytics-v2"></script>
-  <script src="audio-config.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="battle-sfx.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="battle-rules.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-01.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-02.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-02-animation-bounds.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="zhao-yun-animation-bounds.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="wen-chou-animation-bounds.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="jieqiao-core-animation-bounds.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-03-guangchuan.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-03-xindu.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-04-julu.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-04-qinghe.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-05-jieqiao.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-06-beihai.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-07-xuzhou.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-08-xiaopei.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-08-xiaopei-animation-bounds.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-09-taishan.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-09-taishan-animation-bounds.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="beihai-animation-bounds.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="level-07-xuzhou-animation-bounds.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="story-data.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="dialogue-style.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="battle-view.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="leaderboard.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="mounted-combat-bounds-v1.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="bandit-combat-bounds-v3.js?build=20261019-level-thumbnails-v230"></script>
-  <script src="game.js?build=20261019-level-thumbnails-v230"></script>
+  <script src="audio-config.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="battle-sfx.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="battle-rules.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-01.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-02.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-02-animation-bounds.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="zhao-yun-animation-bounds.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="wen-chou-animation-bounds.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="jieqiao-core-animation-bounds.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-03-guangchuan.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-03-xindu.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-04-julu.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-04-qinghe.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-05-jieqiao.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-06-beihai.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-07-xuzhou.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-08-xiaopei.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-08-xiaopei-animation-bounds.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-09-taishan.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-09-taishan-animation-bounds.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-10-huainan.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="beihai-animation-bounds.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="level-07-xuzhou-animation-bounds.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="story-data.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="dialogue-style.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="battle-view.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="leaderboard.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="mounted-combat-bounds-v1.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="bandit-combat-bounds-v3.js?build=20261021-ai-phase-recovery-v245"></script>
+  <script src="game.js?build=20261021-ai-phase-recovery-v245"></script>
   <script src="auth.js?build=20261011-password-login-v2"></script>
 </body>
 </html>
+
+
