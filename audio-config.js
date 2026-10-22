@@ -71,7 +71,7 @@ window.GAME_AUDIO_CONFIG = Object.freeze({
       source: 'Langrisser II',
       version: 'Original Soundtrack',
       asset: 'assets/audio/langrisser-ii-leon.opus',
-      usage: 'unassigned'
+      usage: 'huainan-lvbu-reinforcement'
     }),
     'langrisser-ii-no-surrender': Object.freeze({
       title: 'No Surrender',
@@ -96,7 +96,8 @@ window.GAME_AUDIO_CONFIG = Object.freeze({
     'world': 'assets/audio/romance-of-the-three-kingdoms-11-prologue.opus'
   }),
   events: Object.freeze({
-    'xuzhou-taishici-turn5': 'assets/audio/langrisser-ii-ones-side.opus'
+    'xuzhou-taishici-turn5': 'assets/audio/langrisser-ii-ones-side.opus',
+    'huainan-lvbu-turn6': 'assets/audio/langrisser-ii-leon.opus'
   }),
   battles: Object.freeze({
     'sishui-pass': 'assets/audio/dynasty-warriors-6-welcome-to-china.opus',

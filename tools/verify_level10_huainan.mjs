@@ -53,6 +53,7 @@ const turn6=level.timedEvents.find(event=>event.turn===6);
 assert.ok(turn6);assert.equal(turn6.spawns.length,10);assert.equal(turn6.activateUnitIds.length,12);
 assert.equal(turn6.activateLog,'第6回合：袁术军与吕布军开始全面追击');
 assert.ok(turn6.dialogue.some(line=>line.text.includes('徐州')));
+assert.equal(turn6.battleMusicAfter,'assets/audio/langrisser-ii-leon.opus','Lu Bu reinforcement must permanently switch Huainan battle music to Leon');
 
 assert.deepEqual(JSON.parse(JSON.stringify(level.alternateVictory)),{unitId:'liu',x:0,y:2,minTurn:6,exp:50,goldReward:0,label:'刘备撤至西北鹿砦',log:'刘备撤至西北鹿砦，全体存活部队获得经验50'});
 const approach=level.areaEvents.find(event=>event.id==='huainan-retreat-warning');
@@ -86,6 +87,10 @@ assert.ok(taishan.includes("nextLevelId:'huainan'"));
 for(const token of ['level-10-huainan.js','data-select-level="12"','data-leaderboard-level="huainan"'])assert.ok(html.includes(token),`index missing ${token}`);
 assert.ok(styles.includes(".level-choice.huainan{background-image:url('assets/level-10-huainan/huainan-map-v1.webp')}"));
 assert.ok(audio.includes("'huainan': 'assets/level-03/thousand-suns-dw7th-mix.opus'"));
+assert.ok(audio.includes("'huainan-lvbu-turn6': 'assets/audio/langrisser-ii-leon.opus'"));
+assert.ok(game.includes('if(event.battleMusicAfter)setBattleMusicTrack(event.battleMusicAfter)'));
+assert.ok(game.includes('battleMusicTrack:activeBattleTrack'),'persistent battle music must be saved');
+assert.ok(game.includes('const restoredBattleTrack=save.battleMusicTrack'),'persistent battle music must be restored on load');
 assert.ok(board.includes("huainan: { name: '淮南之战'"));
 assert.ok(game.includes("turn<(rule.minTurn||1)"),'withdrawal must stay locked until turn 6');
 assert.ok(game.includes("turn=Math.max(turn,Number(rule.minTurn)||1)"),'alternate victory preview must honor its unlock turn');

@@ -115,7 +115,7 @@
     alternateVictory:{unitId:'liu',x:0,y:2,minTurn:6,exp:50,goldReward:0,label:'刘备撤至西北鹿砦',log:'刘备撤至西北鹿砦，全体存活部队获得经验50'},
     intro:[{speaker:'纪灵',text:'我家主公岂能被刘备轻视！让他看看袁术军的厉害。'},{speaker:'刘备',text:'奉诏讨伐袁术，各军谨慎推进，不可扰害沿途百姓。'}],
     timedEvents:[{
-      turn:6,once:'huainan-lvbu-reinforcement',musicId:10,activateLog:'第6回合：袁术军与吕布军开始全面追击',
+      turn:6,once:'huainan-lvbu-reinforcement',musicId:10,battleMusicAfter:window.GAME_AUDIO_CONFIG?.events?.['huainan-lvbu-turn6']||'assets/audio/langrisser-ii-leon.opus',activateLog:'第6回合：袁术军与吕布军开始全面追击',
       spawns:reserves.map(unit=>({unitId:unit.id,side:'enemy',x:unit.x,y:unit.y,aiType:1})),
       activateUnitIds:initialEnemies.map(unit=>unit.id),
       dialogue:[{speaker:'糜竺',text:'主公，徐州急报！吕布趁我军出征，已经夺取徐州。'},{speaker:'陈宫',text:'此战关系主公一生。众将听令，向刘备军发动总攻！'},{speaker:'军报',text:'吕布军自北面出现。战斗目标增加：刘备可撤往西北鹿砦。'}]

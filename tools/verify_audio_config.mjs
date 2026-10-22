@@ -56,10 +56,11 @@ if(enemyReinforcements?.asset!=='assets/audio/langrisser-ii-enemy-reinforcements
 const enemyReinforcementsPath=path.join(root,enemyReinforcements.asset);
 if(!fs.existsSync(enemyReinforcementsPath)||fs.statSync(enemyReinforcementsPath).size<1000000)fail('Enemy Reinforcements compressed audio is missing or invalid');
 const leon=library?.['langrisser-ii-leon'];
-if(leon?.title!=='Leon'||leon?.source!=='Langrisser II'||leon?.usage!=='unassigned')fail('Leon library metadata is missing');
+if(leon?.title!=='Leon'||leon?.source!=='Langrisser II'||leon?.usage!=='huainan-lvbu-reinforcement')fail('Leon library metadata is missing');
 if(leon?.asset!=='assets/audio/langrisser-ii-leon.opus')fail('Leon library asset is wrong');
 const leonPath=path.join(root,leon.asset);
 if(!fs.existsSync(leonPath)||fs.statSync(leonPath).size<1000000)fail('Leon compressed audio is missing or invalid');
+if(sandbox.window.GAME_AUDIO_CONFIG?.events?.['huainan-lvbu-turn6']!==leon.asset)fail('Huainan Lu Bu reinforcement is not mapped to Leon');
 const noSurrender=library?.['langrisser-ii-no-surrender'];
 if(noSurrender?.title!=='No Surrender'||noSurrender?.source!=='Langrisser II'||noSurrender?.usage!=='unassigned')fail('No Surrender library metadata is missing');
 if(noSurrender?.asset!=='assets/audio/langrisser-ii-no-surrender.opus')fail('No Surrender library asset is wrong');
