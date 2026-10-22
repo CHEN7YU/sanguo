@@ -66,6 +66,12 @@ check(game.includes('const GLOBAL_MOVEMENT_SPEED=1.5'),'global battlefield movem
 check(game.includes('/(animationSpeed*GLOBAL_MOVEMENT_SPEED)'),'all battlefield movement must apply the global speed multiplier');
 check(!game.includes('walkPhase:segment+p*1.5'),'walk phase still jumps backwards at tile boundaries');
 
+const huainan=levels.find(([,level])=>level.id==='huainan')?.[1];
+check(huainan,'Huainan level is missing from the walk audit');
+const miZhu=huainan.units.find(unit=>unit.id==='mizhu');
+check(miZhu?.troop==='support','Huainan Mi Zhu must remain a military-band unit');
+check(walkPaths.mizhu==='assets/level-10-huainan/units/mi-zhu-military-band-walk-v1.webp','Mi Zhu must use his dedicated four-direction military-band atlas');
+check(fs.existsSync(path.join(root,walkPaths.mizhu)),'Mi Zhu dedicated walk atlas is missing');
 const xuzhou=levels.find(([,level])=>level.id==='xuzhou')?.[1];
 check(xuzhou,'Xuzhou level is missing from the walk audit');
 const xuzhouSummary=xuzhou.units.map(unit=>`${unit.id}->${walkPaths[unit.id]?unit.id:genericKey(unit)}`);
