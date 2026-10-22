@@ -111,7 +111,7 @@
     objective:'击破全部敌军；第6回合后刘备也可撤至西北鹿砦',defeat:'刘备撤退或超过30回合',objectiveUnitId:'jiling',victoryCondition:'eliminateAllEnemies',commanderDefeatEndsBattle:false,
     originalRules:true,squareGrid:true,structuresBakedIntoArt:false,structureScaleByType:{village:.68},viewProjection:{x:1/48,y:1/48,dx:1/24,dy:1/24},battlefieldArt:'assets/level-10-huainan/huainan-map-v1.webp',
     paintedTerrainOverrides,paintedTerrainMigrations:[{fromX:17,fromY:12,x:19,y:10,type:'village'}],
-    nextBattle:'返回徐州，迎战吕布',
+    nextBattle:'前往许昌，投靠曹操',
     alternateVictory:{unitId:'liu',x:0,y:2,minTurn:6,exp:50,goldReward:0,label:'刘备撤至西北鹿砦',log:'刘备撤至西北鹿砦，全体存活部队获得经验50'},
     intro:[{speaker:'纪灵',text:'我家主公岂能被刘备轻视！让他看看袁术军的厉害。'},{speaker:'刘备',text:'奉诏讨伐袁术，各军谨慎推进，不可扰害沿途百姓。'}],
     timedEvents:[{
@@ -130,7 +130,7 @@
       loot:{'2,22':{item:'fireScroll',amount:1}},
       duel:{attackerId:'guan',defenderId:'zhangliao',endsBattle:false,musicId:12,title:'关羽　VS　张辽',kicker:'淮南 · 忠义交锋',caption:'青龙偃月刀逼退张辽',challenge:[{speaker:'关羽',text:'张辽，吕布背信夺取徐州，你还要追随他吗？'},{speaker:'张辽',text:'各为其主，关将军，请赐教！'}],exchange:[{speaker:'关羽',text:'不愧是张辽，但此招你躲得过吗？'},{speaker:'张辽',text:'关云长果然厉害，今日我认输。'},{speaker:'张辽',text:'撤退！我不愿再与关羽交战。'}],levelUp:{speaker:'军报',text:'关羽的等级上升了！'},confirmation:{speaker:'军报',text:'张辽败退，战斗仍在继续。'},occupation:{speaker:'军报',text:'张辽已经撤离战场。'}},
       normalVictory:[{speaker:'军报',text:'刘备军击破纪灵率领的袁术军，并击退来袭的吕布军。'}],
-      normalOccupation:{speaker:'刘备',text:'徐州已落入吕布之手。全军立即回师，不可延误！'},
+      normalOccupation:{speaker:'刘备',text:'徐州已落入吕布之手。先整顿部队，再议去向。'},
       alternateVictory:[{speaker:'军报',text:'刘备军成功撤离淮南战场。'},{speaker:'张飞',text:'吕布这个畜生！大哥、二哥，俺也去徐州杀他！'}],
       battleReward:400,victoryMusicId:16
     },

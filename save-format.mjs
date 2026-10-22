@@ -1,7 +1,7 @@
 export const MAX_BUNDLE_BYTES = 350 * 1024;
 export const MAX_SLOT_BYTES = 100 * 1024;
-const levels = new Set(['sishui-pass', 'hulao-pass', 'guangchuan', 'xindu', 'julu', 'qinghe', 'jieqiao', 'beihai', 'xuzhou', 'xiaopei', 'taishan']);
-const names = new Set(['汜水关之战', '虎牢关之战', '广川之战', '信都之战', '巨鹿之战', '清河之战', '界桥之战', '北海之战', '徐州之战', '小沛之战', '泰山之战']);
+const levels = new Set(['sishui-pass', 'hulao-pass', 'guangchuan', 'xindu', 'julu', 'qinghe', 'jieqiao', 'beihai', 'xuzhou', 'xiaopei', 'taishan', 'huainan']);
+const names = new Set(['汜水关之战', '虎牢关之战', '广川之战', '信都之战', '巨鹿之战', '清河之战', '界桥之战', '北海之战', '徐州之战', '小沛之战', '泰山之战', '淮南之战']);
 const size = value => new TextEncoder().encode(JSON.stringify(value)).length;
 const object = value => !!value && typeof value === 'object' && !Array.isArray(value);
 const optionalArray = (value, field) => value[field] === undefined || Array.isArray(value[field]);
@@ -46,7 +46,7 @@ function validateTransfer(transfer) {
       || !transfer.units.every(unit => object(unit) && typeof unit.id === 'string'
         && ['inventory', 'treasureItems'].every(field => optionalArray(unit, field)))
       || !(levels.has(transfer.fromLevelId) || (transfer.fromLevelId === 'xiaopei-negotiate' && transfer.toLevelId === 'taishan'))
-      || !(levels.has(transfer.toLevelId)
+      || !(levels.has(transfer.toLevelId) && transfer.toLevelId !== 'huainan'
         || (transfer.fromLevelId === 'xuzhou' && transfer.toLevelId === 'xuzhou-postbattle')
         || (transfer.fromLevelId === 'xiaopei' && transfer.toLevelId === 'xiaopei-postbattle')
         || (transfer.fromLevelId === 'taishan' && transfer.toLevelId === 'huainan'))) {

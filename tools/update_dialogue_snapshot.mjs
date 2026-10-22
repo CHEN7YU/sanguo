@@ -25,7 +25,7 @@ function walk(value,trail,speaker=''){
   }
 }
 for(const[name,value]of Object.entries(context.window))walk(value,[name]);
-const out={schema:1,capturedAt:'2026-10-20',sourceBuild:'20261020-huainan-v231',description:'Original authored story and battle dialogue before the Romance vernacular rewrite. Runtime source files remain unchanged; use ?dialogue=original to preview this version.',sourceFiles:[...sourceFiles,'game.js'],count:rows.length,rows};
+const out={schema:1,capturedAt:'2026-10-22',sourceBuild:'20261022-huainan-story-v246',description:'Original authored story and battle dialogue before the Romance vernacular rewrite. Runtime source files remain unchanged; use ?dialogue=original to preview this version.',sourceFiles:[...sourceFiles,'game.js'],count:rows.length,rows};
 const target=path.join(root,'docs','dialogue','original-dialogue-snapshot-20261013.json');
 fs.writeFileSync(target,`${JSON.stringify(out,null,2)}\n`,'utf8');
 console.log(`Dialogue snapshot updated: ${rows.length} original lines.`);

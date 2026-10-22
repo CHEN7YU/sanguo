@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "capturedAt": "2026-10-20",
-  "sourceBuild": "20261020-huainan-v231",
+  "capturedAt": "2026-10-22",
+  "sourceBuild": "20261022-huainan-story-v246",
   "description": "Original authored story and battle dialogue before the Romance vernacular rewrite. Runtime source files remain unchanged; use ?dialogue=original to preview this version.",
   "sourceFiles": [
     "level-01.js",
@@ -19,7 +19,7 @@
     "story-data.js",
     "game.js"
   ],
-  "count": 674,
+  "count": 715,
   "rows": [
     {
       "path": "LEVEL_01.marchDialogue.0.text",
@@ -2049,7 +2049,7 @@
     {
       "path": "LEVEL_10_HUAINAN.events.normalOccupation.text",
       "speaker": "刘备",
-      "text": "徐州已落入吕布之手。全军立即回师，不可延误！"
+      "text": "徐州已落入吕布之手。先整顿部队，再议去向。"
     },
     {
       "path": "LEVEL_10_HUAINAN.events.alternateVictory.0.text",
@@ -3113,48 +3113,238 @@
     },
     {
       "path": "HUAINAN_CONTINUOUS_STORY.0.text",
-      "speaker": "史官",
-      "text": "刘备奉诏整军南下。大军离开徐州，向袁术盘踞的淮南进发。"
+      "speaker": "刘备",
+      "text": "诏命已至，讨伐袁术之事不可耽搁。诸位还有何事，尽可直言。"
     },
     {
       "path": "HUAINAN_CONTINUOUS_STORY.1.text",
-      "speaker": "史官",
-      "text": "袁术得传国玉玺后僭称皇帝，在淮南大兴宫室，生活奢靡。天子因此下诏讨伐。"
+      "speaker": "提示",
+      "text": "点击地面移动刘备，点击人物交谈。准备妥当后，与关羽交谈出征淮南。"
     },
     {
       "path": "HUAINAN_CONTINUOUS_STORY.2.text",
-      "speaker": "纪灵",
-      "text": "刘备军已经杀到淮南。主公，请命末将领兵迎敌！"
+      "speaker": "张飞",
+      "text": "好，进军袁术所在的淮南，我的胳膊都痒了！"
     },
     {
       "path": "HUAINAN_CONTINUOUS_STORY.3.text",
-      "speaker": "袁术",
-      "text": "区区织席贩履之徒，也敢轻视朕？纪灵，给朕击破刘备！"
+      "speaker": "史官",
+      "text": "刘备奉诏整军南下，大军向袁术盘踞的淮南进发。"
     },
     {
       "path": "HUAINAN_CONTINUOUS_STORY.4.text",
-      "speaker": "袁胤",
-      "text": "刘备军远道而来，粮道必长。只须扼守河桥，再伺机合围。"
+      "speaker": "史官",
+      "text": "袁术得到传国玉玺，竟自立为帝，在淮南过着奢侈糜烂的生活。天子因此下诏讨伐。"
     },
     {
       "path": "HUAINAN_CONTINUOUS_STORY.5.text",
       "speaker": "纪灵",
-      "text": "末将领命！定叫刘备有来无回。"
+      "text": "刘备军已经打过来了，主公，怎么办？"
     },
     {
       "path": "HUAINAN_CONTINUOUS_STORY.6.text",
-      "speaker": "刘备",
-      "text": "淮南水道纵横，敌军又在南面结营。全军沿道路推进，先察明河桥与营寨。"
+      "speaker": "袁术",
+      "text": "刘备小儿也想夺我的领土，也太狂妄自大了吧！袁胤，有何良策？"
     },
     {
       "path": "HUAINAN_CONTINUOUS_STORY.7.text",
+      "speaker": "袁胤",
+      "text": "有。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.8.text",
+      "speaker": "袁术",
+      "text": "哦，是什么？快说。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.9.text",
+      "speaker": "袁胤",
+      "text": "如今吕布受刘备庇护，驻扎在小沛。可让吕布袭击刘备的后方。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.10.text",
+      "speaker": "袁术",
+      "text": "你说挑动吕布？可是他会照你说的做吗？他不是正受刘备照顾吗？"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.11.text",
+      "speaker": "袁胤",
+      "text": "只要说服得当，吕布肯定会动手。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.12.text",
+      "speaker": "纪灵",
+      "text": "正是。董卓那样照顾他，他都背叛了。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.13.text",
+      "speaker": "袁术",
+      "text": "好，快安排吧，马上派使者送信去！"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.14.text",
+      "speaker": "袁胤",
+      "text": "是。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.15.text",
+      "speaker": "魏续",
+      "text": "袁术来信是怎么讲的？"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.16.text",
+      "speaker": "吕布",
+      "text": "唉……"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.17.text",
+      "speaker": "袁术书信",
+      "text": "“原只是个农民的刘备，鬼迷心窍想占领我的领地，您不会允许吧？您应从此贼手中夺回徐州，让他知道自己的愚蠢。定当以厚礼相赠。——袁术”"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.18.text",
+      "speaker": "宋宪",
+      "text": "送一封这样的信来，袁术好像很慌乱。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.19.text",
+      "speaker": "张辽",
+      "text": "这封信口气如此专横，到了这般境地，还摆什么臭架子。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.20.text",
+      "speaker": "陈宫",
+      "text": "可是，主公，此事应仔细考虑。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.21.text",
+      "speaker": "吕布",
+      "text": "什么？怎么回事？"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.22.text",
+      "speaker": "陈宫",
+      "text": "现在徐州空虚，应乘此间隙夺取徐州，在那里组建精锐部队。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.23.text",
+      "speaker": "吕布",
+      "text": "可是，刘备收留了我们，那样会……"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.24.text",
+      "speaker": "陈宫",
+      "text": "时为战乱之秋！主公要得到天下，这可是不会再有的机会。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.25.text",
+      "speaker": "吕布",
+      "text": "明白了。集合部队，去徐州！"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.26.text",
+      "speaker": "张辽",
+      "text": "可是，刘备于我们有恩，这不是背叛吗？"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.27.text",
+      "speaker": "陈宫",
+      "text": "那你是说，让主公作为刘备的客人度过一生？"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.28.text",
+      "speaker": "宋宪",
+      "text": "对呀，和主公一起打天下吧！"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.29.text",
+      "speaker": "张辽",
+      "text": "……"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.30.text",
+      "speaker": "吕布",
+      "text": "不必再说，全军马上向徐州进发！"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.31.text",
+      "speaker": "史官",
+      "text": "吕布传令出兵，陈宫等人随即离厅。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.32.text",
+      "speaker": "侯成",
+      "text": "……张辽，你的心情我知道。然而这是战乱之秋，没办法。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.33.text",
+      "speaker": "张辽",
+      "text": "战乱之秋……"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.34.text",
+      "speaker": "刘备",
+      "text": "全军沿道路推进，先察明河桥与营寨。"
+    },
+    {
+      "path": "HUAINAN_CONTINUOUS_STORY.35.text",
       "speaker": "关羽",
-      "text": "兄长，西北有一处鹿砦，可作退路；南面敌营才是纪灵本阵。"
+      "text": "兄长，西北鹿砦可作退路；南面敌营是纪灵本阵。"
     },
     {
       "path": "HUAINAN_LEVEL_SELECT_STORY.0.text",
       "speaker": "史官",
-      "text": "陶谦病逝后，刘备领徐州牧。袁术僭称皇帝，天子下诏命刘备进军淮南；吕布则趁徐州空虚暗中图谋。"
+      "text": "陶谦病逝后，刘备领徐州牧。吕布来投，被安置在小沛。如今诏命已至，刘备将出兵讨伐袁术。"
+    },
+    {
+      "path": "HUAINAN_POST_BATTLE_STORY.normal.0.text",
+      "speaker": "军报",
+      "text": "敌军已被击破，淮南之战告捷。然而徐州已为吕布所夺，诸将聚议去向。"
+    },
+    {
+      "path": "HUAINAN_POST_BATTLE_STORY.normal.1.text",
+      "speaker": "张飞",
+      "text": "吕布这个畜生！大哥、二哥，我马上返回徐州，去杀吕布！"
+    },
+    {
+      "path": "HUAINAN_POST_BATTLE_STORY.normal.2.text",
+      "speaker": "关羽",
+      "text": "不可！现在返回徐州便得交战，敌人精兵强将，我军难以抵挡。兄长，现今还是去许昌投靠曹操吧。"
+    },
+    {
+      "path": "HUAINAN_POST_BATTLE_STORY.normal.3.text",
+      "speaker": "刘备",
+      "text": "也只好这样了。全军往许昌去。"
+    },
+    {
+      "path": "HUAINAN_POST_BATTLE_STORY.normal.4.text",
+      "speaker": "曹操",
+      "text": "哦，玄德，这次遭难了。"
+    },
+    {
+      "path": "HUAINAN_POST_BATTLE_STORY.normal.5.text",
+      "speaker": "曹操",
+      "text": "听说你被吕布出卖，徐州也丢了，我很同情你的处境。关羽怎么样了？"
+    },
+    {
+      "path": "HUAINAN_POST_BATTLE_STORY.normal.6.text",
+      "speaker": "刘备",
+      "text": "关羽和张飞都在城外候着。如今我等连住处也没有，只得含羞前来投靠，请您关照。"
+    },
+    {
+      "path": "HUAINAN_POST_BATTLE_STORY.normal.7.text",
+      "speaker": "曹操",
+      "text": "你们放心住在许昌吧。长途跋涉，想必累了，快去官邸休息。"
+    },
+    {
+      "path": "HUAINAN_POST_BATTLE_STORY.normal.8.text",
+      "speaker": "史官",
+      "text": "曹操接纳刘备一行，安排官邸休整。淮南一役至此结束，徐州仍在吕布手中。"
+    },
+    {
+      "path": "HUAINAN_POST_BATTLE_STORY.alternate.0.text",
+      "speaker": "军报",
+      "text": "刘备退至西北鹿砦，各部脱离追兵，在砦外重新集结。徐州已失，众人商议下一步去向。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.guangchuan.张飞.0",
@@ -3369,7 +3559,7 @@
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.huainan.张飞.0",
       "speaker": "张飞",
-      "text": "纪灵就在南面营寨，俺也去先打头阵！"
+      "text": "袁术不足挂齿，大哥，决定了就快出兵吧！"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.huainan.简雍.0",
@@ -3379,7 +3569,22 @@
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.huainan.孙乾.0",
       "speaker": "孙乾",
-      "text": "袁术军沿河列阵，桥梁是两岸往来的关键。"
+      "text": "可是，皇帝为什么现在要下旨讨伐袁术呢？"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.huainan.赵云.0",
+      "speaker": "赵云",
+      "text": "奉诏出兵，也当谨慎防备后方。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.huainan.糜竺.0",
+      "speaker": "糜竺",
+      "text": "军需已经备齐，请主公放心。"
+    },
+    {
+      "path": "NPC_DIALOGUE_BY_LEVEL.huainan.糜芳.0",
+      "speaker": "糜芳",
+      "text": "此行我也随军，听候主公调遣。"
     },
     {
       "path": "NPC_DIALOGUE_BY_LEVEL.huainan.关羽.0",
