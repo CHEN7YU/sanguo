@@ -33,7 +33,7 @@ for (const [i, user] of ['alice', 'bob', 'history'].entries()) {
     .run(createHash('sha256').update(token).digest('hex'), user, Date.now() + 86400000);
   cookie[user] = `__Host-zhaolie-session=${token}`;
 }
-const empty = () => ({ saveStore: { schema: 1, auto: null, manual: Array(6).fill(null) }, campaignTransfer: null });
+const empty = () => ({ saveStore: { schema: 1, auto: null, manual: Array(6).fill(null) }, campaignTransfer: null, clearedLevels: [] });
 const snapshot = (turn = 1) => ({
   schema: 1, levelId: 'sishui-pass', levelName: '汜水关之战', savedAt: Date.now(), turn,
   units: [{ id: 'liu', x: 1, y: 1, hp: 500 }], map: [['plain']]

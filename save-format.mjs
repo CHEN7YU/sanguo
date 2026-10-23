@@ -35,7 +35,12 @@ export function validatePayload(payload, { cloud = false } = {}) {
     }
   }
   validateTransfer(payload.campaignTransfer);
-  const normalized = { saveStore: { schema: 1, auto: store.auto, manual: store.manual }, campaignTransfer: payload.campaignTransfer };
+  const clearedLevels = payload.clearedLevels === undefined ? [] : payload.clearedLevels;
+  if (!Array.isArray(clearedLevels) || !clearedLevels.every(id => levels.has(id)) || new Set(clearedLevels).size !== clearedLevels.length) {
+    throw new Error('通关记录损坏');
+  }
+  const normalized = { saveStore: { schema: 1, auto: store.auto, manual: store.manual }, campaignTransfer: payload.campaignTransfer,
+    clearedLevels: [...clearedLevels] };
   if (cloud && size(normalized) > MAX_BUNDLE_BYTES) throw new Error('账号当前存档总量超过350 KiB，请先导出备份并减少档位内容');
   return normalized;
 }

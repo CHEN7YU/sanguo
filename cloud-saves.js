@@ -3,8 +3,9 @@
   const SAVE = 'sanguozhi-zhaolie-save-v1';
   const CAMPAIGN = 'sanguozhi-zhaolie-campaign-v1';
   const BACKUP = 'sanguozhi-zhaolie-import-backup-v1';
+  const CLEARED = 'sanguozhi-zhaolie-cleared-levels-v1';
   const HINT = 'zhaolie-last-account';
-  const emptyPayload = () => ({ saveStore: { schema: 1, auto: null, manual: Array(6).fill(null) }, campaignTransfer: null });
+  const emptyPayload = () => ({ saveStore: { schema: 1, auto: null, manual: Array(6).fill(null) }, campaignTransfer: null, clearedLevels: [] });
   let userId = null, session = null, record = null, conflict = null, timer = null;
   let initialized = false, inFlight = false, stale = false, blocked = false, retryable = true;
   let validateFormat;
@@ -23,7 +24,7 @@
   const moreOptions = document.getElementById('cloudMoreOptions');
   const accountOptions = document.getElementById('cloudAccountOptions');
   const key = () => `zhaolie-account-save-v1:${userId}`;
-  const hasData = payload => !!payload?.campaignTransfer || [payload?.saveStore?.auto, ...(payload?.saveStore?.manual || [])].some(Boolean);
+  const hasData = payload => !!payload?.campaignTransfer || !!payload?.clearedLevels?.length || [payload?.saveStore?.auto, ...(payload?.saveStore?.manual || [])].some(Boolean);
 
   function show(message) {
     const text = message.startsWith('已同步 ·') ? '进度已保存到云端'
@@ -73,18 +74,19 @@
   const storage = {
     getItem(name) {
       if (!initialized || blocked) throw new Error('本机存档未就绪或损坏；原数据保留，可切换游客');
-      if (!userId || ![SAVE, CAMPAIGN, BACKUP].includes(name)) return localStorage.getItem(name);
-      const value = name === SAVE ? record.payload.saveStore : name === CAMPAIGN ? record.payload.campaignTransfer : record.backup;
+      if (!userId || ![SAVE, CAMPAIGN, CLEARED, BACKUP].includes(name)) return localStorage.getItem(name);
+      const value = name === SAVE ? record.payload.saveStore : name === CAMPAIGN ? record.payload.campaignTransfer : name === CLEARED ? record.payload.clearedLevels : record.backup;
       return value === null || value === undefined ? null : JSON.stringify(value);
     },
     setItem(name, text) {
-      if (!userId || ![SAVE, CAMPAIGN, BACKUP].includes(name)) { assertWritable(); localStorage.setItem(name, text); return; }
+      if (!userId || ![SAVE, CAMPAIGN, CLEARED, BACKUP].includes(name)) { assertWritable(); localStorage.setItem(name, text); return; }
       ensureCurrentRecord();
       const next = structuredClone(record), value = JSON.parse(text);
       if (name === BACKUP) next.backup = value;
       else {
         if (name === SAVE) next.payload.saveStore = value;
-        else next.payload.campaignTransfer = value;
+        else if (name === CAMPAIGN) next.payload.campaignTransfer = value;
+        else next.payload.clearedLevels = value;
         validate(next.payload);
         next.dirty = true;
       }
@@ -94,8 +96,8 @@
       if (name !== BACKUP) schedule();
     },
     removeItem(name) {
-      if (!userId || ![SAVE, CAMPAIGN, BACKUP].includes(name)) { assertWritable(); localStorage.removeItem(name); return; }
-      this.setItem(name, name === SAVE ? JSON.stringify(emptyPayload().saveStore) : 'null');
+      if (!userId || ![SAVE, CAMPAIGN, CLEARED, BACKUP].includes(name)) { assertWritable(); localStorage.removeItem(name); return; }
+      this.setItem(name, name === SAVE ? JSON.stringify(emptyPayload().saveStore) : name === CLEARED ? '[]' : 'null');
     }
   };
   window.ZhaolieStorage = storage;
@@ -202,7 +204,7 @@
     changed();
   }
   async function initialize() {
-    ({ validatePayload: validateFormat } = await import('./save-format.mjs?build=20261018-cloud-saves-v2'));
+    ({ validatePayload: validateFormat } = await import('./save-format.mjs?build=20261023-level-select-progress-v256'));
     try {
       session = await api('/api/auth/session');
       userId = session.user?.id || null;
@@ -297,7 +299,8 @@
       const remote = await api('/api/saves');
       if (hasData(remote.payload) || remote.revision !== record.revision) { showConflict(remote); throw new Error('云端版本发生变化，请先确认'); }
       const payload = validate({ saveStore: JSON.parse(localStorage.getItem(SAVE) || JSON.stringify(emptyPayload().saveStore)),
-        campaignTransfer: JSON.parse(localStorage.getItem(CAMPAIGN) || 'null') });
+        campaignTransfer: JSON.parse(localStorage.getItem(CAMPAIGN) || 'null'),
+        clearedLevels: JSON.parse(localStorage.getItem(CLEARED) || '[]') });
       if (!hasData(payload)) throw new Error('没有游客进度可以迁入');
       ensureCurrentRecord();
       persist({ ...record, payload, dirty: true, pending: null });

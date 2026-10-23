@@ -7,8 +7,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>三国志昭烈传 · 经典重燃InktoLife出品 · 汜水关之战</title>
-  <link rel="stylesheet" href="style.css?build=20261023-huainan-zhangfei-aftermath-v255" />
-  <link rel="modulepreload" href="save-format.mjs?build=20261018-cloud-saves-v2" />
+  <link rel="stylesheet" href="style.css?build=20261023-level-select-progress-v256" />
+  <link rel="modulepreload" href="save-format.mjs?build=20261023-level-select-progress-v256" />
   <link rel="stylesheet" href="auth.css?build=20261018-cloud-ui-v3" />
 </head>
 <body>
@@ -115,7 +115,7 @@
     <div id="titleNotice" class="title-notice" aria-live="polite"></div>
   </section>
   <section id="openingOverlay" class="opening-overlay hidden" aria-label="开篇动画">
-    <video id="openingVideo" src="assets/video/opening.mp4?build=20261023-huainan-zhangfei-aftermath-v255" poster="assets/title-cover.webp" preload="metadata" playsinline></video>
+    <video id="openingVideo" src="assets/video/opening.mp4?build=20261023-level-select-progress-v256" poster="assets/title-cover.webp" preload="metadata" playsinline></video>
     <button id="openingSkipBtn" type="button">点击或按任意键跳过</button>
   </section>
   <section id="storyOverlay" class="story-overlay hidden" aria-label="序章剧情">
@@ -343,7 +343,12 @@
         <button class="level-choice taishan" data-select-level="11" type="button"><span>第九战</span><strong>泰山之战</strong><em>平定泰山 · 刘备可劝降李明</em><small>选关均衡：前排 Lv.10</small></button>
         <button class="level-choice huainan" data-select-level="12" type="button"><span>第十战</span><strong>淮南之战</strong><em>讨伐袁术 · 第6回合吕布军来袭</em><small>选关均衡：前排 Lv.15</small></button>
       </div>
-      <p>选择后从该关剧情起点开始，并使用适合该关、能够取胜但不会碾压的均衡等级；远程与辅助通常比前排低1级。连续通关和读档仍继承实际等级，不套用选关等级。第三战与第四战分别为A/B平行路线，第五战在界桥汇合。</p>
+      <div class="level-developer-unlock">
+        <label for="levelDeveloperCode">开发者代码</label>
+        <div><input id="levelDeveloperCode" type="password" autocomplete="off" spellcheck="false" placeholder="输入代码解锁全部关卡"><button id="levelDeveloperUnlockBtn" type="button">解锁</button></div>
+        <small id="levelDeveloperStatus" aria-live="polite">默认只能选择已经通关的关卡；第一关始终开放。</small>
+      </div>
+      <p>选关使用该关固定的均衡等级；远程与辅助通常比前排低1级。连续通关和读档仍继承实际等级。开发者代码只在当前页面生效，不会写入存档。</p>
     </section>
   </div>
   <div id="leaderboardOverlay" class="leaderboard-overlay hidden" role="dialog" aria-modal="true" aria-label="战绩排行榜">
@@ -379,39 +384,39 @@
   <audio id="titleMusic" src="assets/audio/title-theme.mp3" preload="auto" autoplay loop hidden></audio>
   <audio id="storyMusic" src="assets/audio/original-music-2.opus" preload="auto" loop hidden></audio>
   <audio id="battleMusic" src="assets/audio/knights-errant.mp3" preload="auto" loop hidden></audio>
-  <script src="cloud-saves.js?build=20261018-cloud-ui-v3"></script>
+  <script src="cloud-saves.js?build=20261023-level-select-progress-v256"></script>
   <script src="analytics.js?build=20261018-analytics-v2"></script>
-  <script src="audio-config.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="battle-sfx.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="battle-rules.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-01.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-02.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-02-animation-bounds.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="zhao-yun-animation-bounds.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="wen-chou-animation-bounds.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="jieqiao-core-animation-bounds.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-03-guangchuan.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-03-xindu.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-04-julu.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-04-qinghe.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-05-jieqiao.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-06-beihai.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-07-xuzhou.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-08-xiaopei.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-08-xiaopei-animation-bounds.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-09-taishan.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-09-taishan-animation-bounds.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-10-huainan.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-10-huainan-animation-bounds.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="beihai-animation-bounds.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="level-07-xuzhou-animation-bounds.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="story-data.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="dialogue-style.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="battle-view.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="leaderboard.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="mounted-combat-bounds-v1.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="bandit-combat-bounds-v3.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
-  <script src="game.js?build=20261023-huainan-zhangfei-aftermath-v255"></script>
+  <script src="audio-config.js?build=20261023-level-select-progress-v256"></script>
+  <script src="battle-sfx.js?build=20261023-level-select-progress-v256"></script>
+  <script src="battle-rules.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-01.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-02.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-02-animation-bounds.js?build=20261023-level-select-progress-v256"></script>
+  <script src="zhao-yun-animation-bounds.js?build=20261023-level-select-progress-v256"></script>
+  <script src="wen-chou-animation-bounds.js?build=20261023-level-select-progress-v256"></script>
+  <script src="jieqiao-core-animation-bounds.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-03-guangchuan.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-03-xindu.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-04-julu.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-04-qinghe.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-05-jieqiao.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-06-beihai.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-07-xuzhou.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-08-xiaopei.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-08-xiaopei-animation-bounds.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-09-taishan.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-09-taishan-animation-bounds.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-10-huainan.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-10-huainan-animation-bounds.js?build=20261023-level-select-progress-v256"></script>
+  <script src="beihai-animation-bounds.js?build=20261023-level-select-progress-v256"></script>
+  <script src="level-07-xuzhou-animation-bounds.js?build=20261023-level-select-progress-v256"></script>
+  <script src="story-data.js?build=20261023-level-select-progress-v256"></script>
+  <script src="dialogue-style.js?build=20261023-level-select-progress-v256"></script>
+  <script src="battle-view.js?build=20261023-level-select-progress-v256"></script>
+  <script src="leaderboard.js?build=20261023-level-select-progress-v256"></script>
+  <script src="mounted-combat-bounds-v1.js?build=20261023-level-select-progress-v256"></script>
+  <script src="bandit-combat-bounds-v3.js?build=20261023-level-select-progress-v256"></script>
+  <script src="game.js?build=20261023-level-select-progress-v256"></script>
   <script src="auth.js?build=20261011-password-login-v2"></script>
 </body>
 </html>
