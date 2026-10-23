@@ -47,6 +47,34 @@
   // Keep it explicit so original-map water data or an older saved map cannot
   // turn the empty square left of a unit on the bridge into a false blocker.
   const paintedSouthwestApproachCells=new Set(Array.from({length:5},(_,index)=>`17,${13+index}`));
+  // The remastered southwest camp was painted after the original DOS collision
+  // map was decoded.  Its palisades moved one or more cells, leaving open grass
+  // blocked and visible walls walkable.  Keep the original terrain record above
+  // intact, then replace only the runtime collision cells with the painted wall
+  // and tower footprint.
+  const originalSouthwestFenceCells=new Set([
+    '0,14','1,14','4,14','5,14','6,14','7,14','7,15','7,16','7,17','7,18','7,20','7,22','7,23'
+  ]);
+  const paintedSouthwestFenceCells=new Set([
+    '0,14','1,14','8,14','8,15','8,16','8,17','8,18','8,19','8,20','8,21','9,18','1,20','1,21','4,21','5,21','6,21','7,21'
+  ]);
+  // Some palisades sit exactly between two tactical cells.  Blocking the edge
+  // lets units use the clear ground on both sides without walking through the
+  // fence.  Each entry is [fromX, fromY, toX, toY].
+  const blockedMovementEdges=[
+    ...Array.from({length:6},(_,index)=>[2+index,14,2+index,15]),
+    [1,18,2,18],[1,19,2,19],
+    [2,19,2,20],
+    [3,20,4,20],
+    [2,21,2,22],[3,21,3,22]
+  ];
+  // Keep the decoded deployment coordinates as provenance, but do not let the
+  // three southwest defenders spawn on the palisade after collision alignment.
+  const paintedDeploymentOverrides=[
+    {unitId:'yuanInf2',fromX:6,fromY:21,x:6,y:20},
+    {unitId:'yuanCav2',fromX:4,fromY:21,x:4,y:20},
+    {unitId:'yuanBand',fromX:1,fromY:21,x:3,y:21}
+  ];
   const paintedTerrainOverrides=[];
   for(let y=0;y<height;y++)for(let x=0;x<width;x++){
     const key=`${x},${y}`,original=terrain[y][x];
@@ -55,6 +83,8 @@
     if(paintedSouthwestApproachCells.has(key)){paintedTerrainOverrides.push({x,y,type:'plain'});continue}
     if(original==='water'||original==='muddyWater'||original==='bridge')paintedTerrainOverrides.push({x,y,type:'plain'});
   }
+  for(const key of originalSouthwestFenceCells){const[x,y]=key.split(',').map(Number);paintedTerrainOverrides.push({x,y,type:'plain'})}
+  for(const key of paintedSouthwestFenceCells){const[x,y]=key.split(',').map(Number);paintedTerrainOverrides.push({x,y,type:'fence'})}
   // The original northern village is (17,12), immediately above the bridge.
   // On the remastered painting that coordinate is river, so its runtime cell is
   // moved to the dry bridge approach while save-state migration keeps visits.
@@ -110,7 +140,7 @@
     source:'原作 DOS SNR1D.R3 paragraph 12 / HEXZMAP.R3 section 13 / BAKDATA.R3 人物记录',maxTurns:30,
     objective:'击破全部敌军；第6回合后刘备也可撤至西北鹿砦',defeat:'刘备撤退或超过30回合',objectiveUnitId:'jiling',victoryCondition:'eliminateAllEnemies',commanderDefeatEndsBattle:false,
     originalRules:true,squareGrid:true,structuresBakedIntoArt:false,structureScaleByType:{village:.68},viewProjection:{x:1/48,y:1/48,dx:1/24,dy:1/24},battlefieldArt:'assets/level-10-huainan/huainan-map-v1.webp',
-    paintedTerrainOverrides,paintedTerrainMigrations:[{fromX:17,fromY:12,x:19,y:10,type:'village'}],
+    paintedTerrainOverrides,blockedMovementEdges,paintedDeploymentOverrides,paintedTerrainMigrations:[{fromX:17,fromY:12,x:19,y:10,type:'village'}],
     nextBattle:'前往许昌，投靠曹操',
     alternateVictory:{unitId:'liu',x:0,y:2,minTurn:6,exp:50,goldReward:0,label:'刘备撤至西北鹿砦',log:'刘备撤至西北鹿砦，全体存活部队获得经验50'},
     intro:[{speaker:'纪灵',text:'我家主公岂能被刘备轻视！让他看看袁术军的厉害。'},{speaker:'刘备',text:'奉诏讨伐袁术，各军谨慎推进，不可扰害沿途百姓。'}],
