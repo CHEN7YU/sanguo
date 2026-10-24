@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import { DatabaseSync } from 'node:sqlite';
 import worker from '../worker/index.mjs';
-import { analyticsStatement, chinaDay, deviceCategory } from '../worker/analytics.mjs';
+import { analyticsStatement, chinaDay, deviceCategory, ensurePlaytimeSchema } from '../worker/analytics.mjs';
 
 const sqlite = new DatabaseSync(':memory:');
 for (const file of fs.readdirSync(new URL('../migrations/', import.meta.url)).filter(file => file.endsWith('.sql')).sort()) {
@@ -51,7 +51,7 @@ const play = (visitorId = browser, playId = crypto.randomUUID(), eventId = crypt
 const daily = (day = chinaDay(), device = 'all') =>
   sqlite.prepare('SELECT page_views, visitors, logins, login_users FROM analytics_daily WHERE day = ? AND device = ?').get(day, device);
 const playDaily = (day = chinaDay(), device = 'all') =>
-  sqlite.prepare('SELECT players, play_sessions, play_seconds FROM analytics_daily WHERE day = ? AND device = ?').get(day, device);
+  sqlite.prepare('SELECT players, play_sessions, play_seconds FROM analytics_play_daily WHERE day = ? AND device = ?').get(day, device);
 const resetLimits = () => sqlite.exec('DELETE FROM auth_attempts');
 
 try {
@@ -159,7 +159,7 @@ try {
     'failed analytics transaction must not create an uncounted successful login session');
   assert.equal(daily().logins, 2);
 
-  const analyticsRows = JSON.stringify(['analytics_events', 'analytics_seen', 'analytics_daily', 'analytics_play_events',
+  const analyticsRows = JSON.stringify(['analytics_events', 'analytics_seen', 'analytics_daily', 'analytics_play_daily', 'analytics_play_events',
     'analytics_play_seen', 'analytics_players', 'analytics_play_sessions', 'auth_attempts']
     .flatMap(table => sqlite.prepare(`SELECT * FROM ${table}`).all()));
   for (const privateValue of [browser, concurrentId, userId, desktop, phone, '192.0.2.12']) {
@@ -204,6 +204,24 @@ try {
   assert.equal(sqlite.prepare(queries[0]).get().registered_accounts, 1);
   assert.ok(sqlite.prepare(queries[1]).get().players_since_start >= 3);
   for (const query of queries) sqlite.prepare(query).all();
+  sqlite.exec(fs.readFileSync(new URL('../migrations/0005_playtime_analytics.sql', import.meta.url), 'utf8'));
+
+  const autoSqlite = new DatabaseSync(':memory:');
+  const autoDb = {
+    prepare(sql) {
+      return { values: [], bind(...values) { this.values = values; return this; },
+        async first() { return autoSqlite.prepare(sql).get(...this.values) || null; },
+        async run() { return autoSqlite.prepare(sql).run(...this.values); } };
+    },
+    async batch(statements) {
+      for (const statement of statements) await statement.run();
+    }
+  };
+  await ensurePlaytimeSchema({ AUTH_DB: autoDb });
+  assert.equal(autoSqlite.prepare("SELECT COUNT(*) AS n FROM sqlite_master WHERE type = 'table' AND name LIKE 'analytics_play_%'").get().n, 5,
+    'the production worker must initialize play-time tables before the first migration is applied');
+  assert.ok(autoSqlite.prepare("SELECT name FROM sqlite_master WHERE type = 'trigger' AND name = 'analytics_play_event_count'").get());
+  autoSqlite.close();
   console.log('Analytics backend passed: China-day PV/UV, atomic retries/concurrency, device/overall deduplication, real login counting, failed-login exclusion, private reads, request limits and aggregate-preserving retention.');
 
   const source = fs.readFileSync(new URL('../analytics.js', import.meta.url), 'utf8');
