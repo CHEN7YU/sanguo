@@ -4,7 +4,7 @@
   const saveStorage=window.ZhaolieStorage||localStorage;
   window.refreshJieqiaoLevel?.();
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261023-level-select-progress-v256';
+  const RUNTIME_BUILD='20261024-playtime-analytics-v257';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -651,8 +651,8 @@
     titleIntroActive=false;clearTimeout(titleIntroFadeTimer);video.pause();screen.classList.remove('intro-playing');overlay.classList.toggle('finishing',animate);overlay.classList.toggle('hidden',!animate);
     if(animate)titleIntroFadeTimer=setTimeout(()=>{overlay.classList.add('hidden');overlay.classList.remove('finishing')},620)
   }
-  function showTitle(){closeGameMenu();revealTitleMenu(false);document.getElementById('settingsPanel').classList.add('hidden');document.getElementById('settingsPanel').classList.remove('title-open');document.getElementById('titleScreen').classList.remove('hidden');refreshContinueButton();storyMusic.pause();battleMusic.pause();startTitleMusic()}
-  function hideTitle(playMusic=true){document.getElementById('titleScreen').classList.add('hidden');titleMusic.pause();titleMusic.volume=mixedMusicVolume();if(playMusic)startBattleMusic()}
+  function showTitle(){closeGameMenu();revealTitleMenu(false);document.getElementById('settingsPanel').classList.add('hidden');document.getElementById('settingsPanel').classList.remove('title-open');document.getElementById('titleScreen').classList.remove('hidden');window.dispatchEvent(new Event('zhaolie-gameplay-stop'));refreshContinueButton();storyMusic.pause();battleMusic.pause();startTitleMusic()}
+  function hideTitle(playMusic=true){document.getElementById('titleScreen').classList.add('hidden');window.dispatchEvent(new Event('zhaolie-gameplay-start'));titleMusic.pause();titleMusic.volume=mixedMusicVolume();if(playMusic)startBattleMusic()}
   function finishTitleIntro(){
     if(!titleIntroActive)return;revealTitleMenu(true);startTitleMusic()
   }

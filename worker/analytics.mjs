@@ -29,11 +29,11 @@ function json(data, status = 200, extra = {}) {
   return Response.json(data, { status, headers: { 'cache-control': 'no-store', ...extra } });
 }
 
-async function visitBody(request) {
+async function analyticsBody(request, limit = 512) {
   if (request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json') {
     return { error: '统计请求需要JSON数据', status: 415 };
   }
-  if (Number(request.headers.get('content-length')) > 512) return { error: '统计请求过大', status: 413 };
+  if (Number(request.headers.get('content-length')) > limit) return { error: '统计请求过大', status: 413 };
   const reader = request.body?.getReader();
   if (!reader) return { error: '缺少统计标识', status: 400 };
   const chunks = [];
@@ -42,7 +42,7 @@ async function visitBody(request) {
     const part = await reader.read();
     if (part.done) break;
     size += part.value.length;
-    if (size > 512) { await reader.cancel(); return { error: '统计请求过大', status: 413 }; }
+    if (size > limit) { await reader.cancel(); return { error: '统计请求过大', status: 413 }; }
     chunks.push(part.value);
   }
   let body;
@@ -54,31 +54,63 @@ async function visitBody(request) {
   } catch {
     return { error: '统计数据格式错误', status: 400 };
   }
-  if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).length !== 2
-      || typeof body.visitorId !== 'string' || !UUID.test(body.visitorId)
-      || typeof body.visitId !== 'string' || !UUID.test(body.visitId)) {
-    return { error: '统计标识无效', status: 400 };
-  }
   return body;
 }
 
-export async function handleAnalytics(request, env) {
-  if (env.ANALYTICS_ENABLED !== 'true') return json({ error: '接口不存在' }, 404);
-  if (request.method !== 'POST') return json({ error: '请求方法不支持' }, 405);
+function validUuid(value) {
+  return typeof value === 'string' && UUID.test(value);
+}
+
+async function analyticsRequest(request, env, limit = 512) {
+  if (env.ANALYTICS_ENABLED !== 'true') return { response: json({ error: '接口不存在' }, 404) };
+  if (request.method !== 'POST') return { response: json({ error: '请求方法不支持' }, 405) };
   const url = new URL(request.url);
   if (!analyticsEnabled(env) || url.protocol !== 'https:' || new URL(env.AUTH_ORIGIN).origin !== url.origin) {
-    return json({ error: '访问统计服务尚未就绪' }, 503);
+    return { response: json({ error: '访问统计服务尚未就绪' }, 503) };
   }
-  if (request.headers.get('origin') !== url.origin) return json({ error: '请求来源无效' }, 403);
+  if (request.headers.get('origin') !== url.origin) return { response: json({ error: '请求来源无效' }, 403) };
   const ip = request.headers.get('cf-connecting-ip');
-  if (!ip) return json({ error: '无法验证统计请求来源' }, 503);
+  if (!ip) return { response: json({ error: '无法验证统计请求来源' }, 503) };
+  const body = await analyticsBody(request, limit);
+  if (body && typeof body === 'object' && body.error) return { response: json({ error: body.error }, body.status) };
+  return { url, ip, body };
+}
+
+export async function handleAnalytics(request, env) {
+  const context = await analyticsRequest(request, env);
+  if (context.response) return context.response;
+  const { body, ip } = context;
+  if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).length !== 2
+      || !validUuid(body.visitorId) || !validUuid(body.visitId)) return json({ error: '统计标识无效' }, 400);
   const ipRetry = await consumeLimit(env, `analytics:ip:${ip}`, 120, 60000);
   if (ipRetry) return json({ error: '统计请求过于频繁' }, 429, { 'retry-after': String(ipRetry) });
-  const body = await visitBody(request);
-  if (body.error) return json({ error: body.error }, body.status);
   const visitorRetry = await consumeLimit(env, `analytics:visitor:${body.visitorId}`, 30, 60000);
   if (visitorRetry) return json({ error: '统计请求过于频繁' }, 429, { 'retry-after': String(visitorRetry) });
   await (await analyticsStatement(request, env, 'visit', body.visitorId, body.visitId)).run();
+  return json({ ok: true });
+}
+
+export async function handlePlaytime(request, env) {
+  const context = await analyticsRequest(request, env, 768);
+  if (context.response) return context.response;
+  const { body, ip } = context;
+  if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).length !== 4
+      || !validUuid(body.visitorId) || !validUuid(body.playId) || !validUuid(body.eventId)
+      || !Number.isInteger(body.seconds) || body.seconds < 1 || body.seconds > 120) {
+    return json({ error: '游玩时长统计无效' }, 400);
+  }
+  const ipRetry = await consumeLimit(env, `analytics:play-ip:${ip}`, 240, 60000);
+  if (ipRetry) return json({ error: '统计请求过于频繁' }, 429, { 'retry-after': String(ipRetry) });
+  const visitorRetry = await consumeLimit(env, `analytics:play:${body.visitorId}`, 8, 60000);
+  if (visitorRetry) return json({ error: '统计请求过于频繁' }, 429, { 'retry-after': String(visitorRetry) });
+  const day = chinaDay();
+  const eventHash = hex(await keyedHash(env.AUTH_PASSWORD_PEPPER, `analytics:event:play:${body.eventId}`));
+  const playerHash = hex(await keyedHash(env.AUTH_PASSWORD_PEPPER, `analytics:player:${body.visitorId}`));
+  const sessionHash = hex(await keyedHash(env.AUTH_PASSWORD_PEPPER, `analytics:session:${body.playId}`));
+  await env.AUTH_DB.prepare(
+    `INSERT INTO analytics_play_events (event_hash, day, player_hash, session_hash, device, seconds)
+     VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(event_hash) DO NOTHING`
+  ).bind(eventHash, day, playerHash, sessionHash, deviceCategory(request), body.seconds).run();
   return json({ ok: true });
 }
 
@@ -88,6 +120,8 @@ export async function purgeAnalytics(env, now = Date.now()) {
   await env.AUTH_DB.batch([
     env.AUTH_DB.prepare('DELETE FROM analytics_events WHERE day < ?').bind(cutoff),
     env.AUTH_DB.prepare('DELETE FROM analytics_seen WHERE day < ?').bind(cutoff),
+    env.AUTH_DB.prepare('DELETE FROM analytics_play_events WHERE day < ?').bind(cutoff),
+    env.AUTH_DB.prepare('DELETE FROM analytics_play_seen WHERE day < ?').bind(cutoff),
     env.AUTH_DB.prepare('DELETE FROM auth_attempts WHERE expires_at <= ?').bind(now)
   ]);
 }

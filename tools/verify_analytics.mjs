@@ -46,8 +46,12 @@ const request = (path, { method = 'POST', body, headers = {} } = {}) => new Requ
 const call = (path, options, bindings = env) => worker.fetch(request(path, options), bindings);
 const visit = (visitorId = browser, visitId = crypto.randomUUID(), headers = {}) =>
   call('/api/analytics/visit', { body: { visitorId, visitId }, headers });
+const play = (visitorId = browser, playId = crypto.randomUUID(), eventId = crypto.randomUUID(), seconds = 30, headers = {}) =>
+  call('/api/analytics/playtime', { body: { visitorId, playId, eventId, seconds }, headers });
 const daily = (day = chinaDay(), device = 'all') =>
   sqlite.prepare('SELECT page_views, visitors, logins, login_users FROM analytics_daily WHERE day = ? AND device = ?').get(day, device);
+const playDaily = (day = chinaDay(), device = 'all') =>
+  sqlite.prepare('SELECT players, play_sessions, play_seconds FROM analytics_daily WHERE day = ? AND device = ?').get(day, device);
 const resetLimits = () => sqlite.exec('DELETE FROM auth_attempts');
 
 try {
@@ -58,6 +62,7 @@ try {
     assert.equal(deviceCategory(request('/', { headers: { 'user-agent': agent } })), category);
   }
   assert.equal((await call('/api/analytics/visit', { body: {} }, { ...env, ANALYTICS_ENABLED: 'false' })).status, 404);
+  assert.equal((await call('/api/analytics/playtime', { body: {} }, { ...env, ANALYTICS_ENABLED: 'false' })).status, 404);
   assert.equal((await call('/api/analytics/visit', { body: {} }, { ...env, AUTH_PASSWORD_PEPPER: undefined })).status, 503);
   assert.equal((await call('/api/analytics/visit', { method: 'GET' })).status, 405);
   assert.equal((await visit(browser, crypto.randomUUID(), { origin: 'https://evil.example' })).status, 403);
@@ -68,6 +73,7 @@ try {
     assert.equal((await call('/api/analytics/visit', { body })).status, 400);
   }
   assert.equal((await call('/api/analytics/visit', { body: 'x'.repeat(513) })).status, 413);
+  assert.equal((await call('/api/analytics/playtime', { body: 'x'.repeat(769) })).status, 413);
   assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM analytics_daily').get().n, 0);
   const event = crypto.randomUUID();
   let response = await visit(browser, event);
@@ -93,6 +99,28 @@ try {
   const parallelRetry = crypto.randomUUID();
   await Promise.all(Array.from({ length: 5 }, () => visit(concurrentId, parallelRetry)));
   assert.equal(daily().page_views, 15);
+
+  resetLimits();
+  const playSession = crypto.randomUUID(), playEvent = crypto.randomUUID();
+  response = await play(browser, playSession, playEvent, 30);
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get('set-cookie'), null);
+  assert.equal((await play(browser, playSession, playEvent, 30)).status, 200);
+  assert.deepEqual({ ...playDaily() }, { players: 1, play_sessions: 1, play_seconds: 30 },
+    'lost-response retries must not inflate play time');
+  assert.equal((await play(browser, playSession, crypto.randomUUID(), 15)).status, 200);
+  assert.deepEqual({ ...playDaily() }, { players: 1, play_sessions: 1, play_seconds: 45 });
+  const secondPlayer = crypto.randomUUID();
+  assert.equal((await play(secondPlayer, crypto.randomUUID(), crypto.randomUUID(), 20, { 'user-agent': phone })).status, 200);
+  assert.deepEqual({ ...playDaily() }, { players: 2, play_sessions: 2, play_seconds: 65 });
+  assert.deepEqual({ ...playDaily(chinaDay(), 'mobile') }, { players: 1, play_sessions: 1, play_seconds: 20 });
+  assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM analytics_players').get().n, 2);
+  assert.equal(sqlite.prepare('SELECT SUM(play_seconds) AS n FROM analytics_players').get().n, 65);
+  for (const body of [{ visitorId: browser, playId: playSession, eventId: crypto.randomUUID(), seconds: 0 },
+    { visitorId: browser, playId: playSession, eventId: crypto.randomUUID(), seconds: 121 },
+    { visitorId: browser, playId: playSession, eventId: crypto.randomUUID(), seconds: 1, extra: true }]) {
+    assert.equal((await call('/api/analytics/playtime', { body })).status, 400);
+  }
   now += 1000;
   resetLimits();
   assert.equal((await visit()).status, 200);
@@ -131,7 +159,8 @@ try {
     'failed analytics transaction must not create an uncounted successful login session');
   assert.equal(daily().logins, 2);
 
-  const analyticsRows = JSON.stringify(['analytics_events', 'analytics_seen', 'analytics_daily', 'auth_attempts']
+  const analyticsRows = JSON.stringify(['analytics_events', 'analytics_seen', 'analytics_daily', 'analytics_play_events',
+    'analytics_play_seen', 'analytics_players', 'analytics_play_sessions', 'auth_attempts']
     .flatMap(table => sqlite.prepare(`SELECT * FROM ${table}`).all()));
   for (const privateValue of [browser, concurrentId, userId, desktop, phone, '192.0.2.12']) {
     assert.ok(!analyticsRows.includes(privateValue), 'counters must not retain raw browser/account IDs, IP or complete user agents');
@@ -155,20 +184,32 @@ try {
   const oldNow = now - 12 * 86400000;
   await (await analyticsStatement(request('/'), env, 'visit', crypto.randomUUID(), crypto.randomUUID(), oldNow)).run();
   const oldDay = chinaDay(oldNow);
+  const oldPlayVisitor = crypto.randomUUID(), oldPlayId = crypto.randomUUID(), oldPlayEvent = crypto.randomUUID();
+  const currentNow = now;
+  now = oldNow;
+  assert.equal((await play(oldPlayVisitor, oldPlayId, oldPlayEvent, 12)).status, 200);
+  now = currentNow;
   assert.equal(daily(oldDay).page_views, 1);
   await worker.scheduled({}, env);
   assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM analytics_events WHERE day = ?').get(oldDay).n, 0);
   assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM analytics_seen WHERE day = ?').get(oldDay).n, 0);
+  assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM analytics_play_events WHERE day = ?').get(oldDay).n, 0);
+  assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM analytics_play_seen WHERE day = ?').get(oldDay).n, 0);
   assert.equal(daily(oldDay).page_views, 1, 'retention purge must preserve long-term aggregates');
+  assert.equal(playDaily(oldDay).play_seconds, 12, 'retention purge must preserve play-time aggregates');
+  assert.equal(sqlite.prepare('SELECT play_seconds FROM analytics_players WHERE player_hash IS NOT NULL ORDER BY play_seconds LIMIT 1').get().play_seconds, 12,
+    'lifetime player totals must survive detailed-event cleanup');
   const report = fs.readFileSync(new URL('./analytics-report.sql', import.meta.url), 'utf8');
   const queries = report.split(';').map(query => query.trim()).filter(Boolean);
   assert.equal(sqlite.prepare(queries[0]).get().registered_accounts, 1);
+  assert.ok(sqlite.prepare(queries[1]).get().players_since_start >= 3);
   for (const query of queries) sqlite.prepare(query).all();
   console.log('Analytics backend passed: China-day PV/UV, atomic retries/concurrency, device/overall deduplication, real login counting, failed-login exclusion, private reads, request limits and aggregate-preserving retention.');
 
   const source = fs.readFileSync(new URL('../analytics.js', import.meta.url), 'utf8');
   async function client({ enabled = true, local = new Map(), fail = false, hidden = false, storageBlocked = false, badResponse = false } = {}) {
-    const calls = [], warnings = [], timers = [], events = {}, documentEvents = {};
+    const calls = [], warnings = [], timers = [], intervals = [], events = {}, documentEvents = {};
+    let clock = 0;
     let unavailable = fail;
     const state = {
       location: { protocol: 'https:' }, crypto, AbortSignal,
@@ -179,6 +220,9 @@ try {
       document: { visibilityState: hidden ? 'hidden' : 'visible', addEventListener(name, handler) { documentEvents[name] = handler; } },
       console: { warn: (...args) => warnings.push(args) },
       setTimeout(handler, delay) { timers.push({ handler, delay }); },
+      setInterval(handler, delay) { const token = { handler, delay, active: true }; intervals.push(token); return token; },
+      clearInterval(token) { token.active = false; },
+      performance: { now: () => clock },
       addEventListener(name, handler) { events[name] = handler; },
       ZhaolieCloud: { ready: Promise.resolve(enabled ? { analytics: true } : {}) },
       fetch: async (url, options) => {
@@ -191,7 +235,8 @@ try {
     state.window = state;
     vm.runInNewContext(source, state);
     await new Promise(resolve => setImmediate(resolve));
-    return { calls, warnings, timers, state, events, documentEvents, local, recover() { unavailable = false; } };
+    return { calls, warnings, timers, intervals, state, events, documentEvents, local,
+      advance(ms) { clock += ms; }, recover() { unavailable = false; } };
   }
   const local = new Map();
   let c = await client({ local });
@@ -202,6 +247,24 @@ try {
   assert.deepEqual(Object.keys(first).sort(), ['visitId', 'visitorId']);
   await c.events.online();
   assert.equal(c.calls.length, 1);
+  c.events['zhaolie-gameplay-start']();
+  assert.equal(c.intervals.length, 1);
+  assert.equal(c.intervals[0].delay, 30000);
+  c.advance(30000);
+  c.intervals[0].handler();
+  await new Promise(resolve => setImmediate(resolve));
+  let playCalls = c.calls.filter(call => call.url === '/api/analytics/playtime');
+  assert.equal(playCalls.length, 1);
+  assert.equal(JSON.parse(playCalls[0].body).seconds, 30);
+  c.advance(5000);
+  c.events['zhaolie-gameplay-stop']();
+  await new Promise(resolve => setImmediate(resolve));
+  playCalls = c.calls.filter(call => call.url === '/api/analytics/playtime');
+  assert.equal(playCalls.length, 2);
+  assert.equal(JSON.parse(playCalls[1].body).seconds, 5);
+  assert.equal(c.intervals[0].active, false);
+  assert.match(c.state.localStorage.getItem('zhaolie-playtime-queue-v1'), /^\[\]$/,
+    'successful play-time uploads must clear the retry queue');
   c = await client({ local });
   const second = JSON.parse(c.calls[0].body);
   assert.equal(first.visitorId, second.visitorId);
@@ -219,10 +282,15 @@ try {
   assert.equal(c.calls.length, 0);
   c.state.document.visibilityState = 'visible';
   await c.documentEvents.visibilitychange();
+  await new Promise(resolve => setImmediate(resolve));
   assert.equal(c.calls.length, 1, 'background preloaded pages count only when shown');
   c = await client({ enabled: false });
   assert.equal(c.calls.length, 0);
   assert.equal(c.local.size, 0, 'disabled/static deployments must not set an analytics identifier');
+  c.events['zhaolie-gameplay-start']();
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(c.intervals.length, 0);
+  assert.equal(c.local.size, 0, 'disabled/static deployments must not start a play timer');
   c = await client({ storageBlocked: true });
   assert.equal(c.calls.length, 0);
   assert.equal(c.warnings.length, 1, 'unavailable browser storage is explicit but never blocks the game');
@@ -232,13 +300,18 @@ try {
   const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, /src="analytics\.js\?build=/);
   assert.ok(html.indexOf('src="cloud-saves.js') < html.indexOf('src="analytics.js'));
+  assert.equal(new Set([...html.matchAll(/\?build=([^"']+)/g)].map(match => match[1])).size, 1,
+    'runtime cache version must be uniform');
+  const game = fs.readFileSync(new URL('../game.js', import.meta.url), 'utf8');
+  assert.match(game, /dispatchEvent\(new Event\('zhaolie-gameplay-start'\)\)/);
+  assert.match(game, /dispatchEvent\(new Event\('zhaolie-gameplay-stop'\)\)/);
   const config = JSON.parse(fs.readFileSync(new URL('../wrangler.jsonc', import.meta.url), 'utf8'));
   assert.notEqual(config.d1_databases[0].database_id, config.env.preview.d1_databases[0].database_id);
   assert.equal(config.vars.ANALYTICS_ENABLED, 'true');
   assert.equal(config.env.preview.vars.ANALYTICS_ENABLED, 'true');
   assert.deepEqual(config.triggers.crons, ['15 16 * * *']);
   assert.deepEqual(config.env.preview.triggers.crons, ['15 16 * * *']);
-  console.log('Analytics client passed: stable anonymous browser ID, one event per page, safe retry/online handling, hidden-page gating, no cookies, no public UI and isolated deployment configuration.');
+  console.log('Analytics client passed: stable anonymous player counting, visible-gameplay timing, idempotent offline retries, no cookies, no public UI and isolated deployment configuration.');
 } finally {
   Date.now = originalNow;
   sqlite.close();
