@@ -1,8 +1,13 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+import path from 'node:path';
+import sharp from 'sharp';
+import {fileURLToPath} from 'node:url';
 import {validatePayload} from '../save-format.mjs';
 const read=f=>fs.readFileSync(new URL('../'+f,import.meta.url),'utf8');
+const root=fileURLToPath(new URL('..',import.meta.url));
 const data={window:{}};vm.createContext(data);vm.runInContext(read('story-data.js'),data);
 const pre=data.window.HUAINAN_CONTINUOUS_STORY,after=data.window.HUAINAN_POST_BATTLE_STORY;
 assert(pre.some(x=>x.freeRoam&&x.location.includes('徐州')));
@@ -24,6 +29,26 @@ for(const line of [...pre,...after.normal,...after.alternate])for(const actor of
  assert(asset,`${actor.name} requires a complete directional story sheet`);
  assert(fs.existsSync(new URL('../'+asset,import.meta.url)),`${actor.name} story sheet is missing`);
 }
+const xiaopeiCast=['吕布','张辽','陈宫','侯成','宋宪','魏续'];
+const castHashes=new Set();
+for(const name of xiaopeiCast){
+ const asset=actorContext.assets[name];
+ assert(asset?.startsWith('assets/level-10-huainan/story-actors/'),`${name} must use a dedicated Xiaopei council actor sheet`);
+ assert(!asset.includes('officer-walk'),`${name} must not fall back to the generic green officer`);
+ const file=path.join(root,asset),metadata=await sharp(file).metadata();
+ assert.equal(metadata.width,1024,`${name} story sheet width`);
+ assert.equal(metadata.height,1024,`${name} story sheet height`);
+ assert.ok(metadata.hasAlpha,`${name} story sheet must preserve transparency`);
+ for(let row=0;row<4;row++)for(let col=0;col<4;col++){
+  const stats=await sharp(file).extract({left:col*256,top:row*256,width:256,height:256}).stats();
+  assert.ok(stats.channels[3].max>0,`${name} frame ${row},${col} is empty`);
+ }
+ castHashes.add(crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'));
+}
+assert.equal(castHashes.size,xiaopeiCast.length,'every Xiaopei council character needs distinct art');
+const xiaopeiSetup=pre.find(line=>line.location==='小沛议事厅'&&line.setup)?.setup||[];
+assert.deepEqual([...xiaopeiSetup.map(actor=>actor.name)].sort(),[...xiaopeiCast].sort());
+assert.ok(xiaopeiSetup.every(actor=>actor.x>=10&&actor.x<=24&&actor.y>=8&&actor.y<=16),'Xiaopei council cast must remain grouped on the carpet');
 const fn=source.slice(source.indexOf('  function victory('),source.indexOf('  function playHuainanAftermath('));
 for(const variant of ['normal','alternate']){
  const c={ending:false,playerTurn:true,turnTransitionPending:true,phase:'select',levelIndex:12,turn:6,gold:500,campaignVictoryType:null,objectiveUnitId:'jiling',DEFAULT_CAMPAIGN_VICTORY_MUSIC_ID:16,
@@ -43,4 +68,5 @@ for(const variant of ['normal','alternate']){
  assert.deepEqual(validatePayload(bundle).saveStore.auto,save,'postbattle cinematic data survives cloud validation');
 }
 assert(source.includes("save.huainanAftermath&&!save.huainanAftermath.complete"));
-console.log('Huainan story verified: source event order, free conversation, both aftermath branches, victory guard, survivor rewards and cloud snapshot preservation.');
+assert(source.includes('playPreBattleStory(openBattlePrep,target-1)'), 'story preview must start directly at the requested scene so its cast setup cannot be overwritten');
+console.log('Huainan story verified: dedicated Xiaopei council cast, source event order, free conversation, both aftermath branches, victory guard, survivor rewards and cloud snapshot preservation.');

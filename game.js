@@ -4,7 +4,7 @@
   const saveStorage=window.ZhaolieStorage||localStorage;
   window.refreshJieqiaoLevel?.();
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261025-startup-loader-v258';
+  const RUNTIME_BUILD='20261026-lubu-council-cast-v259';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -321,11 +321,12 @@
   };
   function portraitForUnit(u){return portraitPaths[u.id]||storyPortraits[u.name]||assetPaths[u.id]||assetPaths[genericVisualKeyFor(u)]}
   const storyActorRoot='assets/story-actors/remaster-v3/';
+  const huainanStoryActorRoot='assets/level-10-huainan/story-actors/';
   const storyActorAssets={
     刘备:storyActorRoot+'liu-bei-walk-sheet-v4.webp',关羽:storyActorRoot+'guan-yu-walk-sheet-v4.webp',张飞:storyActorRoot+'zhang-fei-walk-sheet-v4.webp',
     曹操:storyActorRoot+'cao-cao-walk-sheet-v4.webp',袁绍:storyActorRoot+'yuan-shao-walk-sheet-v4.webp',袁术:storyActorRoot+'yuan-shu-walk-sheet-v4.webp',
     公孙瓒:storyActorRoot+'gongsun-zan-walk-sheet-v4.webp',陶谦:storyActorRoot+'tao-qian-walk-sheet-v5.webp',孔融:storyActorRoot+'kong-rong-walk-sheet-v4.webp',
-    董卓:storyActorRoot+'dong-zhuo-walk-sheet-v4.webp',吕布:storyActorRoot+'lv-bu-walk-sheet-v4.webp',华雄:storyActorRoot+'hua-xiong-walk-sheet-v4.webp',
+    董卓:storyActorRoot+'dong-zhuo-walk-sheet-v4.webp',吕布:huainanStoryActorRoot+'lv-bu-walk-sheet-v1.webp',华雄:storyActorRoot+'hua-xiong-walk-sheet-v4.webp',
     李儒:storyActorRoot+'li-ru-walk-sheet-v4.webp',李傕:storyActorRoot+'li-jue-walk-sheet-v4.webp',郭汜:storyActorRoot+'guo-si-walk-sheet-v4.webp',
     李肃:storyActorRoot+'li-su-walk-sheet-v4.webp',胡轸:storyActorRoot+'hu-zhen-walk-sheet-v4.webp',赵岑:storyActorRoot+'zhao-cen-walk-sheet-v4.webp',
     董承:storyActorRoot+'dong-cheng-walk-sheet-v4.webp',献帝:storyActorRoot+'emperor-walk-sheet-v4.webp',
@@ -343,10 +344,10 @@
     孟肃:'assets/level-06-beihai/animation/meng-su/meng-su-walk-v2.webp',
     郭嘉:'assets/level-07-xuzhou/units/guojia-walk-v1.webp',于禁:'assets/level-07-xuzhou/units/yujin-walk-v1.webp',
     糜芳:'assets/level-07-xuzhou/units/mifang-walk-v1.webp',孙乾:'assets/level-07-xuzhou/units/sunqian-walk-v1.webp',
-    张辽:storyActorRoot+'officer-walk-sheet-v4.webp',侯成:storyActorRoot+'officer-walk-sheet-v4.webp',魏续:storyActorRoot+'officer-walk-sheet-v4.webp',宋宪:storyActorRoot+'officer-walk-sheet-v4.webp',
+    张辽:huainanStoryActorRoot+'zhang-liao-walk-sheet-v1.webp',侯成:huainanStoryActorRoot+'hou-cheng-walk-sheet-v1.webp',魏续:huainanStoryActorRoot+'wei-xu-walk-sheet-v1.webp',宋宪:huainanStoryActorRoot+'song-xian-walk-sheet-v1.webp',
     陈登:storyActorRoot+'officer-walk-sheet-v4.webp',文官:storyActorRoot+'officer-walk-sheet-v4.webp',
     袁胤:storyActorRoot+'officer-walk-sheet-v4.webp',曹豹:storyActorRoot+'officer-walk-sheet-v4.webp',董昭:storyActorRoot+'officer-walk-sheet-v4.webp',
-    纪灵:storyActorRoot+'officer-walk-sheet-v4.webp',张绣:storyActorRoot+'officer-walk-sheet-v4.webp',陈纪:storyActorRoot+'officer-walk-sheet-v4.webp',陈宫:storyActorRoot+'officer-walk-sheet-v4.webp'
+    纪灵:storyActorRoot+'officer-walk-sheet-v4.webp',张绣:storyActorRoot+'officer-walk-sheet-v4.webp',陈纪:storyActorRoot+'officer-walk-sheet-v4.webp',陈宫:huainanStoryActorRoot+'chen-gong-walk-sheet-v1.webp'
   };
   const storyWorldActorAssets={
     华雄:'assets/story-actors/world-v1/hua-xiong-march-sheet-v1.webp',
@@ -1977,7 +1978,7 @@
     if(!target||!origin){status('未找到可进入的特殊胜利格');return}u.x=origin.x;u.y=origin.y;selected=u;phase='move';reachable=calcReach(u);moveSelected(target.x,target.y)
   },260);
   else if(previewParams.get('level')==='2'&&![...previewParams.keys()].some(key=>key!=='level'))setTimeout(()=>{resetBattleState();hideTitle(false);if(preBattleStory.length)playPreBattleStory(openBattlePrep);else openBattlePrep()},180);
-  else if(previewParams.has('storyPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);const target=Math.max(1,Math.min(preBattleStory.length,Number(previewParams.get('storyPreview'))||1));playPreBattleStory(openBattlePrep);storyIndex=target-1;showStoryLine()},150);
+  else if(previewParams.has('storyPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);const target=Math.max(1,Math.min(preBattleStory.length,Number(previewParams.get('storyPreview'))||1));playPreBattleStory(openBattlePrep,target-1)},150);
   else if(previewParams.has('longBattleAudit'))setTimeout(()=>{animationSpeed=20;compactRepeatedAnimations=true;battleStarted=true;document.getElementById('shopOverlay').classList.add('hidden');phase='select';playerTurn=true;syncUI();status('长局回归验证：可连续结束回合');draw()},200);
   else if(previewParams.has('turnRecoveryPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);animationSpeed=20;compactRepeatedAnimations=true;battleStarted=true;document.getElementById('shopOverlay').classList.add('hidden');units.filter(u=>u.side==='ally').forEach(u=>{u.acted=true});playerTurn=true;turnTransitionPending=true;phase='animating';selected=units.find(u=>u.side==='ally'&&u.hp>0)||null;syncUI();status('模拟动画结束后遗留的回合锁');draw()},220);
   else if(previewParams.has('defeatQuotePreview'))setTimeout(()=>{resetBattleState();hideTitle(false);document.getElementById('shopOverlay').classList.add('hidden');battleStarted=true;const id=previewParams.get('defeatQuotePreview')||objectiveUnitId,u=units.find(q=>q.id===id)||units.find(q=>(q.originalId??999)<256);u.hp=0;playDefeatQuote(u).then(()=>{if(u.id===objectiveUnitId)victory()})},300);

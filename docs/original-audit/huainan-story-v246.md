@@ -33,10 +33,18 @@
 
 ## 最终专项验收
 
-- 淮南议事厅第6段至第37段自动播放后正常进入整备；小沛6名人物最终截图可见，补齐张辽、侯成、宋宪、魏续的通用四方向步行图集映射，吕布使用既有专属图集。
+- 淮南议事厅第6段至第37段自动播放后正常进入整备。早期验收仅让张辽、侯成、宋宪、魏续共用通用绿衣图集，吕布旧图也没有保留身份特征；该项只是占位映射，不能视为人物美术完成。
 - 小沛第17段手动保存到测试档位2，重新导航读档后仍为第17段，6名人物、金500和对白正确。
 - 撤退战后第3/9段自动档读回仍为关羽建议赴许昌，正常推进至第5段；许昌人物站位、头像已截图复查。
 - 从许昌场景跳过，返回标题再点继续游戏，正确恢复“战后已结算”；金500、刘备Lv16/EXP0、关羽及其他存活单位EXP50不变。
 - 自动回归通过：verify_huainan_story、verify_level10_huainan、verify_early_access_campaign、verify_prebattle_story、verify_early_story_roam、verify_chapter1_hd2d_story、verify_story_visual_assets、verify_julu_story_dismount、verify_cloud_saves、verify_portable_saves、verify_turn_lock_recovery、verify_romance_dialogue、verify_audio_config。
 - 剧情快照715条；发布构建436个运行文件、160.27 MiB，399个素材引用全部存在。
 - 网页专项实测在内置浏览器进行；未宣称手机真机验收或从新游戏连续通关。本次未手动部署ChatGPT网站。
+
+## 2026-10-26 小沛议事厅人物重制
+
+- 吕布、张辽、陈宫、侯成、宋宪、魏续均改用独立的 4×4 四方向步行图集，不再复用通用绿衣文官。
+- 吕布保留双翎冠、赤黑金甲、白围领、红披风与方天画戟；张辽保留青银盔、青黑甲、白围领与佩刀。陈宫使用高冠、青衣与橙色内襟；侯成、宋宪、魏续分别按既有原作头像确定帽盔、服色和面部特征。
+- 运行图存放于 `assets/level-10-huainan/story-actors/`，透明高清生成母版存放于 `assets-master/level-10-huainan/story-actors/`。六张运行图统一为 1024×1024，每格 256×256。
+- 初始站位收拢为吕布居右上主位、陈宫近前、张辽与三将分列下方，修正旧版人物横跨整张地毯、魏续远离议事区的问题。
+- `verify_huainan_story.mjs` 会拒绝这六人重新指向通用图集，并检查六张专属图集的尺寸、透明通道、四行四列内容和文件唯一性。
