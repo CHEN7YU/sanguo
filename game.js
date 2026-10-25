@@ -4,7 +4,7 @@
   const saveStorage=window.ZhaolieStorage||localStorage;
   window.refreshJieqiaoLevel?.();
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261024-playtime-analytics-v257';
+  const RUNTIME_BUILD='20261025-startup-loader-v258';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -36,6 +36,7 @@
   }
   function buildRuntimeMap(){return applyPaintedTerrainOverrides(level.terrain.map(r=>[...r]))}
   const map = buildRuntimeMap();
+  function preloadImage(src){const image=new Image();if(window.ZhaolieStartup?.trackImage)return window.ZhaolieStartup.trackImage(image,src);image.src=src;return image}
   const assetPaths = {
     battlefield:level.battlefieldArt||'assets/sishui-remaster-v3.webp', liu:'assets/liu-squad.webp', guan:'assets/guan-squad-v2.webp',
     zhang:'assets/zhang-squad.webp', gongsun:'assets/gongsun-squad.webp', tao:'assets/level-07-xuzhou/units/tao-unit-v1.webp',
@@ -53,16 +54,16 @@
     martial:'assets/troops/martial-artist-v2.webp', bandit:'assets/troops/bandit-v2.webp',
     support:'assets/military-band-remaster-v1.webp'
   };
-  const art = Object.fromEntries(Object.entries(assetPaths).map(([key,src])=>{const img=new Image();img.src=src;return [key,img]}));
+  const art = Object.fromEntries(Object.entries(assetPaths).map(([key,src])=>[key,preloadImage(src)]));
   const friendlyAssetPaths={
     hua:'assets/friendly/hua-squad-friendly-v1.webp',infantry:'assets/friendly/infantry-squad-friendly-v1.webp',
     archer:'assets/friendly/archer-squad-friendly-v1.webp',officer:'assets/friendly/officer-squad-friendly-v1.webp',
     support:'assets/friendly/support-friendly-v1.webp',martial:'assets/friendly/martial-artist-friendly-v2.webp',
     bandit:'assets/friendly/bandit-friendly-v2.webp'
   };
-  const friendlyArt=Object.fromEntries(Object.entries(friendlyAssetPaths).map(([key,src])=>{const img=new Image();img.src=src;return[key,img]}));
+  const friendlyArt=Object.fromEntries(Object.entries(friendlyAssetPaths).map(([key,src])=>[key,preloadImage(src)]));
   const terrainArtPaths={village:'assets/tile-village.webp',treasure:'assets/tile-treasure-depot.webp',supply:'assets/tile-supply-depot.webp',fort:'assets/level-04-julu/fort-v1.webp'};
-  const terrainArt=Object.fromEntries(Object.entries(terrainArtPaths).map(([key,src])=>{const img=new Image();img.src=src;return[key,img]}));
+  const terrainArt=Object.fromEntries(Object.entries(terrainArtPaths).map(([key,src])=>[key,preloadImage(src)]));
   const attackPaths = {
     liu:'assets/liu-attack.webp', guan:'assets/guan-attack.webp', zhang:'assets/zhang-attack.webp',
     gongsun:'assets/gongsun-attack.webp', tao:'assets/level-07-xuzhou/units/tao-action-v1.webp', hua:'assets/hua-attack.webp',
@@ -81,46 +82,46 @@
   const mountedDuelAttackOverrides={guan:'assets/mounted-combat-v1/guan-duel-attack-v2.webp',zhangliao:'assets/mounted-combat-v1/zhangliao-duel-attack-v2.webp'};
   for(const id of mountedCombatAttackIds)attackPaths[id]=`assets/mounted-combat-v1/${id}-attack.webp`;
   Object.assign(attackPaths,mountedDuelAttackOverrides);
-  const attackArt = Object.fromEntries(Object.entries(attackPaths).map(([key,src])=>{const img=new Image();img.src=src;return [key,img]}));
+  const attackArt = Object.fromEntries(Object.entries(attackPaths).map(([key,src])=>[key,preloadImage(src)]));
   const criticalPaths={zhaoyun:'assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-critical-v2.webp',wenchou:'assets/level-05-jieqiao/wen-chou-animation/wen-chou-critical-v1.webp',yanliang:'assets/level-05-jieqiao/core-animation/yanliang/yanliang-critical-v1.webp',zhanghe:'assets/level-05-jieqiao/core-animation/zhanghe/zhanghe-critical-v1.webp',quyi:'assets/level-05-jieqiao/core-animation/quyi/quyi-critical-v1.webp',jiling:'assets/level-10-huainan/animation/ji-ling/ji-ling-critical-v1.webp',liming:'assets/level-09-taishan/animation/li-ming/li-ming-critical-v1.webp'};
   for(const id of ['yujin','yuejin','lidian','guojia','caohong','xiahouyuan','mifang','sunqian','tao','transport'])criticalPaths[id]=`assets/level-07-xuzhou/units/${id}-action-v1.webp`;
   criticalPaths.sunqian='assets/level-07-xuzhou/units/sunqian-transport-action-v2.webp';
   Object.assign(criticalPaths,{caocao:'assets/level-08-xiaopei/units/caocao-action-v1.webp',xiahoudun:'assets/level-08-xiaopei/units/xiahoudun-action-v1.webp',xunyu:'assets/level-08-xiaopei/units/xunyu-action-v1.webp'});
   Object.assign(criticalPaths,{zhaoyun:'assets/mounted-combat-v1/zhaoyun-critical.webp',wenchou:'assets/mounted-combat-v1/wenchou-critical.webp',yanliang:'assets/mounted-combat-v1/yanliang-critical.webp',zhanghe:'assets/mounted-combat-v1/zhanghe-critical.webp',quyi:'assets/mounted-combat-v1/quyi-critical.webp',caocao:'assets/mounted-combat-v1/caocao-attack.webp',xiahoudun:'assets/mounted-combat-v1/xiahoudun-attack.webp',xiahouyuan:'assets/mounted-combat-v1/xiahouyuan-attack.webp',yuejin:'assets/mounted-combat-v1/yuejin-attack.webp'});
-  const criticalArt=Object.fromEntries(Object.entries(criticalPaths).map(([key,src])=>{const img=new Image();img.src=src;return[key,img]}));
+  const criticalArt=Object.fromEntries(Object.entries(criticalPaths).map(([key,src])=>[key,preloadImage(src)]));
   const blockPaths={zhaoyun:'assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-block-v2.webp',wenchou:'assets/level-05-jieqiao/wen-chou-animation/wen-chou-block-v1.webp',yanliang:'assets/level-05-jieqiao/core-animation/yanliang/yanliang-block-v1.webp',zhanghe:'assets/level-05-jieqiao/core-animation/zhanghe/zhanghe-block-v1.webp',quyi:'assets/level-05-jieqiao/core-animation/quyi/quyi-block-v1.webp',jiling:'assets/level-10-huainan/animation/ji-ling/ji-ling-block-v1.webp',liming:'assets/level-09-taishan/animation/li-ming/li-ming-block-v1.webp'};
   for(const id of ['yujin','yuejin','lidian','guojia','caohong','xiahouyuan','mifang','sunqian','tao','transport'])blockPaths[id]=`assets/level-07-xuzhou/units/${id}-action-v1.webp`;
   blockPaths.sunqian='assets/level-07-xuzhou/units/sunqian-transport-action-v2.webp';
   Object.assign(blockPaths,{caocao:'assets/level-08-xiaopei/units/caocao-action-v1.webp',xiahoudun:'assets/level-08-xiaopei/units/xiahoudun-action-v1.webp',xunyu:'assets/level-08-xiaopei/units/xunyu-action-v1.webp'});
-  const blockArt=Object.fromEntries(Object.entries(blockPaths).map(([key,src])=>{const img=new Image();img.src=src;return[key,img]}));
+  const blockArt=Object.fromEntries(Object.entries(blockPaths).map(([key,src])=>[key,preloadImage(src)]));
   const directionalAttackPaths={zhaoyun:'assets/mounted-combat-v1/zhaoyun-directional-attack.webp'};
-  const directionalAttackArt=Object.fromEntries(Object.entries(directionalAttackPaths).map(([key,src])=>{const img=new Image();img.src=src;return[key,img]}));
+  const directionalAttackArt=Object.fromEntries(Object.entries(directionalAttackPaths).map(([key,src])=>[key,preloadImage(src)]));
   const friendlyAttackPaths={hua:'assets/mounted-combat-v1/hua-attack-friendly.webp',infantry:'assets/friendly/infantry-attack-friendly-v1.webp',archer:'assets/friendly/archer-attack-friendly-v1.webp',officer:'assets/friendly/officer-attack-friendly-v1.webp',martial:'assets/friendly/martial-artist-attack-friendly-v2.webp',bandit:'assets/troops/bandit-combat-v3/friendlyAttack.webp',support:'assets/troops/military-band-attack-v1.webp'};
-  const friendlyAttackArt=Object.fromEntries(Object.entries(friendlyAttackPaths).map(([key,src])=>{const img=new Image();img.src=src;return[key,img]}));
+  const friendlyAttackArt=Object.fromEntries(Object.entries(friendlyAttackPaths).map(([key,src])=>[key,preloadImage(src)]));
   const walkPaths={liu:'assets/liu-walk-v1.webp',guan:'assets/guan-walk-v1.webp',zhang:'assets/zhang-walk-v1.webp',gongsun:'assets/gongsun-walk-v1.webp',tao:'assets/tao-walk-v1.webp',hua:'assets/hua-walk-v1.webp',lvbu:'assets/lvbu-walk-v1.webp',zhangliao:'assets/zhangliao-walk-v1.webp',houcheng:'assets/houcheng-walk-v1.webp',songxian:'assets/songxian-walk-v2.webp',weixu:'assets/weixu-walk-v1.webp',caocao:'assets/level-08-xiaopei/units/caocao-walk-v1.webp',xiahoudun:'assets/level-08-xiaopei/units/xiahoudun-walk-v1.webp',xunyu:'assets/level-08-xiaopei/units/xunyu-walk-v1.webp',zhaoyun:'assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-walk-v2.webp',wenchou:'assets/level-05-jieqiao/wen-chou-animation/wen-chou-walk-v1.webp',yanliang:'assets/level-05-jieqiao/core-animation/yanliang/yanliang-walk-v1.webp',zhanghe:'assets/level-05-jieqiao/core-animation/zhanghe/zhanghe-walk-v1.webp',quyi:'assets/level-05-jieqiao/core-animation/quyi/quyi-walk-v1.webp',jiling:'assets/level-10-huainan/animation/ji-ling/ji-ling-walk-v1.webp',guanhai:'assets/level-06-beihai/animation/guan-hai/guan-hai-walk-v2.webp',kongrong:'assets/level-06-beihai/animation/kong-rong/kong-rong-walk-v2.webp',taishici:'assets/level-06-beihai/animation/taishi-ci/taishi-ci-walk-v2.webp',mengsu:'assets/level-06-beihai/animation/meng-su/meng-su-walk-v2.webp',beast:'assets/level-06-beihai/animation/beast/beast-walk-v2.webp',liming:'assets/level-09-taishan/animation/li-ming/li-ming-walk-v1.webp',officer:'assets/officer-walk-v1.webp',archer:'assets/archer-walk-v1.webp',infantry:'assets/infantry-walk-v1.webp',martial:'assets/troops/martial-artist-walk-v2.webp',bandit:'assets/troops/bandit-walk-v4.webp',support:'assets/troops/military-band-walk-v1.webp',mizhu:'assets/level-10-huainan/units/mi-zhu-military-band-walk-v1.webp'};
   for(const id of ['yujin','yuejin','lidian','guojia','caohong','xiahouyuan','mifang','sunqian','tao','transport'])walkPaths[id]=`assets/level-07-xuzhou/units/${id}-walk-v1.webp`;
   walkPaths.sunqian='assets/level-07-xuzhou/units/sunqian-transport-walk-v2.webp';
-  const walkArt=Object.fromEntries(Object.entries(walkPaths).map(([key,src])=>{const img=new Image();img.src=src;return[key,img]}));
+  const walkArt=Object.fromEntries(Object.entries(walkPaths).map(([key,src])=>[key,preloadImage(src)]));
   const friendlyWalkPaths={hua:'assets/friendly/hua-walk-friendly-v1.webp',officer:'assets/friendly/officer-walk-friendly-v1.webp',archer:'assets/friendly/archer-walk-friendly-v1.webp',infantry:'assets/friendly/infantry-walk-friendly-v1.webp',martial:'assets/friendly/martial-artist-walk-friendly-v2.webp',bandit:'assets/friendly/bandit-walk-friendly-v4.webp',support:'assets/troops/military-band-walk-v1.webp'};
-  const friendlyWalkArt=Object.fromEntries(Object.entries(friendlyWalkPaths).map(([key,src])=>{const img=new Image();img.src=src;return[key,img]}));
+  const friendlyWalkArt=Object.fromEntries(Object.entries(friendlyWalkPaths).map(([key,src])=>[key,preloadImage(src)]));
   const deathPaths={guan:'assets/guan-death-v1.webp',zhang:'assets/zhang-death-v1.webp',gongsun:'assets/gongsun-death-v1.webp',hua:'assets/hua-death-v1.webp',lvbu:'assets/lvbu-death-v1.webp',zhangliao:'assets/zhangliao-death-v1.webp',houcheng:'assets/houcheng-death-v1.webp',songxian:'assets/songxian-death-v1.webp',weixu:'assets/weixu-death-v1.webp',caocao:'assets/level-08-xiaopei/units/caocao-death-v1.webp',xiahoudun:'assets/level-08-xiaopei/units/xiahoudun-death-v1.webp',xunyu:'assets/level-08-xiaopei/units/xunyu-death-v1.webp',zhaoyun:'assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-death-v2.webp',wenchou:'assets/level-05-jieqiao/wen-chou-animation/wen-chou-death-v1.webp',yanliang:'assets/level-05-jieqiao/core-animation/yanliang/yanliang-death-v1.webp',zhanghe:'assets/level-05-jieqiao/core-animation/zhanghe/zhanghe-death-v1.webp',quyi:'assets/level-05-jieqiao/core-animation/quyi/quyi-death-v1.webp',jiling:'assets/level-10-huainan/animation/ji-ling/ji-ling-death-v1.webp',guanhai:'assets/level-06-beihai/animation/guan-hai/guan-hai-death-v1.webp',kongrong:'assets/level-06-beihai/animation/kong-rong/kong-rong-death-v1.webp',taishici:'assets/level-06-beihai/animation/taishi-ci/taishi-ci-death-v1.webp',mengsu:'assets/level-06-beihai/animation/meng-su/meng-su-death-v1.webp',beast:'assets/level-06-beihai/animation/beast/beast-death-v1.webp',liming:'assets/level-09-taishan/animation/li-ming/li-ming-death-v1.webp'};
   for(const id of ['yujin','yuejin','lidian','guojia','caohong','xiahouyuan','mifang','sunqian','tao','transport'])deathPaths[id]=`assets/level-07-xuzhou/units/${id}-action-v1.webp`;
   deathPaths.sunqian='assets/level-07-xuzhou/units/sunqian-transport-action-v2.webp';
-  const deathArt=Object.fromEntries(Object.entries(deathPaths).map(([key,src])=>{const img=new Image();img.src=src;return[key,img]}));
+  const deathArt=Object.fromEntries(Object.entries(deathPaths).map(([key,src])=>[key,preloadImage(src)]));
   const friendlyDeathPaths={hua:'assets/friendly/hua-death-friendly-v1.webp'};
-  const friendlyDeathArt=Object.fromEntries(Object.entries(friendlyDeathPaths).map(([key,src])=>{const img=new Image();img.src=src;return[key,img]}));
+  const friendlyDeathArt=Object.fromEntries(Object.entries(friendlyDeathPaths).map(([key,src])=>[key,preloadImage(src)]));
   const hurtPaths={martial:'assets/troops/martial-artist-hurt-v2.webp',bandit:'assets/troops/bandit-combat-v3/hurt.webp',caocao:'assets/level-08-xiaopei/units/caocao-action-v1.webp',xiahoudun:'assets/level-08-xiaopei/units/xiahoudun-action-v1.webp',xunyu:'assets/level-08-xiaopei/units/xunyu-action-v1.webp',zhaoyun:'assets/level-05-jieqiao/zhao-yun-animation/zhao-yun-hurt-v2.webp',wenchou:'assets/level-05-jieqiao/wen-chou-animation/wen-chou-hurt-v1.webp',yanliang:'assets/level-05-jieqiao/core-animation/yanliang/yanliang-hurt-v1.webp',zhanghe:'assets/level-05-jieqiao/core-animation/zhanghe/zhanghe-hurt-v1.webp',quyi:'assets/level-05-jieqiao/core-animation/quyi/quyi-hurt-v1.webp',jiling:'assets/level-10-huainan/animation/ji-ling/ji-ling-hurt-v1.webp',guanhai:'assets/level-06-beihai/animation/guan-hai/guan-hai-hurt-v1.webp',kongrong:'assets/level-06-beihai/animation/kong-rong/kong-rong-hurt-v1.webp',taishici:'assets/level-06-beihai/animation/taishi-ci/taishi-ci-hurt-v1.webp',mengsu:'assets/level-06-beihai/animation/meng-su/meng-su-hurt-v1.webp',beast:'assets/level-06-beihai/animation/beast/beast-hurt-v1.webp',liming:'assets/level-09-taishan/animation/li-ming/li-ming-hurt-v1.webp'};
   for(const id of ['yujin','yuejin','lidian','guojia','caohong','xiahouyuan','mifang','sunqian','tao','transport'])hurtPaths[id]=`assets/level-07-xuzhou/units/${id}-action-v1.webp`;
   hurtPaths.sunqian='assets/level-07-xuzhou/units/sunqian-transport-action-v2.webp';
-  const hurtArt=Object.fromEntries(Object.entries(hurtPaths).map(([key,src])=>{const img=new Image();img.src=src;return[key,img]}));
+  const hurtArt=Object.fromEntries(Object.entries(hurtPaths).map(([key,src])=>[key,preloadImage(src)]));
   const friendlyHurtPaths={martial:'assets/friendly/martial-artist-hurt-friendly-v2.webp',bandit:'assets/troops/bandit-combat-v3/friendlyHurt.webp'};
-  const friendlyHurtArt=Object.fromEntries(Object.entries(friendlyHurtPaths).map(([key,src])=>{const img=new Image();img.src=src;return[key,img]}));
+  const friendlyHurtArt=Object.fromEntries(Object.entries(friendlyHurtPaths).map(([key,src])=>[key,preloadImage(src)]));
   // These three commanders reuse proven animation geometry, but keep a stable
   // character palette across idle, walk, attack, hurt and death frames.
   const unitPaletteFilters={};
-  const woundedArt=new Image();woundedArt.src='assets/wounded-units-atlas-v1.webp';
-  const friendlyWoundedArt=new Image();friendlyWoundedArt.src='assets/friendly/wounded-units-atlas-friendly-v1.webp';
-  const warmWineArt=new Image();warmWineArt.src='assets/cinematics/warm-wine-slay-hua-xiong-v1.webp';
+  const woundedArt=preloadImage('assets/wounded-units-atlas-v1.webp');
+  const friendlyWoundedArt=preloadImage('assets/friendly/wounded-units-atlas-friendly-v1.webp');
+  const warmWineArt=preloadImage('assets/cinematics/warm-wine-slay-hua-xiong-v1.webp');
   const woundedAtlasOrder=['liu','guan','zhang','gongsun','tao','hua','lvbu','zhangliao','houcheng','songxian','weixu','infantry','archer','officer'];
   const woundedFrameBounds={
     liu:[19,35,263,304],guan:[1,15,289,324],zhang:[0,30,291,309],gongsun:[0,1,289,338],
@@ -1872,7 +1873,8 @@
   function selectLevelFromMenu(button){if(button.disabled||button.getAttribute('aria-disabled')==='true')return;const params=new URLSearchParams();params.set('level',button.dataset.selectLevel);params.set('storySelect','1');params.set('levelSelect','1');preserveDialogueMode(params);location.href=`${location.pathname}?${params}`}
   function playDefeatQuote(unit){if(unit.defeatQuotePlayed)return Promise.resolve();const explicit=typeof unit.defeatQuote==='string'&&unit.defeatQuote.trim();if((unit.originalId??999)>=256&&!explicit)return Promise.resolve();const named=(unit.originalId??999)<256||!!explicit,text=explicit||(named?(unit.side==='enemy'?'胜负已分……暂且撤退！':'主公……我先退下了！'):'');if(!text)return Promise.resolve();unit.defeatQuotePlayed=true;unit.defeatQuote=text;return new Promise(resolve=>runDialogue([{speaker:unit.name,text}],resolve))}
   const dialoguePortraits={...storyPortraits,...Object.fromEntries(units.filter(u=>(u.originalId??999)<256).map(u=>[u.name,portraitForUnit(u)]))};
-  Object.values(dialoguePortraits).forEach(src=>{const portrait=new Image();portrait.src=src});
+  Object.values(dialoguePortraits).forEach(preloadImage);
+  window.ZhaolieStartup?.seal();
   function showDialogLine(){const line=dialogue.lines[dialogIndex],styledLine={...line,text:window.ZhaolieDialogue?.romance?.(line.text,line.speaker)||line.text},portrait=document.getElementById('dialogPortrait'),img=document.getElementById('dialogPortraitImage'),mark=document.getElementById('dialogPortraitMark'),src=dialoguePortraits[line.speaker];dialogueHistory.push(styledLine);document.getElementById('dialogSpeaker').textContent=line.speaker;portrait.dataset.speaker=line.speaker;if(src){img.src=src;img.alt=`${line.speaker}立绘`;img.classList.remove('hidden');mark.classList.add('hidden')}else{mark.textContent=line.speaker[0];mark.classList.remove('hidden');img.classList.add('hidden')}document.getElementById('dialogText').textContent=styledLine.text;document.getElementById('dialogOverlay').classList.remove('hidden')}
   function nextDialog(){if(!dialogue)return;dialogIndex++;if(dialogIndex<dialogue.lines.length){showDialogLine();return}const done=dialogue.onDone;dialogue=null;document.getElementById('dialogOverlay').classList.add('hidden');if(done)done()}
   function skipDialogue(){if(!dialogue)return;dialogIndex=dialogue.lines.length-1;nextDialog()}
@@ -1994,5 +1996,6 @@
   else if(previewParams.has('criticalQuotePreview'))setTimeout(()=>{const id=previewParams.get('criticalQuotePreview')||'guan',u=units.find(q=>q.id===id)||units.find(q=>q.id==='guan'),target=units.find(q=>q.side==='enemy')||units.find(q=>q!==u);if(u.side==='reserve')u.side='guest';u.x=Math.min(COLS-3,Math.max(2,Math.floor(COLS*.55)));u.y=Math.min(ROWS-3,Math.max(2,Math.floor(ROWS*.55)));target.x=u.x+1;target.y=u.y;target.hp=target.maxHp;animationSpeed=previewAnimationSpeed;battleStarted=true;phase='animating';document.getElementById('shopOverlay').classList.add('hidden');const outcome={critical:true,blocked:false,missed:false};playCriticalQuote(u,outcome).then(()=>playCombatAnimation(u,target,60,()=>{target.hp=Math.max(0,target.hp-60)},outcome))},450);
   else if(previewParams.has('directionalAttackPreview'))setTimeout(()=>{const id=previewParams.get('directionalAttackPreview')||'liu',u=units.find(q=>q.id===id)||units.find(q=>q.id==='liu'),target=units.find(q=>q.side!==u.side&&!(u.side==='ally'&&q.side==='guest'))||units.find(q=>q!==u),direction=previewParams.get('attackDirection')||'north',delta={east:[1,0],west:[-1,0],south:[0,1],north:[0,-1]}[direction]||[0,-1];if(u.side==='reserve')u.side='guest';u.x=Math.min(COLS-3,Math.max(2,Math.floor(COLS*.55)));u.y=Math.min(ROWS-3,Math.max(2,Math.floor(ROWS*.55)));target.x=u.x+delta[0];target.y=u.y+delta[1];target.hp=target.maxHp;animationSpeed=previewAnimationSpeed;battleStarted=true;document.getElementById('shopOverlay').classList.add('hidden');playCombatAnimation(u,target,60,()=>{target.hp=Math.max(0,target.hp-60)},{critical:false,blocked:false,missed:false})},450);
   else if(previewParams.has('walkPreview'))setTimeout(()=>{const id=previewParams.get('walkPreview')||'guan',u=units.find(q=>q.id===id)||units.find(q=>q.id==='guan'),direction=previewParams.get('walkDirection')||'east',delta={east:[1,0],west:[-1,0],south:[0,1],north:[0,-1]}[direction]||[1,0];if(u.side==='reserve')u.side='guest';u.x=Math.min(COLS-3,Math.max(2,Math.floor(COLS*.55)));u.y=Math.min(ROWS-3,Math.max(2,Math.floor(ROWS*.55)));const target=[u.x+delta[0],u.y+delta[1]];animationSpeed=.18;battleStarted=true;document.getElementById('shopOverlay').classList.add('hidden');if(passable(u,target[0],target[1]))animateUnitMove(u,target[0],target[1])},450);
+  else if(window.ZhaolieStartup?.ready)window.ZhaolieStartup.ready.then(playTitleIntro);
   else playTitleIntro();
 })();
