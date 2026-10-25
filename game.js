@@ -4,7 +4,7 @@
   const saveStorage=window.ZhaolieStorage||localStorage;
   window.refreshJieqiaoLevel?.();
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261026-lubu-council-cast-v259';
+  const RUNTIME_BUILD='20261026-lubu-music-gain-v260';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -468,7 +468,7 @@
   let tileW=72,tileH=36,originX=0,originY=90,zoom=1,panX=0,panY=0,drag=false,lastMouse=null,anim=null,combatFx=null,audioCtx=null,sfxBus=null,sfxLimiter=null,bgRect={x:0,y:0,w:1,h:1,scale:1};
   const touchPoints=new Map();let touchGesture=null,ignoreClickUntil=0;
   let battleOverview=false,battleFocus={x:units.find(u=>u.id==='liu')?.x??Math.floor(COLS/2),y:units.find(u=>u.id==='liu')?.y??Math.floor(ROWS/2)};
-  const MUSIC_MIX_GAIN=.44,SFX_MIX_GAIN=2.1,SHOP_MUSIC_VOLUME_MULTIPLIER=1.3,TENT_MUSIC_VOLUME_MULTIPLIER=2.2,LUOYANG_MUSIC_VOLUME_MULTIPLIER=2,WORLD_MUSIC_VOLUME_MULTIPLIER=1.5;
+  const MUSIC_MIX_GAIN=.44,SFX_MIX_GAIN=2.1,SHOP_MUSIC_VOLUME_MULTIPLIER=1.3,TENT_MUSIC_VOLUME_MULTIPLIER=2.2,LUOYANG_MUSIC_VOLUME_MULTIPLIER=2,WORLD_MUSIC_VOLUME_MULTIPLIER=1.5,LEON_BATTLE_VOLUME_MULTIPLIER=1.3;
   const GLOBAL_MOVEMENT_SPEED=1.5;
   let musicEnabled=true,musicStarted=false,musicVolume=.34,sfxVolume=.85,musicSceneMultiplier=1,musicDuckTimer=null,animationSpeed=1,compactRepeatedAnimations=true;
   const seenCombatMotions=new Set();
@@ -531,7 +531,8 @@
   const DEFAULT_CAMPAIGN_VICTORY_MUSIC_ID=16;
   function mixedMusicVolume(multiplier=musicSceneMultiplier){return Math.max(0,Math.min(1,musicVolume*MUSIC_MIX_GAIN*multiplier))}
   function storyMusicVolume(multiplier=musicSceneMultiplier){const sceneGain=storyMusicMode==='shop'?SHOP_MUSIC_VOLUME_MULTIPLIER:storyMusicId===14?TENT_MUSIC_VOLUME_MULTIPLIER:storyMusicId===13?LUOYANG_MUSIC_VOLUME_MULTIPLIER:storyMusicId===17?WORLD_MUSIC_VOLUME_MULTIPLIER:1;return mixedMusicVolume(multiplier*sceneGain)}
-  function applyMusicMix(multiplier=musicSceneMultiplier){const volume=mixedMusicVolume(multiplier);titleMusic.volume=volume;storyMusic.volume=storyMusicVolume(multiplier);battleMusic.volume=volume}
+  function battleMusicVolume(multiplier=musicSceneMultiplier){const trackGain=activeBattleTrack===window.GAME_AUDIO_CONFIG?.events?.['huainan-lvbu-turn6']?LEON_BATTLE_VOLUME_MULTIPLIER:1;return mixedMusicVolume(multiplier*trackGain)}
+  function applyMusicMix(multiplier=musicSceneMultiplier){const volume=mixedMusicVolume(multiplier);titleMusic.volume=volume;storyMusic.volume=storyMusicVolume(multiplier);battleMusic.volume=battleMusicVolume(multiplier)}
   function applySfxMix(){if(sfxBus)sfxBus.gain.value=Math.max(0,Math.min(2.4,sfxVolume*SFX_MIX_GAIN))}
   function duckMusicForSfx(name){
     if(!musicEnabled)return;
@@ -1533,7 +1534,7 @@
     titleMusic.pause();battleMusic.pause();if(!musicEnabled||!storyMusic.paused)return;storyMusic.volume=storyMusicVolume();musicStarted=true;const playback=storyMusic.play();if(playback)playback.catch(()=>{musicStarted=false});updateMusicUI()
   }
   function setBattleMusicTrack(track,{play=true,restart=true}={}){if(!track)return;const changed=activeBattleTrack!==track;activeBattleTrack=track;if(changed){battleMusic.pause();battleMusic.src=track;battleMusic.load();if(restart)battleMusic.currentTime=0}if(play)startBattleMusic()}
-  function startBattleMusic(){storyMusic.pause();titleMusic.pause();if(!musicEnabled||!battleMusic.paused)return;battleMusic.volume=mixedMusicVolume();musicStarted=true;const playback=battleMusic.play();if(playback)playback.catch(()=>{musicStarted=false});updateMusicUI()}
+  function startBattleMusic(){storyMusic.pause();titleMusic.pause();if(!musicEnabled||!battleMusic.paused)return;battleMusic.volume=battleMusicVolume();musicStarted=true;const playback=battleMusic.play();if(playback)playback.catch(()=>{musicStarted=false});updateMusicUI()}
   function startActiveMusic(){if(titleIntroActive||titleVisible())startTitleMusic();else if(storyActive)startStoryMusic();else if(!document.getElementById('shopOverlay').classList.contains('hidden'))startShopMusic();else startBattleMusic()}
   function setMusicEnabled(enabled){musicEnabled=enabled;if(enabled)startActiveMusic();else{titleMusic.pause();storyMusic.pause();battleMusic.pause()}updateMusicUI()}
   function playCharge(u){battleSfx('charge',u,{critical:true})}
