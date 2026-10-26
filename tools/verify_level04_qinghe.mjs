@@ -49,7 +49,7 @@ function routeToWestBank(spawn){
 }
 for(const spawn of turn7.spawns){const route=routeToWestBank(spawn);assert.ok(route.includes('bridge'),`${spawn.unitId} must cross Qinghe by bridge`);assert.ok(route.every(type=>!blocked.has(type)),`${spawn.unitId} route enters impassable terrain`)}
 assert.deepEqual(rules.learnedStrategies({troop:'cavalry',level:9}),[],'Qu Yi must not receive a fabricated tactic');
-assert.deepEqual(rules.learnedStrategies({troop:'support',level:4}),[],'original military band has no combat tactic');
+assert.deepEqual(rules.learnedStrategies({troop:'support',level:4}),['encourage'],'original military band must retain its morale-support tactic');
 
 const assets=[
   'assets/level-04-qinghe/qinghe-map-remaster-v2.webp',

@@ -30,6 +30,7 @@ check(rules.learnedStrategies({troop:'archer',level:6})[0]==='vortex','archers m
 check(rules.learnedStrategies({troop:'martial',level:5}).length===0,'martial artists must not learn a tactic before level 6');
 check(JSON.stringify(rules.learnedStrategies({troop:'martial',level:6}))===JSON.stringify(['fire']),'martial artists must learn 焦热 at level 6');
 check(JSON.stringify(rules.learnedStrategies({troop:'martial',level:10}))===JSON.stringify(['fire','recover']),'level-ten martial artists must know 焦热 and 援助');
+check(JSON.stringify(rules.learnedStrategies({troop:'support',level:1}))===JSON.stringify(['encourage']),'military bands must know 激励 from level one');
 check(!rules.learnedStrategies({troop:'cavalry',level:99}).includes('contain'),'牵制 is not an original cavalry progression tactic');
 for(const unit of level02.units){
   const learned=rules.learnedStrategies({troop:unit.troop,level:unit.level,override:level02.strategyAccess?.[unit.id]});
@@ -50,5 +51,9 @@ check(game.includes("drawMilitaryBandAuras()"),'military-band aura has no battle
 check(game.includes('周围一圈8格内的同阵营单位攻击力提高10%')&&game.includes('多支军乐队的攻击光环不叠加'),'military-band aura scope or stacking rule is not explained');
 check(game.includes("${bandAura?' · 军乐激励':''}"),'military-band aura is missing from the unit role display');
 check(game.includes("bandAura=hasMilitaryBandAura(selected)?' · 军乐攻击+10%':''"),'military-band aura is missing from the damage forecast');
+check(html.includes('data-strategy="encourage"')&&game.includes("encourage:{name:'激励',cost:4,range:2,hit:1,target:'friendly',morale:30}"),'military-band morale tactic is unavailable');
+check(game.includes("caster.troop==='support'?12:8"),'military-band tactics must award 12 experience');
+check(game.includes("u.troop==='support'?Math.max(ax,ay)===1"),'military bands must be able to attack all eight adjacent squares');
+check(game.includes("previewParams.has('militaryBandPreview')"),'military-band browser verification hook is missing');
 
-console.log('Strategy access verified: battle-one and battle-two units cast no tactics; original infantry/cavalry/archer/martial thresholds, NPC execution guard, physical-attack priority, Liu Bei aura and military-band aura are enforced.');
+console.log('Strategy access verified: original unit thresholds, military-band morale progression and experience, NPC execution guard, physical-attack priority, Liu Bei aura and military-band aura are enforced.');

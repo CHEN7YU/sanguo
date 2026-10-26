@@ -24,7 +24,12 @@ const BattleRules=(()=>{
     cavalry:[{id:'whirlwind',level:10},{id:'falseReport',level:20}],
     heavyCavalry:[{id:'whirlwind',level:10},{id:'falseReport',level:20}],
     archer:[{id:'vortex',level:6},{id:'fortify',level:10},{id:'recover',level:15}],
-    bandit:[],support:[],transport:[],
+    bandit:[],
+    // Original military bands gain levels mainly by restoring morale. The
+    // first morale-support tactic is available from the moment the class is
+    // usable; stronger variants can extend this progression later.
+    support:[{id:'encourage',level:1}],
+    transport:[],
     // 武术家在原作中并非无策略兵种：6级习得焦热，10级习得援助。
     // 藩宫在泰山登场时已经达到10级，因此两项都应出现在指令菜单中。
     martial:[{id:'fire',level:6},{id:'recover',level:10}],
