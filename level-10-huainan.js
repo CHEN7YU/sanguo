@@ -56,7 +56,7 @@
     '0,14','1,14','4,14','5,14','6,14','7,14','7,15','7,16','7,17','7,18','7,20','7,22','7,23'
   ]);
   const paintedSouthwestFenceCells=new Set([
-    '0,14','1,14','8,14','8,15','8,16','8,17','8,18','8,19','8,20','8,21','9,18','1,20','1,21','4,21','5,21','6,21','7,21'
+    '0,14','1,14','8,14','8,15','8,16','8,18','8,19','8,20','8,21','9,18','1,20','1,21','4,21','5,21','6,21','7,21'
   ]);
   // Some palisades sit exactly between two tactical cells.  Blocking the edge
   // lets units use the clear ground on both sides without walking through the
@@ -65,9 +65,11 @@
     ...Array.from({length:6},(_,index)=>[2+index,14,2+index,15]),
     [1,18,2,18],[1,19,2,19],
     [2,19,2,20],
-    [3,20,4,20],
-    [2,21,2,22],[3,21,3,22]
+    [3,20,4,20]
   ];
+  // The painted east gate crosses (9,17) -> (8,17), while the south gate
+  // crosses rows 21/22 at columns 2-3.  These openings must remain free of
+  // both impassable cells and blocked edges so every troop class can enter.
   // Keep the decoded deployment coordinates as provenance, but do not let the
   // three southwest defenders spawn on the palisade after collision alignment.
   const paintedDeploymentOverrides=[

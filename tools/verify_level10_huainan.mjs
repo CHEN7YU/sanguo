@@ -78,10 +78,16 @@ for(const id of ['liu','guan','mizhu','pangong']){
 assert.notEqual(runtime[14][2],'fence','northwest camp entrance 2,14 must remain open');
 assert.notEqual(runtime[14][3],'fence','northwest camp entrance 3,14 must remain open');
 for(const [x,y] of [[4,14],[5,14],[6,14],[7,14],[7,15],[7,16],[7,17],[7,18],[7,20],[7,22],[7,23]])assert.notEqual(runtime[y][x],'fence',`painted open ground ${x},${y} must not inherit the old DOS fence`);
-for(const [x,y] of [[0,14],[1,14],...[14,15,16,17,18,19,20,21].map(y=>[8,y]),[9,18],[1,20],[1,21],[4,21],[5,21],[6,21],[7,21]])assert.equal(runtime[y][x],'fence',`painted palisade or tower ${x},${y} must be impassable`);
+for(const [x,y] of [[0,14],[1,14],...[14,15,16,18,19,20,21].map(y=>[8,y]),[9,18],[1,20],[1,21],[4,21],[5,21],[6,21],[7,21]])assert.equal(runtime[y][x],'fence',`painted palisade or tower ${x},${y} must be impassable`);
 for(let x=2;x<=7;x++)assert.ok(blockedMovementEdges.has(movementEdgeKey(x,14,x,15)),`north camp wall edge ${x},14-${x},15 must block crossing`);
-for(const edge of [[1,18,2,18],[1,19,2,19],[2,19,2,20],[3,20,4,20],[2,21,2,22],[3,21,3,22]])assert.ok(blockedMovementEdges.has(movementEdgeKey(...edge)),`southwest camp fence edge ${edge.join(',')} missing`);
+for(const edge of [[1,18,2,18],[1,19,2,19],[2,19,2,20],[3,20,4,20]])assert.ok(blockedMovementEdges.has(movementEdgeKey(...edge)),`southwest camp fence edge ${edge.join(',')} missing`);
 assert.equal(blockedMovementEdges.has(movementEdgeKey(3,19,3,20)),false,'the painted gate above camp 3,20 must stay open');
+for(const [x,y] of [[9,17],[8,17],[7,17],[2,21],[3,21],[2,22],[3,22]])assert.ok(!['fence','wall','cliff','water','muddyWater'].includes(runtime[y][x]),`painted camp entrance ${x},${y} must be passable`);
+for(const edge of [[9,17,8,17],[8,17,7,17],[2,21,2,22],[3,21,3,22]])assert.equal(blockedMovementEdges.has(movementEdgeKey(...edge)),false,`painted camp gate edge ${edge.join(',')} must stay open`);
+for(const troop of ['infantry','cavalry','support','martial']){
+  assert.ok(floodFrom({x:9,y:17},troop).has('7,17'),`${troop} cannot enter the southwest camp through its painted east gate`);
+  assert.ok(floodFrom({x:3,y:22},troop).has('3,20'),`${troop} cannot enter the southwest camp through its painted south gate`);
+}
 
 const unit=id=>level.units.find(row=>row.id===id);
 const expectedInitial={jiling:[18,2,20,'heavyCavalry'],lejiu:[15,17,20,'infantry'],chenji:[14,4,19,'infantry'],yuanInf1:[11,15,20,'infantry'],yuanInf2:[11,6,21,'infantry'],yuanCav1:[11,9,20,'cavalry'],yuanCav2:[11,4,21,'cavalry'],yuanArch1:[11,18,19,'archer'],yuanArch2:[10,16,19,'archer'],yuanArch3:[11,3,18,'archer'],yuanBand:[11,1,21,'support'],yuanMartial:[11,7,19,'martial']};
@@ -126,6 +132,7 @@ assert.equal(provenance.portraits.length,expectedFaces.size);
 
 for(const asset of ['assets/level-10-huainan/huainan-map-v1.webp','assets/level-10-huainan/units/ji-ling-unit-v1.webp','assets/level-10-huainan/units/le-jiu-unit-v1.webp','assets/level-10-huainan/units/chen-ji-unit-v1.webp',...['walk','attack','critical','block','hurt','death'].map(action=>`assets/level-10-huainan/animation/ji-ling/ji-ling-${action}-v1.webp`)])assert.ok(fs.existsSync(path.join(root,asset)),`missing ${asset}`);
 const game=read('game.js'),html=read('index.html'),styles=read('style.css'),audio=read('audio-config.js'),board=read('leaderboard.js'),taishan=read('level-09-taishan.js');
+assert.ok(game.includes("previewParams.has('huainanCampGatePreview')&&level.id==='huainan'"),'Huainan camp-gate browser preview is missing');
 assert.match(game,/function traversable\(u,x,y\).*?!isOpponent\(u,occupant\)/,'movement routes must pass through same-side units');
 assert.match(game,/function canCrossMovementEdge\(x1,y1,x2,y2\)/,'painted palisades must support blocked cell edges');
 assert.match(game,/function calcReach\(u\).*?canCrossMovementEdge\(x,y,nx,ny\)/,'reachability must respect palisade edges');

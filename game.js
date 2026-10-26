@@ -4,7 +4,7 @@
   const saveStorage=window.ZhaolieStorage||localStorage;
   window.refreshJieqiaoLevel?.();
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261026-lubu-music-gain-v260';
+  const RUNTIME_BUILD='20261026-huainan-camp-gates-v261';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -1980,6 +1980,7 @@
   },260);
   else if(previewParams.get('level')==='2'&&![...previewParams.keys()].some(key=>key!=='level'))setTimeout(()=>{resetBattleState();hideTitle(false);if(preBattleStory.length)playPreBattleStory(openBattlePrep);else openBattlePrep()},180);
   else if(previewParams.has('storyPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);const target=Math.max(1,Math.min(preBattleStory.length,Number(previewParams.get('storyPreview'))||1));playPreBattleStory(openBattlePrep,target-1)},150);
+  else if(previewParams.has('huainanCampGatePreview')&&level.id==='huainan')setTimeout(()=>{resetBattleState();hideTitle(false);document.getElementById('shopOverlay').classList.add('hidden');battleStarted=true;const actor=units.find(u=>u.id==='guan');actor.x=9;actor.y=17;actor.acted=false;selected=actor;inspected=null;phase='move';reachable=calcReach(actor);battleFocus={x:actor.x,y:actor.y};syncUI();draw();status('淮南营寨东门验证：关羽可由 9,17 经 8,17 进入寨内')},220);
   else if(previewParams.has('longBattleAudit'))setTimeout(()=>{animationSpeed=20;compactRepeatedAnimations=true;battleStarted=true;document.getElementById('shopOverlay').classList.add('hidden');phase='select';playerTurn=true;syncUI();status('长局回归验证：可连续结束回合');draw()},200);
   else if(previewParams.has('turnRecoveryPreview'))setTimeout(()=>{resetBattleState();hideTitle(false);animationSpeed=20;compactRepeatedAnimations=true;battleStarted=true;document.getElementById('shopOverlay').classList.add('hidden');units.filter(u=>u.side==='ally').forEach(u=>{u.acted=true});playerTurn=true;turnTransitionPending=true;phase='animating';selected=units.find(u=>u.side==='ally'&&u.hp>0)||null;syncUI();status('模拟动画结束后遗留的回合锁');draw()},220);
   else if(previewParams.has('defeatQuotePreview'))setTimeout(()=>{resetBattleState();hideTitle(false);document.getElementById('shopOverlay').classList.add('hidden');battleStarted=true;const id=previewParams.get('defeatQuotePreview')||objectiveUnitId,u=units.find(q=>q.id===id)||units.find(q=>(q.originalId??999)<256);u.hp=0;playDefeatQuote(u).then(()=>{if(u.id===objectiveUnitId)victory()})},300);
