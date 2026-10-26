@@ -34,25 +34,25 @@
     U({id:'zhaoyun',originalId:53,name:'赵云',role:'常山义士',className:'轻骑兵',troop:'cavalry',level:11,side:'reserve',x:-1,y:-1,wuli:98,zhili:84,tongyu:87,aiType:1,critRate:.20,blockRate:.17,weapon:'龙胆枪',color:'#7bbbd0',accent:'#e2d8b5',defeatQuote:'子龙护卫不周，请主公速整阵势！'})
   ];
   const common=[
-    E('yuanshao',9,'袁绍','敌军主将','infantry',13,25,15,58,47,71,{boss:true,critRate:.13,blockRate:.14,treasureItems:['qinggang','wuzi'],defeatQuote:'公孙瓒，我不会认输的！'}),
-    E('tianfeng',49,'田丰','袁军军师','archer',8,26,16,45,90,88,{defeatQuote:'主公，胜负已分……先撤吧。'}),
-    E('wenchou',52,'文丑','袁军猛将','cavalry',10,4,16,91,19,86,{critRate:.18,blockRate:.13,defeatQuote:'噢！这次也败了……'}),
-    E('chenlin',98,'陈琳','袁军运输','transport',8,15,23,23,80,55,{defeatQuote:'军资难保……陈琳先退！'}),
-    E('guotu',92,'郭图','袁军将领','infantry',7,27,3,34,76,31,{defeatQuote:'粮仓有失，战局不利……撤！'}),
+    E('yuanshao',9,'袁绍','敌军主将','infantry',13,25,15,58,47,71,{boss:true,critRate:.13,blockRate:.14,treasureItems:['qinggang','wuzi'],defeatQuote:'四世三公之军岂会止步界桥？公孙瓒，来日再战！'}),
+    E('tianfeng',49,'田丰','袁军军师','archer',8,26,16,45,90,88,{defeatQuote:'界桥地势已失，田丰请主公保存河北主力！'}),
+    E('wenchou',52,'文丑','袁军猛将','cavalry',10,4,16,91,19,86,{critRate:.18,blockRate:.13,defeatQuote:'文丑今日失手，改日再来领教白马军！'}),
+    E('chenlin',98,'陈琳','袁军运输','transport',8,15,23,23,80,55,{defeatQuote:'檄文未成，军资又失，陈琳先护文书离阵！'}),
+    E('guotu',92,'郭图','袁军将领','infantry',7,27,3,34,76,31,{defeatQuote:'粮仓已失，郭图须速回中军禀报！'}),
     E('e1',256,'步兵队','后军','infantry',5,28,6,40,30,50),E('e2',257,'步兵队','后军','infantry',5,29,6,40,30,50),
     E('cav1',292,'骑兵队','前军','cavalry',3,15,21,50,30,40),E('cav2',293,'骑兵队','前军','cavalry',3,route==='julu'?23:5,19,50,30,40)
   ];
   const qingheSurvivors=[
-    E('jushou',50,'沮授','袁军谋士','archer',8,7,17,60,85,71,{defeatQuote:'界桥阵势已破……沮授无颜见主公。'}),E('jiaochu',138,'焦触','袁军将领','archer',7,25,16,65,34,61,{defeatQuote:'敌势已近本阵……焦触先退！'}),
-    E('zhanghe',102,'张郃','袁军名将','cavalry',10,23,19,90,62,88,{critRate:.16,blockRate:.15,defeatQuote:'界桥再败……张郃惭愧！'}),E('yanliang',51,'颜良','袁军猛将','cavalry',10,25,19,87,32,84,{critRate:.17,blockRate:.12,defeatQuote:'可恶！颜良改日再战！'}),
-    E('shenpei',91,'审配','袁军参军','infantry',7,24,16,71,67,73,{defeatQuote:'此战失算……撤回袁公身边！'}),E('fengji',54,'逢纪','袁军将领','infantry',8,6,18,54,82,66,{defeatQuote:'又是刘备军……撤！'}),
-    E('gaolan',103,'高览','袁军将领','archer',7,9,18,75,50,72,{aiType:1,defeatQuote:'刘备军势盛……高览先退！'}),E('archer1',274,'弓兵队','前军','archer',3,8,19,40,50,30,{aiType:1}),
+    E('jushou',50,'沮授','袁军谋士','archer',8,7,17,60,85,71,{defeatQuote:'界桥阵势已破……沮授无颜见主公。'}),E('jiaochu',138,'焦触','袁军将领','archer',7,25,16,65,34,61,{defeatQuote:'焦触弓阵已乱，先护住袁军前锋！'}),
+    E('zhanghe',102,'张郃','袁军名将','cavalry',10,23,19,90,62,88,{critRate:.16,blockRate:.15,defeatQuote:'界桥阵破，张郃回营重整骑军！'}),E('yanliang',51,'颜良','袁军猛将','cavalry',10,25,19,87,32,84,{critRate:.17,blockRate:.12,defeatQuote:'颜良刀势未尽，来日再与白马军较量！'}),
+    E('shenpei',91,'审配','袁军参军','infantry',7,24,16,71,67,73,{defeatQuote:'营垒已破，审配回中军重布防线！'}),E('fengji',54,'逢纪','袁军将领','infantry',8,6,18,54,82,66,{defeatQuote:'逢纪此策失算，回营再献破敌之计！'}),
+    E('gaolan',103,'高览','袁军将领','archer',7,9,18,75,50,72,{aiType:1,defeatQuote:'高览箭阵已散，必须保住袁军粮道！'}),E('archer1',274,'弓兵队','前军','archer',3,8,19,40,50,30,{aiType:1}),
     E('band1',328,'军乐队','支援','support',5,7,20,20,70,35,{aiType:1}),E('band2',329,'军乐队','支援','support',5,16,22,20,70,35)
   ];
   const juluSurvivors=[
-    E('jushou',50,'沮授','袁军谋士','archer',8,7,20,60,85,71,{defeatQuote:'界桥阵势已破……沮授无颜见主公。'}),E('jiaochu',138,'焦触','袁军将领','archer',7,14,22,65,34,61,{defeatQuote:'敌势已近本阵……焦触先退！'}),
-    E('quyi',60,'麴义','袁军名将','cavalry',10,25,19,73,39,65,{critRate:.15,blockRate:.13,defeatQuote:'竟又败在刘备军手里……撤！'}),E('zhangnan',139,'张南','袁军将领','archer',7,9,18,56,46,47,{aiType:1,defeatQuote:'张南难挡援军，先退！'}),
-    E('chenzhen',56,'陈震','袁军将领','infantry',7,24,16,35,65,32,{defeatQuote:'敌军来势太猛……撤！'}),E('xuyou',55,'许攸','袁军参军','support',7,25,16,45,61,40,{defeatQuote:'形势不妙，许攸先走一步！'}),
+    E('jushou',50,'沮授','袁军谋士','archer',8,7,20,60,85,71,{defeatQuote:'界桥阵势已破……沮授无颜见主公。'}),E('jiaochu',138,'焦触','袁军将领','archer',7,14,22,65,34,61,{defeatQuote:'焦触弓阵已乱，先护住袁军前锋！'}),
+    E('quyi',60,'麴义','袁军名将','cavalry',10,25,19,73,39,65,{critRate:.15,blockRate:.13,defeatQuote:'先登营竟被冲破……麴义记住这一战！'}),E('zhangnan',139,'张南','袁军将领','archer',7,9,18,56,46,47,{aiType:1,defeatQuote:'张南弓队已散，须去护住北面阵脚！'}),
+    E('chenzhen',56,'陈震','袁军将领','infantry',7,24,16,35,65,32,{defeatQuote:'陈震无力再挡援军，只得回中军复命！'}),E('xuyou',55,'许攸','袁军参军','support',7,25,16,45,61,40,{defeatQuote:'胜负已明，许攸自有脱身之计！'}),
     E('bandit1',310,'贼兵','前军','bandit',6,8,19,50,40,30,{aiType:1}),E('band1',328,'军乐队','支援','support',5,10,17,20,70,35)
   ];
   const frontAiUpdates=route==='julu'?

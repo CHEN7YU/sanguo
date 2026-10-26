@@ -41,12 +41,12 @@
     U({id:'taishici',originalId:149,name:'太史慈',role:'北海义士',className:'轻骑兵',troop:'cavalry',level:13,side:'reserve',x:-1,y:-1,wuli:94,zhili:67,tongyu:81,aiType:4,aiTarget:P(27,12),critRate:.18,blockRate:.15,weapon:'长枪',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'援军未至徐州……太史慈岂能倒下！'})
   ];
   const enemies=[
-    E('yujin',62,'于禁','曹军主将','infantry',14,25,12,60,52,62,{boss:true,aiType:6,aiTarget:P(22,13),critRate:.14,blockRate:.15,defeatQuote:'关云长果然名不虚传……于禁暂且退兵！'}),
-    E('yuejin',217,'乐进','曹军先锋','cavalry',11,15,1,74,39,74,{aiType:3,critRate:.15,blockRate:.11,defeatQuote:'敌势正盛，乐进先退！'}),
-    E('lidian',115,'李典','曹军将领','infantry',11,26,9,72,47,73,{aiType:6,aiTarget:P(22,12),critRate:.13,blockRate:.13,defeatQuote:'徐州援军已至……李典暂退！'}),
-    E('guojia',61,'郭嘉','曹军军师','archer',10,24,14,36,97,32,{aiType:6,aiTarget:P(21,15),range:2,critRate:.10,blockRate:.08,defeatQuote:'此势不利，奉孝先退一步。'}),
-    E('caohong',19,'曹洪','曹军将领','infantry',11,8,1,74,47,74,{aiType:1,critRate:.14,blockRate:.12,defeatQuote:'可恶，竟让刘备军闯了过去！'}),
-    E('xiahouyuan',17,'夏侯渊','曹军援将','cavalry',11,4,1,90,52,86,{aiType:4,aiTarget:P(27,12),critRate:.18,blockRate:.14,defeatQuote:'援兵未能合围……撤！'}),
+    E('yujin',62,'于禁','曹军主将','infantry',14,25,12,60,52,62,{boss:true,aiType:6,aiTarget:P(22,13),critRate:.14,blockRate:.15,defeatQuote:'关云长刀势沉猛，于禁整军后再战！'}),
+    E('yuejin',217,'乐进','曹军先锋','cavalry',11,15,1,74,39,74,{aiType:3,critRate:.15,blockRate:.11,defeatQuote:'乐进冲阵未成，须去收拢先锋营！'}),
+    E('lidian',115,'李典','曹军将领','infantry',11,26,9,72,47,73,{aiType:6,aiTarget:P(22,12),critRate:.13,blockRate:.13,defeatQuote:'李典判断失误，徐州援军比预想更快！'}),
+    E('guojia',61,'郭嘉','曹军军师','archer',10,24,14,36,97,32,{aiType:6,aiTarget:P(21,15),range:2,critRate:.10,blockRate:.08,defeatQuote:'徐州之势已变，奉孝须回报孟德另定计策！'}),
+    E('caohong',19,'曹洪','曹军将领','infantry',11,8,1,74,47,74,{aiType:1,critRate:.14,blockRate:.12,defeatQuote:'曹洪守不住这条路了，必须护住主公本阵！'}),
+    E('xiahouyuan',17,'夏侯渊','曹军援将','cavalry',11,4,1,90,52,86,{aiType:4,aiTarget:P(27,12),critRate:.18,blockRate:.14,defeatQuote:'妙才疾行未能合围，回曹军右翼重整快骑！'}),
     E('infantry1',256,'步兵队','曹军步兵','infantry',7,5,0,60,40,55,{aiType:4,aiTarget:P(27,11)}),
     E('infantry2',257,'步兵队','曹军步兵','infantry',7,5,2,60,40,55,{aiType:3}),
     E('martial1',336,'武术家','曹军武术家','martial',7,25,14,72,28,65,{aiType:6,aiTarget:P(20,12)}),

@@ -7,8 +7,8 @@ const root=fileURLToPath(new URL('..',import.meta.url));
 const fail=message=>{throw new Error(message)};
 const levelFiles=fs.readdirSync(root).filter(name=>/^level-(?:0[1-9]|10)(?:-[^.]+)?\.js$/.test(name)&&!name.includes('animation-bounds'));
 const quoteOwners=new Map();
-const genericFriendlyQuote=/(?:暂且退下|主公.{0,4}先退|先退一步|暂退[！。…]*$)/;
-let namedCount=0,friendlyCount=0;
+const genericDefeatQuote=/(?:暂且退下|我先退下|先退一步|暂退[！。…]*$|(?:全军)?撤退[！。…]*$|^[可恶可恨呀啊噢！？，、。… ]*(?:撤|退兵)[！。…]*$)/;
+let namedCount=0;
 for(const file of levelFiles){
   const sandbox={window:{},location:{search:''},localStorage:{getItem:()=>null},URLSearchParams};
   vm.runInNewContext(fs.readFileSync(path.join(root,file),'utf8'),sandbox);
@@ -19,10 +19,7 @@ for(const file of levelFiles){
       const text=unit.defeatQuote.trim(),owner=quoteOwners.get(text);
       if(owner&&owner!==unit.name)fail(`${level.id}: ${unit.name} reuses ${owner}'s defeat quote: ${text}`);
       quoteOwners.set(text,unit.name);
-      if(['ally','guest','reserve'].includes(unit.side)){
-        friendlyCount++;
-        if(genericFriendlyQuote.test(text))fail(`${level.id}: ${unit.name} still uses a generic retreat quote: ${text}`);
-      }
+      if(genericDefeatQuote.test(text))fail(`${level.id}: ${unit.name} still uses a generic defeat quote: ${text}`);
     }
   }
 }
@@ -50,4 +47,4 @@ for(const expected of [
   'unit.defeatQuotePlayed=true'
 ])if(!game.includes(expected))fail(`defeat dialogue ordering regression: ${expected}`);
 if(!game.includes("previewParams.has('defeatQuotePreview')"))fail('defeat quote browser preview is missing');
-console.log(`Named defeat quotes verified: ${namedCount} named units, including ${friendlyCount} allied or guest appearances across all implemented battles.`);
+console.log(`Named defeat quotes verified: ${namedCount} allied, guest and enemy appearances across all implemented battles.`);

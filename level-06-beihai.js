@@ -54,7 +54,7 @@
     U({id:'mengsu',originalId:233,name:'孟肃',role:'北海守军',className:'山贼',troop:'bandit',level:1,side:'guest',x:1,y:0,wuli:69,zhili:31,tongyu:52,aiType:2,stationary:true,critRate:.10,blockRate:.10,weapon:'环首刀',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'寨门交给诸位，孟肃去聚拢乡勇！'})
   ];
   const enemies=[
-    E('guanhai',216,'管亥','黄巾首领','bandit',10,6,7,68,14,52,{boss:true,aiType:6,aiTarget:P(7,10),runtimeAiTarget:P(10,7),critRate:.16,blockRate:.12,weapon:'大刀',defeatQuote:'倒霉！你们再晚一点来，这个城就成我的了．'}),
+    E('guanhai',216,'管亥','黄巾首领','bandit',10,6,7,68,14,52,{boss:true,aiType:6,aiTarget:P(7,10),runtimeAiTarget:P(10,7),critRate:.16,blockRate:.12,weapon:'大刀',defeatQuote:'北海城近在眼前，管亥竟败在最后一步！'}),
     E('bandit1',310,'贼兵','攻城前锋','bandit',6,2,9,50,40,30,{aiType:6,aiTarget:P(9,15)}),
     E('bandit2',311,'贼兵','攻城前锋','bandit',6,3,8,50,40,30,{aiType:6,aiTarget:P(9,16)}),
     E('bandit3',312,'贼兵','攻城前锋','bandit',5,7,6,50,40,30,{aiType:6,aiTarget:P(8,10)}),
