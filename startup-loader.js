@@ -44,7 +44,7 @@
   function update(){
     if(finished)return;
     if(!sealed){
-      paint(Math.min(24,8+registered*.16),'正在检查游戏程序','准备战场、人物与剧情资源');
+      paint(Math.min(24,8+registered*.16),'正在检查游戏程序','准备开始画面与基础程序');
       return;
     }
     const ratio=registered?settled/registered:1;
@@ -85,6 +85,6 @@
     detail.textContent='网络速度较慢，仍在继续载入；也可以重新加载。';
     retry.hidden=false;
   },30000);
-  paint(6,'正在连接战场','首次打开需要载入游戏程序与当前资源');
+  paint(6,'正在连接战场','首次打开只载入游戏程序与开始画面');
   window.ZhaolieStartup={ready,trackImage,seal,fail};
 })();

@@ -10,9 +10,9 @@
   <style id="startupLoaderCritical">
     .startup-loader{position:fixed;z-index:99990;inset:0;display:grid;place-items:center;overflow:hidden;padding:24px;background:radial-gradient(circle at 50% 32%,#173a55 0,#071b31 37%,#020a14 100%);color:#e8dec2;font-family:"Microsoft YaHei","Noto Sans SC",sans-serif;transition:opacity .42s ease,visibility .42s ease}.startup-loader:before,.startup-loader:after{content:"";position:absolute;pointer-events:none}.startup-loader:before{inset:16px;border:1px solid #bd842d66;box-shadow:inset 0 0 70px #0008}.startup-loader:after{width:min(740px,82vw);height:min(740px,82vw);border:1px solid #d2a95814;border-radius:50%;box-shadow:0 0 0 46px #d2a95808,0 0 0 92px #d2a95805;animation:startupSeal 16s linear infinite}.startup-loader-card{position:relative;z-index:1;width:min(560px,86vw);padding:44px 48px 38px;border:1px solid #c08a38;background:linear-gradient(145deg,#0f3153e8,#06162df5 72%);box-shadow:inset 0 0 0 1px #f2cb7352,0 28px 90px #000d;text-align:center}.startup-loader-kicker{display:block;color:#75ccd5;font:12px serif;letter-spacing:8px}.startup-loader h1{margin:12px 0 5px;color:#f1d18a;font:clamp(30px,5vw,48px) serif;letter-spacing:10px;text-shadow:0 3px 12px #000}.startup-loader-subtitle{margin:0 0 30px;color:#b7c8ca;font-size:12px;letter-spacing:3px}.startup-loader-track{height:8px;overflow:hidden;border:1px solid #9b7137;background:#020913;box-shadow:inset 0 1px 5px #000}.startup-loader-bar{width:6%;height:100%;background:linear-gradient(90deg,#7a4e1e,#e5b954 58%,#fff0a8);box-shadow:0 0 14px #efc35b99;transition:width .18s ease}.startup-loader-copy{display:flex;justify-content:space-between;gap:14px;margin-top:12px;color:#e8d6a8;font-size:13px}.startup-loader-copy b{letter-spacing:2px}.startup-loader-copy span{font-variant-numeric:tabular-nums;color:#78d0d7}.startup-loader-detail{min-height:19px;margin:9px 0 0;color:#849da7;font-size:11px}.startup-loader-retry{margin-top:18px;min-height:40px;padding:0 24px;border:1px solid #d0a34f;background:#68491f;color:#ffe7a8;font-family:inherit;letter-spacing:2px;cursor:pointer}.startup-loader-error .startup-loader-bar{background:linear-gradient(90deg,#7f2f27,#e4865d)}.startup-loader-error .startup-loader-detail{color:#f0aa8e}.startup-loader-leaving{opacity:0;visibility:hidden}.startup-loader[hidden]{display:none}.startup-loader-noscript{position:fixed;z-index:100001;inset:0;display:grid;place-items:center;padding:24px;background:#06182d;color:#fff;text-align:center;font-family:"Microsoft YaHei",sans-serif}.startup-loader-noscript b{color:#f4d58a;font-size:24px}@keyframes startupSeal{to{transform:rotate(360deg)}}@media(max-width:600px){.startup-loader-card{padding:32px 22px 28px}.startup-loader h1{letter-spacing:5px}.startup-loader-copy{font-size:11px}.startup-loader:before{inset:8px}}@media(max-height:480px) and (orientation:landscape){.startup-loader-card{width:min(620px,82vw);padding:18px 34px}.startup-loader h1{margin:5px 0 2px;font-size:28px}.startup-loader-subtitle{margin-bottom:14px}.startup-loader-detail{margin-top:5px}.startup-loader-retry{min-height:34px;margin-top:8px}}@media(prefers-reduced-motion:reduce){.startup-loader:after{animation:none}.startup-loader,.startup-loader-bar{transition:none}}
   </style>
-  <link rel="stylesheet" href="style.css?build=20261026-inferno-v266" />
-  <link rel="modulepreload" href="save-format.mjs?build=20261026-inferno-v266" />
-  <link rel="stylesheet" href="auth.css?build=20261026-inferno-v266" />
+  <link rel="stylesheet" href="style.css?build=20261026-level-stream-v267" />
+  <link rel="modulepreload" href="save-format.mjs?build=20261026-level-stream-v267" />
+  <link rel="stylesheet" href="auth.css?build=20261026-level-stream-v267" />
 </head>
 <body>
   <section id="startupLoader" class="startup-loader" role="progressbar" aria-label="正在载入游戏" aria-valuemin="0" aria-valuemax="100" aria-valuenow="6">
@@ -22,12 +22,12 @@
       <p class="startup-loader-subtitle">整军 · 点将 · 入阵</p>
       <div class="startup-loader-track" aria-hidden="true"><div id="startupLoaderBar" class="startup-loader-bar"></div></div>
       <div class="startup-loader-copy"><b id="startupLoaderStatus">正在连接战场</b><span id="startupLoaderPercent">6%</span></div>
-      <p id="startupLoaderDetail" class="startup-loader-detail">首次打开需要载入游戏程序与当前资源</p>
+      <p id="startupLoaderDetail" class="startup-loader-detail">首次打开只载入游戏程序与开始画面</p>
       <button id="startupLoaderRetry" class="startup-loader-retry" type="button" hidden>重新加载</button>
     </div>
   </section>
   <noscript><div class="startup-loader-noscript"><p><b>无法启动游戏</b><br><br>请在浏览器设置中启用 JavaScript 后重新打开。</p></div></noscript>
-  <script src="startup-loader.js?build=20261026-inferno-v266"></script>
+  <script src="startup-loader.js?build=20261026-level-stream-v267"></script>
   <aside id="directFileNotice" style="position:fixed;inset:0;z-index:100000;display:none;place-items:center;padding:24px;background:#06182d;color:#f4d58a;font-family:'Microsoft YaHei',sans-serif;text-align:center">
     <div style="max-width:720px;padding:36px;border:1px solid #bd842d;background:#0a2746;box-shadow:0 16px 60px #0008">
       <h1 style="margin:0 0 18px;font-size:30px">启动方式不正确</h1>
@@ -131,7 +131,7 @@
     <div id="titleNotice" class="title-notice" aria-live="polite"></div>
   </section>
   <section id="openingOverlay" class="opening-overlay hidden" aria-label="开篇动画">
-    <video id="openingVideo" src="assets/video/opening.mp4?build=20261026-inferno-v266" poster="assets/title-cover.webp" preload="metadata" playsinline></video>
+    <video id="openingVideo" data-src="assets/video/opening.mp4?build=20261026-level-stream-v267" poster="assets/title-cover.webp" preload="none" playsinline></video>
     <button id="openingSkipBtn" type="button">点击或按任意键跳过</button>
   </section>
   <section id="storyOverlay" class="story-overlay hidden" aria-label="序章剧情">
@@ -223,7 +223,7 @@
         <div class="controls-tip"><span class="desktop-tip">左键行动 · 右键取消 · 滚轮缩放 · 中键拖动 · A攻击 S策略 W待机 D危险区</span><span class="touch-tip">轻触行动 · 单指拖动画面 · 双指缩放</span></div>
         <div id="dialogOverlay" class="dialog-overlay hidden">
           <div class="dialog-portrait" id="dialogPortrait" data-speaker="刘备">
-            <img id="dialogPortraitImage" src="assets/liu-bei-remaster-v2.webp" alt="刘备立绘">
+            <img id="dialogPortraitImage" alt="刘备立绘">
             <span id="dialogPortraitMark" class="hidden">刘</span>
           </div>
           <div class="dialog-copy"><b id="dialogSpeaker">刘备</b><p id="dialogText"></p><div class="dialog-actions"><small>点击或按任意键继续</small></div></div>
@@ -257,7 +257,7 @@
       <aside class="sidebar">
         <nav class="army-tabs" aria-label="阵营"><b>刘备军</b><span class="active">我军</span><span>盟军</span><span>敌军</span></nav>
         <section class="portrait-card">
-          <div id="portrait" class="portrait"><img id="portraitImage" src="assets/liu-bei-remaster-v2.webp" alt="刘备"><span>刘</span></div>
+          <div id="portrait" class="portrait"><img id="portraitImage" alt="刘备"><span>刘</span></div>
           <div class="unit-title"><small id="unitRole">平原相</small><strong id="unitName">刘备</strong></div>
           <div class="hp-row"><span>兵力</span><div><i id="hpBar"></i></div><b id="hpText">100 / 100</b></div>
           <div class="morale-row"><span>士气</span><div><i id="moraleBar"></i></div><b id="moraleText">100 / 100</b></div>
@@ -401,41 +401,41 @@
     <button id="portraitContinueBtn" class="subtle" type="button">暂用竖屏</button>
   </div>
   <audio id="titleMusic" src="assets/audio/title-theme.mp3" preload="auto" autoplay loop hidden></audio>
-  <audio id="storyMusic" src="assets/audio/original-music-2.opus" preload="auto" loop hidden></audio>
-  <audio id="battleMusic" src="assets/audio/knights-errant.mp3" preload="auto" loop hidden></audio>
-  <script src="cloud-saves.js?build=20261026-inferno-v266"></script>
-  <script src="analytics.js?build=20261026-inferno-v266"></script>
-  <script src="audio-config.js?build=20261026-inferno-v266"></script>
-  <script src="battle-sfx.js?build=20261026-inferno-v266"></script>
-  <script src="battle-rules.js?build=20261026-inferno-v266"></script>
-  <script src="level-01.js?build=20261026-inferno-v266"></script>
-  <script src="level-02.js?build=20261026-inferno-v266"></script>
-  <script src="level-02-animation-bounds.js?build=20261026-inferno-v266"></script>
-  <script src="zhao-yun-animation-bounds.js?build=20261026-inferno-v266"></script>
-  <script src="wen-chou-animation-bounds.js?build=20261026-inferno-v266"></script>
-  <script src="jieqiao-core-animation-bounds.js?build=20261026-inferno-v266"></script>
-  <script src="level-03-guangchuan.js?build=20261026-inferno-v266"></script>
-  <script src="level-03-xindu.js?build=20261026-inferno-v266"></script>
-  <script src="level-04-julu.js?build=20261026-inferno-v266"></script>
-  <script src="level-04-qinghe.js?build=20261026-inferno-v266"></script>
-  <script src="level-05-jieqiao.js?build=20261026-inferno-v266"></script>
-  <script src="level-06-beihai.js?build=20261026-inferno-v266"></script>
-  <script src="level-07-xuzhou.js?build=20261026-inferno-v266"></script>
-  <script src="level-08-xiaopei.js?build=20261026-inferno-v266"></script>
-  <script src="level-08-xiaopei-animation-bounds.js?build=20261026-inferno-v266"></script>
-  <script src="level-09-taishan.js?build=20261026-inferno-v266"></script>
-  <script src="level-09-taishan-animation-bounds.js?build=20261026-inferno-v266"></script>
-  <script src="level-10-huainan.js?build=20261026-inferno-v266"></script>
-  <script src="level-10-huainan-animation-bounds.js?build=20261026-inferno-v266"></script>
-  <script src="beihai-animation-bounds.js?build=20261026-inferno-v266"></script>
-  <script src="level-07-xuzhou-animation-bounds.js?build=20261026-inferno-v266"></script>
-  <script src="story-data.js?build=20261026-inferno-v266"></script>
-  <script src="dialogue-style.js?build=20261026-inferno-v266"></script>
-  <script src="battle-view.js?build=20261026-inferno-v266"></script>
-  <script src="leaderboard.js?build=20261026-inferno-v266"></script>
-  <script src="mounted-combat-bounds-v1.js?build=20261026-inferno-v266"></script>
-  <script src="bandit-combat-bounds-v3.js?build=20261026-inferno-v266"></script>
-  <script src="game.js?build=20261026-inferno-v266"></script>
-  <script src="auth.js?build=20261026-inferno-v266"></script>
+  <audio id="storyMusic" data-src="assets/audio/original-music-2.opus" preload="none" loop hidden></audio>
+  <audio id="battleMusic" data-src="assets/audio/knights-errant.mp3" preload="none" loop hidden></audio>
+  <script src="cloud-saves.js?build=20261026-level-stream-v267"></script>
+  <script src="analytics.js?build=20261026-level-stream-v267"></script>
+  <script src="audio-config.js?build=20261026-level-stream-v267"></script>
+  <script src="battle-sfx.js?build=20261026-level-stream-v267"></script>
+  <script src="battle-rules.js?build=20261026-level-stream-v267"></script>
+  <script src="level-01.js?build=20261026-level-stream-v267"></script>
+  <script src="level-02.js?build=20261026-level-stream-v267"></script>
+  <script src="level-02-animation-bounds.js?build=20261026-level-stream-v267"></script>
+  <script src="zhao-yun-animation-bounds.js?build=20261026-level-stream-v267"></script>
+  <script src="wen-chou-animation-bounds.js?build=20261026-level-stream-v267"></script>
+  <script src="jieqiao-core-animation-bounds.js?build=20261026-level-stream-v267"></script>
+  <script src="level-03-guangchuan.js?build=20261026-level-stream-v267"></script>
+  <script src="level-03-xindu.js?build=20261026-level-stream-v267"></script>
+  <script src="level-04-julu.js?build=20261026-level-stream-v267"></script>
+  <script src="level-04-qinghe.js?build=20261026-level-stream-v267"></script>
+  <script src="level-05-jieqiao.js?build=20261026-level-stream-v267"></script>
+  <script src="level-06-beihai.js?build=20261026-level-stream-v267"></script>
+  <script src="level-07-xuzhou.js?build=20261026-level-stream-v267"></script>
+  <script src="level-08-xiaopei.js?build=20261026-level-stream-v267"></script>
+  <script src="level-08-xiaopei-animation-bounds.js?build=20261026-level-stream-v267"></script>
+  <script src="level-09-taishan.js?build=20261026-level-stream-v267"></script>
+  <script src="level-09-taishan-animation-bounds.js?build=20261026-level-stream-v267"></script>
+  <script src="level-10-huainan.js?build=20261026-level-stream-v267"></script>
+  <script src="level-10-huainan-animation-bounds.js?build=20261026-level-stream-v267"></script>
+  <script src="beihai-animation-bounds.js?build=20261026-level-stream-v267"></script>
+  <script src="level-07-xuzhou-animation-bounds.js?build=20261026-level-stream-v267"></script>
+  <script src="story-data.js?build=20261026-level-stream-v267"></script>
+  <script src="dialogue-style.js?build=20261026-level-stream-v267"></script>
+  <script src="battle-view.js?build=20261026-level-stream-v267"></script>
+  <script src="leaderboard.js?build=20261026-level-stream-v267"></script>
+  <script src="mounted-combat-bounds-v1.js?build=20261026-level-stream-v267"></script>
+  <script src="bandit-combat-bounds-v3.js?build=20261026-level-stream-v267"></script>
+  <script src="game.js?build=20261026-level-stream-v267"></script>
+  <script src="auth.js?build=20261026-level-stream-v267"></script>
 </body>
 </html>

@@ -79,7 +79,7 @@ assert(game.includes("saveXiaopeiPostBattle('negotiate')")&&!game.includes("comp
 assert(game.includes("hasJianxiongAura(u)&&(key==='atk'||key==='def')")&&game.includes('value*=1.08'),'Jianxiong 8% attack/defense aura missing');
 assert(game.includes("effectiveStrategyHit(caster,rule)")&&game.includes("hasJianxiongAura(u)?.1:0"),'Jianxiong +10 percentage-point strategy accuracy missing');
 assert(game.includes("target?.id!=='caocao'")&&game.includes("Math.floor(raw*.2)"),'Jianxiong 20% damage transfer missing');
-for(const path of ['performCounter','async function attack(attacker,target)','async function attackNpc(a,t)','success&&type===\'fire\''])assert(game.includes(path),`Jianxiong damage integration missing near ${path}`);
+for(const path of ['performCounter','async function attack(attacker,target)','async function attackNpc(a,t)','success&&rule.fireTactic'])assert(game.includes(path),`Jianxiong damage integration missing near ${path}`);
 assert(game.includes("passiveName.textContent='被动 · 奸雄'")&&game.includes("passiveName.textContent='增益 · 奸雄'"),'Jianxiong panel descriptions missing');
 assert(game.includes("jianxiongPreview"),'Jianxiong regression preview missing');
 assert(game.includes("audit=[{bridge:[9,8],start:[10,8]},{bridge:[12,13],start:[11,13]}]"),'bridge audit preview coordinates are stale');

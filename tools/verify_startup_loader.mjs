@@ -25,9 +25,13 @@ for(const token of [
   'window.ZhaolieStartup={ready,trackImage,seal,fail}'
 ])assert.ok(loader.includes(token),`loader does not track real asset readiness: ${token}`);
 
-assert.ok(game.includes('function preloadImage(src)'));
+assert.ok(game.includes('function lazyImage(src)'));
 assert.equal((game.match(/new Image\(\)/g)||[]).length,1,
-  'all eager runtime image creation must pass through the startup progress tracker');
+  'all runtime image creation must pass through the lazy image registry');
+assert.ok(game.includes('function ensureStageAssets()')&&game.includes('hideTitle(playMusic=true){ensureStageAssets()'),
+  'battle images must start loading only after the player leaves the title screen');
+assert.ok(!game.includes('Object.values(dialoguePortraits).forEach(preloadImage)'),
+  'the title screen must not preload every dialogue portrait');
 assert.ok(game.includes('window.ZhaolieStartup?.seal()'), 'game must seal the resource manifest after registration');
 assert.ok(game.includes('window.ZhaolieStartup.ready.then(playTitleIntro)'),
   'the title intro must wait until the loading screen has finished');
@@ -37,4 +41,4 @@ assert.equal(new Set(builds).size,1,'all startup resources must use one cache ve
 assert.equal(builds[0],game.match(/const RUNTIME_BUILD='([^']+)'/)?.[1],
   'HTML and runtime cache versions must match');
 
-console.log(`Startup loader verified: real image progress, failure retry, accessible fallback and delayed intro (${builds[0]}).`);
+console.log(`Startup loader verified: page readiness, failure retry, accessible fallback, delayed battle assets and intro (${builds[0]}).`);
