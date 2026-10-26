@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
+const game=read('game.js');
 const context={window:{},URLSearchParams,location:{search:''},localStorage:{getItem:()=>null}};
 vm.createContext(context);
 vm.runInContext(read('level-10-huainan.js'),context,{filename:'level-10-huainan.js'});
@@ -110,7 +111,11 @@ assert.deepEqual(JSON.parse(JSON.stringify(level.alternateVictory)),{unitId:'liu
 const approach=level.areaEvents.find(event=>event.id==='huainan-retreat-warning');
 assert.deepEqual(JSON.parse(JSON.stringify(approach.rect)),{x1:3,y1:10,x2:9,y2:13});
 assert.equal(approach.aiUpdates.length,22);assert.ok(approach.aiUpdates.every(update=>update.aiType===3&&update.aiTarget===0));
-assert.deepEqual(JSON.parse(JSON.stringify(level.events.loot['2,22'])),{item:'fireScroll',amount:1,gold:300});
+assert.deepEqual(JSON.parse(JSON.stringify(level.events.loot['2,22'])),{item:'infernoScroll',amount:1,gold:300});
+assert.ok(game.includes("infernoScroll:{name:'猛火书'"),'Huainan reward must use the independent 猛火书 item');
+assert.ok(game.includes("inferno:{name:'猛火',cost:12"),'猛火 must exist as the original 12-SP tactic');
+assert.ok(game.includes("fireTacticDamage(target,rule.fireTactic,caster)"),'learned fire tactics must use the original strategy damage rule');
+assert.ok(game.includes("migrateHuainanTreasureReward(save)"),'old Huainan saves must migrate the downgraded 焦热书 reward');
 assert.equal(level.events.battleReward,400);assert.equal(level.events.victoryMusicId,16);
 assert.equal(level.events.duel.attackerId,'guan');assert.equal(level.events.duel.defenderId,'zhangliao');assert.equal(level.events.duel.endsBattle,false);
 
@@ -131,7 +136,7 @@ for(const portrait of provenance.portraits){assert.equal(portrait.faceId,expecte
 assert.equal(provenance.portraits.length,expectedFaces.size);
 
 for(const asset of ['assets/level-10-huainan/huainan-map-v1.webp','assets/level-10-huainan/units/ji-ling-unit-v1.webp','assets/level-10-huainan/units/le-jiu-unit-v1.webp','assets/level-10-huainan/units/chen-ji-unit-v1.webp',...['walk','attack','critical','block','hurt','death'].map(action=>`assets/level-10-huainan/animation/ji-ling/ji-ling-${action}-v1.webp`)])assert.ok(fs.existsSync(path.join(root,asset)),`missing ${asset}`);
-const game=read('game.js'),html=read('index.html'),styles=read('style.css'),audio=read('audio-config.js'),board=read('leaderboard.js'),taishan=read('level-09-taishan.js');
+const html=read('index.html'),styles=read('style.css'),audio=read('audio-config.js'),board=read('leaderboard.js'),taishan=read('level-09-taishan.js');
 assert.ok(game.includes("level.events?.loot?.[keyOf(x,y)]||level.events?.treasure"),'treasure tooltip must read the reward assigned to the hovered tile');
 assert.ok(game.includes("bonusGold=Math.max(0,Math.floor(Number(treasure.gold)||0))"),'treasure pickup must support the Huainan item-and-gold reward');
 assert.ok(game.includes("previewParams.has('huainanCampGatePreview')&&level.id==='huainan'"),'Huainan camp-gate browser preview is missing');

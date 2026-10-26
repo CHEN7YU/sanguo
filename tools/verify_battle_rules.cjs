@@ -50,6 +50,9 @@ assert.deepEqual(rules.terrainRecovery({hp:495,maxHp:500,morale:91,tongyu:42,rec
 assert.equal(rules.strategyAbility(30,2),31);
 assert.equal(rules.fireScrollDamage({targetZhili:30,targetLevel:2,targetTroop:'infantry',randomRoll:2,targetHp:500}),171);
 assert.equal(rules.fireScrollDamage({targetZhili:30,targetLevel:2,targetTroop:'infantry',targetInForest:true,randomRoll:3,targetHp:500}),214);
+assert.equal(rules.infernoScrollDamage({targetZhili:30,targetLevel:2,targetTroop:'infantry',randomRoll:2,targetHp:2000}),971);
+assert.equal(rules.infernoScrollDamage({targetZhili:30,targetLevel:2,targetTroop:'infantry',targetInForest:true,randomRoll:3,targetHp:2000}),1214);
+assert.equal(rules.fireTacticDamage({tactic:'inferno',attackerZhili:75,attackerLevel:26,targetZhili:30,targetLevel:2,targetTroop:'infantry',randomRoll:0,targetHp:2000}),1197);
 
 assert.equal(rules.aiStrategyDecision({turn:4,hasPhysicalAttack:true,emergencyHeal:true,role:'西凉军',zhili:80}),'attack');
 assert.equal(rules.aiStrategyDecision({turn:4,lastStrategyTurn:2,cooldown:3,role:'西凉军',zhili:80}),'cooldown');
@@ -64,7 +67,9 @@ assert.deepEqual(rules.learnedStrategies({troop:'cavalry',level:9}),[]);
 assert.deepEqual(rules.learnedStrategies({troop:'cavalry',level:10}),['whirlwind']);
 assert.deepEqual(rules.learnedStrategies({troop:'cavalry',level:99}),['whirlwind','falseReport']);
 assert.deepEqual(rules.learnedStrategies({troop:'archer',level:6}),['vortex']);
-assert.deepEqual(rules.learnedStrategies({troop:'support',level:1}),[]);
+assert.deepEqual(rules.learnedStrategies({troop:'martial',level:25}),['fire','recover']);
+assert.deepEqual(rules.learnedStrategies({troop:'martial',level:26}),['fire','recover','inferno']);
+assert.deepEqual(rules.learnedStrategies({troop:'support',level:1}),['encourage']);
 assert.deepEqual(rules.learnedStrategies({troop:'cavalry',level:1,override:['fire']}),['fire']);
 
 const bandAuraUnits=[

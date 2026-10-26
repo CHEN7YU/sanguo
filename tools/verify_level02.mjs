@@ -92,8 +92,8 @@ check(game.includes('function updateTerrainInfo(q)'), 'unit-specific terrain inf
 check(game.includes("movementCostLabel(tileCost(actor,q.x,q.y))"), 'terrain information must use the selected unit movement class');
 check(game.includes('updateTerrainInfo(hover);draw()'), 'keyboard terrain inspection is not wired');
 check(game.includes('updateTerrainInfo(q);const u=unitAt'), 'touch/click terrain inspection is not wired');
-check(game.includes("const event=type==='treasure'?level.events?.treasure:type==='supply'?level.events?.supply:null"), 'terrain rewards must be read from the active level event data');
-check(game.includes('return`首次进入获得${name}×${event.amount||1}`'), 'item reward tooltip is not wired');
+check(game.includes("const event=type==='treasure'?(level.events?.loot?.[keyOf(x,y)]||level.events?.treasure):type==='supply'?level.events?.supply:null"), 'terrain rewards must prefer tile-specific loot from the active level before the legacy fallback');
+check(game.includes('return`首次进入获得${name}×${event.amount||1}${bonus}`'), 'item-and-gold reward tooltip is not wired');
 check(html.includes('id="defeatCondition"'), 'battlefield defeat-condition display is missing');
 check(game.includes("document.getElementById('defeatCondition').textContent=`败北：${level.defeat}`"), 'level defeat condition is not displayed');
 check(game.includes('addLog(`败北条件：${level.defeat}`)'), 'defeat condition is not recorded in battle status');
