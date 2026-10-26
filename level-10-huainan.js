@@ -178,7 +178,7 @@
       log:'刘备接近西北鹿砦，敌军改为追击刘备'
     }],
     events:{
-      loot:{'2,22':{item:'fireScroll',amount:1}},
+      loot:{'2,22':{item:'fireScroll',amount:1,gold:300}},
       duel:{attackerId:'guan',defenderId:'zhangliao',endsBattle:false,musicId:12,title:'关羽　VS　张辽',kicker:'淮南 · 忠义交锋',caption:'青龙偃月刀逼退张辽',challenge:[{speaker:'关羽',text:'张辽，吕布背信夺取徐州，你还要追随他吗？'},{speaker:'张辽',text:'各为其主，关将军，请赐教！'}],exchange:[{speaker:'关羽',text:'不愧是张辽，但此招你躲得过吗？'},{speaker:'张辽',text:'关云长果然厉害，今日我认输。'},{speaker:'张辽',text:'撤退！我不愿再与关羽交战。'}],levelUp:{speaker:'军报',text:'关羽的等级上升了！'},confirmation:{speaker:'军报',text:'张辽败退，战斗仍在继续。'},occupation:{speaker:'军报',text:'张辽已经撤离战场。'}},
       normalVictory:[{speaker:'军报',text:'刘备军击破纪灵率领的袁术军，并击退来袭的吕布军。'}],
       normalOccupation:{speaker:'刘备',text:'徐州已落入吕布之手。先整顿部队，再议去向。'},

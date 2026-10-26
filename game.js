@@ -4,7 +4,7 @@
   const saveStorage=window.ZhaolieStorage||localStorage;
   window.refreshJieqiaoLevel?.();
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261026-all-defeat-lines-v264';
+  const RUNTIME_BUILD='20261026-huainan-treasure-v265';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -1373,14 +1373,14 @@
   function isSpecialPassable(u,x,y){return!!level.specialPassable?.some(cell=>cell.unitId===u.id&&cell.x===x&&cell.y===y)}
   function tileCost(u,x,y){if(isSpecialPassable(u,x,y))return 1;const levelOverride=level.movementCostOverrides?.[keyOf(x,y)];if(Number.isFinite(levelOverride))return levelOverride;const rule=terrain[map[y][x]],cost=rule.move?.[movementClass(u)]??rule.cost;return Number.isFinite(cost)?cost:Infinity}
   function movementCostLabel(cost){return Number.isFinite(cost)?String(cost):'不可进入'}
-  function terrainEventEffect(type){
-    const event=type==='treasure'?level.events?.treasure:type==='supply'?level.events?.supply:null;if(!event)return terrain[type]?.effect||'';
+  function terrainEventEffect(type,x,y){
+    const event=type==='treasure'?(level.events?.loot?.[keyOf(x,y)]||level.events?.treasure):type==='supply'?level.events?.supply:null;if(!event)return terrain[type]?.effect||'';
+    if(event.item){const name=shopItems[event.item]?.name||event.item,bonus=event.gold?`，并获得金${event.gold}`:'';return`首次进入获得${name}×${event.amount||1}${bonus}`}
     if(event.gold)return`首次进入获得金${event.gold}`;
-    if(event.item){const name=shopItems[event.item]?.name||event.item;return`首次进入获得${name}×${event.amount||1}`}
     return terrain[type]?.effect||''
   }
   function updateTerrainInfo(q){
-    if(!q)return;const type=map[q.y][q.x],t=terrain[type],actor=selected||inspected,eventEffect=terrainEventEffect(type),effect=eventEffect?` · ${eventEffect}`:'',routeCost=selected&&phase==='move'?reachable.get(keyOf(q.x,q.y)):null;
+    if(!q)return;const type=map[q.y][q.x],t=terrain[type],actor=selected||inspected,eventEffect=terrainEventEffect(type,q.x,q.y),effect=eventEffect?` · ${eventEffect}`:'',routeCost=selected&&phase==='move'?reachable.get(keyOf(q.x,q.y)):null;
     const moveText=actor?`${actor.name} ${movementCostLabel(tileCost(actor,q.x,q.y))}`:`步兵 ${movementCostLabel(t.move?.[0]??t.cost)} · 骑兵 ${movementCostLabel(t.move?.[1]??t.cost)}`;
     const auditCoordinate=bootParams.has('battleAudit')?` · 格 ${q.x},${q.y}`:'';document.getElementById('terrainInfo').textContent=`${t.name} · 移动 ${moveText} · 防御 +${t.def}%${routeCost!==undefined&&routeCost!==null?` · 路径消耗 ${routeCost}`:''}${effect}${auditCoordinate}`;
     if(routeCost!==undefined&&routeCost!==null)hoverPath=findPath(selected,q.x,q.y)
@@ -1458,7 +1458,25 @@
     }
   }
   async function moveSelected(x,y){const k=keyOf(x,y),occupant=unitAt(x,y);if(!reachable.has(k)){const target=alternateVictoryContains(x,y)?'徐州城目标格':'该位置';status(`${target}超出${selected?.name||'该武将'}本回合移动范围，请分回合接近`);flash('本回合无法到达');return}if(occupant){status(`${occupant.name}占据该格，暂时无法进入`);return}const u=selected,movementDistance=Math.max(0,findPath(u,x,y).length-1);reachable.clear();hoverPath=[];phase='animating';syncUI();status(`${u.name} 行进中`);await animateUnitMove(u,x,y);u.turnMoveDistance=movementDistance;keyboardCursor={x,y};collectTile(u);if(checkAlternateVictory(u))return;await triggerAreaEvents(u);await playBrotherMergeDialogue(u);if(tryDuel())return;phase='attack';attackable=attackTiles(u);syncUI();status(`${u.name}：选择敌军攻击，或点击待机`);draw()}
-  function collectTile(u){const t=map[u.y][u.x],loot=level.events?.loot?.[`${u.x},${u.y}`],treasure=loot||level.events?.treasure||{gold:100},supplyItem=loot?.item??level.events?.supply?.item??'bean';if(t==='treasure'){if(treasure.treasureId){if(carriedCount(u)>=8){flash(`${u.name}的道具栏已满`);return}u.treasureItems.push(treasure.treasureId);refreshPassiveTreasures(u);const name=treasureCatalog[treasure.treasureId]?.name||treasure.treasureId;flash(`${u.name}获得${name} · 已收入装备／宝物栏`);addLog(`${u.name}打开宝物库，获得${name}（装备／宝物）`,true)}else if(treasure.item){if(carriedCount(u)>=8){flash(`${u.name}的道具栏已满`);return}for(let i=0;i<(treasure.amount||1);i++)u.inventory.push(treasure.item);flash(`获得${shopItems[treasure.item].name} × ${treasure.amount||1}`);addLog(`${u.name}打开宝物库，获得${shopItems[treasure.item].name}`,true)}else{const amount=treasure.gold??100;gold+=amount;flash(`获得金 ${amount}`);addLog(`${u.name}打开宝物库，获得金${amount}`,true)}map[u.y][u.x]='treasureEmpty';syncItems()}if(t==='supply'){if(carriedCount(u)<8){u.inventory.push(supplyItem);flash(`获得${shopItems[supplyItem].name} × 1`);addLog(`${u.name}在兵粮库获得${shopItems[supplyItem].name}`,true);map[u.y][u.x]='supplyEmpty';syncItems()}else{flash(`${u.name}的道具栏已满`);addLog(`兵粮库中有${shopItems[supplyItem].name}，但${u.name}无法携带`,true)}}}
+  function collectTile(u){
+    const t=map[u.y][u.x],loot=level.events?.loot?.[`${u.x},${u.y}`],treasure=loot||level.events?.treasure||{gold:100},supplyItem=loot?.item??level.events?.supply?.item??'bean';
+    if(t==='treasure'){
+      if(treasure.treasureId){
+        if(carriedCount(u)>=8){flash(`${u.name}的道具栏已满`);return}
+        u.treasureItems.push(treasure.treasureId);refreshPassiveTreasures(u);const name=treasureCatalog[treasure.treasureId]?.name||treasure.treasureId;flash(`${u.name}获得${name} · 已收入装备／宝物栏`);addLog(`${u.name}打开宝物库，获得${name}（装备／宝物）`,true)
+      }else if(treasure.item){
+        const amount=Math.max(1,Math.floor(Number(treasure.amount)||1));
+        if(carriedCount(u)+amount>8){flash(`${u.name}的道具栏空间不足，需要${amount}格`);return}
+        for(let i=0;i<amount;i++)u.inventory.push(treasure.item);
+        const itemName=shopItems[treasure.item]?.name||treasure.item,bonusGold=Math.max(0,Math.floor(Number(treasure.gold)||0)),rewardText=`${itemName} × ${amount}${bonusGold?` · 金 ${bonusGold}`:''}`;
+        if(bonusGold)gold+=bonusGold;flash(`获得${rewardText}`);addLog(`${u.name}打开宝物库，获得${rewardText}`,true)
+      }else{
+        const amount=treasure.gold??100;gold+=amount;flash(`获得金 ${amount}`);addLog(`${u.name}打开宝物库，获得金${amount}`,true)
+      }
+      map[u.y][u.x]='treasureEmpty';syncItems()
+    }
+    if(t==='supply'){if(carriedCount(u)<8){u.inventory.push(supplyItem);flash(`获得${shopItems[supplyItem].name} × 1`);addLog(`${u.name}在兵粮库获得${shopItems[supplyItem].name}`,true);map[u.y][u.x]='supplyEmpty';syncItems()}else{flash(`${u.name}的道具栏已满`);addLog(`兵粮库中有${shopItems[supplyItem].name}，但${u.name}无法携带`,true)}}
+  }
   function recoverFromTerrain(side){const recoveries=[];for(const u of units.filter(x=>x.side===side&&x.hp>0)){const t=terrain[map[u.y][u.x]];if(!t.recoverHp&&!t.recoverMorale)continue;const result=BattleRules.terrainRecovery({hp:u.hp,maxHp:u.maxHp,morale:u.morale??100,tongyu:u.tongyu||0,recoverHp:!!t.recoverHp,recoverMorale:!!t.recoverMorale,hpRoll:Math.floor(Math.random()*11),moraleRoll:Math.floor(Math.random()*5)});u.hp=result.hp;u.morale=result.morale;if(result.hpGain<=0&&result.moraleGain<=0)continue;if(result.hpGain>0)recoveries.push({target:u,amount:result.hpGain,source:'terrain'});addLog(`${u.name}在${t.name}休整，恢复${result.hpGain}兵力${result.moraleGain?`、${result.moraleGain}士气`:''}`,true);if(side==='ally')flash(`${u.name} ${t.name}休整 +${result.hpGain}`)}return recoveries}
   function physicalMoraleDamage(target,damage){return BattleRules.physicalMoraleDamage(damage,target.level,target.morale??100)}
   function applyMoraleLoss(target,amount,{preventRout=false}={}){if(target.hp<=0||amount<=0)return{loss:0,routed:false,confused:false};const result=BattleRules.applyMoraleLoss(target.morale??100,amount,preventRout);target.morale=result.morale;if(result.loss>0)addLog(`${target.name}士气下降${result.loss}`,false);if(result.routed){target.hp=0;target.confused=false;addLog(`${target.name}士气崩溃，被迫撤退`,true);return{loss:result.loss,routed:true,confused:false}}if(target.morale<30&&!target.confused&&Math.random()<.60){target.confused=true;addLog(`${target.name}因士气低落陷入混乱`,true);flash(`${target.name}混乱！`);return{loss:result.loss,routed:false,confused:true}}return{loss:result.loss,routed:false,confused:false}}
