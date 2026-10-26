@@ -43,15 +43,15 @@
   ];
   const heroes=[
     U({id:'liu',originalId:0,name:'刘备',role:'平原相',className:'短兵',troop:'infantry',level:6,side:'ally',x:22,y:3,wuli:75,zhili:64,tongyu:91,critRate:.12,blockRate:.14,weapon:'佩剑',color:'#45a9cf',accent:'#e0ba59',carryover:true,defeatQuote:'北海尚未解围……我岂能倒在这里……'}),
-    U({id:'guan',originalId:1,name:'关羽',role:'别部司马',className:'轻骑兵',troop:'cavalry',level:7,side:'ally',x:21,y:4,wuli:98,zhili:80,tongyu:100,critRate:.20,blockRate:.15,weapon:'青龙偃月刀',treasureItems:['qinglong'],color:'#3fa574',accent:'#cf4940',carryover:true,defeatQuote:'兄长……云长暂且退下。'}),
+    U({id:'guan',originalId:1,name:'关羽',role:'别部司马',className:'轻骑兵',troop:'cavalry',level:7,side:'ally',x:21,y:4,wuli:98,zhili:80,tongyu:100,critRate:.20,blockRate:.15,weapon:'青龙偃月刀',treasureItems:['qinglong'],color:'#3fa574',accent:'#cf4940',carryover:true,defeatQuote:'青龙刀尚在，云长来日再雪此耻！'}),
     U({id:'zhang',originalId:2,name:'张飞',role:'别部司马',className:'轻骑兵',troop:'cavalry',level:7,side:'ally',x:20,y:5,wuli:99,zhili:42,tongyu:83,critRate:.18,blockRate:.10,weapon:'蛇矛',treasureItems:['spear'],color:'#496fab',accent:'#d7aa52',carryover:true,defeatQuote:'可恶！俺也去整顿兵马再来！'}),
-    U({id:'jian',originalId:82,name:'简雍',role:'幕僚',className:'弓兵',troop:'archer',level:6,side:'ally',x:22,y:5,wuli:42,zhili:74,tongyu:36,range:2,critRate:.08,blockRate:.07,weapon:'角弓',color:'#4d8ca7',accent:'#d8bd70',carryover:true,defeatQuote:'主公，简雍先退一步……'}),
-    U({id:'zhaoyun',originalId:53,name:'赵云',role:'常山义士',className:'轻骑兵',troop:'cavalry',level:9,side:'ally',x:21,y:2,wuli:98,zhili:84,tongyu:87,critRate:.20,blockRate:.17,weapon:'龙胆枪',color:'#7bbbd0',accent:'#e2d8b5',carryover:true,defeatQuote:'主公，子龙暂且退下！'})
+    U({id:'jian',originalId:82,name:'简雍',role:'幕僚',className:'弓兵',troop:'archer',level:6,side:'ally',x:22,y:5,wuli:42,zhili:74,tongyu:36,range:2,critRate:.08,blockRate:.07,weapon:'角弓',color:'#4d8ca7',accent:'#d8bd70',carryover:true,defeatQuote:'箭囊已空，宪和先护伤兵后撤！'}),
+    U({id:'zhaoyun',originalId:53,name:'赵云',role:'常山义士',className:'轻骑兵',troop:'cavalry',level:9,side:'ally',x:21,y:2,wuli:98,zhili:84,tongyu:87,critRate:.20,blockRate:.17,weapon:'龙胆枪',color:'#7bbbd0',accent:'#e2d8b5',carryover:true,defeatQuote:'子龙护卫不周，请主公速整阵势！'})
   ];
   const guests=[
     U({id:'kongrong',originalId:7,name:'孔融',role:'北海太守',className:'短兵',troop:'infantry',level:8,side:'guest',x:3,y:0,wuli:58,zhili:83,tongyu:67,aiType:2,stationary:true,critRate:.10,blockRate:.10,weapon:'佩剑',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'北海百姓……孔融有负所托。'}),
-    U({id:'taishici',originalId:149,name:'太史慈',role:'北海义士',className:'轻骑兵',troop:'cavalry',level:9,side:'guest',x:2,y:0,wuli:94,zhili:67,tongyu:81,aiType:2,stationary:true,critRate:.18,blockRate:.15,weapon:'长枪',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'未能保住北海……太史慈惭愧！'}),
-    U({id:'mengsu',originalId:233,name:'孟肃',role:'北海守军',className:'山贼',troop:'bandit',level:1,side:'guest',x:1,y:0,wuli:69,zhili:31,tongyu:52,aiType:2,stationary:true,critRate:.10,blockRate:.10,weapon:'环首刀',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'主公，孟肃守不住了……'})
+    U({id:'taishici',originalId:149,name:'太史慈',role:'北海义士',className:'轻骑兵',troop:'cavalry',level:9,side:'guest',x:2,y:0,wuli:94,zhili:67,tongyu:81,aiType:2,stationary:true,critRate:.18,blockRate:.15,weapon:'长枪',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'慈未报北海之恩，岂能葬身此地！'}),
+    U({id:'mengsu',originalId:233,name:'孟肃',role:'北海守军',className:'山贼',troop:'bandit',level:1,side:'guest',x:1,y:0,wuli:69,zhili:31,tongyu:52,aiType:2,stationary:true,critRate:.10,blockRate:.10,weapon:'环首刀',color:'#6ab7c6',accent:'#d8bb69',defeatQuote:'寨门交给诸位，孟肃去聚拢乡勇！'})
   ];
   const enemies=[
     E('guanhai',216,'管亥','黄巾首领','bandit',10,6,7,68,14,52,{boss:true,aiType:6,aiTarget:P(7,10),runtimeAiTarget:P(10,7),critRate:.16,blockRate:.12,weapon:'大刀',defeatQuote:'倒霉！你们再晚一点来，这个城就成我的了．'}),

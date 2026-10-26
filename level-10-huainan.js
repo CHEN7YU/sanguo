@@ -93,13 +93,32 @@
   paintedTerrainOverrides.push({x:19,y:10,type:'village'});
   const bases={infantry:[40,40,500,50,4],archer:[30,40,500,40,4],cavalry:[60,30,500,60,6],heavyCavalry:[70,40,600,70,6],support:[20,30,400,40,5],transport:[20,30,400,40,5],martial:[65,30,500,50,5],bandit:[55,45,500,55,5]};
   const stats=(troop,level,wuli,zhili,tongyu)=>{const[a,d,h,g,m]=bases[troop]||bases.infantry,morale=100;return{hp:h+g*(level-1),maxHp:h+g*(level-1),morale,atk:Math.floor((Math.floor(4000/(140-wuli))+a*2+morale)*(level+10)/10),def:Math.floor((Math.floor(4000/(140-tongyu))+d*2+morale)*(level+10)/10),move:m,strategy:Math.floor((level+10)*zhili*5/200),maxStrategy:Math.floor((level+10)*zhili*5/200)}};
-  const U=data=>Object.assign((data.originalId??999)<256||data.name==='李明'?{defeatQuote:`${data.name}暂且退下！`}:{},data,stats(data.troop,data.level,data.wuli,data.zhili,data.tongyu));
+  const defeatQuotes={
+    liu:'徐州已失，我岂能再倒在这里！',
+    guan:'青龙刀尚在，云长来日再雪此耻！',
+    zhang:'气煞俺也！待俺重整兵马再来！',
+    jian:'箭囊已空，宪和先护伤兵后撤！',
+    zhaoyun:'子龙护卫不周，请主公速整阵势！',
+    sunqian:'粮车不可尽失，公祐先护军资后撤！',
+    pangong:'拳刃虽折，藩宫这条命还要留着护民！',
+    mizhu:'军鼓虽歇，子仲必将粮草送回主公帐下！',
+    mifang:'阵脚已乱，子方先收拢徐州兵！',
+    liming:'猛兽受惊，李明先带它们退出乱阵！',
+    jiling:'三尖刀仍在，纪灵改日再雪此耻！',
+    lejiu:'袁术军阵脚已乱，乐就先去收拢部曲！',
+    chenji:'淮南军势已挫，陈纪回营请罪！',
+    chengong:'此局已破，公台另寻良策！',
+    zhangliao:'今日刀势已尽，文远来日再战！',
+    weixu:'并州兵不能尽折在这里，魏续退兵！',
+    songxian:'弓弦已断，宋宪先撤出战圈！'
+  };
+  const U=data=>Object.assign({},defeatQuotes[data.id]?{defeatQuote:defeatQuotes[data.id]}:{},data,stats(data.troop,data.level,data.wuli,data.zhili,data.tongyu));
   const classNames={infantry:'短兵',archer:'弓兵',cavalry:'轻骑兵',heavyCavalry:'重骑兵',support:'军乐队',transport:'运输队',martial:'武术家',bandit:'贼兵'};
   const weaponFor=troop=>troop==='archer'?'角弓':troop==='cavalry'||troop==='heavyCavalry'?'长枪':troop==='support'?'鼓槌':troop==='transport'?'护身短刀':troop==='martial'?'拳套':troop==='bandit'?'环首刀':'环首刀';
   const P=(x,y)=>x|(y<<8);
   const E=(id,originalId,name,role,troop,level,x,y,wuli,zhili,tongyu,extra={})=>U({id,originalId,name,role,className:classNames[troop],troop,level,side:extra.reserve?'reserve':'enemy',x,y,wuli,zhili,tongyu,aiType:extra.reserve?1:0,stationary:!extra.reserve,range:troop==='archer'?2:undefined,weapon:weaponFor(troop),color:'#9e443f',accent:'#d0ad5d',...extra});
   const allies=[
-    U({id:'liu',originalId:0,name:'刘备',role:'徐州牧',className:'短兵',troop:'infantry',level:12,side:'ally',x:14,y:5,wuli:75,zhili:64,tongyu:91,critRate:.12,blockRate:.14,weapon:'佩剑',carryover:true,color:'#45a9cf',accent:'#e0ba59',defeatQuote:'徐州已失，我岂能再倒在这里！'}),
+    U({id:'liu',originalId:0,name:'刘备',role:'徐州牧',className:'短兵',troop:'infantry',level:12,side:'ally',x:14,y:5,wuli:75,zhili:64,tongyu:91,critRate:.12,blockRate:.14,weapon:'佩剑',carryover:true,color:'#45a9cf',accent:'#e0ba59'}),
     U({id:'guan',originalId:1,name:'关羽',role:'别部司马',className:'轻骑兵',troop:'cavalry',level:13,side:'ally',x:15,y:4,wuli:98,zhili:80,tongyu:100,critRate:.20,blockRate:.15,weapon:'青龙偃月刀',treasureItems:['qinglong'],carryover:true,color:'#3fa574',accent:'#cf4940'}),
     U({id:'zhang',originalId:2,name:'张飞',role:'别部司马',className:'轻骑兵',troop:'cavalry',level:13,side:'ally',x:15,y:6,wuli:99,zhili:42,tongyu:83,critRate:.18,blockRate:.10,weapon:'蛇矛',treasureItems:['spear'],carryover:true,color:'#496fab',accent:'#d7aa52'}),
     U({id:'jian',originalId:82,name:'简雍',role:'幕僚',className:'弓兵',troop:'archer',level:11,side:'ally',x:13,y:6,wuli:42,zhili:74,tongyu:36,range:2,carryover:true,weapon:'角弓',color:'#4d8ca7',accent:'#d8bd70'}),

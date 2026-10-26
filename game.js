@@ -4,7 +4,7 @@
   const saveStorage=window.ZhaolieStorage||localStorage;
   window.refreshJieqiaoLevel?.();
   const bootParams = new URLSearchParams(location.search);
-  const RUNTIME_BUILD='20261026-military-band-exp-v262';
+  const RUNTIME_BUILD='20261026-character-defeat-lines-v263';
   function preserveDialogueMode(params){if(bootParams.get('dialogue')==='original')params.set('dialogue','original');return params}
   const touchCapable=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||bootParams.has('tabletAudit');
   document.documentElement.classList.toggle('touch-capable',touchCapable);
@@ -1876,7 +1876,7 @@
   function openLevelSelect(){syncLevelSelectAvailability();document.getElementById('levelSelectOverlay').classList.remove('hidden');document.getElementById('levelDeveloperCode').value=''}
   function unlockDeveloperLevels(){const input=document.getElementById('levelDeveloperCode'),status=document.getElementById('levelDeveloperStatus'),code=input.value.trim().toLowerCase();if(code==='ink to life'||code==='pandaking'){developerLevelsUnlocked=true;input.value='';syncLevelSelectAvailability();return}status.textContent='开发者代码不正确。';status.classList.remove('success');status.classList.add('error');input.select()}
   function selectLevelFromMenu(button){if(button.disabled||button.getAttribute('aria-disabled')==='true')return;const params=new URLSearchParams();params.set('level',button.dataset.selectLevel);params.set('storySelect','1');params.set('levelSelect','1');preserveDialogueMode(params);location.href=`${location.pathname}?${params}`}
-  function playDefeatQuote(unit){if(unit.defeatQuotePlayed)return Promise.resolve();const explicit=typeof unit.defeatQuote==='string'&&unit.defeatQuote.trim();if((unit.originalId??999)>=256&&!explicit)return Promise.resolve();const named=(unit.originalId??999)<256||!!explicit,text=explicit||(named?(unit.side==='enemy'?'胜负已分……暂且撤退！':'主公……我先退下了！'):'');if(!text)return Promise.resolve();unit.defeatQuotePlayed=true;unit.defeatQuote=text;return new Promise(resolve=>runDialogue([{speaker:unit.name,text}],resolve))}
+  function playDefeatQuote(unit){if(unit.defeatQuotePlayed)return Promise.resolve();const text=typeof unit.defeatQuote==='string'?unit.defeatQuote.trim():'';if(!text)return Promise.resolve();unit.defeatQuotePlayed=true;return new Promise(resolve=>runDialogue([{speaker:unit.name,text}],resolve))}
   const dialoguePortraits={...storyPortraits,...Object.fromEntries(units.filter(u=>(u.originalId??999)<256).map(u=>[u.name,portraitForUnit(u)]))};
   Object.values(dialoguePortraits).forEach(preloadImage);
   window.ZhaolieStartup?.seal();
