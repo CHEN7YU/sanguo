@@ -1,0 +1,16 @@
+[Unit]
+Description=Verified backup of Sanguo accounts and saves
+
+[Service]
+Type=oneshot
+User=sanguo
+Group=sanguo
+WorkingDirectory=/opt/sanguo/current
+EnvironmentFile=/etc/sanguo/server.env
+ExecStart=/bin/sh -c 'exec /usr/bin/node server/manage.mjs backup "/var/backups/sanguo/accounts-$(date -u +%%Y%%m%%dT%%H%%M%%SZ).sqlite"'
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/sanguo /var/backups/sanguo

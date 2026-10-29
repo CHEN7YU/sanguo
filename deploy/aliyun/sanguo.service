@@ -1,0 +1,22 @@
+[Unit]
+Description=Sanguo account and cloud save API
+After=network.target
+
+[Service]
+Type=simple
+User=sanguo
+Group=sanguo
+WorkingDirectory=/opt/sanguo/current
+EnvironmentFile=/etc/sanguo/server.env
+ExecStart=/usr/bin/node server/app.mjs
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/sanguo
+
+[Install]
+WantedBy=multi-user.target

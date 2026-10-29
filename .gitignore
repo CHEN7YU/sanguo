@@ -16,3 +16,6 @@ Thumbs.db
 desktop.ini
 *.tmp
 *.bak
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
