@@ -836,7 +836,7 @@
     clearCampaignTransfer();levelSelectActive=false;selectedBalanceLevel=null;resetBattleState();fadeOutTitleMusic(()=>{hideTitle(false);playOpeningMovie(()=>playPreBattleStory(openBattlePrep))})
   }
   function startNewGame(){
-    requestGameFullscreen();
+    // Play the opening inside the browser viewport; fullscreen is a player choice.
     const mustReloadFirstChapter=level.id!=='sishui-pass'||levelSelectActive||bootParams.has('level')||bootParams.has('storySelect')||bootParams.has('battleSelect')||bootParams.has('loadSlot');
     if(mustReloadFirstChapter){clearCampaignTransfer();const params=preserveDialogueMode(new URLSearchParams({newGame:'1',build:RUNTIME_BUILD}));location.href=`${location.pathname}?${params}`;return}
     launchFirstChapterNewGame()
