@@ -27,6 +27,7 @@ AUTH_ORIGIN=https://game.example.com
 AUTH_PASSWORD_PEPPER=<至少32字符的独立随机密钥>
 DATABASE_PATH=/var/lib/sanguo/accounts.sqlite
 ANALYTICS_ENABLED=true
+COMMENTS_ADMIN_TOKEN=<至少32字符的独立随机管理员凭证>
 PORT=4180
 ```
 

@@ -9,6 +9,7 @@
     "db:migrate": "node server/manage.mjs migrate",
     "db:backup": "node server/manage.mjs backup",
     "verify:server": "node tools/verify_node_server.mjs",
+    "verify:about": "node tools/verify_about_page.mjs",
     "verify:mounted": "node tools/verify_mounted_combat_wrap.mjs"
   },
   "devDependencies": {

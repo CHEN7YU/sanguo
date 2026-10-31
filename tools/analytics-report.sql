@@ -60,3 +60,13 @@ FROM analytics_daily WHERE device <> 'all' GROUP BY device ORDER BY page_views_s
 SELECT device, SUM(players) AS player_days_since_start,
   SUM(play_sessions) AS play_sessions_since_start, SUM(play_seconds) AS play_seconds_since_start
 FROM analytics_play_daily WHERE device <> 'all' GROUP BY device ORDER BY play_seconds_since_start DESC;
+
+SELECT MIN(day) AS first_about_day_china,
+  COALESCE(SUM(page_views), 0) AS introduction_page_views,
+  COALESCE(SUM(visitors), 0) AS introduction_unique_browser_days,
+  COALESCE(SUM(play_clicks), 0) AS click_to_play,
+  ROUND(CASE WHEN SUM(visitors) > 0 THEN SUM(click_visitors) * 100.0 / SUM(visitors) ELSE 0 END, 2) AS conversion_percent
+FROM about_analytics_daily WHERE device = 'all';
+
+SELECT day, page_views, visitors, play_clicks, click_visitors
+FROM about_analytics_daily WHERE device = 'all' ORDER BY day DESC LIMIT 30;

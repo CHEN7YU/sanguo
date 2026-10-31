@@ -134,6 +134,12 @@ npx wrangler d1 execute sanguo-wechat-preview --remote --env preview --command "
 
 本机 Windows ARM64 请按前文使用官方 x64 Node 运行 Wrangler。用户以后询问玩家数、时长或设备时读取对应环境的实时后台，不把之前对话中的数字当成最新数据。回归命令为 `node tools\verify_analytics.mjs`，同时覆盖登录事务、访问与时长并发去重、时区、隐私、限流、保留期和无界面客户端行为。
 
+## 游戏介绍页与玩家留言
+
+正式游戏入口保持 `/sanguo/`，图文介绍页为 `/sanguo/about/`，完整更新记录为 `/sanguo/about/devlog.html`。介绍页不加载 `game.js` 或关卡脚本；图片使用懒加载，宣传视频只有点击播放后才请求。移动端保持竖屏阅读，并在底部固定显示“开始试玩”。
+
+留言接口为 `GET/POST /api/comments`。游客可用公开昵称提交，登录用户会在服务端关联账号但不公开账号名；新留言默认待审核。管理员页面 `/sanguo/about/admin.html` 使用只保存在服务器环境中的 `COMMENTS_ADMIN_TOKEN`，可审核、回复、置顶、隐藏并设置“已收到／修复中／已修复”。介绍页访问与点击试玩转化写入独立汇总表，可通过 `tools/analytics-report.sql` 查看。SQLite 迁移 `0007` 和 `0008` 必须在发布新后端前显式执行。
+
 Cloudflare 项目连接本仓库的 `main`，仓库根目录保持默认，设置：
 
 | 配置 | 值 |

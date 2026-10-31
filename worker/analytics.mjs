@@ -199,6 +199,28 @@ export async function handlePlaytime(request, env) {
   return json({ ok: true });
 }
 
+export async function handleAboutAnalytics(request, env) {
+  const context = await analyticsRequest(request, env, 512);
+  if (context.response) return context.response;
+  const { body, ip } = context;
+  if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).length !== 3
+      || !validUuid(body.visitorId) || !validUuid(body.eventId) || !['view', 'play'].includes(body.kind)) {
+    return json({ error: '介绍页统计标识无效' }, 400);
+  }
+  const ipRetry = await consumeLimit(env, `analytics:about-ip:${ip}`, 120, 60000);
+  if (ipRetry) return json({ error: '统计请求过于频繁' }, 429, { 'retry-after': String(ipRetry) });
+  const visitorRetry = await consumeLimit(env, `analytics:about:${body.visitorId}`, 30, 60000);
+  if (visitorRetry) return json({ error: '统计请求过于频繁' }, 429, { 'retry-after': String(visitorRetry) });
+  const day = chinaDay();
+  const eventHash = hex(await keyedHash(env.AUTH_PASSWORD_PEPPER, `analytics:about:event:${body.kind}:${body.eventId}`));
+  const actorHash = hex(await keyedHash(env.AUTH_PASSWORD_PEPPER, `analytics:about:actor:${day}:${body.visitorId}`));
+  await env.AUTH_DB.prepare(
+    `INSERT INTO about_analytics_events (event_hash, day, kind, actor_hash, device)
+     VALUES (?, ?, ?, ?, ?) ON CONFLICT(event_hash) DO NOTHING`
+  ).bind(eventHash, day, body.kind, actorHash, deviceCategory(request)).run();
+  return json({ ok: true });
+}
+
 export async function purgeAnalytics(env, now = Date.now()) {
   if (!analyticsEnabled(env)) return;
   await ensurePlaytimeSchema(env);
@@ -208,6 +230,8 @@ export async function purgeAnalytics(env, now = Date.now()) {
     env.AUTH_DB.prepare('DELETE FROM analytics_seen WHERE day < ?').bind(cutoff),
     env.AUTH_DB.prepare('DELETE FROM analytics_play_events WHERE day < ?').bind(cutoff),
     env.AUTH_DB.prepare('DELETE FROM analytics_play_seen WHERE day < ?').bind(cutoff),
+    env.AUTH_DB.prepare('DELETE FROM about_analytics_events WHERE day < ?').bind(cutoff),
+    env.AUTH_DB.prepare('DELETE FROM about_analytics_seen WHERE day < ?').bind(cutoff),
     env.AUTH_DB.prepare('DELETE FROM auth_attempts WHERE expires_at <= ?').bind(now)
   ]);
 }

@@ -72,7 +72,8 @@ export async function startServer(env = process.env) {
     }
     verifyMigrations(sqlite);
     const binding = { AUTH_DB: databaseBinding(sqlite), AUTH_ORIGIN: env.AUTH_ORIGIN,
-      AUTH_PASSWORD_PEPPER: env.AUTH_PASSWORD_PEPPER, ANALYTICS_ENABLED: env.ANALYTICS_ENABLED || 'true' };
+      AUTH_PASSWORD_PEPPER: env.AUTH_PASSWORD_PEPPER, ANALYTICS_ENABLED: env.ANALYTICS_ENABLED || 'true',
+      COMMENTS_ADMIN_TOKEN: env.COMMENTS_ADMIN_TOKEN || '' };
     await worker.scheduled(null, binding);
     server = createApiServer(binding);
     cleanup = setInterval(() => {

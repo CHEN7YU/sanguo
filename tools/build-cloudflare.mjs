@@ -8,6 +8,9 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
 const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const runtimeFiles = new Set(['index.html']);
+for (const file of ['about/index.html', 'about/about.css', 'about/about.js', 'about/devlog.html', 'about/admin.html', 'about/admin.js']) {
+  runtimeFiles.add(file);
+}
 for (const match of index.matchAll(/<(?:script|link)\b[^>]*\b(?:src|href)=["']([^"']+)["']/gi)) {
   const filename = match[1].split(/[?#]/)[0];
   if (!/^[A-Za-z0-9_-]+\.(?:m?js|css)$/.test(filename)) {

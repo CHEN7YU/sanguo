@@ -15,7 +15,8 @@ const directory = mkdtempSync(join(tmpdir(), 'sanguo-api-'));
 const filename = join(directory, 'accounts.sqlite');
 const origin = 'https://game.example';
 const config = { AUTH_ORIGIN: origin, AUTH_PASSWORD_PEPPER: 'local-test-pepper-not-for-production'.repeat(2),
-  ANALYTICS_ENABLED: 'true', DATABASE_PATH: filename };
+  ANALYTICS_ENABLED: 'true', DATABASE_PATH: filename,
+  COMMENTS_ADMIN_TOKEN: 'local-comment-admin-token-not-for-production' };
 let sqlite, server, base;
 async function listen() {
   server = createApiServer({ ...config, AUTH_DB: databaseBinding(sqlite) });
@@ -61,7 +62,7 @@ try {
   const manager = fileURLToPath(new URL('../server/manage.mjs', import.meta.url));
   execFileSync(process.execPath, [manager, 'migrate'], { env: { ...process.env, DATABASE_PATH: filename } });
   const migrations = sqlite.prepare('SELECT count(*) AS n FROM app_migrations').get().n;
-  assert.equal(migrations, 6);
+  assert.equal(migrations, 8);
   migrateDatabase(sqlite);
   assert.equal(sqlite.prepare('SELECT count(*) AS n FROM app_migrations').get().n, migrations);
   const checksum = sqlite.prepare('SELECT checksum FROM app_migrations WHERE name = ?').get('0001_auth.sql').checksum;
@@ -83,6 +84,26 @@ try {
   assert.equal((await call('/api/saves')).status, 401);
   assert.equal((await (await call('/api/auth/session')).json()).providers.password, true);
   assert.deepEqual((await (await call('/api/leaderboard?scope=champions')).json()).entries, []);
+  assert.deepEqual((await (await call('/api/comments')).json()).comments, []);
+  const pendingComment = await call('/api/comments', { method: 'POST', body: {
+    name: '试玩玩家', kind: 'bug', levelId: 'huainan', device: 'windows', body: '营寨入口看起来不够清楚。'
+  } });
+  assert.equal(pendingComment.status, 202);
+  const pendingId = (await pendingComment.json()).id;
+  assert.deepEqual((await (await call('/api/comments')).json()).comments, [], 'pending comments must not be public');
+  assert.equal((await call('/api/comments/admin', { headers: { 'x-comments-admin': 'wrong' } })).status, 401);
+  const adminComments = await (await call('/api/comments/admin', {
+    headers: { 'x-comments-admin': config.COMMENTS_ADMIN_TOKEN }
+  })).json();
+  assert.equal(adminComments.comments.length, 1);
+  assert.equal((await call('/api/comments/admin', { method: 'PATCH',
+    headers: { 'x-comments-admin': config.COMMENTS_ADMIN_TOKEN },
+    body: { id: pendingId, moderation: 'approved', status: 'fixing', pinned: true, reply: '已经开始重新核对营寨通路。' }
+  })).status, 200);
+  const publicComments = await (await call('/api/comments')).json();
+  assert.equal(publicComments.comments[0].status, 'fixing');
+  assert.equal(publicComments.comments[0].pinned, 1);
+  assert.match(publicComments.comments[0].reply, /重新核对/);
   const leaderboardEntry = {
     levelId: 'huainan', playerId: 'player-test-0001', nickname: '测试将军', elapsedMs: 1800000,
     turns: 30, lossPercent: 50, retreatCount: 2, victoryType: 'normal'
@@ -133,10 +154,22 @@ try {
   }
   assert.equal((await call('/api/analytics/playtime', { method: 'POST',
     body: { visitorId, playId: randomUUID(), eventId: randomUUID(), seconds: 30 } })).status, 200);
+  const aboutViewId = randomUUID();
+  for (let i = 0; i < 2; i++) {
+    assert.equal((await call('/api/analytics/about', { method: 'POST',
+      body: { visitorId, eventId: aboutViewId, kind: 'view' } })).status, 200);
+  }
+  assert.equal((await call('/api/analytics/about', { method: 'POST',
+    body: { visitorId, eventId: randomUUID(), kind: 'play' } })).status, 200);
   const daily = sqlite.prepare("SELECT * FROM analytics_daily WHERE day = ? AND device = 'all'").get(chinaDay());
   assert.equal(daily.page_views, 1);
   assert.equal(daily.logins, 1);
   assert.equal(sqlite.prepare("SELECT play_seconds FROM analytics_play_daily WHERE device = 'all'").get().play_seconds, 30);
+  const aboutDaily = sqlite.prepare("SELECT * FROM about_analytics_daily WHERE day = ? AND device = 'all'").get(chinaDay());
+  assert.equal(aboutDaily.page_views, 1);
+  assert.equal(aboutDaily.visitors, 1);
+  assert.equal(aboutDaily.play_clicks, 1);
+  assert.equal(aboutDaily.click_visitors, 1);
   const copy = join(directory, 'verified-backup.sqlite');
   execFileSync(process.execPath, [manager, 'backup', copy], { env: { ...process.env, DATABASE_PATH: filename } });
   await assert.rejects(backupDatabase(filename, copy), /EEXIST/);
@@ -176,7 +209,7 @@ try {
   base = `http://127.0.0.1:${port}`;
   assert.equal((await (await call('/api/saves', { cookie, headers: { 'x-save-owner': user.id } })).json()).payload.saveStore.auto.turn, 2,
     'production startup must read accounts and progress from the verified backup');
-  console.log('Node API verified: real HTTP auth/save/history/statistics/leaderboard, proxy guards, transactional rollback, rate limits, restart persistence and verified backup.');
+  console.log('Node API verified: auth/save/history/statistics/leaderboard/comments, moderation, conversion analytics, proxy guards, rate limits, restart persistence and verified backup.');
 } finally {
   await stop();
   sqlite?.close();
