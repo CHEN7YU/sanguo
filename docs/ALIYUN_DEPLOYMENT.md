@@ -44,7 +44,8 @@ PORT=4180
 3. 确认目录和环境配置后，以服务用户执行明确的建库/迁移命令：
 
    ```sh
-   sudo -u sanguo /usr/bin/node --env-file=/etc/sanguo/server.env server/manage.mjs migrate
+   set -a; . /etc/sanguo/server.env; set +a
+   sudo --preserve-env=DATABASE_PATH -u sanguo /usr/local/bin/node server/manage.mjs migrate
    ```
 
    迁移按编号执行并记录校验值，重复执行不会重建表或清空数据；修改已执行的迁移会报错。已有 D1 SQL 导出不能直接当作全新数据库重复建表，迁移旧库需另做导入核对。
@@ -62,7 +63,8 @@ PORT=4180
 发布前先做在线一致性备份：
 
 ```sh
-sudo -u sanguo /usr/bin/node --env-file=/etc/sanguo/server.env \
+set -a; . /etc/sanguo/server.env; set +a
+sudo --preserve-env=DATABASE_PATH -u sanguo /usr/local/bin/node \
   server/manage.mjs backup /var/backups/sanguo/before-release-唯一版本号.sqlite
 ```
 

@@ -203,6 +203,10 @@ try {
   const nginx = readFileSync(new URL('../deploy/aliyun/nginx.conf', import.meta.url), 'utf8');
   assert.match(nginx, /root \/opt\/sanguo\/current\/dist/);
   assert.match(nginx, /proxy_set_header X-Real-IP \$remote_addr/);
+  const serviceUnit = readFileSync(new URL('../deploy/aliyun/sanguo.service', import.meta.url), 'utf8');
+  const backupUnit = readFileSync(new URL('../deploy/aliyun/sanguo-backup.service', import.meta.url), 'utf8');
+  assert.match(serviceUnit, /ExecStart=\/usr\/local\/bin\/node server\/app\.mjs/);
+  assert.match(backupUnit, /exec \/usr\/local\/bin\/node server\/manage\.mjs backup/);
   const port = server.address().port;
   await stop();
   server = await startServer({ ...config, DATABASE_PATH: copy, PORT: String(port) });
