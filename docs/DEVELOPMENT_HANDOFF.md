@@ -240,6 +240,7 @@ node tools/verify_level06_beihai.mjs
 
 - 曾发生发布扫描只识别完整字符串，漏掉 `root + 文件名` 拼接引用，导致剧情立绘/小人在线缺失。清理资源不能只做简单文本搜索，须检查动态路径和所有关卡。
 - 发布目录也要运行 `node tools/verify_release_assets.mjs "发布目录"`；北海剧情另有 `verify_beihai_story_portraits.mjs`。本地资源存在不代表公开网页已包含。
+- 阿里云账号、云档、统计与排行榜共用同源 Node/SQLite API；前端排行榜固定请求当前站点 `/api/leaderboard`。不要恢复旧外部排行榜域名，否则阿里云会因跨域限制无法上传战绩。`0006_leaderboard.sql` 只创建新榜，不自动搬运旧站历史记录。
 - `tools/sync-site-dist.ps1` 当前仍含原开发机的绝对发布目录。合作者不能直接照搬运行；先确认或参数化目标，不能写错目录。迁移打包流程属于待改进项。
 - Cloudflare Workers 试玩使用根目录 `wrangler.jsonc` 与 `node tools/build-cloudflare.mjs`，仅发布生成的 `dist`，不得将仓库根目录作为资源目录。构建会检查缺失素材、LFS 指针和 25 MiB 单文件限制；配置见 README。旧 Sites 脚本不受影响。此配置不代表已发布或已完成大陆网络/设备验证，排行榜新域名授权、数据库迁移、微信登录及云存档仍需独立处理。
 - 仓库、母版、Git 历史、发布包、玩家首次下载是不同体积指标，报告大小时明确口径。不要把整个开发目录上传网页。

@@ -5,7 +5,7 @@ import vm from 'node:vm';
 const html = fs.readFileSync('index.html', 'utf8');
 const css = fs.readFileSync('style.css', 'utf8');
 const source = fs.readFileSync('leaderboard.js', 'utf8');
-const route = fs.readFileSync('leaderboard-service/app/api/leaderboard/route.ts', 'utf8');
+const route = fs.readFileSync('worker/leaderboard.mjs', 'utf8');
 
 assert.match(html, /id="titleChampionTicker"/);
 assert.match(html, /id="titleChampionTrack"/);
@@ -17,14 +17,15 @@ assert.match(source, /CHAMPION_REFRESH_MS = 5 \* 60 \* 1000/);
 assert.match(source, /Promise\.allSettled\(Object\.keys\(levels\)/);
 assert.match(source, /textContent = entry\.nickname \|\| '无名将军'/);
 assert.match(source, /addEventListener\('click', \(\) => void openLeaderboard\(entry\.levelId\)\)/);
-assert.match(route, /jieqiao: \{ name: "界桥之战"/);
-assert.match(route, /beihai: \{ name: "北海之战"/);
-assert.match(route, /searchParams\.get\("scope"\) === "champions"/);
-assert.match(route, /\.limit\(1\)/);
+assert.match(route, /jieqiao: \{ name: '界桥之战'/);
+assert.match(route, /beihai: \{ name: '北海之战'/);
+assert.match(route, /huainan: \{ name: '淮南之战'/);
+assert.match(route, /searchParams\.get\('scope'\) === 'champions'/);
+assert.match(route, /LIMIT 1/);
 
 const storage = new Map();
 const context = {
-  window: {},
+  window: { location: { origin: 'https://game.example' } },
   document: {
     hidden: false,
     getElementById: () => null,

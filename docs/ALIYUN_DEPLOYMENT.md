@@ -2,9 +2,9 @@
 
 ## 当前范围
 
-此方案面向一台 Linux ECS 或轻量服务器：Nginx 提供 HTTPS 和 `dist` 静态文件，Node.js 提供同源 `/api/*`，SQLite 保存账号、会话、云存档、历史和统计。不需要 Cloudflare 网络、Workers 或 D1；服务端复用 `worker/` 中的业务代码，该目录名不代表运行时依赖 Cloudflare。
+此方案面向一台 Linux ECS 或轻量服务器：Nginx 提供 HTTPS 和 `dist` 静态文件，Node.js 提供同源 `/api/*`，SQLite 保存账号、会话、云存档、历史、统计和排行榜。不需要 Cloudflare 网络、Workers 或 D1；服务端复用 `worker/` 中的业务代码，该目录名不代表运行时依赖 Cloudflare。
 
-这是可本地验证的服务器适配和部署模板，**不是已经创建或发布到阿里云**。需要准备服务器、SSH 部署权限、域名及 HTTPS 证书；中国大陆节点还需确认备案及适用的游戏合规要求。原独立排行榜未包含在迁移范围内，不能据此宣称全服排行榜已恢复。
+排行榜使用同源 `/api/leaderboard`，不再依赖旧 ChatGPT Sites 排行榜域名。迁移会新建排行榜表，但不会自动复制旧独立排行榜的历史成绩；需要保留旧成绩时应另做一次性导入并核对。
 
 使用官方 Node.js 24 LTS（24.0.0及以上，含 `node:sqlite`），单实例运行。初期不做多台服务器共享 SQLite，也不将数据库放在 NFS、GitHub 或网页目录中。Node 的 SQLite 接口在部分版本仍有实验性提示，升级运行时前须执行回归。`server.mjs` 仍只是旧的本地静态试玩入口；生产账号服务用 `server/app.mjs`。
 
@@ -50,7 +50,7 @@ PORT=4180
 4. 令 `/opt/sanguo/current` 指向该版本。复制 `deploy/aliyun/sanguo.service` 到 `/etc/systemd/system/`，核对 Node 可执行路径。
 5. 将 `deploy/aliyun/nginx.conf` 作为站点模板，替换其中所有域名与证书路径。Nginx 的 `root` 只能指向 `dist`，不能指向源码根目录。须配置默认虚拟主机拒绝未知域名。执行 `nginx -t` 成功后再加载。
 6. 执行 `systemctl daemon-reload`、`systemctl enable --now sanguo`。启动只验证迁移并清理过期统计去重记录，不自动修改表结构。
-7. 核对 `https://实际域名/api/auth/session` 返回200、`providers.password: true`；匿名 `/api/saves` 应返回401。浏览器实测注册、上传、退出、登录、恢复及重启后读档，再开放正式流量。首次访问新域名需要重新登录。
+7. 核对 `https://实际域名/api/auth/session` 返回200、`providers.password: true`；匿名 `/api/saves` 应返回401；`/api/leaderboard?scope=champions` 应返回200。浏览器实测注册、上传、退出、登录、恢复、通关上传战绩及重启后读档，再开放正式流量。首次访问新域名需要重新登录。
 
 服务故障查看 `journalctl -u sanguo`。不要将密码、Cookie、数据库导出或密钥粘贴到公开日志中。后台汇总 SQL 沿用 `tools/analytics-report.sql`，管理员可通过服务器本地 SQLite 工具只读执行，不新增公共后台查询接口。
 

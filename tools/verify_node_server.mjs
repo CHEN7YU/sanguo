@@ -61,7 +61,7 @@ try {
   const manager = fileURLToPath(new URL('../server/manage.mjs', import.meta.url));
   execFileSync(process.execPath, [manager, 'migrate'], { env: { ...process.env, DATABASE_PATH: filename } });
   const migrations = sqlite.prepare('SELECT count(*) AS n FROM app_migrations').get().n;
-  assert.equal(migrations, 5);
+  assert.equal(migrations, 6);
   migrateDatabase(sqlite);
   assert.equal(sqlite.prepare('SELECT count(*) AS n FROM app_migrations').get().n, migrations);
   const checksum = sqlite.prepare('SELECT checksum FROM app_migrations WHERE name = ?').get('0001_auth.sql').checksum;
@@ -82,6 +82,32 @@ try {
   assert.equal((await call('/server/database.mjs')).status, 404, 'API must not serve source, secrets or databases');
   assert.equal((await call('/api/saves')).status, 401);
   assert.equal((await (await call('/api/auth/session')).json()).providers.password, true);
+  assert.deepEqual((await (await call('/api/leaderboard?scope=champions')).json()).entries, []);
+  const leaderboardEntry = {
+    levelId: 'huainan', playerId: 'player-test-0001', nickname: '测试将军', elapsedMs: 1800000,
+    turns: 30, lossPercent: 50, retreatCount: 2, victoryType: 'normal'
+  };
+  assert.equal((await call('/api/leaderboard', {
+    method: 'POST', body: leaderboardEntry, headers: { origin: 'https://evil.example' }
+  })).status, 403);
+  assert.equal((await call('/api/leaderboard', {
+    method: 'POST', body: { ...leaderboardEntry, levelId: 'unknown' }
+  })).status, 400);
+  const firstScore = await (await call('/api/leaderboard', { method: 'POST', body: leaderboardEntry })).json();
+  assert.equal(firstScore.improved, true);
+  assert.equal(firstScore.rank, 1);
+  const betterScore = await (await call('/api/leaderboard', { method: 'POST', body: {
+    ...leaderboardEntry, elapsedMs: 600000, turns: 10, lossPercent: 0, retreatCount: 0, victoryType: 'duel'
+  } })).json();
+  assert.equal(betterScore.improved, true);
+  assert.equal(betterScore.entry.levelName, '淮南之战');
+  assert.equal(betterScore.entry.score, 10000);
+  const worseScore = await (await call('/api/leaderboard', { method: 'POST', body: leaderboardEntry })).json();
+  assert.equal(worseScore.improved, false);
+  assert.equal(worseScore.entry.score, 10000, 'lower score must not replace the saved best result');
+  const huainanBoard = await (await call('/api/leaderboard?level=huainan')).json();
+  assert.equal(huainanBoard.entries.length, 1);
+  assert.equal((await (await call('/api/leaderboard?scope=champions')).json()).entries[0].nickname, '测试将军');
   const registered = await call('/api/auth/register', { method: 'POST', body: { username: 'testuser', password: '0123' } });
   assert.equal(registered.status, 201);
   const cookie = registered.headers.get('set-cookie').split(';')[0];
@@ -121,6 +147,7 @@ try {
       sqlite.prepare('SELECT payload FROM save_bundles WHERE user_id = ?').get(user.id).payload);
     assert.equal(restored.prepare('SELECT password_hash FROM password_credentials').get().password_hash,
       sqlite.prepare('SELECT password_hash FROM password_credentials').get().password_hash);
+    assert.equal(restored.prepare('SELECT score FROM leaderboard_scores').get().score, 10000);
   } finally { restored.close(); }
   await stop();
   sqlite.close();
@@ -128,6 +155,8 @@ try {
   migrateDatabase(sqlite);
   await listen();
   assert.equal((await (await call('/api/saves', { cookie, headers: { 'x-save-owner': user.id } })).json()).payload.saveStore.auto.turn, 2);
+  assert.equal((await (await call('/api/leaderboard?level=huainan')).json()).entries[0].score, 10000,
+    'leaderboard must persist after service restart');
   const login = await call('/api/auth/login', { method: 'POST', body: { username: 'testuser', password: '0123' } });
   assert.equal(login.status, 200, 'same password must work after service restart');
   const loginCookie = login.headers.get('set-cookie').split(';')[0];
@@ -147,7 +176,7 @@ try {
   base = `http://127.0.0.1:${port}`;
   assert.equal((await (await call('/api/saves', { cookie, headers: { 'x-save-owner': user.id } })).json()).payload.saveStore.auto.turn, 2,
     'production startup must read accounts and progress from the verified backup');
-  console.log('Node API verified: real HTTP auth/save/history/statistics, proxy guards, transactional rollback, rate limits, restart persistence and verified backup.');
+  console.log('Node API verified: real HTTP auth/save/history/statistics/leaderboard, proxy guards, transactional rollback, rate limits, restart persistence and verified backup.');
 } finally {
   await stop();
   sqlite?.close();

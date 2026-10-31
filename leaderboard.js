@@ -1,7 +1,8 @@
 (() => {
   'use strict';
 
-  const API_URL = 'https://sanguozhi-zhaolie-leaderboard.fanduanyang.chatgpt.site';
+  // Account, cloud-save and leaderboard APIs share the game's HTTPS origin.
+  const API_URL = window.location?.origin || '';
   const STORAGE_KEY = 'zhaolie-leaderboard-local-v1';
   const PLAYER_KEY = 'zhaolie-leaderboard-player-v1';
   const NICKNAME_KEY = 'zhaolie-leaderboard-nickname-v1';
