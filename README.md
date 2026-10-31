@@ -138,7 +138,7 @@ npx wrangler d1 execute sanguo-wechat-preview --remote --env preview --command "
 
 正式游戏入口保持 `/sanguo/`，图文介绍页为 `/sanguo/about/`，完整更新记录为 `/sanguo/about/devlog.html`。介绍页不加载 `game.js` 或关卡脚本；图片使用懒加载，宣传视频只有点击播放后才请求。移动端保持竖屏阅读，并在底部固定显示“开始试玩”。
 
-留言接口为 `GET/POST /api/comments`。游客可用公开昵称提交，登录用户会在服务端关联账号但不公开账号名；新留言默认待审核。管理员页面 `/sanguo/about/admin.html` 使用只保存在服务器环境中的 `COMMENTS_ADMIN_TOKEN`，可审核、回复、置顶、隐藏并设置“已收到／修复中／已修复”。介绍页访问与点击试玩转化写入独立汇总表，可通过 `tools/analytics-report.sql` 查看。SQLite 迁移 `0007` 和 `0008` 必须在发布新后端前显式执行。
+留言接口为 `GET/POST /api/comments`。公开表单只保留昵称和留言正文，所有新提交按普通留言处理；登录用户会在服务端关联账号但不公开账号名，新留言默认待审核。接口继续兼容旧版留言类型、关卡和设备字段，已有数据不会丢失。管理员页面 `/sanguo/about/admin.html` 使用只保存在服务器环境中的 `COMMENTS_ADMIN_TOKEN`，可审核、回复、置顶、隐藏并设置“已收到／修复中／已修复”。介绍页访问与点击试玩转化写入独立汇总表，可通过 `tools/analytics-report.sql` 查看。SQLite 迁移 `0007` 和 `0008` 必须在发布新后端前显式执行。
 
 Cloudflare 项目连接本仓库的 `main`，仓库根目录保持默认，设置：
 

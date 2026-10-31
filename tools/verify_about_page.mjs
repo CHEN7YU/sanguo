@@ -15,6 +15,9 @@ assert.match(html, /class="mobile-play play-link"/);
 assert.match(css, /@media\(max-width:600px\)/);
 assert.doesNotMatch(html, /<video[^>]+src=/i, 'video bytes must load only after a click');
 assert.doesNotMatch(html, /game\.js|level-\d+\.js/, 'introduction page must not preload the game runtime');
+for (const removedField of ['commentKind', 'bugFields', 'name="levelId"', 'name="device"', '留言类型', '出问题的关卡']) {
+  assert.doesNotMatch(html, new RegExp(removedField), `removed comment field returned: ${removedField}`);
+}
 assert.match(js, /analytics\/about/);
 assert.match(js, /fetch\(`\$\{api\}\/comments/);
 assert.match(worker, /handleAboutAnalytics/);

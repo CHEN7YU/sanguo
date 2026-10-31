@@ -42,9 +42,6 @@
     video.play().catch(() => {});
   }, { once: true });
 
-  const kind = document.getElementById('commentKind');
-  const bugFields = document.getElementById('bugFields');
-  kind?.addEventListener('change', () => { bugFields.hidden = kind.value !== 'bug'; });
   const feed = document.getElementById('commentFeed');
   const statusNames = { received: '已收到', fixing: '修复中', fixed: '已修复' };
   const kindNames = { comment: '玩家留言', suggestion: '玩法建议', bug: '问题反馈' };
@@ -80,13 +77,13 @@
     event.preventDefault();
     const submit = form.querySelector('button[type="submit"]');
     submit.disabled = true; formStatus.textContent = '正在提交…';
-    const data = Object.fromEntries(new FormData(form));
+    const data = { ...Object.fromEntries(new FormData(form)), kind: 'comment' };
     try {
       const response = await fetch(`${api}/comments`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || '提交失败');
       formStatus.textContent = result.message;
-      form.reset(); bugFields.hidden = true;
+      form.reset();
     } catch (error) { formStatus.textContent = error.message || '留言暂时没有送达，请稍后再试'; }
     finally { submit.disabled = false; }
   });
