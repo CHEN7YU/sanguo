@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
@@ -29,6 +30,10 @@ for (const file of new Set(assetRefs)) {
   assert.ok(existsSync(filename), `missing introduction asset: assets/${file}`);
   assert.ok(statSync(filename).size < 25 * 1024 * 1024, `introduction asset exceeds 25 MiB: assets/${file}`);
 }
+const originalComparison = readFileSync(resolve(root, 'assets/story-palace-original.webp'));
+const remasterComparison = readFileSync(resolve(root, 'assets/story-palace-remaster.webp'));
+const digest = value => createHash('sha256').update(value).digest('hex');
+assert.notEqual(digest(originalComparison), digest(remasterComparison), 'original and remaster comparison images must differ');
 for (const file of ['about/devlog.html', 'about/admin.html', 'about/admin.js']) {
   assert.ok(existsSync(resolve(root, file)), `missing page: ${file}`);
 }
