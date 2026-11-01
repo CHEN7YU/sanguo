@@ -10,7 +10,7 @@ const css = readFileSync(resolve(root, 'about/about.css'), 'utf8');
 const js = readFileSync(resolve(root, 'about/about.js'), 'utf8');
 const worker = readFileSync(resolve(root, 'worker/index.mjs'), 'utf8');
 
-for (const marker of ['免费开始试玩', '实际游戏画面', '重制对照', '武将与兵种', '当前可玩内容',
+for (const marker of ['直接开始游戏', '实际游戏画面', '重制对照', '武将与兵种', '当前可玩内容',
   '视频与开发故事', '最近三次更新', '玩家留言', '几个常见问题']) assert.match(html, new RegExp(marker));
 assert.match(html, /class="mobile-play play-link"/);
 assert.match(css, /@media\(max-width:600px\)/);

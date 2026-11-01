@@ -23,12 +23,34 @@
 
   const dialog = document.getElementById('lightbox');
   const dialogImage = dialog?.querySelector('img');
-  document.querySelectorAll('[data-lightbox]').forEach(button => button.addEventListener('click', () => {
+  const mapCards = [...document.querySelectorAll('[data-map-index]')];
+  const mapNavigation = dialog?.querySelector('.lightbox-navigation');
+  let currentMap = -1;
+  function showImage(button) {
+    currentMap = mapCards.indexOf(button);
     dialogImage.src = button.dataset.lightbox;
     dialogImage.alt = button.querySelector('img')?.alt || '游戏截图大图';
+    if (mapNavigation) mapNavigation.hidden = currentMap < 0;
+    if (currentMap >= 0) document.getElementById('mapCaption').textContent =
+      button.querySelector('strong').textContent + ' · ' + (currentMap + 1) + ' / ' + mapCards.length;
+  }
+  document.querySelectorAll('[data-lightbox]').forEach(button => button.addEventListener('click', () => {
+    showImage(button);
     dialog.showModal();
   }));
-  dialog?.querySelector('button')?.addEventListener('click', () => dialog.close());
+  function moveMap(offset) {
+    if (currentMap >= 0 && mapCards.length) showImage(mapCards[(currentMap + offset + mapCards.length) % mapCards.length]);
+  }
+  document.getElementById('mapPrevious')?.addEventListener('click', () => moveMap(-1));
+  document.getElementById('mapNext')?.addEventListener('click', () => moveMap(1));
+  dialog?.addEventListener('keydown', event => {
+    if (currentMap < 0) return;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      moveMap(event.key === 'ArrowLeft' ? -1 : 1);
+    }
+  });
+  dialog?.querySelector('.lightbox-close')?.addEventListener('click', () => dialog.close());
   dialog?.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
 
   document.getElementById('loadVideo')?.addEventListener('click', () => {

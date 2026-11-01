@@ -6,6 +6,7 @@
   const STORAGE_KEY = 'zhaolie-leaderboard-local-v1';
   const PLAYER_KEY = 'zhaolie-leaderboard-player-v1';
   const NICKNAME_KEY = 'zhaolie-leaderboard-nickname-v1';
+  const PENDING_KEY = 'zhaolie-leaderboard-pending-v1';
   const RULE_VERSION = 1;
   const levels = {
     'sishui-pass': { name: '汜水关之战', targetSeconds: 600, targetTurns: 12, maxTurns: 30 },
@@ -30,6 +31,9 @@
   let shownLevelId = 'sishui-pass';
   let championsLoadedAt = 0;
   const CHAMPION_REFRESH_MS = 5 * 60 * 1000;
+  let flushing = false;
+  let pendingMemory = [];
+  let pendingStorageFailed = false;
 
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
   const playerId = (() => {
@@ -125,6 +129,11 @@
     };
     lastResult = { ...raw, ...scoreMetrics(raw) };
     renderScoreCard(lastResult);
+    const accountId = window.ZhaolieCloud?.account?.();
+    if (accountId) {
+      queueAccountScore(lastResult, accountId);
+      void flushPending();
+    }
     return lastResult;
   }
 
@@ -267,6 +276,78 @@
       try { nickname.value = localStorage.getItem(NICKNAME_KEY) || ''; } catch {}
     }
     document.getElementById('scoreUploadStatus').textContent = '输入昵称后上传本关最高成绩';
+    const signedIn = Boolean(window.ZhaolieCloud?.account?.());
+    nickname?.classList.toggle('hidden', signedIn);
+    document.getElementById('scoreUploadBtn')?.classList.toggle('hidden', signedIn);
+    if (signedIn) document.getElementById('scoreUploadStatus').textContent = '正在使用登录账号自动上传战绩……';
+  }
+
+  function pendingScores() {
+    if (pendingStorageFailed) return pendingMemory;
+    try {
+      const items = JSON.parse(localStorage.getItem(PENDING_KEY) || '[]');
+      if (Array.isArray(items)) return items.filter(item => item?.accountId && item?.id && levels[item.result?.levelId]);
+    } catch {}
+    return pendingMemory;
+  }
+
+  function savePending(items) {
+    pendingMemory = items;
+    try { localStorage.setItem(PENDING_KEY, JSON.stringify(items)); pendingStorageFailed = false; }
+    catch { pendingStorageFailed = true; }
+  }
+
+  function queueAccountScore(result, accountId) {
+    const items = pendingScores();
+    const old = items.find(item => item.accountId === accountId && item.result.levelId === result.levelId);
+    if (old && (old.result.score > result.score || (old.result.score === result.score && old.result.elapsedMs <= result.elapsedMs))) return;
+    savePending([...items.filter(item => item !== old), {
+      id: crypto.randomUUID(), accountId, result: { ...result }
+    }]);
+  }
+
+  function accountStatus(item, message) {
+    if (window.ZhaolieCloud?.account?.() !== item.accountId || lastResult?.levelId !== item.result.levelId) return;
+    const status = document.getElementById('scoreUploadStatus');
+    if (status) status.textContent = message;
+  }
+
+  async function flushPending() {
+    if (flushing) return;
+    flushing = true;
+    try {
+      await window.ZhaolieCloud?.ready;
+      const accountId = window.ZhaolieCloud?.account?.();
+      if (!accountId) return;
+      // Capture the owner and result; changing scenes or accounts must not reassign a score.
+      for (;;) {
+        if (window.ZhaolieCloud?.account?.() !== accountId) break;
+        const item = pendingScores().find(entry => entry.accountId === accountId);
+        if (!item) break;
+        try {
+          const response = await fetch(`${API_URL}/api/leaderboard`, {
+            method: 'POST', credentials: 'same-origin',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ ...item.result, accountId }),
+            signal: AbortSignal.timeout(15000)
+          });
+          const data = await response.json();
+          if (!response.ok) {
+            accountStatus(item, [401, 409].includes(response.status)
+              ? `${data.error}；重新登录后自动补传`
+              : `战绩尚未上传：${data.error || '服务暂不可用'}；已保留并稍后重试`);
+            break;
+          }
+          savePending(pendingScores().filter(entry => entry.id !== item.id));
+          accountStatus(item, `已以登录名「${data.entry.nickname}」自动上传 · ${data.improved === false ? '保留最高纪录' : '本关纪录已更新'} · 第${data.rank}名`);
+          void loadTitleChampions(true);
+          // Automatic submission deliberately leaves story/outcome/navigation untouched.
+        } catch {
+          accountStatus(item, '战绩已暂存在本机，网络恢复后自动补传');
+          break;
+        }
+      }
+    } finally { flushing = false; }
   }
 
   function localEntries() {
@@ -293,6 +374,9 @@
 
   async function uploadResult() {
     if (!lastResult) return;
+    const accountId = window.ZhaolieCloud?.account?.();
+    if (accountId) { queueAccountScore(lastResult, accountId); await flushPending(); return; }
+    const result = lastResult;
     const nickname = nicknameValue();
     const status = document.getElementById('scoreUploadStatus');
     const button = document.getElementById('scoreUploadBtn');
@@ -301,7 +385,7 @@
       return;
     }
     try { localStorage.setItem(NICKNAME_KEY, nickname); } catch {}
-    const payload = { ...lastResult, playerId, nickname };
+    const payload = { ...result, playerId, nickname };
     button.disabled = true;
     status.textContent = '正在上传战绩……';
     try {
@@ -315,7 +399,7 @@
       const data = await response.json();
       status.textContent = data.improved === false ? `已有更高纪录 · 当前第${data.rank}名` : `上传成功 · 本关第${data.rank}名`;
       void loadTitleChampions(true);
-      await openLeaderboard(lastResult.levelId);
+      await openLeaderboard(result.levelId);
     } catch {
       storeLocal({ ...payload, createdAt: new Date().toISOString() });
       status.textContent = '在线榜暂不可用，成绩已保存在本机试玩榜';
@@ -372,6 +456,9 @@
   }
 
   function init() {
+    void flushPending();
+    window.addEventListener?.('online', () => void flushPending());
+    setInterval(() => { if (!document.hidden) void flushPending(); }, 60000);
     document.getElementById('titleLeaderboardBtn')?.addEventListener('click', () => openLeaderboard(activeLevel || 'sishui-pass'));
     document.getElementById('scoreLeaderboardBtn')?.addEventListener('click', () => openLeaderboard(lastResult?.levelId));
     document.getElementById('scoreUploadBtn')?.addEventListener('click', uploadResult);
@@ -381,6 +468,7 @@
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) pauseClock();
       else {
+        void flushPending();
         if (activeLevel && !lastResult) resumeClock();
         if (!document.getElementById('titleScreen')?.classList.contains('hidden')) void loadTitleChampions();
       }

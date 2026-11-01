@@ -1,4 +1,5 @@
 import { consumeLimit } from './security.mjs';
+import { sessionUser } from './auth.mjs';
 
 const RULE_VERSION = 1;
 const MAX_BODY_BYTES = 4096;
@@ -134,14 +135,19 @@ async function postLeaderboard(request, url, env) {
   const levelId = String(body.levelId || '');
   const rule = levelRules[levelId];
   if (!rule) return json({ error: '未知关卡' }, 400);
-  const playerId = String(body.playerId || '').trim().slice(0, 80);
-  const nickname = String(body.nickname || '').replace(/[<>\u0000-\u001f\u007f]/g, '').trim().slice(0, 16);
+  const user = await sessionUser(request, env);
+  if (body.accountId && !user) return json({ error: '请重新登录，待上传战绩已保留' }, 401);
+  if (body.accountId && body.accountId !== user?.id) return json({ error: '账号已切换，请用通关账号重新登录' }, 409);
+  // Never trust client-supplied names or IDs for an authenticated score.
+  const playerId = user ? `account:${user.id}` : String(body.playerId || '').trim().slice(0, 80);
+  const nickname = user ? user.username : String(body.nickname || '').replace(/[<>\u0000-\u001f\u007f]/g, '').trim().slice(0, 16);
+  if (!user && playerId.startsWith('account:')) return json({ error: '玩家信息无效' }, 400);
   const elapsedMs = Math.round(Number(body.elapsedMs));
   const turns = Math.round(Number(body.turns));
   const lossPercent = Number(body.lossPercent);
   const retreatCount = Math.round(Number(body.retreatCount));
-  const victoryType = String(body.victoryType || 'normal');
-  if (playerId.length < 8 || nickname.length < 2) return json({ error: '玩家信息无效' }, 400);
+  const victoryType = body.victoryType === 'withdrawal' ? 'alternate' : String(body.victoryType || 'normal');
+  if (playerId.length < 8 || typeof nickname !== 'string' || nickname.length < 2) return json({ error: '玩家信息无效' }, 400);
   if (!Number.isFinite(elapsedMs) || elapsedMs < 1000 || elapsedMs > 8 * 60 * 60 * 1000) return json({ error: '战斗时间无效' }, 400);
   if (!Number.isFinite(turns) || turns < 1 || turns > rule.maxTurns) return json({ error: '回合数无效' }, 400);
   if (!Number.isFinite(lossPercent) || lossPercent < 0 || lossPercent > 100) return json({ error: '损失数据无效' }, 400);

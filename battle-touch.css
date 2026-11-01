@@ -1,0 +1,50 @@
+/* All new layout rules are opt-in. Fine-pointer desktop styles are unchanged. */
+#touchDetails,#touchConfirm{display:none}
+.battle-touch #app{min-width:0;height:100dvh;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);grid-template-rows:44px minmax(0,1fr) 22px}
+.battle-touch .game-shell{grid-template-columns:minmax(0,1fr) 192px;grid-template-rows:minmax(0,1fr)}
+.battle-touch .topbar{grid-template-columns:minmax(0,1fr) auto;padding:0 6px}
+.battle-touch .brand,.battle-touch .chapter small,.battle-touch .balance-badge,.battle-touch .music-control{display:none}
+.battle-touch .chapter{min-width:0;border:0;box-shadow:none;text-align:left;padding:0 8px}
+.battle-touch .chapter strong{font-size:16px;letter-spacing:2px}
+.battle-touch .header-right{gap:5px}.battle-touch .header-right button{min-height:40px}
+.battle-touch .turn>span{display:block;font-size:10px}.battle-touch .turn b span{display:inline;font-size:10px}.battle-touch .turn b{font-size:11px}.battle-touch .turn em{font-size:14px}
+.battle-touch .sidebar{display:flex;flex-direction:column;gap:4px;padding:4px;overflow:auto;overscroll-behavior:contain;touch-action:pan-y}
+.battle-touch .sidebar section{margin:0;flex:0 0 auto}
+.battle-touch .army-tabs,.battle-touch .roster-panel,.battle-touch .mini-panel,.battle-touch .battle-log-panel{display:none}
+.battle-touch .portrait-card{display:grid;order:0;grid-template-columns:40px minmax(0,1fr);gap:2px 5px;padding:4px}
+.battle-touch .portrait{grid-column:1;grid-row:1/5;height:44px;cursor:pointer}
+.battle-touch .unit-title{grid-column:2;grid-row:1}.battle-touch .unit-title strong{font-size:15px;letter-spacing:1px}
+.battle-touch .unit-title small,.battle-touch .exp-row,.battle-touch .equipment-row,.battle-touch .passive-skill,.battle-touch .stats{display:none}
+.battle-touch .hp-row,.battle-touch .morale-row,.battle-touch .sp-row{display:flex;grid-column:2;align-items:center;gap:4px;font-size:10px;margin:0;padding:0}
+.battle-touch .hp-row div,.battle-touch .morale-row div,.battle-touch .sp-row div{display:none}
+.battle-touch .hp-row b,.battle-touch .morale-row b,.battle-touch .sp-row b{margin-left:auto;white-space:nowrap}
+.battle-touch .action-panel{order:1;padding:4px;position:static}
+.battle-touch .action-panel h3{display:flex;align-items:center;margin:0 0 4px;min-height:28px}
+.battle-touch #touchDetails{display:inline-block;margin-left:auto;border:1px solid #94733b;background:#0b2847;color:#f2d598;font:12px inherit;padding:5px 12px;min-height:30px;touch-action:manipulation}
+.battle-touch .action-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}
+.battle-touch .action-grid button{height:44px;min-height:44px;font-size:13px;padding:0 3px;touch-action:manipulation}
+.battle-touch .action-grid button span{display:inline;margin-right:3px}
+.battle-touch #dangerBtn{grid-column:auto;font-size:10px}.battle-touch #endTurnBtn{grid-column:1/-1}
+.battle-touch #touchConfirm:not(.hidden){display:block;position:fixed;z-index:17;left:calc(10px + env(safe-area-inset-left,0px));right:auto;bottom:calc(30px + env(safe-area-inset-bottom,0px));width:136px;background:#765322;border-color:#ffe18d;color:#fff0bd;box-shadow:0 3px 12px #0009}
+.battle-touch .touch-details-open .portrait-card{position:absolute;z-index:18;right:calc(194px + env(safe-area-inset-right,0px));top:calc(48px + env(safe-area-inset-top,0px));bottom:calc(28px + env(safe-area-inset-bottom,0px));width:min(330px,calc(100vw - 210px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px)));overflow:auto;align-content:start;padding:10px;grid-template-columns:64px 1fr;box-shadow:0 6px 25px #000c}
+.battle-touch .touch-details-open .portrait{height:68px}
+.battle-touch .touch-details-open .unit-title small{display:block;font-size:11px}
+.battle-touch .touch-details-open .exp-row,.battle-touch .touch-details-open .equipment-row,.battle-touch .touch-details-open .stats{display:grid;grid-column:1/-1}
+.battle-touch .touch-details-open .passive-skill:not(.hidden){display:block;grid-column:1/-1}
+.battle-touch .item-menu:not(.hidden){position:absolute;z-index:19;right:calc(194px + env(safe-area-inset-right,0px));bottom:calc(28px + env(safe-area-inset-bottom,0px));max-height:calc(100dvh - 80px);width:min(330px,calc(100vw - 210px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px)));overflow:auto;overscroll-behavior:contain;box-shadow:0 6px 25px #000b}
+.battle-touch .item-menu button{min-height:44px}.battle-touch .item-menu span{font-size:12px}
+.battle-touch .forecast{top:44px;right:8px;max-width:calc(100% - 16px);font-size:12px}
+.battle-touch .objective{top:4px;left:4px;max-width:calc(100% - 8px);font-size:10px;padding:4px 8px;min-width:0}.battle-touch .objective b{letter-spacing:0}.battle-touch .objective small{font-size:8px}
+.battle-touch .statusbar{font-size:10px;padding:0 5px}.battle-touch .statusbar>div:last-child{display:none}
+@media(min-height:600px) and (min-width:1000px){
+ .battle-touch .game-shell{grid-template-columns:minmax(0,1fr) 224px}
+ .battle-touch .portrait-card{grid-template-columns:56px 1fr;padding:8px;gap:5px}
+ .battle-touch .portrait{height:60px}.battle-touch .unit-title strong{font-size:19px}
+ .battle-touch .unit-title small{display:block}.battle-touch .stats{display:grid;grid-column:1/-1}
+ .battle-touch .action-grid button{height:48px}
+ .battle-touch .touch-details-open .portrait-card,.battle-touch .item-menu:not(.hidden){right:calc(226px + env(safe-area-inset-right,0px))}
+}
+@media(max-height:370px){.battle-touch #app{grid-template-rows:40px minmax(0,1fr) 18px}.battle-touch .sidebar{gap:2px;padding:2px}.battle-touch .action-grid{gap:2px}.battle-touch .action-grid button{min-height:40px;height:40px}.battle-touch .action-panel h3{margin:0}.battle-touch .portrait-card{padding:2px}}
+@media(max-height:370px){.battle-touch .portrait-card{grid-template-rows:14px repeat(3,11px);row-gap:0}.battle-touch .action-panel{padding:2px}.battle-touch .unit-title strong{font-size:13px;line-height:14px}.battle-touch .hp-row,.battle-touch .morale-row,.battle-touch .sp-row{line-height:11px}.battle-touch .touch-details-open .portrait-card{grid-template-rows:auto}}
+
+.battle-touch .battlefield-wrap.touch-action-pending .touch-controls{bottom:calc(64px + env(safe-area-inset-bottom,0px))}

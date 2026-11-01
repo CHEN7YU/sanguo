@@ -134,6 +134,20 @@ try {
   const cookie = registered.headers.get('set-cookie').split(';')[0];
   assert.match(registered.headers.get('set-cookie'), /HttpOnly; Secure; SameSite=Lax/);
   const { user } = await registered.json();
+  const autoEntry = { ...leaderboardEntry, levelId: 'xiaopei', accountId: user.id,
+    nickname: '伪造昵称', playerId: 'another-browser', victoryType: 'withdrawal' };
+  assert.equal((await call('/api/leaderboard', { method: 'POST', body: autoEntry })).status, 401);
+  assert.equal((await call('/api/leaderboard', { method: 'POST', cookie,
+    body: { ...autoEntry, accountId: 'other-account' } })).status, 409);
+  const automatic = await (await call('/api/leaderboard', { method: 'POST', cookie, body: autoEntry })).json();
+  assert.equal(automatic.entry.nickname, 'testuser', 'account name must come from authenticated session');
+  assert.equal(automatic.entry.victoryType, 'alternate', 'withdrawal victories can upload');
+  const duplicate = await (await call('/api/leaderboard', { method: 'POST', cookie,
+    body: { ...autoEntry, playerId: 'different-device', nickname: '另一名字' } })).json();
+  assert.equal(duplicate.improved, false);
+  assert.equal(sqlite.prepare('SELECT count(*) AS n FROM leaderboard_scores WHERE player_id = ?').get(`account:${user.id}`).n, 1);
+  assert.equal((await call('/api/leaderboard', { method: 'POST',
+    body: { ...leaderboardEntry, playerId: `account:${user.id}` } })).status, 400, 'guest cannot overwrite account score');
   assert.equal((await call('/api/auth/register', {
     method: 'POST', body: { username: 'forged', password: '0123' }, headers: { origin: 'https://evil.example' }
   })).status, 403);

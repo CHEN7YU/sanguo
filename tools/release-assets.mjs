@@ -17,8 +17,18 @@ export function collectReleaseAssets(sources) {
         references.add(rootMatch[2] + joinedMatch[1]);
       }
     }
+    // Named literal arrays are also used by mounted-combat attack overrides.
+    // Resolve only static literal lists; never evaluate arbitrary game code.
+    const enumeratedSource = text.replace(/for\s*\(\s*const\s+([A-Za-z_$][A-Za-z0-9_$]*)\s+of\s+([A-Za-z_$][A-Za-z0-9_$]*)\s*\)/g, (loop, item, name) => {
+      const escaped=name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+      const declaration=text.match(new RegExp(`const\\s+${escaped}\\s*=\\s*\\[([^\\]]*)\\]`));
+      if(!declaration)return loop;
+      const list=declaration[1];
+      if(list.replace(/(['"])[A-Za-z0-9_-]+\1/g,'').replace(/[\s,]/g,''))return loop;
+      return `for(const ${item} of [${list}])`;
+    });
     const enumerated = /for\s*\(\s*const\s+([A-Za-z_$][A-Za-z0-9_$]*)\s+of\s*\[([^\]]*)\]\s*\)\s*(?:\{\s*)?[A-Za-z_$][A-Za-z0-9_$]*\s*\[\s*\1\s*\]\s*=\s*`(assets\/[^`]+)`/g;
-    for (const match of text.matchAll(enumerated)) {
+    for (const match of enumeratedSource.matchAll(enumerated)) {
       const literals = /(['"])([A-Za-z0-9_-]+)\1/g;
       const values = [...match[2].matchAll(literals)].map(value => value[2]);
       if (!values.length || match[2].replace(literals, '').replace(/[\s,]/g, '')) {

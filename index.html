@@ -10,7 +10,7 @@
   <style id="startupLoaderCritical">
     .startup-loader{position:fixed;z-index:99990;inset:0;display:grid;place-items:center;overflow:hidden;padding:24px;background:radial-gradient(circle at 50% 32%,#173a55 0,#071b31 37%,#020a14 100%);color:#e8dec2;font-family:"Microsoft YaHei","Noto Sans SC",sans-serif;transition:opacity .42s ease,visibility .42s ease}.startup-loader:before,.startup-loader:after{content:"";position:absolute;pointer-events:none}.startup-loader:before{inset:16px;border:1px solid #bd842d66;box-shadow:inset 0 0 70px #0008}.startup-loader:after{width:min(740px,82vw);height:min(740px,82vw);border:1px solid #d2a95814;border-radius:50%;box-shadow:0 0 0 46px #d2a95808,0 0 0 92px #d2a95805;animation:startupSeal 16s linear infinite}.startup-loader-card{position:relative;z-index:1;width:min(560px,86vw);padding:44px 48px 38px;border:1px solid #c08a38;background:linear-gradient(145deg,#0f3153e8,#06162df5 72%);box-shadow:inset 0 0 0 1px #f2cb7352,0 28px 90px #000d;text-align:center}.startup-loader-kicker{display:block;color:#75ccd5;font:12px serif;letter-spacing:8px}.startup-loader h1{margin:12px 0 5px;color:#f1d18a;font:clamp(30px,5vw,48px) serif;letter-spacing:10px;text-shadow:0 3px 12px #000}.startup-loader-subtitle{margin:0 0 30px;color:#b7c8ca;font-size:12px;letter-spacing:3px}.startup-loader-track{height:8px;overflow:hidden;border:1px solid #9b7137;background:#020913;box-shadow:inset 0 1px 5px #000}.startup-loader-bar{width:6%;height:100%;background:linear-gradient(90deg,#7a4e1e,#e5b954 58%,#fff0a8);box-shadow:0 0 14px #efc35b99;transition:width .18s ease}.startup-loader-copy{display:flex;justify-content:space-between;gap:14px;margin-top:12px;color:#e8d6a8;font-size:13px}.startup-loader-copy b{letter-spacing:2px}.startup-loader-copy span{font-variant-numeric:tabular-nums;color:#78d0d7}.startup-loader-detail{min-height:19px;margin:9px 0 0;color:#849da7;font-size:11px}.startup-loader-retry{margin-top:18px;min-height:40px;padding:0 24px;border:1px solid #d0a34f;background:#68491f;color:#ffe7a8;font-family:inherit;letter-spacing:2px;cursor:pointer}.startup-loader-error .startup-loader-bar{background:linear-gradient(90deg,#7f2f27,#e4865d)}.startup-loader-error .startup-loader-detail{color:#f0aa8e}.startup-loader-leaving{opacity:0;visibility:hidden}.startup-loader[hidden]{display:none}.startup-loader-noscript{position:fixed;z-index:100001;inset:0;display:grid;place-items:center;padding:24px;background:#06182d;color:#fff;text-align:center;font-family:"Microsoft YaHei",sans-serif}.startup-loader-noscript b{color:#f4d58a;font-size:24px}@keyframes startupSeal{to{transform:rotate(360deg)}}@media(max-width:600px){.startup-loader-card{padding:32px 22px 28px}.startup-loader h1{letter-spacing:5px}.startup-loader-copy{font-size:11px}.startup-loader:before{inset:8px}}@media(max-height:480px) and (orientation:landscape){.startup-loader-card{width:min(620px,82vw);padding:18px 34px}.startup-loader h1{margin:5px 0 2px;font-size:28px}.startup-loader-subtitle{margin-bottom:14px}.startup-loader-detail{margin-top:5px}.startup-loader-retry{min-height:34px;margin-top:8px}}@media(prefers-reduced-motion:reduce){.startup-loader:after{animation:none}.startup-loader,.startup-loader-bar{transition:none}}
   </style>
-  <link rel="stylesheet" href="style.css?build=20261026-level-stream-v267" />
+  <link rel="stylesheet" href="style.css?build=20261101-touch-v1" /><link rel="stylesheet" href="battle-touch.css?build=20261101-touch-v1" />
   <link rel="modulepreload" href="save-format.mjs?build=20261026-level-stream-v267" />
   <link rel="stylesheet" href="auth.css?build=20261026-level-stream-v267" />
 </head>
@@ -276,13 +276,14 @@
         </section>
 
         <section class="action-panel">
-          <h3>指令</h3>
+          <h3>指令<button id="touchDetails" type="button" aria-expanded="false">详情</button></h3>
           <div class="action-grid">
             <button id="attackBtn"><span>⚔</span>攻击</button>
             <button id="strategyBtn"><span>策</span>策略</button>
             <button id="itemBtn"><span>药</span>道具</button>
             <button id="waitBtn"><span>◷</span>待机</button>
             <button id="undoBtn"><span>↶</span>取消</button>
+            <button id="touchConfirm" class="hidden" type="button">确认移动</button>
             <button id="dangerBtn" class="wide"><span>危</span>显示敌军危险区</button>
             <button id="endTurnBtn" class="primary wide"><span>旗</span>结束回合</button>
           </div>
@@ -431,11 +432,12 @@
   <script src="level-07-xuzhou-animation-bounds.js?build=20261026-level-stream-v267"></script>
   <script src="story-data.js?build=20261026-level-stream-v267"></script>
   <script src="dialogue-style.js?build=20261026-level-stream-v267"></script>
+  <script src="battle-touch.js?build=20261101-touch-v1"></script>
   <script src="battle-view.js?build=20261026-level-stream-v267"></script>
-  <script src="leaderboard.js?build=20261026-level-stream-v267"></script>
+  <script src="leaderboard.js?build=20261102-auto-score-v1"></script>
   <script src="mounted-combat-bounds-v1.js?build=20261026-level-stream-v267"></script>
   <script src="bandit-combat-bounds-v3.js?build=20261026-level-stream-v267"></script>
-  <script src="game.js?build=20261026-level-stream-v267"></script>
+  <script src="game.js?build=20261101-touch-v1"></script>
   <script src="auth.js?build=20261026-level-stream-v267"></script>
 </body>
 </html>

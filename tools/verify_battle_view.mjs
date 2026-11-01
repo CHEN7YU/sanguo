@@ -42,16 +42,16 @@ for(const [width,height,compact] of [[490,316,true],[760,520,true],[1520,990,fal
   }
 }
 console.log('Guangchuan view passed: 20x11 square cells and matching pointer hit targets.');
-// Exercise the actual touch-up handler, including OS cancellation and gestures.
+// The standalone gesture suite exercises drag, pinch, and OS cancellation.
+await import('./verify_battle_touch.mjs');
 const game=fs.readFileSync(new URL('../game.js',import.meta.url),'utf8');
-const handler=game.slice(game.indexOf('  function finishTouch('),game.indexOf("  canvas.addEventListener('pointerup'"));
-assert.ok(handler.includes('function finishTouch'));
-for(const [type,moved,multi,expected] of [['pointerup',false,false,1],['pointerup',true,false,0],['pointerup',false,true,0],['pointercancel',false,false,0]]){
-  const taps=[];
-  const context={touchPoints:new Map([[1,{x:100,y:100}]]),touchGesture:{moved,multi},ignoreClickUntil:0,canvas:{getBoundingClientRect:()=>({left:5,top:10})},handleBattleTap:(x,y)=>taps.push([x,y])};
-  vm.runInNewContext(handler+';finishTouch({pointerId:1,pointerType:"touch",type:'+JSON.stringify(type)+',clientX:100,clientY:100,preventDefault(){}});',context);
-  assert.equal(taps.length,expected,`${type}, moved=${moved}, multi=${multi} dispatched wrong action`);
-  assert.equal(context.touchPoints.size,0);
-  assert.equal(context.touchGesture,null);
+const handler=game.slice(game.indexOf('  function finishBattleTouch('),game.indexOf("  canvas.addEventListener('pointerup'"));
+assert.ok(handler.includes('function finishBattleTouch'));
+for(const type of ['pointerup','pointercancel'])for(const visible of [true,false]){
+ const calls=[];
+ const context={touchController:{has:()=>true,up:(...args)=>calls.push(args)},ignoreClickUntil:0,canvasPoint:()=>({x:12,y:34}),touchBattleVisible:()=>visible};
+ vm.runInNewContext(handler+';finishBattleTouch({pointerId:1,type:'+JSON.stringify(type)+',preventDefault(){}});',context);
+ assert.equal(calls.length,1);assert.equal(calls[0][2],type!=='pointerup'||!visible);
+ assert.ok(context.ignoreClickUntil>Date.now(),'Synthetic clicks must be suppressed');
 }
-console.log('Touch passed: taps act once; drag, pinch and pointer cancellation cannot issue a move.');
+console.log('Touch integration passed: pointer cancellation and hidden battle cannot dispatch a tap.');
